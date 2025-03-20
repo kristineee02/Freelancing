@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Page</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    height: 100vh; 
+    overflow: hidden;
+}
+
+nav {
+    background-color: #ffffff;
+    padding: 15px 30px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+}
+
+.TF2 {
+    font-size: 26px;
+    font-weight: 600;
+    padding-left: 80px;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li:last-child {
+    padding-right: 100px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.home {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 100px 80px 50px;
+}
+
+.home-image {
+    width: 35%;
+      filter: contrast(1.1) brightness(1.05);
+
+}
+
+.home-text {
+    max-width: 400px;
+}
+
+.home-text p {
+    text-align: justify;
+    font-size: 14px;
+    margin-top: 10px;
+    line-height: 1.5;
+}
+
+.SUAbutton {
+    background-color: #FFE295;
+    border-color: #E7F1FF;
+    width: 200px;
+    padding: 8px 10px;
+    font-style: italic;
+    font-weight: 600;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.SUAbutton a{
+    text-decoration: none;
+    color: black;
+}
+
+.SUAbutton a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #FFE295;
+    padding: 10px;
+}
+
+.home h1 {
+    font-family: 'Instrument', sans-serif;
+    font-style: italic;
+    font-weight: lighter;
+}
+.home span {
+    font-weight: 500;
+    font-size: 65px;
+}
+
+.TF-container {
+    text-align: center; 
+}
+
+.TF {
+    font-weight: 500;
+    font-size: 40px;
+    background-color: #FFE295;
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="TF2">TASKFLOW</div>
+        <ul>
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="AboutUs.html">About Us</a></li>
+            <li><a href="Support.html">Support</a></li>
+        </ul>
+    </nav>
+    
+    <div class="home">
+        <div class="home-image">
+            <img src="image/home.png" width="100%">
+        </div>
+        <div class="home-text">
+            <h1><span>WELCOME</span> to</h1>
+            <div class="TF-container">
+            <div class="TF">TASKFLOW</div>
+            <p>TaskFlow is an expression of our beliefs that we hold close to our hearts. It's one thing to simply provide a platform where Employers and Freelancers can work together. It's another to do it in our own unique way.</p>
+            <button class="SUAbutton"><a href="UserLogIn.html">Let's get started</a></button></div>
+        </div>
+
+    </div>
+    <footer>
+    </footer>
+</body>
+
+</html>

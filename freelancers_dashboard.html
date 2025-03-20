@@ -21,7 +21,30 @@
 
         <img class="message" src="image/images.png" alt="message">
         <img class="notif" src="image/3119338.png" alt="notif">
-        <img class="profile" src="image/prof.jpg" alt="profile">
+        <img class="profile" src="image/prof.jpg" alt="profile" onclick="toggleMenu()">
+
+        <div class="sub-menu-wrap" id="subMenu">
+            <div class="sub-menu">
+                <div class="user-info">
+                    <img class="profile" src="image/prof.jpg">
+                    <h4>Kristine Sabuero</h4>
+                </div>
+                <hr>
+
+                <a href="profile.html" class="sub-menu-link">
+                    <img src="image/prof.jpg">
+                    <p>Profile</p>
+                    <span>></span>
+                </a>
+                <a href="UserLogIn.html" class="sub-menu-link" onclick="logout()">
+                    <img src="image/logo.png">
+                    <p>Logout</p>
+                    <span>></span>
+                </a>
+
+            </div>
+
+        </div>
     
     </div>
     <div class="discover">
@@ -128,6 +151,20 @@
             </div>
         </section>
 
-    
+    <script>
+        let subMenu = document.getElementById("subMenu");
+
+        function toggleMenu(){
+            subMenu.classList.toggle("open");
+        }
+    </script>
+
+    <script>
+    function logout() {
+        alert("You have been logged out successfully."); 
+        
+        window.location.href = "Home.html"; 
+    }
+</script>
 </body>
 </html>

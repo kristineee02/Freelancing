@@ -1,4 +1,3 @@
-
 body{
     font-family: Arial, sans-serif;
    
@@ -515,22 +514,25 @@ html, body {
 
 .contents {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-center;
+    flex-wrap: wrap;
     padding: 30px;
+    gap: 20px;
     margin-left: 120px;
-    margin-top: 0;
+    margin-top: 150px;
+    text-align: center;
+
 }
 
 .freelancers {
-    width: 100%;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    padding: 0;
+    width: 60%;
+    gap: 20px;
 
 }
 
 .freelancer-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
 
@@ -548,11 +550,116 @@ html, body {
 }
 
 .cards a {
-    color: blue;
+    color: rgb(121, 121, 250);
     text-decoration: none;
     font-weight: bold;
 }
 .prof {
     width:60px;
     height:60px;
+}
+.profile-container {
+    width: fill;
+    padding: 5%;
+    text-align: center;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom:5%;
+}
+
+.profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-info {
+    text-align: left;
+}
+
+.profile-info h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.location,
+.job-title,
+.follow-info {
+    margin: 5px 0;
+    color: gray;
+    font-size: 14px;
+}
+
+.tabs {
+    display: flex;
+    justify-content:left;
+    gap: 50px;
+    margin-top: 10px;
+    margin-left: 50px;
+}
+
+.tabs span {
+    font-weight: bold;
+    color: #555;
+    cursor: pointer;
+}
+
+hr {
+    margin-top: 20px;
+    border: none;
+    border-top: 2px solid lightgray;
+}
+
+.work-section {
+    display: flex;
+    justify-content: cleft;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.work-box {
+    width: 300px;
+    height: 150px;
+    background-color: #ffe477;
+    border-radius: 10px;
+    
+}
+
+.about-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+}
+
+.about-left, .about-right {
+    width: 45%;
+    margin-top: -60px;
+}
+
+.about-left h2, .about-right h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.about-left p, .about-right p {
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.divider-1 {
+    margin-top: -60px;
+    width: 2px;
+    background-color: lightgray;
+    height: 300px;
+    align-self: stretch;  
 }

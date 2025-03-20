@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelancing</title>
+    <link rel ="stylesheet" href="clients.css">
+</head>
+<body>
+
+    <div id="logo">
+        <img class="picture" src="image/logo.png">
+        <p>Logo Name</p>
+
+        <p class="dashboard">
+              <a href="client-explore.html" >Explore</a>  
+              <a href="Find-Freelancer.html" class="tight-text">Find Designer</a> 
+              <a href="client-about.html">About</a>
+        </p>
+
+        <img class="message" src="image/images.png" alt="message">
+        <img class="notif" src="image/3119338.png" alt="notif">
+        <img class="profile" src="image/prof.jpg" alt="profile" onclick="toggleMenu()">
+
+        <div class="sub-menu-wrap" id="subMenu">
+            <div class="sub-menu">
+                <div class="user-info">
+                    <img class="profile" src="image/prof.jpg">
+                    <h4>Kristine Sabuero</h4>
+                </div>
+                <hr>
+
+                <a href="client-profile.html" class="sub-menu-link">
+                    <img src="image/prof.jpg">
+                    <p>Profile</p>
+                    <span>></span>
+                </a>
+                <a href="UserLogIn.html" class="sub-menu-link" onclick="logout()">
+                    <img src="image/logo.png">
+                    <p>Logout</p>
+                    <span>></span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="discover-find-job">
+        <p class="info-find-job"><b>
+            DISCOVER PROFESSIONALS THAT ALIGN WITH <br>YOUR STYLE.
+        </b></p>
+        <form action="search-job">
+            <input type="text" placeholder="SEARCH BY SKILL" name="search" class="search-bar-job">
+        </form>
+    </div>
+
+    <div class="category">
+        <p class="categories">Categories:</p>
+    <div class="category-type">
+        <input type="radio" id="skill1" name="category" value="30">
+        <label for="skill1">Animation</label><br/><br/>
+
+        <input type="radio" id="skill2" name="category" value="30">
+        <label for="skill2">Graphic Design</label><br/><br/>
+
+        <input type="radio" id="skill3" name="category" value="30">
+        <label for="skill3">Product Design</label><br/><br/>
+
+        <input type="radio" id="skill4" name="category" value="30">
+        <label for="skill4">Web Design</label><br/><br/>
+
+        <input type="radio" id="skill5" name="category" value="30">
+        <label for="skill5">llustration</label><br/><br/>
+
+        <input type="radio" id="skill6" name="category" value="30">
+        <label for="skill6">Mobile Design</label><br/><br/>
+
+        <input type="radio" id="skill7" name="category" value="30">
+        <label for="skill7">Writing</label><br/><br/>
+
+        <input type="radio" id="skill8" name="category" value="30">
+        <label for="skill8">Coding</label><br/><br/>
+    </div>
+    </div>
+
+    <p class="post">
+        <b>FREELANCERS</b>
+    </p>
+    <div class="contents">
+        <section class="freelancers">
+            <div class="freelancer-list">
+                <div class="cards">
+                    <p>$60/hr</p>
+                    <img class = "prof" src = "image/yellow circle.png" alt="profile" >
+                    <strong>Kellin Quinn</strong>
+                    <p>⭐ 4.5/5 (40 jobs)</p>
+                    <p>Web Designer</p>
+                    <a href="profile_1.html">See more</a>
+                </div>
+                <div class="cards">
+                    <p>$60/hr</p>
+                    <img class = "prof" src = "image/yellow circle.png" alt="profile" >
+                    <strong>Marshall Mathers</strong>
+                    <p>⭐ 4.5/5 (39 jobs)</p>
+                    <p>Graphic Designer</p>
+                    <a href="profile_1.html">See more</a>
+                </div>
+                <div class="cards">
+                    <p>$40/hr</p>
+                    <img class = "prof" src = "image/yellow circle.png" alt="profile" >
+                    <strong>Alex Gaskarth</strong>
+                    <p>⭐ 4/5 (30 jobs)</p>
+                    <p>Animation</p>
+                    <a href="profile_1.html">See more</a>
+                </div>
+                <div class="cards">
+                    <p>$80/hr</p>
+                    <img class = "prof" src = "image/yellow circle.png" alt="profile" >
+                    <strong>Abel Tesfaye</strong>
+                    <p>⭐ 5/5 (60 jobs)</p>
+                    <p>Product Design</p>
+                    <a href="profile_1.html">See more</a>
+                </div>
+                <div class="cards">
+                    <p>$65/hr</p>
+                    <img class = "prof" src = "image/yellow circle.png" alt="profile" >
+                    <strong>Gerard Way</strong>
+                    <p>⭐ 4.8/5 (50 jobs)</p>
+                    <p>Mobile Design</p>
+                    <a href="profile_1.html">See more</a>
+                </div> 
+                <div class="cards">
+                    <p>$65/hr</p>
+                    <img class = "prof" src = "image/yellow circle.png" alt="profile" >
+                    <strong>Gerard Way</strong>
+                    <p>⭐ 4.8/5 (50 jobs)</p>
+                    <p>Mobile Design</p>
+                    <a href="profile_1.html">See more</a>
+                </div> 
+            </section>
+    </div>
+    
+    <script>
+        let subMenu = document.getElementById("subMenu");
+
+        function toggleMenu(){
+            subMenu.classList.toggle("open");
+        }
+    </script>
+
+    <script>
+    function logout() {
+        alert("You have been logged out successfully."); 
+        
+        window.location.href = "clientlogin.html"; 
+    }
+</script>
+</body>
+</html>

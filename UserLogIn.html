@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="login.css">
+    <title>Sign Up Page</title>
+</head>
+
+<body>
+    <div class="splitscreen">
+        <div class="welcome">
+            <h1><span>WELCOME</span> to</h1>
+            <div class="TF">TASKFLOW</div>
+        </div>
+
+        <div class="signup">
+            <h2>Log In</h2>
+            <form class="form">
+                <input type="email" placeholder="Username or Email" required id="username">
+                <input type="password" placeholder="Password" required id="password">
+                <div class="forgot-password">Forgot password?</div>
+                <button type="submit">Log in</button>
+            </form>
+            <div class="login">New here? <a href="SignUpAs.html">Sign Up</a></div>
+        </div>
+    </div>
+    <script>
+        document.querySelector(".form").addEventListener("submit", function(event) {
+        event.preventDefault(); 
+        
+        var email = document.getElementById("username").value.trim();
+        var password = document.getElementById("password").value.trim();
+
+        if (email && password) {
+
+            console.log("Email:", email);
+            console.log("Password:", password);
+            
+            window.location.href = "freelancers_dashboard.html"; 
+        } else {
+            alert("Invalid credentials. Please try again.");
+        }
+    });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Page</title>
+    <style>
+      * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    height: 100vh; 
+    overflow: hidden;
+}
+
+nav {
+    background-color: #ffffff;
+    padding: 15px 30px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+}
+
+.TF2 {
+    font-size: 26px;
+    font-weight: 600;
+    padding-left: 80px;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li:last-child {
+    padding-right: 100px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.MainText {
+    text-align: center;
+    margin-top: 200px;
+}
+
+.SearchBar {
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.SearchBar input {  
+    width: 500px;
+    padding: 15px;
+    border: 2px solid #000;
+    border-radius: 10px 0 0 10px;
+    outline: none;
+}
+
+.SearchBar button {
+    padding: 15px;
+    background-color: #d6d4d4;
+    color: #000;
+    border: none;
+    border-radius: 0 10px 10px 0;
+}
+
+.FAQ {
+    text-align: left;
+    margin-top: 20px;
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #FFE295;
+    padding: 10px;
+}
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="TF2">TASKFLOW</div>
+        <ul>
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="AboutUs.html">About Us</a></li>
+            <li><a href="Support.html">Support</a></li>
+        </ul>
+    </nav>
+    
+        <div class="MainText">
+            <h2>HOW CAN WE HELP YOU?</h2>
+            <div class="SearchBar">
+                <input type="text" placeholder="Search...">
+                <button>&#128269;</button>
+            </div>
+    
+            <div class="FAQ">
+                <ol>
+                    <li>How do I create a freelancer account?</li>
+                    <li>How do I get paid for my work?</li>
+                    <li>What are the fees for using the platform?</li>
+                    <li>How do I resolve disputes with clients or freelancers?</li>
+                    <li>Can I work with clients internationally?</li>
+                </ol>
+            </div>
+        </div>
+
+    <footer>
+    </footer>
+
+</body>
+
+</html>
