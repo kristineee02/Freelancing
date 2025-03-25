@@ -35,7 +35,7 @@
                 </div>
                 <hr>
 
-                <a href="profile" class="sub-menu-link">
+                <a href="freelancer-work.html" class="sub-menu-link">
                     <img src="image/prof.jpg">
                     <p>Profile</p>
                     <span>></span>
@@ -83,12 +83,19 @@
 
     <div class="btn-section">
         <button class="delete-btn">DELETE ACCOUNT</button>
-        <button>SAVE PROFILE</button>
+        <button class="save-btn" onclick="goToProfile()">SAVE PROFILE</button>
     </div>
 
     <script>
-
-    </script>
+        function goToEditProfile() {
+        window.location.href = "editfreelancerprofile.html";
+    }
+    </script> 
+    <script>
+        function goToProfile(){
+        window.location.href ="freelancer-work.html";
+        }
+    </script>  
     <script>
         let subMenu = document.getElementById("subMenu");
 

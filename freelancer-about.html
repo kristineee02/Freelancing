@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelancing</title>
+    <link rel ="stylesheet" href="freelancer-profile.css">
+</head>
+<body>
+
+    <div id="logo">
+        <img class="picture" src="image/logo.png">
+        <p>Logo Name</p>
+
+        <p class="dashboard">
+              <a href="Explore.html" >Explore</a>  
+              <a href="Find-Job.html" class="tight-text">Find Jobs</a> 
+              <a href="About.html">About</a>
+        </p>
+
+        <img class="message" src="image/images.png" alt="message">
+        <img class="notif" src="image/3119338.png" alt="notif">
+        <img class="profile" src="image/prof.jpg" alt="profile" onclick="toggleMenu()">
+
+        <div class="sub-menu-wrap" id="subMenu">
+            <div class="sub-menu">
+                <div class="user-info">
+                    <img class="profile" src="image/prof.jpg">
+                    <h4>Kristine Sabuero</h4>
+                </div>
+                <hr>
+
+                <a href="client-profile.html" class="sub-menu-link">
+                    <img src="image/prof.jpg">
+                    <p>Profile</p>
+                    <span>></span>
+                </a>
+                <a href="UserLogIn.html" class="sub-menu-link" onclick="logout()">
+                    <img src="image/logo.png">
+                    <p>Logout</p>
+                    <span>></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="profile-container">
+    <div class="profile-header">
+        <img src="image/yellow circle.png" alt="Profile Image" class="profile-image">
+        <div class="profile-info">
+            <h1>Kellin Quinn</h1>
+            <p class="location">LOCATION: USA</p>
+            <p class="job-title">Web Designer</p>
+            <p class="follow-info">0 Followers  |  20 Following</p>
+            <button class="edit-profile" onclick="goToEditProfile()">EDIT PROFILE</a></button>
+        </div>
+    </div>
+
+    <div class="tabs">
+        <a href="freelancer-work.html">WORK</a>
+        <a href = "freelancer-about.html" class="active">ABOUT</a>
+        <a href="freelancer-likedpost.html">LIKED POST</a>
+    </div>
+    <hr>
+</div>
+
+<div class="about-section">
+    <div class="about-left">
+        <h2>ABOUT YOU</h2>
+        <p>NAME:</p>
+        <p>CONTACT:</p>
+        <p>EMAIL:</p>
+        <br/>
+        <h2>SKILLS</h2>
+        <p>DESIGNING</p>
+        <p>WRITING</p>
+    </div>
+
+    <div class="divider-1"></div>
+
+    <div class="about-right">
+        <h2>WORK HISTORY AND EXPERIENCE</h2>
+        <p>DESIGNER FOR AZ COMPANY</p>
+        <p>PROJECT MANAGER</p>
+        <br/>
+        <h2>SOCIALS</h2>
+        <p>Instagram:</p>
+        <p>Facebook:</p>
+    </div>
+</div>
+<script>
+    function goToEditProfile() {
+    window.location.href = "editfreelancerprofile.html";
+}
+</script>
+<script>
+let subMenu = document.getElementById("subMenu");
+
+function toggleMenu(){
+    subMenu.classList.toggle("open");
+}
+</script>
+
+<script>
+function logout() {
+alert("You have been logged out successfully."); 
+
+window.location.href = "freelancerlogin.html"; 
+}
+</script>
+
+
+</body>
+</html>

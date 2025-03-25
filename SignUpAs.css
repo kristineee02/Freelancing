@@ -9,7 +9,7 @@ body {
     height: 100vh; 
     overflow: hidden;
     padding-top: 200px;
-    background-image: url('SignUpAs.jfif');
+    background-image: url('image/SignUpAs.jfif');
     background-size: cover;
     background-attachment: fixed;
 }
