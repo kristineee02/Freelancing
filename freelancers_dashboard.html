@@ -13,7 +13,7 @@
         <p>Logo Name</p>
 
         <p class="dashboard">
-              <a href="Explore.html">Explore</a>  
+              <a href="Explore.html" class="active-dash">Explore</a>  
               <a href="Find-Job.html" class="tight-text">Find Jobs</a> 
               <a href="About.html">About</a>
 
@@ -48,22 +48,31 @@
     
     </div>
     <div class="discover">
+        <div class="overlay"></div>
         <p class="info">
            <b> DISCOVER JOBS THAT BEST ALIGN WITH <br/>
             YOUR SKILLS</b><br/><br/>
             <p class="text">Be Creative and Show your Imaginative Mind</p>
         </p>
-        <form action="search">
-            <input type="text" placeholder="What are you looking for?" name="search" class="search-bar">
-        </form>
+        <div class="search-bar">
+            <input type="text" placeholder="What are you looking for?" name="search">
+            <button>Search</button>
+        </div>
     </div>
-    <div class="skill">
-        <p>Animation</p>
-        <p class="tight-text">Product Design</p>
-        <p class="tight-text">Web Design</p>
-        <p class="tight-text">Illustration</p>
-        <p class="tight-text">Graphic Design</p>
+    <div class="carousel-container">
+        <div class="carousel-slide" id="carouselSlide">
+            <div class="slide">ANIMATION</div>
+            <div class="slide">GRAPHIC DESIGN</div>
+            <div class="slide">PRODUCT DESIGN</div>
+            <div class="slide">WEB DESIGN</div>
+            <div class="slide">ILLUSTRATION</div>
+            <div class="slide">MOBILE DESIGN</div>
+            <div class="slide">WRITING</div>
+        </div>
+        <button class="carousel-btn prev" onclick="moveSlide(-1)">&lt;</button>
+        <button class="carousel-btn next" onclick="moveSlide(1)">&gt;</button>
     </div>
+
         <p class="filter">
             Filter
         </p>
@@ -72,25 +81,37 @@
                 <div class="card-image">
                     <img src="image/ui.png">
                 </div>
-                <h6 id="text">Name</h6>
+                <div class="footer">
+                <h5 id="text">Name</h6>
+                <span>&hearts; 100</span>
+                </div>
             </div>
             <div class="card">
                 <div class="card-image">
                 <img src="image/ui.png">
                 </div>
-                <h6 id="text">Name</h6>
+                <div class="footer">
+                    <h5 id="text">Name</h6>
+                    <span>&hearts; 100</span>
+                </div>
             </div>
             <div class="card">
                 <div class="card-image">
                 <img src="image/ui.png">
                 </div>
-                <h6 id="text">Name</h6>
+                <div class="footer">
+                    <h5 id="text">Name</h6>
+                    <span>&hearts; 100</span>
+                </div>            
             </div>
             <div class="card">
                 <div class="card-image">
                 <img src="image/ui.png">
                 </div>
-                <h6 id="text">Name</h6>
+                <div class="footer">
+                    <h5 id="text">Name</h6>
+                    <span>&hearts; 100</span>
+                </div>
             </div>
         </section>
         
@@ -99,25 +120,37 @@
                 <div class="card-image">
                     <img src="image/ui.png">
                 </div>
-                <h6 id="text">Name</h6>
+                <div class="footer">
+                    <h5 id="text">Name</h6>
+                    <span>&hearts; 100</span>
+                </div>
             </div>
             <div class="card">
                 <div class="card-image">
                 <img src="image/ui.png">
                 </div>
-                <h6 id="text">Name</h6>
+                <div class="footer">
+                    <h5 id="text">Name</h6>
+                    <span>&hearts; 100</span>
+                </div>
             </div>
             <div class="card">
                 <div class="card-image">
                 <img src="image/ui.png">
                 </div>
-                <h6 id="text">Name</h6>
+                <div class="footer">
+                    <h5 id="text">Name</h6>
+                    <span>&hearts; 100</span>
+                </div>
             </div>
             <div class="card">
                 <div class="card-image">
                 <img src="image/ui.png">
                 </div>
-                <h6 id="text">Name</h6>
+                <div class="footer">
+                    <h5 id="text">Name</h6>
+                    <span>&hearts; 100</span>
+                </div>
             </div>
         </section>
 
@@ -126,25 +159,37 @@
                 <div class="card-image">
                     <img src="image/ui.png">
                 </div>
-                <h6 id="text">Name</h6>
+                <div class="footer">
+                    <h5 id="text">Name</h6>
+                    <span>&hearts; 100</span>
+                </div>
             </div>
             <div class="card">
                 <div class="card-image">
                 <img src="image/ui.png">
                 </div>
-                <h6 id="text">Name</h6>
+                <div class="footer">
+                    <h5 id="text">Name</h6>
+                    <span>&hearts; 100</span>
+                </div>
             </div>
             <div class="card">
                 <div class="card-image">
                 <img src="image/ui.png">
                 </div>
-                <h6 id="text">Name</h6>
+                <div class="footer">
+                    <h5 id="text">Name</h6>
+                    <span>&hearts; 100</span>
+                </div>
             </div>
             <div class="card">
                 <div class="card-image">
                 <img src="image/ui.png">
                 </div>
-                <h6 id="text">Name</h6>
+                <div class="footer">
+                    <h5 id="text">Name</h6>
+                    <span>&hearts; 100</span>
+                </div>
             </div>
         </section>
 
@@ -161,6 +206,24 @@
         alert("You have been logged out successfully."); 
         
         window.location.href = "Home.html"; 
+    }
+</script>
+
+<script>
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const visibleSlides = 4.2;
+
+    function moveSlide(direction) {
+        const maxIndex = totalSlides - visibleSlides;
+        if (direction === 1 && slideIndex < maxIndex) {
+            slideIndex++;
+        } else if (direction === -1 && slideIndex > 0) {
+            slideIndex--;
+        }
+        const offset = -slideIndex * (100 / visibleSlides);
+        document.getElementById('carouselSlide').style.transform = `translateX(${offset}%)`;
     }
 </script>
 </body>
