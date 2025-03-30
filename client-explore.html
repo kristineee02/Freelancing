@@ -10,16 +10,16 @@
 
     <div id="logo">
         <img class="picture" src="image/logo.png">
-        <p>Logo Name</p>
+        <p>TaskFlow</p>
 
         <p class="dashboard">
-              <a href="client-explore.html">Explore</a>  
+              <a href="client-explore.html" class="active-dash">Explore</a>  
               <a href="Find-Freelancer.html" class="tight-text">Find Designer</a> 
               <a href="client-about.html">About</a>
 
         </p>
 
-        <img class="message" src="image/images.png" alt="message">
+        <img class="message" src="image/images.png" alt="message" onclick ="goToMessage()">
         <img class="notif" src="image/3119338.png" alt="notif">
         <img class="profile" src="image/prof.jpg" alt="profile" onclick="toggleMenu()">
 
@@ -45,106 +45,148 @@
         </div>
     </div>
     <div class="discover">
+        <div class="overlay"></div>
         <p class="info">
-           <b> DISCOVER PROFESSIONALS THAT BEST ALIGN WITH <br/>
-            YOUR STYLE</b><br/><br/>
+           <b> DISCOVER JOBS THAT BEST ALIGN<br/>WITH YOUR SKILLS
+            </b><br/><br/>
             <p class="text">Be Creative and Show your Imaginative Mind</p>
         </p>
-        <form action="search">
-            <input type="text" placeholder="What are you looking for?" name="search" class="search-bar">
-        </form>
+        <div class="search-bar">
+            <input type="text" placeholder="What are you looking for?" name="search">
+            <button>Search</button>
+        </div>
     </div>
-        <p class="skill">
-           
-            Animation
-            Product_Design
-            Web_Design
-            Illustration
-            Graphic_Design
-            Writing
-            
-        </p>
+    <div class="carousel-container">
+        <div class="carousel-slide" id="carouselSlide">
+            <div class="slide">ANIMATION</div>
+            <div class="slide">GRAPHIC DESIGN</div>
+            <div class="slide">PRODUCT DESIGN</div>
+            <div class="slide">WEB DESIGN</div>
+            <div class="slide">ILLUSTRATION</div>
+            <div class="slide">MOBILE DESIGN</div>
+            <div class="slide">WRITING</div>
+        </div>
+        <button class="carousel-btn prev" onclick="moveSlide(-1)">&lt;</button>
+        <button class="carousel-btn next" onclick="moveSlide(1)">&gt;</button>
+    </div>
+
         <p class="filter">
             Filter
         </p>
         <section class="container">
-            <div class="card">
+            <div class="card" data-id="freelancer-webdesign.html">
                 <div class="card-image">
                     <img src="image/ui.png">
                 </div>
-                <h6 id="text">Name</h6>
+                <div class="footer">
+                <h5 id="text">Name</h6>
+                <span>&hearts; 100</span>
+                </div>
             </div>
-            <div class="card">
+            <div class="card" data-id="freelancer-webdesign.html">
                 <div class="card-image">
                 <img src="image/ui.png">
                 </div>
-                <h6 id="text">Name</h6>
+                <div class="footer">
+                    <h5 id="text">Name</h6>
+                    <span>&hearts; 100</span>
+                </div>
             </div>
-            <div class="card">
+            <div class="card" data-id="freelancer-webdesign.html">
                 <div class="card-image">
                 <img src="image/ui.png">
                 </div>
-                <h6 id="text">Name</h6>
+                <div class="footer">
+                    <h5 id="text">Name</h6>
+                    <span>&hearts; 100</span>
+                </div>            
             </div>
-            <div class="card">
+            <div class="card" data-id="freelancer-webdesign.html">
                 <div class="card-image">
                 <img src="image/ui.png">
                 </div>
-                <h6 id="text">Name</h6>
+                <div class="footer">
+                    <h5 id="text">Name</h6>
+                    <span>&hearts; 100</span>
+                </div>
             </div>
         </section>
         
         <section class="container">
-            <div class="card">
+            <div class="card" data-id="freelancer-webdesign.html">
                 <div class="card-image">
                     <img src="image/ui.png">
                 </div>
-                <h6 id="text">Name</h6>
+                <div class="footer">
+                    <h5 id="text">Name</h6>
+                    <span>&hearts; 100</span>
+                </div>
             </div>
-            <div class="card">
+            <div class="card" data-id="freelancer-webdesign.html">
                 <div class="card-image">
                 <img src="image/ui.png">
                 </div>
-                <h6 id="text">Name</h6>
+                <div class="footer">
+                    <h5 id="text">Name</h6>
+                    <span>&hearts; 100</span>
+                </div>
             </div>
-            <div class="card">
+            <div class="card" data-id="freelancer-webdesign.html">
                 <div class="card-image">
                 <img src="image/ui.png">
                 </div>
-                <h6 id="text">Name</h6>
+                <div class="footer">
+                    <h5 id="text">Name</h6>
+                    <span>&hearts; 100</span>
+                </div>
             </div>
-            <div class="card">
+            <div class="card" data-id="freelancer-webdesign.html">
                 <div class="card-image">
                 <img src="image/ui.png">
                 </div>
-                <h6 id="text">Name</h6>
+                <div class="footer">
+                    <h5 id="text">Name</h6>
+                    <span>&hearts; 100</span>
+                </div>
             </div>
         </section>
 
         <section class="container">
-            <div class="card">
+            <div class="card" data-id="freelancer-webdesign.html">
                 <div class="card-image">
                     <img src="image/ui.png">
                 </div>
-                <h6 id="text">Name</h6>
+                <div class="footer">
+                    <h5 id="text">Name</h6>
+                    <span>&hearts; 100</span>
+                </div>
             </div>
-            <div class="card">
+            <div class="card" data-id="freelancer-webdesign.html">
                 <div class="card-image">
                 <img src="image/ui.png">
                 </div>
-                <h6 id="text">Name</h6>
+                <div class="footer">
+                    <h5 id="text">Name</h6>
+                    <span>&hearts; 100</span>
+                </div>
             </div>
-            <div class="card">
+            <div class="card" data-id="freelancer-webdesign.html">
                 <div class="card-image">
                 <img src="image/ui.png">
                 </div>
-                <h6 id="text">Name</h6>
+                <div class="footer">
+                    <h5 id="text">Name</h6>
+                    <span>&hearts; 100</span>
+                </div>
             </div>
-            <div class="card">
+            <div class="card" data-id="freelancer-webdesign.html">
                 <div class="card-image">
                 <img src="image/ui.png">
                 </div>
-                <h6 id="text">Name</h6>
+                <div class="footer">
+                    <h5 id="text">Name</h6>
+                    <span>&hearts; 100</span>
+                </div>
             </div>
         </section>
 
@@ -161,6 +203,44 @@
         alert("You have been logged out successfully."); 
         
         window.location.href = "Home.html"; 
+    }
+</script>
+
+<script>
+    function goToMessage() {
+    window.location.href = "message.html";
+    }
+</script>
+
+<script>
+    const designCards = document.querySelectorAll('.card');
+
+    // Add click event listener to each card
+    designCards.forEach(Card => {
+        Card.addEventListener('click', function() {
+            const redirectPage = this.getAttribute('data-id');
+
+            window.location.href = redirectPage;
+
+        });
+    });
+</script>
+
+<script>
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const visibleSlides = 4.2;
+
+    function moveSlide(direction) {
+        const maxIndex = totalSlides - visibleSlides;
+        if (direction === 1 && slideIndex < maxIndex) {
+            slideIndex++;
+        } else if (direction === -1 && slideIndex > 0) {
+            slideIndex--;
+        }
+        const offset = -slideIndex * (100 / visibleSlides);
+        document.getElementById('carouselSlide').style.transform = `translateX(${offset}%)`;
     }
 </script>
 </body>

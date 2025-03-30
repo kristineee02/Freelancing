@@ -628,11 +628,43 @@ hr {
 
 .work-box {
     width: 300px;
-    height: 150px;
+    height: 200px;
     background-color: #ffe477;
     border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(24, 24, 24, 0.2); 
     
 }
+
+.content-section {
+    display: flex;
+    padding: 20px;
+    justify-content: center;
+    margin-left: 370px;
+    margin-top: -286px;
+}
+
+.content-box {
+    width: 300px;
+    height: 200px;
+    margin: 0 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(24, 24, 24, 0.2); 
+}
+
+.content-box.active {
+    border: 1px solid rgb(163, 163, 163);
+}
+
+.add-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(7, 7, 7);
+    font-size: 24px;
+    cursor: pointer;
+}
+
+
 
 .about-section {
     display: flex;
@@ -686,7 +718,7 @@ hr {
 
 .post-card {
     width: 300px;
-    height: 180px;
+    height: 200px;
     border: 1px solid #868383;
     border-radius: 10px;
     overflow: hidden;

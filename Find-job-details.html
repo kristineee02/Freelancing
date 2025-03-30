@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelancing</title>
+    <link rel ="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="logo">
+        <img class="picture" src="image/logo.png">
+        <p>Logo Name</p>
+
+        <p class="dashboard">
+              <a href="Explore.html">Explore</a>  
+              <a href="Find-Job.html" class="tight-text active-dash">Find Jobs</a> 
+              <a href="About.html">About</a>
+        </p>
+
+        <img class="message" src="image/images.png" alt="message">
+        <img class="notif" src="image/3119338.png" alt="notif">
+        <img class="profile" src="image/prof.jpg" alt="profile" onclick="toggleMenu()">
+
+        <div class="sub-menu-wrap" id="subMenu">
+            <div class="sub-menu">
+                <div class="user-info">
+                    <img class="profile" src="image/prof.jpg">
+                    <h4>Kristine Sabuero</h4>
+                </div>
+                <hr>
+
+                <a href="freelancer-work.html" class="sub-menu-link">
+                    <img src="image/prof.jpg">
+                    <p>Profile</p>
+                    <span>></span>
+                </a>
+                <a href="UserLogIn.html" class="sub-menu-link" onclick="logout()">
+                    <img src="image/logo.png">
+                    <p>Logout</p>
+                    <span>></span>
+                </a>
+
+            </div>
+
+        </div>
+    
+    </div>
+    <hr>
+
+    <section class="job-details">
+        <p class="details-job">JOB DETAILS</h2>
+        <p class="skill-name">WEBSITE DESIGNER</h1>
+        <div class="job-content">
+            <div class="job-description">
+                <p>We are seeking a highly creative and design-driven Content Analyst to join our dynamic team. As a Content Analyst, you will be building websites using our website builder platform for our diverse range of small business customers. If you have an eye for great design, understand how to create engaging online experiences, and enjoy helping businesses stand out, this is the perfect role for you.</p>
+                <p>Only candidates based in Central/South America will be considered for this position.</p>
+                <p>Full-time position, five days a week. One of those days will be either Saturday or Sunday. 6:30am to 3pm EST</p>
+                <p>Top performers at UENI will be rewarded with promotions, remuneration progression, and performance bonuses.</p>
+                <h3>Job requirements</h3>
+                <h4>Education:</h4>
+                <ul>
+                    <li>A high school diploma or equivalent is required.</li>
+                    <li>A bachelor's degree in a related field is a plus (Marketing, Advertising, Web Design, UI/UX).</li>
+                </ul>
+                <h4>Experience:</h4>
+                <ul>
+                    <li>Proven experience in Website design, branding, UX/UI, content creation, or a related role.</li>
+                    <li>Experience working with small businesses, entrepreneurs, or startups is a plus.</li>
+                </ul>
+                <button class="apply" onclick="goToApplyJob()">APPLY FOR THIS JOB</button>
+            </div>
+            <div class="company-info">
+                <div class="company-logo"></div>
+                <h3>COMPANY NAME</h3>
+                <p><strong>Job Type:</strong> Full-time</p>
+                <p><strong>Location:</strong> Location Name</p>
+                <p><strong>Date Posted:</strong> Date</p>
+                <p><strong>Timeframe:</strong> Timeframe</p>
+                <p><strong>Budget:</strong> Budget</p>
+                <div class="social-links">
+                    <span>Facebook</span>
+                    <span>Instagram</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function goToApplyJob() {
+        window.location.href = "Find-Job-Overview.html";
+        }
+    </script>
+</body>
+</html>

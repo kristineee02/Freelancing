@@ -9,7 +9,7 @@
 <body>
     <div id="logo">
         <img class="picture" src="image/logo.png">
-        <p>Logo Name</p>
+        <p>TaskFlow</p>
 
         <p class="dashboard">
               <a href="Explore.html">Explore</a>  
@@ -101,8 +101,8 @@
                 Designer must be creative and proficient in creating visually<br>appealing interfaces.
             </div>
             <div class="buttons">
-                <div class="btn">View Job</div>
-                <div class="btn">Apply for Job</div>
+                <div class="btn" onclick="goToViewJob()">View Job</div>
+                <div class="btn" onclick="goToApplyJob()">Apply for Job</div>
             </div>
         </div>
 
@@ -121,8 +121,8 @@
                 Designer must be creative and proficient in creating visually<br>appealing interfaces.
             </div>
             <div class="buttons">
-                <div class="btn">View Job</div>
-                <div class="btn">Apply for Job</div>
+                <div class="btn" onclick="goToViewJob()">View Job</div>
+                <div class="btn" onclick="goToApplyJob()">Apply for Job</div>
             </div>
         </div>
 
@@ -141,8 +141,8 @@
                 Designer must be creative and proficient in creating visually<br>appealing interfaces.
             </div>
             <div class="buttons">
-                <div class="btn">View Job</div>
-                <div class="btn">Apply for Job</div>
+                <div class="btn" onclick="goToViewJob()">View Job</div>
+                <div class="btn" onclick="goToApplyJob()">Apply for Job</div>
             </div>
         </div>
     </div>   
@@ -159,6 +159,16 @@
         alert("You have been logged out successfully."); 
         
         window.location.href = "Home.html"; 
+    }
+</script>
+<script>
+    function goToViewJob() {
+    window.location.href = "Find-job-details.html";
+    }
+</script>
+<script>
+    function goToApplyJob() {
+    window.location.href = "Find-Job-Overview.html";
     }
 </script>
 </body>

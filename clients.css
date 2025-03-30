@@ -1,5 +1,6 @@
+
 body{
-    font-family: Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
    
 }
 .picture{
@@ -14,9 +15,8 @@ body{
     display: flex;
     gap: 20px;
     align-items: center;
-    text-align: left;
-
 }
+
 .dashboard{
     word-spacing: 25px;
     margin-left: 18%;
@@ -25,6 +25,7 @@ body{
     text-decoration: none;
     color: #000000;
 }
+
 .tight-text{
     word-spacing: -0px;
 }
@@ -34,6 +35,7 @@ body{
     object-fit: cover;
     border-radius: 50%;
     margin-left: 30%;
+    cursor: pointer;
 }
 .notif{
     width: 25px;
@@ -54,78 +56,104 @@ html, body {
   }
 .discover{
     border: 10px;
-    background: linear-gradient(135deg, rgb(252, 241, 143), rgb(247, 252, 175));
     box-sizing: border-box;
     padding: 100px;
     width: fill;
+    height: 400px;
     margin: 0;
     background-clip: padding-box;
+    background: url('image/cc.jpg') no-repeat center/cover;
+
+}
+.overlay{
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 61.5%;
+    position: absolute;
+    top: 80px;
+    left: 0;
 }
 .info{
-    font-size: 15px;
-    color: black;
+    font-size: 30px;
+    color: rgb(236, 234, 82);
     position:absolute;
-    top: 15%;
-    left: 50%;
+    top: 20%;
+    left: 45%;
+    z-index: 1;
 }
 .text{
-    font-size: 15px;
-    color: rgb(59, 59, 59);
+    z-index: 1;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
     position:absolute;
-    top: 23%;
-    left: 50%;
+    top: 35%;
+    left: 45%;
 }
+
 .search-bar {
-    width: 30%;
-    padding: 15px;
-    border: 1px solid #000000;
-    border-radius: 10px;
     font-size: 16px;
     position: absolute;
-    left: 50%;
-    top: 32%;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+    left: 45%;
+    top: 45%;
+    display: flex;
+    width: 500px;
+    margin: 0 auto;
 }
-.skill{
-    font-size: 10px;
-    width: 50%;
-    padding: 8px;
-    border: 1px solid #000000;
-    border-radius: 10px;
-    word-spacing: 25px;
-    text-align: center;
-    position: absolute;
-    top: 52%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.search-bar input[type="text"] {
+     flex: 1;
+     padding: 20px;
+     border: none;
+     border-radius: 10px 0 0 10px;
+    outline: none;
+ }
+ .search-bar button {
+    background-color: rgb(235, 232, 67);
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+}
+.dashboard a.active-dash{
+    border-bottom: 2px solid #333;
+    font-weight: bold;
+    color: #333;
 }
 .filter{
-    font-size: 10px;
-    width: 2%;
-    padding: 8px;
-    border: 1px solid #000000;
+    font-size: 15px;
+    width: 5%;
+    text-align: center;
+    padding: 5px;
+    border: 0.5px solid #6e6d6d;
     border-radius: 10px;
     position: absolute;
-    top: 49.9%;
+    top: 77%;
     left: 80%;
 }
 .container{
     display: flex;
     justify-content: center;
-    margin-bottom: -45px;
-}
+    margin-bottom: -50px;
+    top:100px; 
+    position: relative;
+    gap: 20px;
 
+}
 .card{
-    width: 200px;
-    height: 200px;
-    margin: 10px;  
-    position:relative;
-    top:80px; 
+    width: 250px;
+    height: 280px;
+    cursor: pointer;
+}
+.card:hover{
+    transform: scale(1.03);
+
+
 }
 .card-image{
     background-color: rgb(245, 245, 159);
-    height: 130px;
+    height: 180px;
     border-radius: 15px 15px 15px 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
 
 }
 .card-image img{
@@ -135,33 +163,106 @@ html, body {
     border-radius: 15px 15px 15px 15px;
 
 }
-#text{
-    margin: 10px 30px;
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #555;
+    margin: -7px 5px;
+
 }
-.info-about{
-    font-size: 25px;
-    color: black;
-    position:absolute;
+/*carousel slider*/
+.carousel-container {
+    position: relative;
+    width: 650px;
+    overflow: hidden;
+    font-size: 17px;
+    padding: 5px;
+    position: absolute;
+    display: flex;
+    gap: 20px;
+    top: 82%;
     left: 50%;
-    top: 20%;
     transform: translate(-50%, -50%);
 }
 
-.discover-about{
-    border: 5px;
-    background: linear-gradient(135deg, rgb(252, 241, 143), rgb(247, 252, 175));
-    box-sizing: border-box;
-    padding: 70px;
-    width: fill;
-    margin: 0;
-    background-clip: padding-box;
+.carousel-slide {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
 }
+
+.slide {
+    min-width: 20%;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    color: #000;
+    background: transparent;
+    margin-left:7px;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #ecf029;
+    color: #000000;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.carousel-btn:hover {
+    opacity: 1;
+}
+
+.prev { left: 5px; }
+.next { right: 5px; }
+
+.info-about{
+    font-size: 35px;
+    color: rgb(243, 240, 66);
+    position:absolute;
+    left: 50%;
+    top: 25%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    text-align: center;
+}
+
+.discover-about{
+    background: url('image/about.jpg') no-repeat center/cover;
+    padding: 70px;
+    height: 100px;
+    width: fill;
+}
+
 .about-img{
     width: 500px;
     height: 350px;
     margin-left: 40px;
     margin-top: 30px;
-
+}
+.overlay-about-img{
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    width: 500px;
+    height: 350px;
+    margin-left: 40px;
+    margin-top: 30px;
+}
+.taskflow{
+    margin-left: 40px;
+    font-size: 30px;
+   color: #e2d308;
+   margin-bottom: -10px;
 }
 .about{
     display: flex;
@@ -180,11 +281,10 @@ html, body {
     margin-bottom: 40px;
     width: 10%;
     padding: 8px;
-    border: 1px solid #000000;
-    background-color: rgb(252, 252, 167);
+    border: .5px solid #808080;
+    background-color: rgb(245, 245, 138);
     border-radius: 10px;
     text-align: center;
-    box-shadow: 0 4px 10px rgba(213, 226, 92, 0.808); 
 }
 .mission{
     width: 30%;
@@ -218,11 +318,10 @@ html, body {
     margin-left: 40px;
     width: 10%;
     padding: 8px;
-    border: 1px solid #000000;
-    background-color: rgb(252, 252, 167);
+    border: .5px solid #808080;
+    background-color: rgb(245, 245, 138);
     border-radius: 10px;
     text-align: center;
-    box-shadow: 0 4px 10px rgba(213, 226, 92, 0.808);
     margin-top: 40px;
 }
 .developer-container{
@@ -236,7 +335,8 @@ html, body {
     position:relative;
 }
 .developer-image{
-    background-color: rgb(255, 251, 200);
+    box-shadow: 0 4px 10px rgba(90, 90, 90, 0.2); 
+    border: .5px solid #808080;
     width: 200px;
     height: 200px;
     border-radius: 15px;
@@ -257,40 +357,55 @@ html, body {
     color: #555;
 }
 .discover-find-job{
-    background: linear-gradient(135deg, rgb(252, 241, 143), rgb(247, 252, 175));
     padding: 70px;
+    height: 100px;
     text-align: center;
+    background: url('image/cc.jpg') no-repeat center/cover;
+
 }
 .info-find-job{
-    font-size: 25px;
-    color: black;
+    font-size: 35px;
+    color: rgb(255, 251, 0);
     position:absolute;
     left: 50%;
-    top: 20%;
+    top: 30%;
     transform: translate(-50%, -50%);
+    z-index: 1;
+    margin: 0;
+}
+.overlay-find{
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 37%;
+    position: absolute;
+    top: 80px;
+    left: 0;
 }
 .search-bar-job{
     width: 55%;
+    height: 35px;
     padding: 7px;
-    border: 1px solid #000000;
+    border: .5px solid #969696;
     border-radius: 10px;
     font-size: 14px;
     position:absolute;
     right: 35%;
-    top: 40%;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+    top: 55%;
+    box-shadow: 0 4px 10px rgba(153, 153, 153, 0.2); 
     outline: none;
 }
 .category{
     width: 20%;
     height: 55%;
     padding: 7px;
-    border: 1px solid #000000;
+    border: .5px solid #969696;
     border-radius: 10px;
     font-size: 14px;
     position:absolute;
     left: 70%;
-    top: 40%;
+    top: 55%;
+    box-shadow: 0 4px 10px rgba(153, 153, 153, 0.2); 
+
 }
 .categories{
     position: relative;
@@ -303,7 +418,7 @@ html, body {
 .post{
     position:absolute;
     left: 9%;
-    top: 50%;
+    top: 65%;
     color: #414040;
 }
 .company{
@@ -511,7 +626,7 @@ html, body {
 }
 
 
-
+/*find-freelancer*/
 .contents {
     display: flex;
     justify-content: space-center;
@@ -542,6 +657,8 @@ html, body {
     border-radius: 10px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
+    border: .5px solid #adadad;
+
 }
 
 .cards strong {
