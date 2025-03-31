@@ -1,4 +1,4 @@
-* {
+body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
@@ -10,8 +10,12 @@
     width: 100%;
 }
 .welcome {
-    background-color:#FFE295;
-    width: 70%;
+    color: white;
+    width: 60%;
+    background-image: url('image/SignUpAs.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -19,27 +23,38 @@
     position: relative;
     text-align: center;
 }
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(147, 136, 136, 0.5);
+    z-index: 1;
+}
 .welcome h1 {
     font-family: 'Instrument', sans-serif;
     font-style: italic;
+    margin-bottom: 0;
     font-weight: lighter;
     z-index: 2;
 }
 .welcome span {
     font-weight: 500;
-    font-size: 65px;
+    font-size: 40px;
 }
 .TF {
     color: black;
     font-weight: 500;
-    font-size: 40px;
-    background-color: #E7F1FF;;
+    font-size: 50px;
+    background-color: #FFE295;;
     padding-left: 10px;
     padding-right: 10px;
+    margin-top: 0;
     z-index: 2;
 }
 .signup {
-    width: 30%;
+    width: 40%;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -51,7 +66,7 @@
     font-weight: 500;
     text-align: center;
     width: 80%;
-    padding-bottom: 50px;
+    padding-bottom: 10px;
     padding-left: 10px;
 }
 .form {
@@ -93,6 +108,7 @@
     text-align: right;
     font-size: 12px;
     margin-bottom: 10px;
+    margin-left: 330px;
 }
 .new-account {
     text-align: center;

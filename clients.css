@@ -200,6 +200,15 @@ html, body {
     background: transparent;
     margin-left:7px;
 }
+.slide:active{
+    font-weight: bold;
+    color: #333;
+}
+
+.carousel-slide a {
+    text-decoration: none;
+    color: inherit;
+}
 
 .carousel-btn {
     position: absolute;
@@ -365,7 +374,7 @@ html, body {
 }
 .info-find-job{
     font-size: 35px;
-    color: rgb(255, 251, 0);
+    color: rgb(238, 235, 72);
     position:absolute;
     left: 50%;
     top: 30%;
@@ -780,3 +789,5 @@ hr {
     height: 300px;
     align-self: stretch;  
 }
+
+
