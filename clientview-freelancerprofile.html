@@ -61,8 +61,8 @@
         <hr>
 
         <div class="work-section">
-            <div class="work-box"></div>
-            <div class="work-box"></div>
+            <div class="work-box" onclick="more()"></div>
+            <div class="work-box" onclick="more()"></div>
         </div>
     </div>
     <script>
@@ -78,6 +78,10 @@
         alert("You have been logged out successfully."); 
         
         window.location.href = "freelancerlogin.html"; 
+    }
+
+    function more() {        
+        window.location.href = "buy-client.html"; 
     }
 </script>
 </body>

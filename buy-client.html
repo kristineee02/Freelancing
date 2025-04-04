@@ -58,7 +58,9 @@
                 <div class="preview-box"></div>
                 <div class="pricing-box">
                     <h2 class="h2">$50</h2>
-                    <button>BUY NOW</button>
+                    <button style="background-color: rgb(247, 245, 140); color: rgb(58, 57, 57);"
+                    onclick="togglePopup()">BUY NOW</button>
+
             
                     <div class="profession">
                         NAME
@@ -73,6 +75,36 @@
                     </div>
                 </div>
             </div>
+
+            <div class="popup-overlay" id="popupOverlay" onclick="closePopup()"></div>
+
+            <div class="booking-popup" id="bopopup">
+                <button class="close-btn" onclick="closePopup()">X</button>
+                <div class="booking-popup-profile">
+                    <img class="popup-profile" src="image/yellow circle.png" alt="profile mo">
+                </div> 
+                <h3>Connect with Amani Uri</h3>
+                <p>Responds within 1 hour</p>
+                <fieldset class="project-forms">
+                    <label for="Pdetails">Project Details</label>
+                    <p>Minimum 50 Characters</p>
+                    <textarea rows="3" cols="50" id="Pdetails"></textarea> 
+                    <br/><br/>
+        
+                    <label for="tdate">Target Date</label>
+                    <p>Select when you need the project to be completed</p>
+                    <input type="date" name="date">
+                    <br/><br/>
+        
+                    <label for="pbudget">Project Budget</label>
+                    <p>Amani Uri's minimum project rate is $100 (USD)</p>
+                    <input type="number" name="rate">
+                    <br/><br/>
+        
+                    <button type="button" class="btnbook">SEND MESSAGE</button>
+                </fieldset>
+            </div>
+
             <div class="offer-section">
                 <h3>WHAT YOU GET WITH THIS OFFER:</h3>
                 <p>engaging blog posts, article writing, or any type of content for your business, then you are at the right place.</p><br>
@@ -105,6 +137,19 @@
             </div>
         </div>
     </main>
+
+    <script>
+        function togglePopup() {
+            document.getElementById("bopopup").style.display = "block";
+            document.getElementById("popupOverlay").style.display = "block";
+        }
+
+        function closePopup() {
+            document.getElementById("bopopup").style.display = "none";
+            document.getElementById("popupOverlay").style.display = "none";
+        }
+    </script>
+    
     
 </body>
 </html>

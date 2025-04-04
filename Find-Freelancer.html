@@ -4,23 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Freelancing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel ="stylesheet" href="clients.css">
 </head>
 <body>
 
-    <div id="logo">
+    <div class="logo">
         <img class="picture" src="image/logo.png">
         <p>TaskFlow</p>
 
-        <p class="dashboard">
-              <a href="client-explore.html" >Explore</a>  
-              <a href="Find-Freelancer.html" class="tight-text active-dash">Find Designer</a> 
-              <a href="client-about.html">About</a>
-        </p>
+        <div class="dashboard">
+            <ul>
+              <li><a href="client-explore.html">Explore</a>  </li>
+             <li> <a href="Find-Freelancer.html" class="tight-text active-dash">Find Designer  <i class="fa fa-caret-down"></i></a> 
+             <div class="dropdown_menu">
+                <ul>
+                    <li><a href="client-freelancer-work.html" class="tight-text">Post Job</a></li>
+                </ul>
+             </div>
+            </li>
+             <li> <a href="client-about.html" >About</a></li>
+            </ul>
+        </div>
 
-        <img class="message" src="image/images.png" alt="message">
+        <div class="notif-profile">
         <img class="notif" src="image/3119338.png" alt="notif">
         <img class="profile" src="image/prof.jpg" alt="profile" onclick="toggleMenu()">
+        </div>
 
         <div class="sub-menu-wrap" id="subMenu">
             <div class="sub-menu">
@@ -135,6 +145,20 @@
                 </div> 
             </section>
     </div>
+
+    <script>
+        document.addEventListener("click", function (event) {
+            let pop = document.getElementById("pop");
+            let popup = document.querySelector(".active-dash");
+    
+            if (event.target === popup) {
+                event.preventDefault();
+                pop.classList.toggle("open");
+            } else if (!pop.contains(event.target)) {
+                pop.classList.remove("open");
+            }
+        });
+    </script>
     
     <script>
         let subMenu = document.getElementById("subMenu");
@@ -151,5 +175,11 @@
         window.location.href = "clientlogin.html"; 
     }
 </script>
+
+    <script>
+    function postjob() {
+        window.location.href = "client-freelancer-work.html"; 
+    }
+    </script>
 </body>
 </html>

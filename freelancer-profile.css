@@ -1,5 +1,8 @@
 body{
-    font-family: Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
    
 }
 .picture{
@@ -8,15 +11,14 @@ body{
     object-fit: cover;
     border-radius: 50%;
     float: left;
-    margin-left: 2%;
+    margin-left: 3%;
 }
-#logo{
+.logo{
     display: flex;
     gap: 20px;
     align-items: center;
-    text-align: left;
-
 }
+
 .dashboard{
     word-spacing: 25px;
     margin-left: 18%;
@@ -25,29 +27,37 @@ body{
     text-decoration: none;
     color: #000000;
 }
+.dashboard ul{
+    display: flex;
+    gap: 35px;
+}
+
 .tight-text{
     word-spacing: -0px;
-}
-.message{
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-left: 30%;
 }
 .notif{
     width: 25px;
     height: 25px;
     object-fit: cover;
     border-radius: 50%;
+    margin-top: 25px;
+    
 }
 .profile{
     width: 90px;
     height: 80px;
     object-fit: cover;
     border-radius: 50%;
-    margin-left: 2%;
     cursor: pointer;
+}
+li {
+    list-style: none;
+}
+
+.notif-profile{
+    margin-left: 33.2%;
+    display: flex;
+    gap: 30px;
 }
 html, body {
     margin: 0;

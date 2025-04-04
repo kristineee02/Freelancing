@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Freelancing</title>
-    <link rel ="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel ="stylesheet" href="clients.css">
 </head>
 <body>
 
@@ -14,9 +15,15 @@
 
         <div class="dashboard">
             <ul>
-              <li><a href="Explore.html" class="active-dash">Explore</a>  </li>
-             <li> <a href="Find-Job.html" class="tight-text">Find Jobs</a> </li>
-             <li> <a href="About.html" >About</a></li>
+              <li><a href="client-explore.html" class="active-dash">Explore</a>  </li>
+             <li> <a href="Find-Freelancer.html" class="tight-text">Find Designer  <i class="fa fa-caret-down"></i></a> 
+             <div class="dropdown_menu">
+                <ul>
+                    <li><a href="client-freelancer-work.html" class="tight-text">Post Job</a></li>
+                </ul>
+             </div>
+            </li>
+             <li> <a href="client-about.html">About</a></li>
             </ul>
         </div>
 
@@ -91,10 +98,5 @@
     }
 </script>
 
-<script>
-    function goToMessage() {
-    window.location.href = "message.html";
-    }
-</script>
 </body>
 </html>
