@@ -1,7 +1,7 @@
 <?
     class Database {
         private $host = "localhost";
-        private $db_name = "";
+        private $db_name = "freelancer_signup";
         private $username = "root";
         private $password ="";
         public $conn;
