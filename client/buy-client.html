@@ -68,7 +68,7 @@
                 <div class="pricing-box">
                     <h2 class="h2">$50</h2>
                     <button style="background-color: rgb(247, 245, 140); color: rgb(58, 57, 57);"
-                    onclick="togglePopup()">BUY NOW</button>
+                    onclick="togglePopup()">BOOK NOW</button>
 
             
                     <div class="profession">
@@ -102,7 +102,7 @@
         
                     <label for="tdate">Target Date</label>
                     <p>Select when you need the project to be completed</p>
-                    <input type="date" name="date">
+                    <input type="date" name="date" id="limdate">
                     <br/><br/>
         
                     <label for="pbudget">Project Budget</label>
@@ -146,6 +146,11 @@
             </div>
         </div>
     </main>
+
+    <script>
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById("limdate").setAttribute("min", today);
+      </script>
 
     <script>
         function togglePopup() {
