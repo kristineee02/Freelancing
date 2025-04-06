@@ -6,6 +6,7 @@ create table freelancer (
     password VARCHAR(100) NOT NULL
 );
 
+<<<<<<< HEAD
 create table client (
     client_id INT AUTO_INCREMENT PRIMARY KEY,
     firstname VARCHAR (100) NOT NULL,
@@ -14,3 +15,5 @@ create table client (
     password VARCHAR(100) NOT NULL
 );
 
+=======
+>>>>>>> 3853dc42f7ee191f257ec6f4f9638e8628d274b7
