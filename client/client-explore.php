@@ -127,11 +127,7 @@
         <section class="container">
             <div class="card" data-id="client-webdesign.html">
                 <div class="card-image">
-<<<<<<<< HEAD:client/client-explore.php
                     <img src="../image/ui.png">
-========
-                    <img src="./image/ui.png">
->>>>>>>> 3853dc42f7ee191f257ec6f4f9638e8628d274b7:client/client-explore.html
                 </div>
                 <div class="footer">
                     <h5 id="text">Name</h6>
