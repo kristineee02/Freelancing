@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelancing</title>
+    <link rel ="stylesheet" href="../style/style.css">
+</head>
+<body>
+
+    <div class="logo">
+        <img class="picture" src="../image/logo.png">
+        <p>TaskFlow</p>
+
+        <div class="dashboard">
+            <ul>
+              <li><a href="client-explore.html">Explore</a>  </li>
+             <li> <a href="Find-Freelancer.html" class="tight-text">Find Freealancer</a> </li>
+             <li> <a href="client-about.html" >About</a></li>
+            </ul>
+        </div>
+
+        <div class="notif-profile">
+        <img class="notif" src="../image/3119338.png" alt="notif">
+        <img class="profile" src="../image/prof.jpg" alt="profile" onclick="toggleMenu()">
+        </div>
+
+    </div>
+    <hr>
+
+
+        <div class="sub-menu-wrap" id="subMenu">
+            <div class="sub-menu">
+                <div class="user-info">
+                    <img class="profile" src="../image/prof.jpg">
+                    <h4>Kristine Sabuero</h4>
+                </div>
+                <hr>
+
+                <a href="freelancer-work.html" class="sub-menu-link">
+                    <img src="../image/prof.jpg">
+                    <p>Profile</p>
+                    <span>></span>
+                </a>
+                <a href="logout" class="sub-menu-link" onclick="logout()">
+                    <img src="../image/logo.png">
+                    <p>Logout</p>
+                    <span>></span>
+                </a>
+            </div>
+        </div>
+
+
+    <div class="profile-section">
+        <img src="../image/pic.png"> 
+        <div class="profile-details">
+        <h2>PROFILE NAME</h2>
+        <p>LOCATION</p>
+        </div>
+    </div>
+
+    <div class="form-section">
+        <div class="form-left">
+            <label for="form-detail">NAME</label>
+            <input type="text" placeholder="Your Name" class="details">
+
+            <label for="form-detail">CONTACT</label>
+            <input type="text" placeholder="Your Contact" class="details">
+
+            <label for="form-detail">EMAIL</label>
+            <input type="email" placeholder="Your Email" class="details">
+
+            <label for="form-detail">WORK FIELD</label>
+            <textarea placeholder="Your Skills" class="text-area"></textarea>
+        </div>
+
+        <div class="form-right">
+            <label for="form-detail">CLIENT HISTORY</label>
+            <textarea placeholder="Work History & Experience" class="text-area"></textarea>
+
+            <label for="form-detail">SOCIALS</label>
+            <textarea placeholder="Social Media Links" class="text-area"></textarea>
+        </div>
+    </div>
+
+    <div class="btn-section">
+        <button class="delete-btn">DELETE ACCOUNT</button>
+        <button class="save-btn" onclick="goToProfile()">SAVE PROFILE</button>
+    </div>
+
+    <script>
+        function goToEditProfile() {
+        window.location.href = "editfreelancerprofile.html";
+    }
+    </script> 
+    <script>
+        function goToProfile(){
+        window.location.href ="freelancer-work.html";
+        }
+    </script>  
+    <script>
+        let subMenu = document.getElementById("subMenu");
+
+        function toggleMenu(){
+            subMenu.classList.toggle("open");
+        }
+    </script>
+
+    <script>
+    function logout() {
+        alert("You have been logged out successfully."); 
+        
+        window.location.href = "freelancerlogin.html"; 
+    }
+</script>
+</body>
+</html>
