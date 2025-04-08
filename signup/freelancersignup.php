@@ -1,9 +1,7 @@
 <?php
     include "../api/database.php";
-<<<<<<< HEAD
     include '../class/Freelancer.php';
-=======
->>>>>>> 3853dc42f7ee191f257ec6f4f9638e8628d274b7
+
     $database = new Database();
     $conn = $database->getConnection();
 
@@ -16,10 +14,7 @@
         $password = $_POST["password"];
 
         $freelancer->addFreelancer($firstName, $lastName, $email, $password);
-<<<<<<< HEAD
         header("Location: ../login/UserLogin.php");
-=======
->>>>>>> 3853dc42f7ee191f257ec6f4f9638e8628d274b7
     }
 ?>
 <!DOCTYPE html>

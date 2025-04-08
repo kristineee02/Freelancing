@@ -15,7 +15,7 @@
 
         <div class="dashboard">
             <ul>
-              <li><a href="client-explore.html">Explore</a>  </li>
+              <li><a href="client-explore.php">Explore</a>  </li>
              <li> <a href="Find-Freelancer.html" class="tight-text active-dash">Find Designer  <i class="fa fa-caret-down"></i></a> 
              <div class="dropdown_menu">
                 <ul>
@@ -28,7 +28,11 @@
         </div>
 
         <div class="notif-profile">
-        <img class="notif" src="../image/3119338.png" alt="notif">
+            <img src="../image/3119338.png" alt="Notification icon" class="notif" id="notifBtn" />
+            <div class="notification-popup" id="notifPopup">
+                <p><strong>New Message:</strong> Your job application has been viewed!</p>
+                <p><strong>Reminder:</strong> Update your profile today.</p>
+              </div>
         <img class="profile" src="../image/prof.jpg" alt="profile" onclick="toggleMenu()">
         </div>
 
@@ -45,7 +49,7 @@
                     <p>Profile</p>
                     <span>></span>
                 </a>
-                <a href="UserLogIn.html" class="sub-menu-link" onclick="logout()">
+                <a href="../home/Home.html" class="sub-menu-link" onclick="logout()">
                     <img src="../image/logo.png">
                     <p>Logout</p>
                     <span>></span>
@@ -172,7 +176,6 @@
     function logout() {
         alert("You have been logged out successfully."); 
         
-        window.location.href = "clientlogin.html"; 
     }
 </script>
 
@@ -181,5 +184,25 @@
         window.location.href = "client-freelancer-work.html"; 
     }
     </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const notifBtn = document.getElementById('notifBtn');  
+    const notifPopup = document.getElementById('notifPopup');  
+
+ 
+    notifBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        notifPopup.style.display = notifPopup.style.display === 'block' ? 'none' : 'block';
+    });
+
+    
+    document.addEventListener('click', function (e) {
+        if (!notifPopup.contains(e.target) && e.target !== notifBtn) {
+            notifPopup.style.display = 'none';
+        }
+    });
+});
+</script>
 </body>
 </html>

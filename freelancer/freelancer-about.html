@@ -21,8 +21,12 @@
         </div>
 
         <div class="notif-profile">
-        <img class="notif" src="../image/3119338.png" alt="notif">
-        <img class="profile" src="../image/prof.jpg" alt="profile" onclick="toggleMenu()">
+            <img src="../image/3119338.png" alt="Notification icon" class="notif" id="notifBtn" />
+            <div class="notification-popup" id="notifPopup">
+                <p><strong>New Message:</strong> Your job application has been viewed!</p>
+                <p><strong>Reminder:</strong> Update your profile today.</p>
+              </div>
+            <img class="profile" src="../image/prof.jpg" alt="profile" onclick="toggleMenu()">
         </div>
 
         <div class="sub-menu-wrap" id="subMenu">
@@ -33,7 +37,7 @@
                 </div>
                 <hr>
 
-                <a href="client-profile.html" class="sub-menu-link">
+                <a href="freelancer-work.html" class="sub-menu-link">
                     <img src="../image/prof.jpg">
                     <p>Profile</p>
                     <span>></span>
@@ -112,6 +116,24 @@ window.location.href = "freelancerlogin.html";
 }
 </script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const notifBtn = document.getElementById('notifBtn');  
+    const notifPopup = document.getElementById('notifPopup');  
 
+ 
+    notifBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        notifPopup.style.display = notifPopup.style.display === 'block' ? 'none' : 'block';
+    });
+
+    
+    document.addEventListener('click', function (e) {
+        if (!notifPopup.contains(e.target) && e.target !== notifBtn) {
+            notifPopup.style.display = 'none';
+        }
+    });
+});
+</script>
 </body>
 </html>

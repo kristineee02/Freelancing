@@ -15,15 +15,15 @@
 
         <div class="dashboard">
             <ul>
-              <li><a href="client-explore.php" class="active-dash">Explore</a>  </li>
-             <li> <a href="Find-Freelancer.html" class="tight-text">Find Designer  <i class="fa fa-caret-down"></i></a> 
-             <div class="dropdown_menu">
-                <ul>
-                    <li><a href="client-freelancer-work.html" class="tight-text">Post Job</a></li>
-                </ul>
-             </div>
-            </li>
-             <li> <a href="client-about.html">About</a></li>
+              <li><a href="client-explore.php">Explore</a>  </li>
+              <li> <a href="Find-Freelancer.html" class="tight-text">Find Designer  <i class="fa fa-caret-down"></i></a> 
+                <div class="dropdown_menu">
+                   <ul>
+                       <li><a href="client-freelancer-work.html" class="tight-text">Post Job</a></li>
+                   </ul>
+                </div>
+               </li>
+             <li> <a href="client-about.html" >About</a></li>
             </ul>
         </div>
 
@@ -65,12 +65,13 @@
                 <p class="location">LOCATION: USA</p>
                 <p class="job-title">Web Designer</p>
                 <p class="follow-info">0 Followers  |  20 Following</p>
+                <button class="edit-profile" onclick="goToEditProfile()">EDIT PROFILE</a></button>
             </div>
         </div>
 
         <div class="tabs">
-            <a href="clientview-freelancerprofile.html" class="active">WORK</a>
-           <a href = "SeeMore-about.html">LIKED POST</a>
+            <a href="client-profile.html" class="active">MY PROFILE</a>
+           <a href = "client-likedpost.html">LIKED POST</a>
             
         </div>
         <hr>
@@ -81,6 +82,14 @@
         </div>
     </div>
 
+    <div class="content-section">
+        <div class="content-box active add-box">+</div>
+    </div>
+    <script>
+            function goToEditProfile() {
+            window.location.href = "client-profile-edit.html";
+        }
+    </script>
     <script>
         let subMenu = document.getElementById("subMenu");
 
@@ -93,10 +102,6 @@
     function logout() {
         alert("You have been logged out successfully."); 
         
-    }
-
-    function more() {        
-        window.location.href = "buy-client.html"; 
     }
 </script>
 

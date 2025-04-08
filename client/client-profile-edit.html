@@ -15,15 +15,15 @@
 
         <div class="dashboard">
             <ul>
-              <li><a href="client-explore.php" class="active-dash">Explore</a>  </li>
-             <li> <a href="Find-Freelancer.html" class="tight-text">Find Designer  <i class="fa fa-caret-down"></i></a> 
-             <div class="dropdown_menu">
-                <ul>
-                    <li><a href="client-freelancer-work.html" class="tight-text">Post Job</a></li>
-                </ul>
-             </div>
-            </li>
-             <li> <a href="client-about.html">About</a></li>
+              <li><a href="client-explore.php">Explore</a>  </li>
+              <li> <a href="Find-Freelancer.html" class="tight-text">Find Designer  <i class="fa fa-caret-down"></i></a> 
+                <div class="dropdown_menu">
+                   <ul>
+                       <li><a href="client-freelancer-work.html" class="tight-text">Post Job</a></li>
+                   </ul>
+                </div>
+               </li>
+             <li> <a href="client-about.html" >About</a></li>
             </ul>
         </div>
 
@@ -35,6 +35,10 @@
               </div>
         <img class="profile" src="../image/prof.jpg" alt="profile" onclick="toggleMenu()">
         </div>
+
+    </div>
+    <hr>
+
 
         <div class="sub-menu-wrap" id="subMenu">
             <div class="sub-menu">
@@ -56,31 +60,55 @@
                 </a>
             </div>
         </div>
-    </div>
-    <div class="profile-container">
-        <div class="profile-header">
-            <img src="../image/yellow circle.png" alt="Profile Image" class="profile-image">
-            <div class="profile-info">
-                <h1>Kellin Quinn</h1>
-                <p class="location">LOCATION: USA</p>
-                <p class="job-title">Web Designer</p>
-                <p class="follow-info">0 Followers  |  20 Following</p>
-            </div>
-        </div>
 
-        <div class="tabs">
-            <a href="clientview-freelancerprofile.html" class="active">WORK</a>
-           <a href = "SeeMore-about.html">LIKED POST</a>
-            
-        </div>
-        <hr>
 
-        <div class="work-section">
-            <div class="work-box"></div>
-            <div class="work-box"></div>
+    <div class="profile-section">
+        <img src="../image/pic.png"> 
+        <div class="profile-details">
+        <h2>PROFILE NAME</h2>
+        <p>LOCATION</p>
         </div>
     </div>
 
+    <div class="form-section">
+        <div class="form-left">
+            <label for="form-detail">NAME</label>
+            <input type="text" placeholder="Your Name" class="details">
+
+            <label for="form-detail">CONTACT</label>
+            <input type="text" placeholder="Your Contact" class="details">
+
+            <label for="form-detail">EMAIL</label>
+            <input type="email" placeholder="Your Email" class="details">
+
+            <label for="form-detail">WORK FIELD</label>
+            <textarea placeholder="Your Skills" class="text-area"></textarea>
+        </div>
+
+        <div class="form-right">
+            <label for="form-detail">CLIENT HISTORY</label>
+            <textarea placeholder="Work History & Experience" class="text-area"></textarea>
+
+            <label for="form-detail">SOCIALS</label>
+            <textarea placeholder="Social Media Links" class="text-area"></textarea>
+        </div>
+    </div>
+
+    <div class="btn-section">
+        <button class="delete-btn">DELETE ACCOUNT</button>
+        <button class="save-btn" onclick="goToProfile()">SAVE PROFILE</button>
+    </div>
+
+    <script>
+        function goToEditProfile() {
+        window.location.href = "client-profile-edit.html";
+    }
+    </script> 
+    <script>
+        function goToProfile(){
+        window.location.href ="client-profile.html";
+        }
+    </script>  
     <script>
         let subMenu = document.getElementById("subMenu");
 
@@ -93,10 +121,6 @@
     function logout() {
         alert("You have been logged out successfully."); 
         
-    }
-
-    function more() {        
-        window.location.href = "buy-client.html"; 
     }
 </script>
 

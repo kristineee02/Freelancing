@@ -47,8 +47,26 @@ hr {
     object-fit: cover;
     border-radius: 50%;
     margin-top: 25px;
-    
+    cursor: pointer;
 }
+
+.notification-popup {
+    display: none; 
+    position: absolute;
+    top: 60px;
+    right: 80px;
+    width: 250px;
+    padding: 15px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    z-index: 1000;
+    font-size: 14px;
+  }
+  
+.notification-popup p {
+    margin: 10px 0;
+  }
 .profile{
     width: 90px;
     height: 80px;
@@ -989,7 +1007,7 @@ main {
     margin: 30px auto;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    border: .5px solid rgb(177, 177, 177);
+    border: .5px solid rgb(95, 94, 94);
 }
 
 .details-job{
@@ -1020,7 +1038,7 @@ main {
 .company-info {
     flex: 1;
     background: #fff;
-    border: .5px solid rgb(173, 173, 173);
+    border: .5px solid rgb(95, 94, 94);
     padding: 20px;
     height: 350px;
     border-radius: 8px;
