@@ -820,3 +820,106 @@ hr {
     width: 30px;
     height: 20px;
 }
+
+/* PUBLISH POP UP */
+.publish-popup-overlay {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+.publishing-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    width: 600px;
+    display: none;
+    z-index: 11;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+}
+
+.publishing-popup h3 {
+    margin: 0;
+    font-size: 20px;
+    text-align: center;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.close-btn {
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+
+.cancel-btn {
+    background-color: transparent;
+    border: none;
+    font-weight: normal;
+}
+
+.publish-btn {
+    padding: 10px 15px;
+    background-color: #FFE295;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.FileInputLabel {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    background-color: #eee;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.file-preview-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.file-preview-box {
+    width: 140px;
+    height: 100px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.file-preview-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.remove-btn {
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    background: #FFE295;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 2px 6px;
+}

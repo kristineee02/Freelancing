@@ -8,16 +8,16 @@
 </head>
 
 <body>
-
+    
     <div class="overlay"></div> 
 
     <nav>
         <div class="TF2">TASKFLOW</div>
         <div class="navs">
             <ul>
-                <li><a href="../home/Home.php">Home</a></li>
-                <li><a href="../home/AboutUs.php">About Us</a></li>
-                <li><a href="../home/Support.php">Support</a></li>
+                <li><a href="Home.php">Home</a></li>
+                <li><a href="AboutUs.php">About Us</a></li>
+                <li><a href="Support.php">Support</a></li>
             </ul>
             <a href="../login/UserLogIn.php" class="login-btn">Log in</a>
         </div>
@@ -26,17 +26,9 @@
     <div class="welcome">
         <h1><span>WELCOME</span> to</h1>
         <div class="TF">TASKFLOW</div>
-        <p class="signupas">Sign up as:</p>
-        <div class="signupbox">
-            <a href="clientsignup.php" class="signupoption">
-                <img src="../image/client-profile.png"/>
-                <span>CLIENT</span>
-            </a>
-            <a href="freelancersignup.php" class="signupoption">
-                <img src="../image/freelancer-icon.png"/>
-                <span>FREELANCER</span>
-            </a>
-        </div>
+        <div class="home-text">
+            <p>TaskFlow is an expression of our beliefs that we hold close to our hearts. It's one thing to simply provide a platform where Employers and Freelancers can work together. It's another to do it in our own unique way.</p>
+            <button class="SUAbutton"><a href="../signup/SignupAS.php">Let's get started</a></button></div>
     </div>
 
     <footer>

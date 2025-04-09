@@ -13,7 +13,7 @@
         $password = $_POST["password"];
 
         $client->addClient($firstName, $lastName, $email, $password);
-        header("Location: ../login/ClientLogin.php");
+        header("Location: ../login/UserLogIn.php");
     }
 ?> 
 
@@ -156,7 +156,7 @@
                 <input type="password" name="password" placeholder="Password" required>
                 <button type="submit" name = "submit">Create Account</button>
             </form>
-            <div class="login">Already have an account? <a href="../login/ClientLogin.php">Log In</a></div>
+            <div class="login">Already have an account? <a href="../login/UserLogIn.php">Log In</a></div>
         </div>
     </div>
 

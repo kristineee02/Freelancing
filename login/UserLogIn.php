@@ -1,21 +1,43 @@
 <?php
 include '../api/database.php';
+include '../class/Client.php';
 include '../class/Freelancer.php';
 
 $database = new Database();
 $conn = $database->getConnection();
 
+$client = new Client($conn);
 $freelancer = new Freelancer($conn);
 
+session_start();
+
 if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit'])) {
-    $Email = $_POST['email'];
-    $Password = $_POST['password'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-    $freelancer->login($email, $password);
-    header("Location: ../freelancer/freelancers_dashboard.html");
+    // Try logging in as client
+    $clientUser = $client->login($email, $password);
+    if ($clientUser) {
+        $_SESSION['user'] = $clientUser;
+        $_SESSION['type'] = 'client';
+        header("Location: ../client/client-explore.php");
+        exit;
+    }
 
+    // Try logging in as freelancer
+    $freelancerUser = $freelancer->login($email, $password);
+    if ($freelancerUser) {
+        $_SESSION['user'] = $freelancerUser;
+        $_SESSION['type'] = 'freelancer';
+        header("Location: ../freelancer/freelancers_dashboard.html");
+        exit;
+    }
+
+    // If both fail
+    echo "<script>alert('Invalid credentials'); window.location.href='Home.php';</script>";
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit'])) {
         </div>
 
         <div class="signup">
-            <h2>Freelancer Log In</h2>
+            <h2>Log In</h2>
             <form class="form" action="UserLogIn.php" method="POST">
                 <input type="text" name="email" placeholder="Username or Email" required>
                 <input type="password" name="password" placeholder="Password" required>
@@ -45,7 +67,5 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit'])) {
             <div class="login">New here? <a href="../signup/SignupAS.php">Sign Up</a></div>
         </div>
     </div>
-
 </body>
-
 </html>

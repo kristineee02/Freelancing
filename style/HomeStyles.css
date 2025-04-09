@@ -1,0 +1,243 @@
+/* BASE FOR ALL HOME PAGES */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+    
+body {
+    font-family: 'Montserrat', sans-serif;
+    height: 100vh; 
+    overflow: hidden;
+    padding-top: 200px;
+    background-image: url('../image/SignUpAs.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+    
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.582); 
+    z-index: -1; 
+}
+        
+nav {
+    background-color: white;
+    padding: 15px 30px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+}
+    
+.TF2 {
+    font-size: 26px;
+    font-weight: 600;
+    padding-left: 80px;
+}
+        
+.navs {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-right: 80px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+        
+nav ul li {
+    margin: 0;
+    }
+        
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+}
+        
+nav ul li a:hover {
+    text-decoration: underline;
+}
+        
+.login-btn {
+    text-decoration: none;     
+    padding: 10px;
+    background-color: #FFE295;
+    color: black;
+    border: none;
+    border-radius: 15px;
+    font-size: 14px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #FFE295;
+    padding: 10px;
+}
+
+/* HOME */
+        
+.welcome {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.welcome h1 {
+    font-family: 'Instrument', sans-serif;
+    font-style: italic;
+    font-weight: lighter;
+}
+
+.welcome span {
+    font-weight: 500;
+    font-size: 40px;
+}
+    
+.TF {
+    font-weight: 500;
+    font-size: 50px;
+    background-color: #FFE295;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+        
+.home-text {
+    max-width: 400px;
+}
+        
+.home-text p {
+    text-align: justify;
+    font-size: 16px;
+    margin-top: 20px;
+    line-height: 1.5;
+    }
+        
+.SUAbutton {
+    background-color: #FFE295;
+    border-color: #FFE295;
+    width: 200px;
+    padding: 8px 10px;
+    font-weight: 600;
+    border-radius: 10px;
+    margin-top: 30px;
+    }
+    
+.SUAbutton a{
+    text-decoration: none;
+    color: black;
+}
+        
+.SUAbutton a:hover {
+    text-decoration: underline;
+}
+
+/* SIGN UP AS PAGE */
+
+.signupas {
+    font-style: italic;
+    text-shadow: #646464 0px 0px 1px;
+    font-size: 20px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.signupbox {
+    display: flex;
+    gap: 20px;
+    position: relative;
+}
+
+.signupoption {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    width: 125px;
+    height: 125px;
+    background-color: white;
+    border: 1px solid black;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    padding: 10px;
+    border-radius: 2.5px;
+}
+
+.signupoption:hover {
+    box-shadow: 0px 1px 0px 2px rgba(0, 0, 0, 0.3); 
+}
+
+.signupoption img {
+      width: 55px;
+      height: 55px;
+      object-fit: contain;
+      margin-top: 10px;
+      margin-bottom: 15px;
+}
+
+.signupoption span {
+    margin-top: auto;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* SUPPORT PAGE */
+
+.MainText {
+    text-align: center;
+    margin-top: 40px;
+}
+    
+.SearchBar {
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+    
+.SearchBar input {  
+    width: 500px;
+    padding: 15px;
+    border: 2px solid black;
+    border-radius: 10px 0 0 10px;
+    outline: none;
+}
+    
+.SearchBar button {
+    padding: 15px;
+    background-color: #d6d4d4;
+    color: black;
+    border: none;
+    border-radius: 0 10px 10px 0;
+}
+    
+.FAQ {
+    text-align: left;
+    margin-top: 20px;
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+}

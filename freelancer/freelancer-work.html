@@ -42,7 +42,7 @@
                     <p>Profile</p>
                     <span>></span>
                 </a>
-                <a href="../home/Home.html" class="sub-menu-link" onclick="logout()">
+                <a href="../home/Home.php" class="sub-menu-link" onclick="logout()">
                     <img src="../image/logo.png">
                     <p>Logout</p>
                     <span>></span>
@@ -76,7 +76,28 @@
     </div>
 
     <div class="content-section">
-        <div class="content-box active add-box">+</div>
+        <div class="content-box active add-box" onclick="togglePopup()">+</div>
+    </div>
+
+    <div class="publish-popup-overlay" id="PublishPopupOverlay" onclick="closePopup()"></div>
+
+    <div class="publishing-popup" id="pubpopup">
+        <button class="close-btn" onclick="closePopup()">X</button>
+        <h3>CREATE POST</h3>
+        <div id="FilePreviewContainer" class="file-preview-container"></div>
+        <form id="postForm">
+
+            <label class="FileInputLabel">
+                ADD FILE +
+                <input type="file" id="fileInput" name="files[]" multiple hidden>
+            </label>
+
+            <div class="btn-container">
+                <button type="button" class="cancel-btn" onclick="closePopup()">CANCEL</button>
+                <button type="submit" class="publish-btn">PUBLISH</button>
+            </div>
+            
+        </form>
     </div>
     <script>
             function goToEditProfile() {
@@ -117,5 +138,65 @@
     });
 });
 </script>
+
+<script>
+    const fileInput = document.getElementById("fileInput");
+    const FilePreviewContainer = document.getElementById("FilePreviewContainer");
+    
+    let selectedFiles = [];
+  
+    fileInput.addEventListener("change", function () {
+        const newFiles = Array.from(fileInput.files);
+        newFiles.forEach((file) => {
+        selectedFiles.push(file);
+    });
+    updatePreviews();
+    });
+    
+    function updatePreviews() {
+        FilePreviewContainer.innerHTML = "";
+        selectedFiles.forEach((file, index) => {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const previewBox = document.createElement("div");
+                previewBox.classList.add("file-preview-box");
+                const img = document.createElement("img");
+                img.src = e.target.result;
+                const RemoveBtn = document.createElement("button");
+                RemoveBtn.innerText = "X";
+                RemoveBtn.classList.add("remove-btn");
+                RemoveBtn.onclick = () => {
+                    selectedFiles.splice(index, 1);
+                    updatePreviews();
+                };
+                
+                previewBox.appendChild(img);
+                previewBox.appendChild(RemoveBtn);
+                FilePreviewContainer.appendChild(previewBox);
+            };
+            
+            reader.readAsDataURL(file);
+        });
+    }
+    
+    function togglePopup() {
+        document.getElementById("pubpopup").style.display = "block";
+        document.getElementById("PublishPopupOverlay").style.display = "block";
+    }
+
+    function closePopup() {
+        document.getElementById("pubpopup").style.display = "none";
+        document.getElementById("PublishPopupOverlay").style.display = "none";
+        selectedFiles = [];
+        updatePreviews();
+    }
+    
+    document.getElementById("postForm").addEventListener("submit", function (e) {
+        e.preventDefault(); 
+        alert("Post Published with " + selectedFiles.length + " file(s)!"); 
+        closePopup();
+    });
+
+    </script>
 </body>
 </html>

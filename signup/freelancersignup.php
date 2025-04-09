@@ -14,7 +14,7 @@
         $password = $_POST["password"];
 
         $freelancer->addFreelancer($firstName, $lastName, $email, $password);
-        header("Location: ../login/UserLogin.php");
+        header("Location: ../login/UserLogIn.php");
     }
 ?>
 <!DOCTYPE html>
