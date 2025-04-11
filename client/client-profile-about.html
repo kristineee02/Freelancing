@@ -36,6 +36,7 @@
         <img class="profile" src="../image/prof.jpg" alt="profile" onclick="toggleMenu()">
         </div>
 
+
         <div class="sub-menu-wrap" id="subMenu">
             <div class="sub-menu">
                 <div class="user-info">
@@ -57,53 +58,69 @@
             </div>
         </div>
     </div>
-    <div class="profile-container">
-        <div class="profile-header">
-            <img src="../image/yellow circle.png" alt="Profile Image" class="profile-image">
-            <div class="profile-info">
-                <h1>Kellin Quinn</h1>
-                <p class="location">LOCATION: USA</p>
-                <p class="job-title">Web Designer</p>
-                <p class="follow-info">0 Followers  |  20 Following</p>
-                <button class="edit-profile" onclick="goToEditProfile()">EDIT PROFILE</a></button>
-            </div>
-        </div>
-
-        <div class="tabs">
-            <a href="client-profile.html" class="active">MY PROFILE</a>
-            <a href = "client-profile-about.html">ABOUT</a>
-           <a href = "client-likedpost.html">LIKED POST</a>
-            
-        </div>
-        <hr>
-
-        <div class="work-section">
-            <div class="work-box"></div>
-            <div class="work-box"></div>
+</div>
+<div class="profile-container">
+    <div class="profile-header">
+        <img src="../image/yellow circle.png" alt="Profile Image" class="profile-image">
+        <div class="profile-info">
+            <h1>Kellin Quinn</h1>
+            <p class="location">LOCATION: USA</p>
+            <p class="job-title">Web Designer</p>
+            <p class="follow-info">0 Followers  |  20 Following</p>
+            <button class="edit-profile" onclick="goToEditProfile()">EDIT PROFILE</a></button>
         </div>
     </div>
 
-    <div class="content-section">
-        <div class="content-box active add-box">+</div>
-    </div>
-    <script>
-            function goToEditProfile() {
-            window.location.href = "client-profile-edit.html";
-        }
-    </script>
-    <script>
-        let subMenu = document.getElementById("subMenu");
-
-        function toggleMenu(){
-            subMenu.classList.toggle("open");
-        }
-    </script>
-
-    <script>
-    function logout() {
-        alert("You have been logged out successfully."); 
+    <div class="tabs">
+        <a href="client-profile.html" class="active">MY PROFILE</a>
+        <a href = "client-profile-about.html">ABOUT</a>
+       <a href = "client-likedpost.html">LIKED POST</a>
         
-    }
+    </div>
+    <hr>
+</div>
+
+<div class="about-section">
+    <div class="about-left">
+        <h2>ABOUT YOU</h2>
+        <p>NAME:</p>
+        <p>CONTACT:</p>
+        <p>EMAIL:</p>
+        <br/>
+        <h2>SKILLS</h2>
+        <p>DESIGNING</p>
+        <p>WRITING</p>
+    </div>
+
+    <div class="divider-1"></div>
+
+    <div class="about-right">
+        <h2>WORK HISTORY AND EXPERIENCE</h2>
+        <p>DESIGNER FOR AZ COMPANY</p>
+        <p>PROJECT MANAGER</p>
+        <br/>
+        <h2>SOCIALS</h2>
+        <p>Instagram:</p>
+        <p>Facebook:</p>
+    </div>
+</div>
+<script>
+    function goToEditProfile() {
+    window.location.href = "client-profile-edit.html";
+}
+</script>
+<script>
+let subMenu = document.getElementById("subMenu");
+
+function toggleMenu(){
+    subMenu.classList.toggle("open");
+}
+</script>
+
+<script>
+function logout() {
+alert("You have been logged out successfully."); 
+}
 </script>
 
 <script>
@@ -125,6 +142,5 @@
     });
 });
 </script>
-    
 </body>
 </html>

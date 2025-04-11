@@ -911,6 +911,10 @@ main {
     gap: 10px;
 
 }
+.time{
+    font-size: 15px;
+    color: #5f5e5e;
+}
 
 .avatar {
     width: 50px;

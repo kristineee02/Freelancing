@@ -80,14 +80,14 @@
         <button class="carousel-btn next" onclick="moveSlide(1)">&gt;</button>
     </div>
 
-        <select id="FilterCategory" onchange="filterEmployee()" class="filter">
+        <select id="FilterCategory" onchange="filterFreelancer()" class="filter">
             <option value="">Filter</option>
             <option value="new">New</option>
             <option value="popular">Popular</option>
         </select>
         
         <section class="container">
-            <div class="card" data-id="freelancer-webdesign.html">
+            <div class="card" data-id="freelancer-webdesign.html" id="project">
                 <div class="card-image">
                     <img src="../image/ui.png">
                 </div>
@@ -203,71 +203,7 @@
             </div>
         </section>
 
-    <script>
-        let subMenu = document.getElementById("subMenu");
-
-        function toggleMenu(){
-            subMenu.classList.toggle("open");
-        }
-    </script>
-
-    <script>
-    function logout() {
-        alert("You have been logged out successfully."); 
-        
-    }
-</script>
-
-<script>
-    const designCards = document.querySelectorAll('.card');
-
-    designCards.forEach(Card => {
-        Card.addEventListener('click', function() {
-            const redirectPage = this.getAttribute('data-id');
-
-            window.location.href = redirectPage;
-
-        });
-    });
-</script>
-
-<script>
-    let slideIndex = 0;
-    const slides = document.querySelectorAll('.slide');
-    const totalSlides = slides.length;
-    const visibleSlides = 4.2;
-
-    function moveSlide(direction) {
-        const maxIndex = totalSlides - visibleSlides;
-        if (direction === 1 && slideIndex < maxIndex) {
-            slideIndex++;
-        } else if (direction === -1 && slideIndex > 0) {
-            slideIndex--;
-        }
-        const offset = -slideIndex * (100 / visibleSlides);
-        document.getElementById('carouselSlide').style.transform = `translateX(${offset}%)`;
-    }
-</script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-    const notifBtn = document.getElementById('notifBtn');  
-    const notifPopup = document.getElementById('notifPopup');  
-
- 
-    notifBtn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        notifPopup.style.display = notifPopup.style.display === 'block' ? 'none' : 'block';
-    });
-
-    
-    document.addEventListener('click', function (e) {
-        if (!notifPopup.contains(e.target) && e.target !== notifBtn) {
-            notifPopup.style.display = 'none';
-        }
-    });
-});
-</script>
+   <script src="../js/functions.js"></script>
 
 </body>
 </html>
