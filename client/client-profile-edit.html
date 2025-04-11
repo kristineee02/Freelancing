@@ -61,49 +61,20 @@
             </div>
         </div>
 
+    <form class="profile-edit">
+        <p>Edit Profile</p>
+        <img src="../image/picture.png" alt="profile picture"> 
+        <input type="text" name="name" placeholder="Profile Name">
+        <input type="text" name="location" placeholder="Location">
+        <input type="text" name="profession" placeholder="Profession">
+    </form>
 
-    <div class="profile-section">
-        <img src="../image/pic.png"> 
-        <div class="profile-details">
-        <h2>PROFILE NAME</h2>
-        <p>LOCATION</p>
-        </div>
-    </div>
-
-    <div class="form-section">
-        <div class="form-left">
-            <label for="form-detail">NAME</label>
-            <input type="text" placeholder="Your Name" class="details">
-
-            <label for="form-detail">CONTACT</label>
-            <input type="text" placeholder="Your Contact" class="details">
-
-            <label for="form-detail">EMAIL</label>
-            <input type="email" placeholder="Your Email" class="details">
-
-            <label for="form-detail">WORK FIELD</label>
-            <textarea placeholder="Your Skills" class="text-area"></textarea>
-        </div>
-
-        <div class="form-right">
-            <label for="form-detail">CLIENT HISTORY</label>
-            <textarea placeholder="Work History & Experience" class="text-area"></textarea>
-
-            <label for="form-detail">SOCIALS</label>
-            <textarea placeholder="Social Media Links" class="text-area"></textarea>
-        </div>
-    </div>
-
+    
     <div class="btn-section">
         <button class="delete-btn">DELETE ACCOUNT</button>
         <button class="save-btn" onclick="goToProfile()">SAVE PROFILE</button>
     </div>
 
-    <script>
-        function goToEditProfile() {
-        window.location.href = "client-profile-edit.html";
-    }
-    </script> 
     <script>
         function goToProfile(){
         window.location.href ="client-profile.html";

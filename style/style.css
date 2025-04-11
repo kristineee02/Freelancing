@@ -1159,3 +1159,16 @@ main {
     border-radius: 15px;
     
 }
+
+/*freelancer-edit-about*/
+.save-abt{
+    background-color: #9c9c96;
+    border: none;
+    padding: 10px 20px;
+    color: #fdf4c2;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 65%;
+    margin-top: 20px;
+
+}

@@ -541,7 +541,7 @@ html, body {
 .btn-section {
     display: flex;
     justify-content: center;
-    gap: 400px;
+    gap: 300px;
     margin-top: 30px;
 }
 .btn-section button {
@@ -555,11 +555,57 @@ html, body {
 .btn-section .delete-btn {
     background-color: #ff706b;
 }
+
+.save-abt{
+    background-color: #9c9c96;
+    border: none;
+    padding: 10px 20px;
+    color: #fdf4c2;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 65%;
+    margin-top: 20px;
+
+}
 .divider{
     border-top: 1px solid #ffed85;
     margin-top: 3px;
 }
 
+/*client-profile0edit*/
+.profile-edit{
+    width: 50%;
+    height: 450px;
+    border: .5px solid rgb(124, 124, 124);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 30px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.profile-edit p{
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(100, 100, 98);
+}
+.profile-edit img{
+    width: 300px;
+    height: 300px;
+    margin-top: -80px;
+    margin-bottom: -50px;
+}
+input[type="text"]{
+    width: 50%;
+    height: 30px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: .5px solid rgb(124, 122, 123);
+}
 
 
 .contents {
@@ -653,6 +699,7 @@ html, body {
     margin-top: 10px;
     margin-left: 50px;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 .tabs a{
     text-decoration: none;
@@ -721,7 +768,7 @@ hr {
     justify-content: space-between;
     align-items: flex-start;
     width: 80%;
-    margin: 10px auto;
+    margin: 30px auto;
     padding: 10px;
 }
 
@@ -740,9 +787,12 @@ hr {
     margin: 10px 0;
     font-size: 14px;
 }
+.about-right{
+    margin-left: 40px;
+}
 
 .divider-1 {
-    margin-top: -60px;
+    margin-top: -70px;
     width: 2px;
     background-color: lightgray;
     height: 300px;
@@ -753,9 +803,19 @@ hr {
     padding: 8px 15px;
     border: 1px solid #918f8f;
     border-radius: 20px;
-    background-color: white;
+    background-color: rgb(255, 254, 197);
     font-size: 12px;
     cursor: pointer;
+}
+.edit-about{
+    width: 10%;
+    padding: 8px 15px;
+    border: 1px solid #918f8f;
+    border-radius: 20px;
+    background-color: rgb(255, 254, 197);
+    font-size: 12px;
+    cursor: pointer;
+    margin-top: -90px ;
 }
 .liked-posts-grid {
     display: flex;

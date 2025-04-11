@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Freelancing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel ="stylesheet" href="../style/freelancer-profile.css">
 </head>
 <body>
@@ -14,9 +15,15 @@
 
         <div class="dashboard">
             <ul>
-              <li><a href="Explore.html">Explore</a>  </li>
-             <li> <a href="Find-Job.html" class="tight-text">Find Jobs</a> </li>
-             <li> <a href="About.html" >About</a></li>
+              <li><a href="client-explore.php">Explore</a>  </li>
+              <li> <a href="Find-Freelancer.html" class="tight-text">Find Designer  <i class="fa fa-caret-down"></i></a> 
+                <div class="dropdown_menu">
+                   <ul>
+                       <li><a href="client-freelancer-work.html" class="tight-text">Post Job</a></li>
+                   </ul>
+                </div>
+               </li>
+             <li> <a href="client-about.html" >About</a></li>
             </ul>
         </div>
 
@@ -41,7 +48,7 @@
                 </div>
                 <hr>
 
-                <a href="freelancer-work.html" class="sub-menu-link">
+                <a href="client-profile.html" class="sub-menu-link">
                     <img src="../image/prof.jpg">
                     <p>Profile</p>
                     <span>></span>
@@ -55,28 +62,46 @@
         </div>
 
 
-        <form class="profile-edit">
-            <p>Edit Profile</p>
-            <img src="../image/picture.png" alt="profile picture"> 
-            <input type="text" name="name" placeholder="Profile Name">
-            <input type="text" name="location" placeholder="Location">
-            <input type="text" name="profession" placeholder="Profession">
-        </form>
-    
-        
-        <div class="btn-section">
-            <button class="delete-btn">DELETE ACCOUNT</button>
-            <button class="save-btn" onclick="goToProfile()">SAVE PROFILE</button>
+    <div class="profile-section">
+        <img src="../image/pic.png"> 
+        <div class="profile-details">
+        <h2>PROFILE NAME</h2>
+        <p>LOCATION</p>
+        </div>
+    </div>
+
+    <div class="form-section">
+        <div class="form-left">
+            <label for="form-detail">NAME</label>
+            <input type="text" placeholder="Your Name" class="details">
+
+            <label for="form-detail">CONTACT</label>
+            <input type="text" placeholder="Your Contact" class="details">
+
+            <label for="form-detail">EMAIL</label>
+            <input type="email" placeholder="Your Email" class="details">
+
+            <label for="form-detail">WORK FIELD</label>
+            <textarea placeholder="Your Skills" class="text-area"></textarea>
         </div>
 
-    <script>
-        function goToEditProfile() {
-        window.location.href = "editfreelancerprofile.html";
-    }
-    </script> 
+        <div class="form-right">
+            <label for="form-detail">CLIENT HISTORY</label>
+            <textarea placeholder="Work History & Experience" class="text-area"></textarea>
+
+            <label for="form-detail">SOCIALS</label>
+            <textarea placeholder="Social Media Links" class="text-area"></textarea>
+        </div>
+    </div>
+
+    <div class="btn-section-about">
+        <button class="save-abt" onclick="goToProfile()">SAVE ABOUT</button>
+    </div>
+
+
     <script>
         function goToProfile(){
-        window.location.href ="freelancer-work.html";
+        window.location.href ="client-profile.html";
         }
     </script>  
     <script>
@@ -93,6 +118,7 @@
         
     }
 </script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
     const notifBtn = document.getElementById('notifBtn');  
@@ -112,5 +138,6 @@
     });
 });
 </script>
+    
 </body>
 </html>
