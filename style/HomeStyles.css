@@ -15,6 +15,12 @@ body {
     background-size: cover;
     background-attachment: fixed;
 }
+
+.navs a.active-dash {
+    border-bottom: 2px solid #333;
+    font-weight: bold;
+    color: #333;
+}
     
 .overlay {
     position: fixed;
@@ -206,38 +212,60 @@ footer {
 
 /* SUPPORT PAGE */
 
-.MainText {
-    text-align: center;
-    margin-top: 40px;
+.faq-section {
+    margin-top: -60px;
 }
-    
-.SearchBar {
-    padding-top: 20px;
+.container h2{
+    font-size: 50px;
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
 }
-    
-.SearchBar input {  
-    width: 500px;
+
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 50%;
+    margin-top: 15px;
+}
+.FAQ{
+    display: flex;
+    justify-content: center;
+}
+.faq-item {
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.faq-question {
     padding: 15px;
-    border: 2px solid black;
-    border-radius: 10px 0 0 10px;
-    outline: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
 }
-    
-.SearchBar button {
-    padding: 15px;
-    background-color: #d6d4d4;
-    color: black;
-    border: none;
-    border-radius: 0 10px 10px 0;
+
+.faq-question::after {
+    content: '+';
+    font-size: 20px;
 }
-    
-.FAQ {
-    text-align: left;
-    margin-top: 20px;
-    max-width: 450px;
-    margin-left: auto;
-    margin-right: auto;
+
+.faq-answer {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item.active .faq-question::after {
+    content: '-';
+}
+
+.faq-item.active .faq-answer {
+    padding: 0 20px 15px;
+    max-height: 200px;
 }

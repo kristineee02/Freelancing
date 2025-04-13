@@ -17,32 +17,72 @@
         <ul>
             <li><a href="Home.php">Home</a></li>
             <li><a href="AboutUs.php">About Us</a></li>
-            <li><a href="Support.php">Support</a></li>
+            <li><a href="Support.php" class="active-dash">Support</a></li>
         </ul>
         <a href="../login/UserLogIn.php" class="login-btn">Log in</a>
         </div>
     </nav>
     
-    <div class="MainText">
-        <h2>HOW CAN WE HELP YOU?</h2>
-        <div class="SearchBar">
-            <input type="text" placeholder="Search...">
-            <button>&#128269;</button>
+    <section class="faq-section">
+        <div class="container">
+            <h2>FAQ</h2>
+            <div class="FAQ">
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">What is this platform?</div>
+                        <div class="faq-answer">
+                            <p>This is a freelancing marketplace where clients can hire talented freelancers for various services like writing, design, programming, marketing, and more.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Is it free to join?</div>
+                        <div class="faq-answer">
+                            <p>Yes! Signing up as a freelancer or a client is completely free. You don't need to worry about free trial or payment.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">How do I find jobs?</div>
+                        <div class="faq-answer">
+                            <p>You can browse open projects on the “Find Jobs page and submit proposals to jobs that match your skills.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">How do I hire a freelancer?</div>
+                        <div class="faq-answer">
+                            <p>You can either invite freelancers to your job post or browse profiles and send offers directly.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">How do I post a job?</div>
+                        <div class="faq-answer">
+                            <p>Simply click "Post a Job" on your dashboard, provide the project details, budget, and required skills, then publish it.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <div class="FAQ">
-            <ol>
-                <li>How do I create a freelancer account?</li>
-                <li>How do I get paid for my work?</li>
-                <li>What are the fees for using the platform?</li>
-                <li>How do I resolve disputes with clients or freelancers?</li>
-                <li>Can I work with clients internationally?</li>
-            </ol>
-        </div>
-    </div>
+    </section>
 
-    <footer>
-    </footer>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const faqItems = document.querySelectorAll(".faq-item");
 
+        faqItems.forEach(item => {
+            const question = item.querySelector(".faq-question");
+
+            question.addEventListener("click", () => {
+                faqItems.forEach(i => {
+                    if (i !== item) {
+                        i.classList.remove("active");
+                    }
+                });
+
+                item.classList.toggle("active");
+            });
+        });
+    });
+</script>
+
+   
 </body>
 </html>

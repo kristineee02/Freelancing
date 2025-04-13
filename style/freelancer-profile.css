@@ -575,7 +575,9 @@ html, body {
 /*client-profile0edit*/
 .profile-edit{
     width: 50%;
-    height: 450px;
+    min-height: 450px; 
+    height: auto; 
+    overflow: visible;
     border: .5px solid rgb(124, 124, 124);
     display: flex;
     flex-direction: column;
@@ -599,12 +601,24 @@ html, body {
     margin-top: -80px;
     margin-bottom: -50px;
 }
-input[type="text"]{
+input[type="text"], input[type="email"]{
+    width: 60%;
+    height: 30px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: .5px solid rgb(124, 122, 123);
+}
+input[type="file"]{
     width: 50%;
     height: 30px;
     margin-bottom: 20px;
-    border-radius: 10px;
-    border: .5px solid rgb(124, 122, 123);
+    margin-right: 70px;
+}
+.profile-pic{
+    margin-bottom: 10px;
+    margin-right: 310px;
+    font-size: 15px;
+    color:rgb(105, 105, 105) ;
 }
 
 
@@ -685,7 +699,7 @@ input[type="text"]{
 }
 
 .location,
-.job-title,
+.email,
 .follow-info {
     margin: 5px 0;
     color: gray;

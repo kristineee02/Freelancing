@@ -30,6 +30,12 @@
             align-items: center; 
             z-index: 2; 
         }
+        .navs a.active-dash {
+        border-bottom: 2px solid #333;
+        font-weight: bold;
+        color: #333;
+        }
+   
                     
         .TF2 {
             font-size: 26px;
@@ -120,7 +126,7 @@
         <div class="navs">
         <ul>
             <li><a href="Home.php">Home</a></li>
-            <li><a href="AboutUs.php">About Us</a></li>
+            <li><a href="AboutUs.php" class="active-dash">About Us</a></li>
             <li><a href="Support.php">Support</a></li>
         </ul>
         <a href="../login/UserLogIn.php" class="login-btn">Log in</a>

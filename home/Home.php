@@ -15,7 +15,7 @@
         <div class="TF2">TASKFLOW</div>
         <div class="navs">
             <ul>
-                <li><a href="Home.php">Home</a></li>
+                <li><a href="Home.php" class="active-dash">Home</a></li>
                 <li><a href="AboutUs.php">About Us</a></li>
                 <li><a href="Support.php">Support</a></li>
             </ul>
