@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+$firstName = $_SESSION['firstName'] ?? '';
+$lastName = $_SESSION['lastName'] ?? '';
+$fullName = trim($firstName . " " . $lastName);
+$address = $_SESSION['address'] ?? '';
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,11 +50,11 @@
             <div class="sub-menu">
                 <div class="user-info">
                     <img class="profile" src="../image/prof.jpg">
-                    <h4>Kristine Sabuero</h4>
+                    <h4><?php echo htmlspecialchars($fullName); ?></h4>
                 </div>
                 <hr>
 
-                <a href="client-profile.html" class="sub-menu-link">
+                <a href="client-profile.php" class="sub-menu-link">
                     <img src="../image/prof.jpg">
                     <p>Profile</p>
                     <span>></span>

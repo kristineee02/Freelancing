@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include "../api/database.php";
     include '../class/Client.php';
     $database = new Database();
@@ -14,8 +15,18 @@
         $address = $_POST["address"];
 
         $client->addClient($firstName, $lastName, $email, $password, $address);
-        header("Location: ../login/UserLogIn.php");
-    }
+
+        // Save to session so we can access it on profile page
+        $_SESSION['firstName'] = $firstName;
+        $_SESSION['lastName'] = $lastName;
+        $_SESSION['email'] = $email;
+        $_SESSION['address'] = $address;
+        $_SESSION['logged_in'] = true;
+            
+        // Redirect to the profile page
+        header("Location:../login/UserLogin.php");
+        exit();
+    } 
 ?> 
 
 <!DOCTYPE html>

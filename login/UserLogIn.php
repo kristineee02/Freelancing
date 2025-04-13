@@ -1,4 +1,5 @@
 <?php
+session_start();
 include '../api/database.php';
 include '../class/Client.php';
 include '../class/Freelancer.php';
@@ -9,8 +10,6 @@ $conn = $database->getConnection();
 $client = new Client($conn);
 $freelancer = new Freelancer($conn);
 
-session_start();
-
 if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -18,8 +17,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit'])) {
     // Try logging in as client
     $clientUser = $client->login($email, $password);
     if ($clientUser) {
-        $_SESSION['user'] = $clientUser;
+        $_SESSION['client_id'] = $clientUser['client_id']; 
+        $_SESSION['firstName'] = $clientUser['firstname'];
+        $_SESSION['lastName'] = $clientUser['lastname'];
+        $_SESSION['email'] = $clientUser['email'];
+        $_SESSION['address'] = $clientUser['address'] ?? '';
         $_SESSION['type'] = 'client';
+        $_SESSION['logged_in'] = true;
         header("Location: ../client/client-explore.php");
         exit;
     }

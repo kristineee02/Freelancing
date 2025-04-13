@@ -572,56 +572,101 @@ html, body {
     margin-top: 3px;
 }
 
-/*client-profile0edit*/
-.profile-edit{
-    width: 50%;
-    min-height: 450px; 
-    height: auto; 
-    overflow: visible;
-    border: .5px solid rgb(124, 124, 124);
+
+/*client-profile-edit-modal*/
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+}
+
+.form-grid {
+    margin-bottom: 20px;
+}
+
+.form-group {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin: 0 auto;
-    margin-top: 30px;
-    border-radius: 10px;
-    background-color: rgb(255, 255, 255);
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-
+    gap: 15px;
+    margin-top: 20px;
 }
 
-.profile-edit p{
-    font-size: 30px;
+.form-group input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-group label {
+    display: flex;
     font-weight: bold;
-    color: rgb(100, 100, 98);
-}
-.profile-edit img{
-    width: 300px;
-    height: 300px;
-    margin-top: -80px;
-    margin-bottom: -50px;
-}
-input[type="text"], input[type="email"]{
-    width: 60%;
-    height: 30px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    border: .5px solid rgb(124, 122, 123);
-}
-input[type="file"]{
-    width: 50%;
-    height: 30px;
-    margin-bottom: 20px;
-    margin-right: 70px;
-}
-.profile-pic{
-    margin-bottom: 10px;
-    margin-right: 310px;
     font-size: 15px;
-    color:rgb(105, 105, 105) ;
+
+}
+
+.file-input {
+    flex-direction: column;
+    display: flex;
+}
+
+.file-input input[type="file"]{
+    margin-top: 10px;
+}
+
+.profile-pic {
+    font-size: 15px;
+    font-weight: bold;
+    display: flex;
+}
+
+.button-edit {
+    background-color: #FFE295;
+    color: #000;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.button-edit:hover {
+    background-color: #FFD761;
 }
 
 
+
+/* */
 .contents {
     display: flex;
     justify-content: space-center;

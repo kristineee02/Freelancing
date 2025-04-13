@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+$firstName = $_SESSION['firstName'] ?? '';
+$lastName = $_SESSION['lastName'] ?? '';
+$fullName = trim($firstName . " " . $lastName);
+$address = $_SESSION['address'] ?? '';
+    
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +49,7 @@
             <div class="sub-menu">
                 <div class="user-info">
                     <img class="profile" src="../image/prof.jpg">
-                    <h4>Kristine Sabuero</h4>
+                    <h4><?php echo htmlspecialchars($fullName); ?></h4>
                 </div>
                 <hr>
 
@@ -61,12 +70,39 @@
         <div class="profile-header">
             <img src="../image/yellow circle.png" alt="Profile Image" class="profile-image">
             <div class="profile-info">
-                <h1>Name</h1>
-                <p class="location">Address</p>
+                <h1> <?php echo htmlspecialchars($fullName); ?></h1>
+                <p class="location"><?php echo htmlspecialchars($address); ?></p>
                 <p class="follow-info">0 Followers  |  20 Following</p>
-                <button class="edit-profile" onclick="goToEditProfile()">EDIT PROFILE</a></button>
+                <button class="edit-profile" id="EditProfile">EDIT PROFILE</button>
             </div>
         </div>
+
+        <!--EDIT PROFILE-->
+
+        <div id="editProfileModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Update Profile</h3>
+            <form id="profileUpdateForm">
+            <div class="form-grid">
+                <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="text" name="editfname" placeholder="First Name">
+                <label for="lname">Last Name</label>
+                <input type="text" name="editlname" placeholder="Last Name">
+                <label for="address">Address</label>
+                <input type="text" name="editaddress" placeholder="Address">
+                    <div class="file-input">
+                     <label for="editProfile" class="profile-pic">Profile Picture</label>
+                     <input type="file" id="edit-prof" name="editProfile">
+                    </div>                
+                    </div>
+                </div>
+            <button class ="button-edit" onclick="updateProfile()">Save Changes</button>
+            </form>
+        </div>
+        </div>
+    
 
         <div class="tabs">
             <a href="client-profile.html" class="active">MY PROFILE</a>
@@ -85,11 +121,6 @@
     <div class="content-section">
         <div class="content-box active add-box">+</div>
     </div>
-    <script>
-            function goToEditProfile() {
-            window.location.href = "client-profile-edit.html";
-        }
-    </script>
     <script>
         let subMenu = document.getElementById("subMenu");
 
@@ -124,6 +155,8 @@
     });
 });
 </script>
-    
+
+<script src="../js/client.js"></script>
+
 </body>
 </html>
