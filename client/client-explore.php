@@ -4,7 +4,6 @@ session_start();
 $firstName = $_SESSION['firstName'] ?? '';
 $lastName = $_SESSION['lastName'] ?? '';
 $fullName = trim($firstName . " " . $lastName);
-$address = $_SESSION['address'] ?? '';
     
 ?>
 

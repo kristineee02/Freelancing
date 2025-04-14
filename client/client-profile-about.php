@@ -51,11 +51,11 @@ $address = $_SESSION['address'] ?? '';
             <div class="sub-menu">
                 <div class="user-info">
                     <img class="profile" src="../image/prof.jpg">
-                    <h4>Kristine Sabuero</h4>
+                    <h4><?php echo htmlspecialchars($fullName); ?></h4>
                 </div>
                 <hr>
 
-                <a href="client-profile.html" class="sub-menu-link">
+                <a href="client-profile.php" class="sub-menu-link">
                     <img src="../image/prof.jpg">
                     <p>Profile</p>
                     <span>></span>
@@ -112,7 +112,7 @@ $address = $_SESSION['address'] ?? '';
     <button class="edit-about" id="editAbout">EDIT ABOUT</button>
 </div>
 
-
+<!--edit modal-->
     <div id="editAboutModal" class="modal-about">
     <div class="modal-content-about">
         <span class="close_about">&times;</span>
@@ -138,12 +138,12 @@ $address = $_SESSION['address'] ?? '';
 
                     <label for="edit_Social">Socials</label>
                     <textarea name="editsocials" placeholder="Social Media" ></textarea>
-            </div>
+                </div>
             </div>
             <button type="submit" class="button-edit-about">Save Changes</button>
         </form>
     </div>
-</div>
+    </div>
 
 
 </div>

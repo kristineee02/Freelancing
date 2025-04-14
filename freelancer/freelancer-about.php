@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+$firstName = $_SESSION['firstName'] ?? '';
+$lastName = $_SESSION['lastName'] ?? '';
+$fullName = trim($firstName . " " . $lastName);
+$address = $_SESSION['address'] ?? '';
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,11 +43,11 @@
             <div class="sub-menu">
                 <div class="user-info">
                     <img class="profile" src="../image/prof.jpg">
-                    <h4>Kristine Sabuero</h4>
+                    <h4><?php echo htmlspecialchars($fullName); ?></h4>
                 </div>
                 <hr>
 
-                <a href="freelancer-work.html" class="sub-menu-link">
+                <a href="freelancer-work.php" class="sub-menu-link">
                     <img src="../image/prof.jpg">
                     <p>Profile</p>
                     <span>></span>
@@ -55,17 +65,16 @@
     <div class="profile-header">
         <img src="../image/yellow circle.png" alt="Profile Image" class="profile-image">
         <div class="profile-info">
-            <h1>Kellin Quinn</h1>
-            <p class="location">LOCATION: USA</p>
-            <p class="job-title">Web Designer</p>
+            <h1> <?php echo htmlspecialchars($fullName); ?></h1>
+            <p class="location"><?php echo htmlspecialchars($address); ?></p>
             <p class="follow-info">0 Followers  |  20 Following</p>
             <button class="edit-profile" onclick="goToEditProfile()">EDIT PROFILE</a></button>
         </div>
     </div>
 
     <div class="tabs">
-        <a href="freelancer-work.html">WORK</a>
-        <a href = "freelancer-about.html" class="active">ABOUT</a>
+        <a href="freelancer-work.php">WORK</a>
+        <a href = "freelancer-about.php" class="active">ABOUT</a>
         <a href="freelancer-likedpost.html">LIKED POST</a>
     </div>
     <hr>
@@ -73,7 +82,7 @@
 
 <div class="about-section">
     <div class="about-left">
-        <h2>ABOUT</h2>
+        <h2>ABOUT YOU</h2>
         <p>NAME:</p>
         <p>CONTACT:</p>
         <p>EMAIL:</p>
@@ -82,9 +91,6 @@
         <p>DESIGNING</p>
         <p>WRITING</p>
     </div>
-
-    <div class="divider-1"></div>
-
     <div class="about-right">
         <h2>WORK HISTORY AND EXPERIENCE</h2>
         <p>DESIGNER FOR AZ COMPANY</p>
@@ -94,19 +100,46 @@
         <p>Instagram:</p>
         <p>Facebook:</p>
     </div>
-
-    <button class="edit-about" onclick="goToEditAbout()">EDIT ABOUT</a></button>
-
+    <button class="edit-about" id="editAbout">EDIT ABOUT</button>
 </div>
 
-<script>
-    function goToEditAbout(){
-     window.location.href = "freelancer-edit-about.html"
- }
-</script>
+    <!--edit modal-->
+    <div id="editAboutModal" class="modal-about">
+    <div class="modal-content-about">
+        <span class="close_about">&times;</span>
+        <h3>Edit About</h3>
+        <form id="aboutUpdateForm">
+            <div class="form-grid-about">
+                <div class="form-group-about">
+                    <h1>ABOUT YOU</h1>
+                    <label for="editname">Name</label>
+                    <input type="text" id="editname" name="editname" placeholder="Name">
+
+                    <label for="editnumber">Contact</label>
+                    <input type="number" id="editnumber" name="editnumber" placeholder="Contact">
+
+                    <label for="editemail">Email</label>
+                    <input type="email" id="editemail" name="editemail" placeholder="Email">  
+                    
+                    <label for="editskill">Skills</label>
+                    <textarea name="editskills" placeholder="Skills" ></textarea>
+
+                    <label for="edit_History">Work History</label>
+                    <textarea name="edithistory" placeholder="Work History & Experience"></textarea>
+
+                    <label for="edit_Social">Socials</label>
+                    <textarea name="editsocials" placeholder="Social Media" ></textarea>
+                </div>
+            </div>
+            <button type="submit" class="button-edit-about">Save Changes</button>
+        </form>
+    </div>
+    </div>
+
+
 <script>
     function goToEditProfile() {
-    window.location.href = "editfreelancerprofile.html";
+    window.location.href = "freelancer-work.php";
 }
 </script>
 <script>
@@ -142,5 +175,7 @@ alert("You have been logged out successfully.");
     });
 });
 </script>
+
+<script src="../js/freelancer.js"></script>
 </body>
 </html>

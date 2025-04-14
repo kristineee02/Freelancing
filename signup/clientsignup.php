@@ -2,6 +2,7 @@
     session_start();
     include "../api/database.php";
     include '../class/Client.php';
+    
     $database = new Database();
     $conn = $database->getConnection();
 

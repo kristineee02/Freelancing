@@ -31,9 +31,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit'])) {
     // Try logging in as freelancer
     $freelancerUser = $freelancer->login($email, $password);
     if ($freelancerUser) {
+        $_SESSION['account'] = $freelancerUser['account']; 
+        $_SESSION['firstName'] = $freelancerUser['firstname'];
+        $_SESSION['lastName'] = $freelancerUser['lastname'];
+        $_SESSION['email'] = $freelancerUser['email'];
+        $_SESSION['address'] = $freelancerUser['address'] ?? '';
         $_SESSION['user'] = $freelancerUser;
         $_SESSION['type'] = 'freelancer';
-        header("Location: ../freelancer/freelancers_dashboard.html");
+        header("Location: ../freelancer/freelancers_dashboard.php");
         exit;
     }
 

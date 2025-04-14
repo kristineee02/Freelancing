@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+$firstName = $_SESSION['firstName'] ?? '';
+$lastName = $_SESSION['lastName'] ?? '';
+$fullName = trim($firstName . " " . $lastName);
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,9 +23,9 @@
 
         <div class="dashboard">
             <ul>
-              <li><a href="Explore.html" class="active-dash">Explore</a> </li>
+              <li><a href="Explore.html" class="active-dash">Explore</a>  </li>
              <li> <a href="Find-Job.html" class="tight-text">Find Jobs</a> </li>
-             <li> <a href="About.html">About</a></li>
+             <li> <a href="About.html" >About</a></li>
             </ul>
         </div>
 
@@ -26,18 +35,19 @@
                 <p><strong>New Message:</strong> Your job application has been viewed!</p>
                 <p><strong>Reminder:</strong> Update your profile today.</p>
               </div>
-        <img class="profile" src="../image/prof.jpg" alt="profile" onclick="toggleMenu()">
+        
+            <img class="profile" src="../image/prof.jpg" alt="profile" onclick="toggleMenu()">
         </div>
         
         <div class="sub-menu-wrap" id="subMenu">
             <div class="sub-menu">
                 <div class="user-info">
                     <img class="profile" src="../image/prof.jpg">
-                    <h4>Kristine Sabuero</h4>
+                    <h4><?php echo htmlspecialchars($fullName); ?></h4>
                 </div>
                 <hr>
 
-                <a href="freelancer-work.html" class="sub-menu-link">
+                <a href="freelancer-work.php" class="sub-menu-link">
                     <img src="../image/prof.jpg">
                     <p>Profile</p>
                     <span>></span>
@@ -79,14 +89,14 @@
         <button class="carousel-btn next" onclick="moveSlide(1)">&gt;</button>
     </div>
 
-        <select id="FilterCategory" onchange="filterEmployee()" class="filter">
+        <select id="FilterCategory" onchange="filterFreelancer()" class="filter">
             <option value="">Filter</option>
             <option value="new">New</option>
             <option value="popular">Popular</option>
         </select>
         
         <section class="container">
-            <div class="card" data-id="freelancer-webdesign.html">
+            <div class="card" data-id="freelancer-webdesign.html" id="project">
                 <div class="card-image">
                     <img src="../image/ui.png">
                 </div>
@@ -202,70 +212,7 @@
             </div>
         </section>
 
-    <script>
-        let subMenu = document.getElementById("subMenu");
+   <script src="../js/functions.js"></script>
 
-        function toggleMenu(){
-            subMenu.classList.toggle("open");
-        }
-    </script>
-
-    <script>
-    function logout() {
-        alert("You have been logged out successfully."); 
-        
-    }
-</script>
-
-
-<script>
-    const designCards = document.querySelectorAll('.card');
-
-    designCards.forEach(Card => {
-        Card.addEventListener('click', function() {
-            const redirectPage = this.getAttribute('data-id');
-
-            window.location.href = redirectPage;
-
-        });
-    });
-</script>
-
-<script>
-    let slideIndex = 0;
-    const slides = document.querySelectorAll('.slide');
-    const totalSlides = slides.length;
-    const visibleSlides = 4.2;
-
-    function moveSlide(direction) {
-        const maxIndex = totalSlides - visibleSlides;
-        if (direction === 1 && slideIndex < maxIndex) {
-            slideIndex++;
-        } else if (direction === -1 && slideIndex > 0) {
-            slideIndex--;
-        }
-        const offset = -slideIndex * (100 / visibleSlides);
-        document.getElementById('carouselSlide').style.transform = `translateX(${offset}%)`;
-    }
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-    const notifBtn = document.getElementById('notifBtn');  
-    const notifPopup = document.getElementById('notifPopup');  
-
- 
-    notifBtn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        notifPopup.style.display = notifPopup.style.display === 'block' ? 'none' : 'block';
-    });
-
-    
-    document.addEventListener('click', function (e) {
-        if (!notifPopup.contains(e.target) && e.target !== notifBtn) {
-            notifPopup.style.display = 'none';
-        }
-    });
-});
-</script>
 </body>
 </html>

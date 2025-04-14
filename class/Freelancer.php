@@ -8,10 +8,10 @@
             $this->conn = $db;
         }
 
-        public function addFreelancer($firstName, $lastName, $email, $password){
-            $query = "INSERT INTO " . $this->table . " (firstname, lastname, email, password) VALUES (:firstName, :lastName, :email, :password)";
+        public function addFreelancer($firstName, $lastName, $email, $password, $address){
+            $query = "INSERT INTO " . $this->table . " (firstname, lastname, email, password, address) VALUES (:firstName, :lastName, :email, :password, :address)";
             $stmt = $this->conn->prepare($query);
-            $stmt->execute([":firstName" => $firstName, ":lastName" => $lastName, ":email" => $email, ":password" => $password]);
+            $stmt->execute([":firstName" => $firstName, ":lastName" => $lastName, ":email" => $email, ":password" => $password, ":address" => $address]);
         }
      
         public function login($email, $password){

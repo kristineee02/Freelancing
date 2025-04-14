@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include "../api/database.php";
     include '../class/Freelancer.php';
 
@@ -12,9 +13,19 @@
         $lastName = $_POST["lastName"];
         $email = $_POST["email"];
         $password = $_POST["password"];
+        $address = $_POST["address"];
 
-        $freelancer->addFreelancer($firstName, $lastName, $email, $password);
+        $freelancer->addFreelancer($firstName, $lastName, $email, $password, $address);
+
+         // Save to session so we can access it on profile page
+        $_SESSION['firstName'] = $firstName;
+        $_SESSION['lastName'] = $lastName;
+        $_SESSION['email'] = $email;
+        $_SESSION['address'] = $address;
+        $_SESSION['logged_in'] = true;
+
         header("Location: ../login/UserLogIn.php");
+        exit();
     }
 ?>
 <!DOCTYPE html>
@@ -97,6 +108,7 @@
             width: 80%;
             padding-bottom: 50px;
             padding-left: 10px;
+            margin-bottom: 10px;
         }
         .form {
             width: 80%;
@@ -135,6 +147,12 @@
             font-size: 12px;
         }
 
+        .profile-pic{
+            margin-top: 10px;
+            margin-right: 320px;
+            font-size: 15px;
+            color:rgb(105, 105, 105) ;
+        }
         </style>
 
 </head>
@@ -149,13 +167,15 @@
 
         <div class="signup">
             <h2>Freelancer - Sign up</h2>
-            <form class="form" action="freelancersignup.php" method="post">
+            <form class="form" action="freelancersignup.php" method="POST">
                 <div class="name">
                     <input type="text" name="firstName" placeholder="First Name" required>
                     <input type="text" name="lastName" placeholder="Last Name" required>
                 </div>
                 <input type="email" name="email" placeholder="Email Address" required>
                 <input type="password" name="password" placeholder="Password" required>
+                <input type="text" name="address" placeholder="Address" required>
+                <label for="pp" class="profile-pic">Profile Picture</label><input type="file" name="dp"> 
                 <button type="submit" name="submit" id="submit">Create Account</button>
             </form>
             <div class="login">Already have an account? <a href="../login/UserLogIn.php">Log In</a></div>
