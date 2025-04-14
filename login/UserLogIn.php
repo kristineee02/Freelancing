@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit'])) {
     // Try logging in as client
     $clientUser = $client->login($email, $password);
     if ($clientUser) {
-        $_SESSION['client_id'] = $clientUser['client_id']; 
+        $_SESSION['user_id'] = $clientUser['client_id'];
         $_SESSION['firstName'] = $clientUser['firstname'];
         $_SESSION['lastName'] = $clientUser['lastname'];
         $_SESSION['email'] = $clientUser['email'];
@@ -31,19 +31,19 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit'])) {
     // Try logging in as freelancer
     $freelancerUser = $freelancer->login($email, $password);
     if ($freelancerUser) {
-        $_SESSION['account'] = $freelancerUser['account']; 
+        $_SESSION['user_id'] = $freelancerUser['account_id'];
         $_SESSION['firstName'] = $freelancerUser['firstname'];
         $_SESSION['lastName'] = $freelancerUser['lastname'];
         $_SESSION['email'] = $freelancerUser['email'];
         $_SESSION['address'] = $freelancerUser['address'] ?? '';
-        $_SESSION['user'] = $freelancerUser;
         $_SESSION['type'] = 'freelancer';
-        header("Location: ../freelancer/freelancers_dashboard.php");
+        $_SESSION['logged_in'] = true;
+        header("Location: ../freelancer/freelancers_dashboard.php"); 
         exit;
     }
 
     // If both fail
-    echo "<script>alert('Invalid credentials'); window.location.href='Home.php';</script>";
+    echo "<script>alert('Invalid credentials'); window.location.href='../home/Home.php';</script>";
 }
 ?>
 

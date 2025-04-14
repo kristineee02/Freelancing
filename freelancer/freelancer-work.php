@@ -1,12 +1,64 @@
 <?php
 session_start();
+require_once '../class/Freelancer.php';
 
+$db = new PDO("mysql:host=localhost;dbname=freelancer_signup", "root", "");
+
+
+// Ensure user is logged in
+$userId = $_SESSION['user_id'] ?? null;
+if (!$userId) {
+    header("Location: ../login/UserLogin.php");
+    exit;
+}
+
+$freelancer = new Freelancer($db);
+
+// Load session data
 $firstName = $_SESSION['firstName'] ?? '';
 $lastName = $_SESSION['lastName'] ?? '';
 $fullName = trim($firstName . " " . $lastName);
 $address = $_SESSION['address'] ?? '';
+
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editfname'])) {
+    $newFirstName = $_POST['editfname'];
+    $newLastName = $_POST['editlname'];
+    $newAddress = $_POST['editaddress'];
+    $profilePicPath = null;
+
+    // Handle file upload
+    if (isset($_FILES['editProfile']) && $_FILES['editProfile']['error'] === UPLOAD_ERR_OK) {
+        $uploadDir = '../Uploads/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0755, true);
+        }
+        $fileName = uniqid() . '-' . basename($_FILES['editProfile']['name']);
+        $uploadPath = $uploadDir . $fileName;
+        if (move_uploaded_file($_FILES['editProfile']['tmp_name'], $uploadPath)) {
+            $profilePicPath = $uploadPath;
+        } else {
+            echo "File upload failed.";
+        }
+    }
     
+    // Update profile
+    if ($freelancer->updateProfile($userId, $newFirstName, $newLastName, $newAddress, $profilePicPath)) {
+        // Update session data
+        $_SESSION['firstName'] = $newFirstName;
+        $_SESSION['lastName'] = $newLastName;
+        $_SESSION['address'] = $newAddress;
+        if ($profilePicPath) {
+            $_SESSION['profile_pic'] = $profilePicPath;
+        }
+        header("Location: freelancer-work.php");
+        exit;
+    } else {
+        echo "Error updating profile.";
+    }
+}    
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,8 +113,8 @@ $address = $_SESSION['address'] ?? '';
     </div>
     <div class="profile-container">
         <div class="profile-header">
-            <img src="../image/yellow circle.png" alt="Profile Image" class="profile-image">
-            <div class="profile-info">
+        <img src="<?php echo $_SESSION['profile_pic'] ?? '../image/yellow circle.png'; ?>" alt="Profile Image" class="profile-image">            
+        <div class="profile-info">
                 <h1> <?php echo htmlspecialchars($fullName); ?></h1>
                 <p class="location"><?php echo htmlspecialchars($address); ?></p>
                 <p class="follow-info">0 Followers  |  20 Following</p>
@@ -76,22 +128,22 @@ $address = $_SESSION['address'] ?? '';
         <div class="modal-content">
             <span class="close">&times;</span>
             <h3>Update Profile</h3>
-            <form id="profileUpdateForm">
+            <form id="profileUpdateForm" action="freelancer-work.php" method="POST" enctype="multipart/form-data">
             <div class="form-grid">
                 <div class="form-group">
                 <label for="fname">First Name</label>
-                <input type="text" name="editfname" placeholder="First Name">
+                <input type="text" id="editfirstName" name="editfname" value="<?php echo htmlspecialchars($firstName); ?>" required>
                 <label for="lname">Last Name</label>
-                <input type="text" name="editlname" placeholder="Last Name">
+                <input type="text" id="editlastName" name="editlname" value="<?php echo htmlspecialchars($lastName); ?>" required>                
                 <label for="address">Address</label>
-                <input type="text" name="editaddress" placeholder="Address">
+                <input type="text" id="editUserAddress" name="editaddress" value="<?php echo htmlspecialchars($address); ?>">
                     <div class="file-input">
-                     <label for="editProfile" class="profile-pic">Profile Picture</label>
-                     <input type="file" id="edit-prof" name="editProfile">
+                    <label for="editProfile" class="profile-pic">Profile Picture</label>
+                    <input type="file" id="edit-prof" name="editProfile" accept="image/*">
                     </div>                
                     </div>
                 </div>
-            <button class ="button-edit" onclick="updateProfile()">Save Changes</button>
+            <button type="submit" class ="button-edit">Save Changes</button>
             </form>
         </div>
         </div>

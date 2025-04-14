@@ -1,16 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
-const openmodal = document.getElementById("editProfileModal");
-const edit_profile = document.getElementById("EditProfile");
-const closemodal = document.getElementsByClassName("close")[0];
+    const modal = document.getElementById("editProfileModal");
+    const editProfileBtn = document.getElementById("EditProfile");
+    const closeBtn = modal.querySelector(".close");
 
-edit_profile.onclick = function() {
-    openmodal.style.display = "block";
-}
+    editProfileBtn.onclick = function () {
+        modal.style.display = "block";
+    };
 
-closemodal.onclick = function() {
-    openmodal.style.display = "none";
-}
+    closeBtn.onclick = function () {
+        modal.style.display = "none";
+    };
 });
+    
 
 
 document.addEventListener("DOMContentLoaded", function () {

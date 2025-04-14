@@ -28,6 +28,31 @@
             return false;
         }
 
+        public function updateProfile($client_id, $firstName, $lastName, $address, $profilePic = null) {
+            try {
+                $query = "UPDATE " . $this->table . " SET firstname = :firstName, lastname = :lastName, address = :address";
+                if ($profilePic) {
+                    $query .= ", profile_pic = :profilePic";
+                }
+                $query .= " WHERE client_id = :client_id";
+                
+                $stmt = $this->conn->prepare($query);
+                $params = [
+                    ":firstName" => $firstName,
+                    ":lastName" => $lastName,
+                    ":address" => $address,
+                    ":client_id" => $client_id
+                ];
+                if ($profilePic) {
+                    $params[":profilePic"] = $profilePic;
+                }
+                return $stmt->execute($params);
+            } catch (PDOException $e) {
+                error_log("UpdateProfile error: " . $e->getMessage());
+                return false;
+            }
+        }
+
     }
 
 

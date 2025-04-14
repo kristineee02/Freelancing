@@ -133,13 +133,6 @@
             border: 1px solid #ccc;
             border-radius: 10px;
         }
-
-        .profile-pic{
-            margin-top: 10px;
-            margin-right: 320px;
-            font-size: 15px;
-            color:rgb(105, 105, 105) ;
-        }
     .form button {
             width: 80%;
             padding: 10px;
@@ -176,7 +169,6 @@
                 <input type="email" name="email" placeholder="Email Address" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <input type="text" name="address" placeholder="Address" required>
-                <label for="pp" class="profile-pic">Profile Picture</label><input type="file" name="dp"> 
                 <button type="submit" name = "submit">Create Account</button>
             </form>
             <div class="login">Already have an account? <a href="../login/UserLogIn.php">Log In</a></div>

@@ -147,12 +147,7 @@
             font-size: 12px;
         }
 
-        .profile-pic{
-            margin-top: 10px;
-            margin-right: 320px;
-            font-size: 15px;
-            color:rgb(105, 105, 105) ;
-        }
+
         </style>
 
 </head>
@@ -175,7 +170,6 @@
                 <input type="email" name="email" placeholder="Email Address" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <input type="text" name="address" placeholder="Address" required>
-                <label for="pp" class="profile-pic">Profile Picture</label><input type="file" name="dp"> 
                 <button type="submit" name="submit" id="submit">Create Account</button>
             </form>
             <div class="login">Already have an account? <a href="../login/UserLogIn.php">Log In</a></div>
