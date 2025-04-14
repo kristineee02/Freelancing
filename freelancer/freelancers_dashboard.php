@@ -23,9 +23,9 @@ $fullName = trim($firstName . " " . $lastName);
 
         <div class="dashboard">
             <ul>
-              <li><a href="Explore.html" class="active-dash">Explore</a>  </li>
-             <li> <a href="Find-Job.html" class="tight-text">Find Jobs</a> </li>
-             <li> <a href="About.html" >About</a></li>
+              <li><a href="Explore.php" class="active-dash">Explore</a>  </li>
+             <li> <a href="Find-Job.php" class="tight-text">Find Jobs</a> </li>
+             <li> <a href="About.php" >About</a></li>
             </ul>
         </div>
 
@@ -96,7 +96,7 @@ $fullName = trim($firstName . " " . $lastName);
         </select>
         
         <section class="container">
-            <div class="card" data-id="freelancer-webdesign.html" id="project">
+            <div class="card" data-id="freelancer-webdesign.php" id="project">
                 <div class="card-image">
                     <img src="../image/ui.png">
                 </div>
@@ -105,7 +105,7 @@ $fullName = trim($firstName . " " . $lastName);
                 <span>&hearts; 100</span>
                 </div>
             </div>
-            <div class="card" data-id="freelancer-webdesign.html">
+            <div class="card" data-id="freelancer-webdesign.php">
                 <div class="card-image">
                 <img src="../image/ui.png">
                 </div>
@@ -114,7 +114,7 @@ $fullName = trim($firstName . " " . $lastName);
                     <span>&hearts; 100</span>
                 </div>
             </div>
-            <div class="card" data-id="freelancer-webdesign.html">
+            <div class="card" data-id="freelancer-webdesign.php">
                 <div class="card-image">
                 <img src="../image/ui.png">
                 </div>
@@ -123,7 +123,7 @@ $fullName = trim($firstName . " " . $lastName);
                     <span>&hearts; 100</span>
                 </div>            
             </div>
-            <div class="card" data-id="freelancer-webdesign.html">
+            <div class="card" data-id="freelancer-webdesign.php">
                 <div class="card-image">
                 <img src="../image/ui.png">
                 </div>
@@ -135,7 +135,7 @@ $fullName = trim($firstName . " " . $lastName);
         </section>
         
         <section class="container">
-            <div class="card" data-id="freelancer-webdesign.html">
+            <div class="card" data-id="freelancer-webdesign.php">
                 <div class="card-image">
                     <img src="../image/ui.png">
                 </div>
@@ -144,7 +144,7 @@ $fullName = trim($firstName . " " . $lastName);
                     <span>&hearts; 100</span>
                 </div>
             </div>
-            <div class="card" data-id="freelancer-webdesign.html">
+            <div class="card" data-id="freelancer-webdesign.php">
                 <div class="card-image">
                 <img src="../image/ui.png">
                 </div>
@@ -153,7 +153,7 @@ $fullName = trim($firstName . " " . $lastName);
                     <span>&hearts; 100</span>
                 </div>
             </div>
-            <div class="card" data-id="freelancer-webdesign.html">
+            <div class="card" data-id="freelancer-webdesign.php">
                 <div class="card-image">
                 <img src="../image/ui.png">
                 </div>
@@ -162,7 +162,7 @@ $fullName = trim($firstName . " " . $lastName);
                     <span>&hearts; 100</span>
                 </div>
             </div>
-            <div class="card" data-id="freelancer-webdesign.html">
+            <div class="card" data-id="freelancer-webdesign.php">
                 <div class="card-image">
                 <img src="../image/ui.png">
                 </div>
@@ -174,7 +174,7 @@ $fullName = trim($firstName . " " . $lastName);
         </section>
 
         <section class="container">
-            <div class="card" data-id="freelancer-webdesign.html">
+            <div class="card" data-id="freelancer-webdesign.php">
                 <div class="card-image">
                     <img src="../image/ui.png">
                 </div>
@@ -183,7 +183,7 @@ $fullName = trim($firstName . " " . $lastName);
                     <span>&hearts; 100</span>
                 </div>
             </div>
-            <div class="card" data-id="freelancer-webdesign.html">
+            <div class="card" data-id="freelancer-webdesign.php">
                 <div class="card-image">
                 <img src="../image/ui.png">
                 </div>
@@ -192,7 +192,7 @@ $fullName = trim($firstName . " " . $lastName);
                     <span>&hearts; 100</span>
                 </div>
             </div>
-            <div class="card" data-id="freelancer-webdesign.html">
+            <div class="card" data-id="freelancer-webdesign.php">
                 <div class="card-image">
                 <img src="../image/ui.png">
                 </div>
@@ -201,7 +201,7 @@ $fullName = trim($firstName . " " . $lastName);
                     <span>&hearts; 100</span>
                 </div>
             </div>
-            <div class="card" data-id="freelancer-webdesign.html">
+            <div class="card" data-id="freelancer-webdesign.php">
                 <div class="card-image">
                 <img src="../image/ui.png">
                 </div>

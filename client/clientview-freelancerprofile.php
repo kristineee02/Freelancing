@@ -16,14 +16,14 @@
         <div class="dashboard">
             <ul>
               <li><a href="client-explore.php" class="active-dash">Explore</a>  </li>
-             <li> <a href="Find-Freelancer.html" class="tight-text">Find Designer  <i class="fa fa-caret-down"></i></a> 
+             <li> <a href="Find-Freelancer.php" class="tight-text">Find Designer  <i class="fa fa-caret-down"></i></a> 
              <div class="dropdown_menu">
                 <ul>
-                    <li><a href="client-freelancer-work.html" class="tight-text">Post Job</a></li>
+                    <li><a href="client-freelancer-work.php" class="tight-text">Post Job</a></li>
                 </ul>
              </div>
             </li>
-             <li> <a href="client-about.html">About</a></li>
+             <li> <a href="client-about.php">About</a></li>
             </ul>
         </div>
 
@@ -44,7 +44,7 @@
                 </div>
                 <hr>
 
-                <a href="client-profile.html" class="sub-menu-link">
+                <a href="client-profile.php" class="sub-menu-link">
                     <img src="../image/prof.jpg">
                     <p>Profile</p>
                     <span>></span>
@@ -69,34 +69,15 @@
         </div>
 
         <div class="tabs">
-
-            <a href="clientview-freelancerprofile.html">WORK</a>
-            <a href = "SeeMore-about.html" class="active">ABOUT</a>
+            <a href="clientview-freelancerprofile.php" class="active">WORK</a>
+           <a href = "SeeMore-about.php">LIKED POST</a>
+            
         </div>
         <hr>
-    </div>
-    <div class="about-section">
-        <div class="about-left">
-            <h2>ABOUT YOU</h2>
-            <p><strong>NAME:</strong></p>
-            <p><strong>CONTACT:</strong></p>
-            <p><strong>EMAIL:</strong></p>
-            <br/>
-            <h2>SKILLS</h2>
-            <p>DESIGNING</p>
-            <p>WRITING</p>
-        </div>
-    
-        <div class="divider-1"></div>
-    
-        <div class="about-right">
-            <h2>WORK HISTORY AND EXPERIENCE</h2>
-            <p>DESIGNER FOR AZ COMPANY</p>
-            <p>PROJECT MANAGER</p>
-            <br/>
-            <h2>SOCIALS</h2>
-            <p>Instagram:</p>
-            <p>Facebook:</p>
+
+        <div class="work-section">
+            <div class="work-box"></div>
+            <div class="work-box"></div>
         </div>
     </div>
 
@@ -112,6 +93,10 @@
     function logout() {
         alert("You have been logged out successfully."); 
         
+    }
+
+    function more() {        
+        window.location.href = "buy-client.php"; 
     }
 </script>
 
@@ -134,7 +119,6 @@
     });
 });
 </script>
-    
     
 </body>
 </html>

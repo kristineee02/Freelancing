@@ -25,14 +25,14 @@ $address = $_SESSION['address'] ?? '';
         <div class="dashboard">
             <ul>
               <li><a href="client-explore.php">Explore</a>  </li>
-              <li> <a href="Find-Freelancer.html" class="tight-text">Find Designer  <i class="fa fa-caret-down"></i></a> 
+              <li> <a href="Find-Freelancer.php" class="tight-text">Find Designer  <i class="fa fa-caret-down"></i></a> 
                 <div class="dropdown_menu">
                    <ul>
-                       <li><a href="client-freelancer-work.html" class="tight-text">Post Job</a></li>
+                       <li><a href="client-freelancer-work.php" class="tight-text">Post Job</a></li>
                    </ul>
                 </div>
                </li>
-             <li> <a href="client-about.html" >About</a></li>
+             <li> <a href="client-about.php" >About</a></li>
             </ul>
         </div>
 
@@ -53,7 +53,7 @@ $address = $_SESSION['address'] ?? '';
                 </div>
                 <hr>
 
-                <a href="client-profile.html" class="sub-menu-link">
+                <a href="client-profile.php" class="sub-menu-link">
                     <img src="../image/prof.jpg">
                     <p>Profile</p>
                     <span>></span>

@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Freelancing</title>
-    <link rel ="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel ="stylesheet" href="../style/freelancer-profile.css">
 </head>
 <body>
 
@@ -14,9 +15,15 @@
 
         <div class="dashboard">
             <ul>
-              <li><a href="Explore.html" class="active-dash">Explore</a>  </li>
-             <li> <a href="Find-Job.html" class="tight-text">Find Jobs</a> </li>
-             <li> <a href="About.html" >About</a></li>
+              <li><a href="client-explore.php" class="active-dash">Explore</a>  </li>
+             <li> <a href="Find-Freelancer.php" class="tight-text">Find Designer  <i class="fa fa-caret-down"></i></a> 
+             <div class="dropdown_menu">
+                <ul>
+                    <li><a href="client-freelancer-work.php" class="tight-text">Post Job</a></li>
+                </ul>
+             </div>
+            </li>
+             <li> <a href="client-about.php">About</a></li>
             </ul>
         </div>
 
@@ -28,7 +35,6 @@
               </div>
         <img class="profile" src="../image/prof.jpg" alt="profile" onclick="toggleMenu()">
         </div>
-        
 
         <div class="sub-menu-wrap" id="subMenu">
             <div class="sub-menu">
@@ -38,7 +44,7 @@
                 </div>
                 <hr>
 
-                <a href="freelancer-work.html" class="sub-menu-link">
+                <a href="client-profile.php" class="sub-menu-link">
                     <img src="../image/prof.jpg">
                     <p>Profile</p>
                     <span>></span>
@@ -51,34 +57,48 @@
             </div>
         </div>
     </div>
-    <hr>
-    <main>
-        <section class="design-showcase">
-            <div class="design-profile">
-                <div class="avatar"></div>
-                <span>KRISTINE JANA</span>
-                <button class="follow-btn">FOLLOW +</button>
+    <div class="profile-container">
+        <div class="profile-header">
+            <img src="../image/yellow circle.png" alt="Profile Image" class="profile-image">
+            <div class="profile-info">
+                <h1>Kellin Quinn</h1>
+                <p class="location">LOCATION: USA</p>
+                <p class="job-title">Web Designer</p>
+                <p class="follow-info">0 Followers  |  20 Following</p>
             </div>
-            <h2>WEBSITE UI DESIGN</h2>
-            <div class="time" id="date">January 20, 2025</div>
-            <div class="design-preview"></div>
-            <div class="heart-icon">
-                <svg viewBox="0 0 24 24">
-                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                </svg>
-            </div>
-            
-        </section>
-        
-        <section class="more-projects">
-            <h3>MORE BY KRISTINE JANA</h3>
-            <div class="project-gallery">
-                <div class="project-item"></div>
-                <div class="project-item"></div>
-                <div class="project-item"></div>
-            </div>
-        </section>
-    </main>
+        </div>
+
+        <div class="tabs">
+
+            <a href="clientview-freelancerprofile.php">WORK</a>
+            <a href = "SeeMore-about.php" class="active">ABOUT</a>
+        </div>
+        <hr>
+    </div>
+    <div class="about-section">
+        <div class="about-left">
+            <h2>ABOUT YOU</h2>
+            <p><strong>NAME:</strong></p>
+            <p><strong>CONTACT:</strong></p>
+            <p><strong>EMAIL:</strong></p>
+            <br/>
+            <h2>SKILLS</h2>
+            <p>DESIGNING</p>
+            <p>WRITING</p>
+        </div>
+    
+        <div class="divider-1"></div>
+    
+        <div class="about-right">
+            <h2>WORK HISTORY AND EXPERIENCE</h2>
+            <p>DESIGNER FOR AZ COMPANY</p>
+            <p>PROJECT MANAGER</p>
+            <br/>
+            <h2>SOCIALS</h2>
+            <p>Instagram:</p>
+            <p>Facebook:</p>
+        </div>
+    </div>
 
     <script>
         let subMenu = document.getElementById("subMenu");
@@ -114,5 +134,7 @@
     });
 });
 </script>
+    
+    
 </body>
 </html>

@@ -24,9 +24,9 @@ $address = $_SESSION['address'] ?? '';
 
         <div class="dashboard">
             <ul>
-              <li><a href="Explore.html">Explore</a>  </li>
-             <li> <a href="Find-Job.html" class="tight-text">Find Jobs</a> </li>
-             <li> <a href="About.html" >About</a></li>
+              <li><a href="Explore.php">Explore</a>  </li>
+             <li> <a href="Find-Job.php" class="tight-text">Find Jobs</a> </li>
+             <li> <a href="About.php" >About</a></li>
             </ul>
         </div>
 

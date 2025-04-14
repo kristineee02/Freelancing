@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Freelancing</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel ="stylesheet" href="../style/freelancer-profile.css">
+    <link rel ="stylesheet" href="../style/clients.css">
 </head>
 <body>
 
@@ -16,14 +16,14 @@
         <div class="dashboard">
             <ul>
               <li><a href="client-explore.php" class="active-dash">Explore</a>  </li>
-             <li> <a href="Find-Freelancer.html" class="tight-text">Find Designer  <i class="fa fa-caret-down"></i></a> 
+             <li> <a href="Find-Freelancer.php" class="tight-text">Find Designer  <i class="fa fa-caret-down"></i></a> 
              <div class="dropdown_menu">
                 <ul>
-                    <li><a href="client-freelancer-work.html" class="tight-text">Post Job</a></li>
+                    <li><a href="client-freelancer-work.php" class="tight-text">Post Job</a></li>
                 </ul>
              </div>
             </li>
-             <li> <a href="client-about.html">About</a></li>
+             <li> <a href="client-about.php">About</a></li>
             </ul>
         </div>
 
@@ -35,6 +35,7 @@
               </div>
         <img class="profile" src="../image/prof.jpg" alt="profile" onclick="toggleMenu()">
         </div>
+        
 
         <div class="sub-menu-wrap" id="subMenu">
             <div class="sub-menu">
@@ -44,7 +45,7 @@
                 </div>
                 <hr>
 
-                <a href="client-profile.html" class="sub-menu-link">
+                <a href="client-profile.php" class="sub-menu-link">
                     <img src="../image/prof.jpg">
                     <p>Profile</p>
                     <span>></span>
@@ -57,29 +58,33 @@
             </div>
         </div>
     </div>
-    <div class="profile-container">
-        <div class="profile-header">
-            <img src="../image/yellow circle.png" alt="Profile Image" class="profile-image">
-            <div class="profile-info">
-                <h1>Kellin Quinn</h1>
-                <p class="location">LOCATION: USA</p>
-                <p class="job-title">Web Designer</p>
-                <p class="follow-info">0 Followers  |  20 Following</p>
+    <hr>
+    <main>
+        <section class="design-showcase">
+            <div class="design-profile">
+                <div class="avatar"></div>
+                <span>KRISTINE JANA</span>
+                <button class="follow-btn">FOLLOW +</button>
             </div>
-        </div>
-
-        <div class="tabs">
-            <a href="clientview-freelancerprofile.html" class="active">WORK</a>
-           <a href = "SeeMore-about.html">LIKED POST</a>
+            <h2>WEBSITE UI DESIGN</h2>
+            <div class="design-preview"></div>
+            <div class="heart-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+            </div>
             
-        </div>
-        <hr>
-
-        <div class="work-section">
-            <div class="work-box"></div>
-            <div class="work-box"></div>
-        </div>
-    </div>
+        </section>
+        
+        <section class="more-projects">
+            <h3>MORE BY KRISTINE JANA</h3>
+            <div class="project-gallery">
+                <div class="project-item"></div>
+                <div class="project-item"></div>
+                <div class="project-item"></div>
+            </div>
+        </section>
+    </main>
 
     <script>
         let subMenu = document.getElementById("subMenu");
@@ -93,10 +98,6 @@
     function logout() {
         alert("You have been logged out successfully."); 
         
-    }
-
-    function more() {        
-        window.location.href = "buy-client.html"; 
     }
 </script>
 
@@ -119,6 +120,6 @@
     });
 });
 </script>
-    
+
 </body>
 </html>

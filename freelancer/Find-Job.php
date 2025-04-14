@@ -47,7 +47,7 @@ $fullName = trim($firstName . " " . $lastName);
                 </div>
                 <hr>
 
-                <a href="freelancer-work.html" class="sub-menu-link">
+                <a href="freelancer-work.php" class="sub-menu-link">
                     <img src="../image/prof.jpg">
                     <p>Profile</p>
                     <span>></span>
@@ -180,12 +180,12 @@ $fullName = trim($firstName . " " . $lastName);
 </script>
 <script>
     function goToViewJob() {
-    window.location.href = "Find-job-details.html";
+    window.location.href = "Find-job-details.php";
     }
 </script>
 <script>
     function goToApplyJob() {
-    window.location.href = "Find-Job-Overview.html";
+    window.location.href = "Find-Job-Overview.php";
     }
 </script>
 

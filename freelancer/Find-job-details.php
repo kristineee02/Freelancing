@@ -13,9 +13,9 @@
 
         <div class="dashboard">
             <ul>
-              <li><a href="Explore.html">Explore</a>  </li>
-             <li> <a href="Find-Job.html" class="tight-text">Find Jobs</a> </li>
-             <li> <a href="About.html" >About</a></li>
+              <li><a href="Explore.php">Explore</a>  </li>
+             <li> <a href="Find-Job.php" class="tight-text">Find Jobs</a> </li>
+             <li> <a href="About.php" >About</a></li>
             </ul>
         </div>
 
@@ -36,7 +36,7 @@
                 </div>
                 <hr>
 
-                <a href="freelancer-work.html" class="sub-menu-link">
+                <a href="freelancer-work.php" class="sub-menu-link">
                     <img src="../image/prof.jpg">
                     <p>Profile</p>
                     <span>></span>
@@ -109,7 +109,7 @@
 
     <script>
         function goToApplyJob() {
-        window.location.href = "Find-Job-Overview.html";
+        window.location.href = "Find-Job-Overview.php";
         }
     </script>
 

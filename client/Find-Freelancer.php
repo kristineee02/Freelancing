@@ -16,10 +16,10 @@
         <div class="dashboard">
             <ul>
               <li><a href="client-explore.php">Explore</a>  </li>
-             <li> <a href="Find-Freelancer.pjp" class="tight-text active-dash">Find Designer  <i class="fa fa-caret-down"></i></a> 
+             <li> <a href="Find-Freelancer.php" class="tight-text active-dash">Find Designer  <i class="fa fa-caret-down"></i></a> 
              <div class="dropdown_menu">
                 <ul>
-                    <li><a href="client-freelancer-work.html" class="tight-text">Post Job</a></li>
+                    <li><a href="client-freelancer-work.php" class="tight-text">Post Job</a></li>
                 </ul>
              </div>
             </li>
@@ -44,7 +44,7 @@
                 </div>
                 <hr>
 
-                <a href="client-profile.html" class="sub-menu-link">
+                <a href="client-profile.php" class="sub-menu-link">
                     <img src="../image/prof.jpg">
                     <p>Profile</p>
                     <span>></span>
@@ -105,7 +105,7 @@
                     <strong>Kellin Quinn</strong>
                     <p>⭐ 4.5/5 (40 jobs)</p>
                     <p>Web Designer</p>
-                    <a href="clientview-freelancerprofile.html">See more</a>
+                    <a href="clientview-freelancerprofile.php">See more</a>
                 </div>
                 <div class="cards">
                     <p>$60/hr</p>
@@ -113,7 +113,7 @@
                     <strong>Marshall Mathers</strong>
                     <p>⭐ 4.5/5 (39 jobs)</p>
                     <p>Graphic Designer</p>
-                    <a href="clientview-freelancerprofile.html">See more</a>
+                    <a href="clientview-freelancerprofile.php">See more</a>
                 </div>
                 <div class="cards">
                     <p>$40/hr</p>
@@ -121,7 +121,7 @@
                     <strong>Alex Gaskarth</strong>
                     <p>⭐ 4/5 (30 jobs)</p>
                     <p>Animation</p>
-                    <a href="clientview-freelancerprofile.html">See more</a>
+                    <a href="clientview-freelancerprofile.php">See more</a>
                 </div>
                 <div class="cards">
                     <p>$80/hr</p>
@@ -129,7 +129,7 @@
                     <strong>Abel Tesfaye</strong>
                     <p>⭐ 5/5 (60 jobs)</p>
                     <p>Product Design</p>
-                    <a href="clientview-freelancerprofile.html">See more</a>
+                    <a href="clientview-freelancerprofile.php">See more</a>
                 </div>
                 <div class="cards">
                     <p>$65/hr</p>
@@ -137,7 +137,7 @@
                     <strong>Gerard Way</strong>
                     <p>⭐ 4.8/5 (50 jobs)</p>
                     <p>Mobile Design</p>
-                    <a href="clientview-freelancerprofile.html">See more</a>
+                    <a href="clientview-freelancerprofile.php">See more</a>
                 </div> 
                 <div class="cards">
                     <p>$65/hr</p>
@@ -145,7 +145,7 @@
                     <strong>Gerard Way</strong>
                     <p>⭐ 4.8/5 (50 jobs)</p>
                     <p>Mobile Design</p>
-                    <a href="clientview-freelancerprofile.html">See more</a>
+                    <a href="clientview-freelancerprofile.php">See more</a>
                 </div> 
             </section>
     </div>
@@ -181,7 +181,7 @@
 
     <script>
     function postjob() {
-        window.location.href = "client-freelancer-work.html"; 
+        window.location.href = "client-freelancer-work.php"; 
     }
     </script>
 
