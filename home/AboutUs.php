@@ -103,7 +103,8 @@
         }
         .content h2 {
             text-align: center;
-            margin: 50px;
+            margin-top: 40px;
+            margin-bottom: 25px;
         }
         .content p {
             line-height: 1.6;

@@ -43,7 +43,7 @@ $address = $_SESSION['address'] ?? '';
             <div class="sub-menu">
                 <div class="user-info">
                     <img class="profile" src="../image/prof.jpg">
-                    <h4><?php echo htmlspecialchars($fullName); ?></h4>
+                    <h4> <?php echo htmlspecialchars($fullName); ?> </h4>
                 </div>
                 <hr>
 
@@ -75,7 +75,7 @@ $address = $_SESSION['address'] ?? '';
     <div class="tabs">
         <a href="freelancer-work.php">WORK</a>
         <a href = "freelancer-about.php" class="active">ABOUT</a>
-        <a href="freelancer-likedpost.html">LIKED POST</a>
+        <a href="freelancer-likedpost.php">LIKED POST</a>
     </div>
     <hr>
 </div>

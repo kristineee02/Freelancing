@@ -61,7 +61,7 @@ $fullName = trim($firstName . " " . $lastName);
         </div>
     </div>
     <div class="discover-about">
-        <div class="overlay-find"></div>
+        <div class="overlay-find-about"></div>
         <p class="info-about">
            <b> THE WORLD'S DESTINATION<br> FOR DESIGN.
            </b>

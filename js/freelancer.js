@@ -13,17 +13,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     
     
-    document.addEventListener("DOMContentLoaded", function () {
-        const editAboutModal = document.getElementById("editAboutModal");
-        const editAboutBtn = document.getElementById("editAbout");
-        const closeAbout = document.getElementsByClassName("close_about")[0];
+document.addEventListener("DOMContentLoaded", function () {
+    const editAboutModal = document.getElementById("editAboutModal");
+    const editAboutBtn = document.getElementById("editAbout");
+    const closeAbout = document.getElementsByClassName("close_about")[0];
     
-        editAboutBtn.onclick = function () {
-            editAboutModal.style.display = "block";
-        };
+    editAboutBtn.onclick = function () {
+        editAboutModal.style.display = "block";
+    };
     
-        closeAbout.onclick = function () {
-            editAboutModal.style.display = "none";
-        };
-    });
+    closeAbout.onclick = function () {
+        editAboutModal.style.display = "none";
+    };
+});
     

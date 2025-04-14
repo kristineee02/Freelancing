@@ -83,7 +83,7 @@ $address = $_SESSION['address'] ?? '';
     <div class="tabs">
         <a href="client-profile.php">MY PROFILE</a>
         <a href = "client-profile-about.php" class="active">ABOUT</a>
-       <a href = "client-likedpost.html">LIKED POST</a>
+       <a href = "client-likedpost.php">LIKED POST</a>
         
     </div>
     <hr>
