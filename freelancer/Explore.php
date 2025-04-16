@@ -257,6 +257,7 @@ $fullName = trim($firstName . " " . $lastName);
         document.getElementById('carouselSlide').style.transform = `translateX(${offset}%)`;
     }
 </script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
     const notifBtn = document.getElementById('notifBtn');  

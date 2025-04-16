@@ -779,30 +779,34 @@ hr {
     margin-top: 5px;
     border: none;
     border-top: 2px solid rgb(128, 125, 125);
+    margin-bottom: -40px;
 }
 
 .work-section {
     display: flex;
-    justify-content: cleft;
+    justify-content: left;
+    flex-wrap: wrap;
+    max-height: 500px;
+    overflow-y: auto;
     gap: 20px;
-    margin-top: 20px;
 }
 
 .work-box {
-    width: 300px;
+    width: 280px;
     height: 200px;
-    background-color: #ffe477;
+    background-repeat: no-repeat;
+    background-size: cover;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(24, 24, 24, 0.2); 
-    
+    border: 1px solid rgb(163, 163, 163);
+    cursor: pointer;
+
 }
 
 .content-section {
     display: flex;
     padding: 20px;
-    justify-content: center;
-    margin-left: 370px;
-    margin-top: -286px;
+
 }
 
 .content-box {
@@ -811,12 +815,9 @@ hr {
     margin: 0 15px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(24, 24, 24, 0.2); 
-}
-
-.content-box.active {
     border: 1px solid rgb(163, 163, 163);
-}
 
+}
 .add-box {
     display: flex;
     justify-content: center;
@@ -825,8 +826,6 @@ hr {
     font-size: 24px;
     cursor: pointer;
 }
-
-
 
 .about-section {
     display: flex;

@@ -4,6 +4,7 @@ session_start();
 $firstName = $_SESSION['firstName'] ?? '';
 $lastName = $_SESSION['lastName'] ?? '';
 $fullName = trim($firstName . " " . $lastName);
+
     
 ?>
 
@@ -42,7 +43,7 @@ $fullName = trim($firstName . " " . $lastName);
         <div class="sub-menu-wrap" id="subMenu">
             <div class="sub-menu">
                 <div class="user-info">
-                    <img class="profile" src="../image/prof.jpg">
+                    <img src="<?php echo $_SESSION['profile_pic'] ?? '../image/yellow circle.png'; ?>" alt="Profile Image" class="profile-image">            
                     <h4><?php echo htmlspecialchars($fullName); ?></h4>
                 </div>
                 <hr>

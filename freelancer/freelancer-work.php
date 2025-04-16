@@ -4,7 +4,6 @@ require_once '../class/Freelancer.php';
 
 $db = new PDO("mysql:host=localhost;dbname=freelancer_signup", "root", "");
 
-
 // Ensure user is logged in
 $userId = $_SESSION['user_id'] ?? null;
 if (!$userId) {
@@ -93,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editfname'])) {
         <div class="sub-menu-wrap" id="subMenu">
             <div class="sub-menu">
                 <div class="user-info">
-                    <img class="profile" src="../image/prof.jpg">
+                <img class="profile" src="<?php echo $_SESSION['profile_pic'] ?? 'image/prof.jpg'; ?>" alt="Profile">
                     <h4><?php echo htmlspecialchars($fullName); ?></h4>
                 </div>
                 <hr>
@@ -153,38 +152,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editfname'])) {
             <a href = "freelancer-about.php">ABOUT</a>
             <a href="freelancer-likedpost.php">LIKED POST</a>
         </div>
-        <hr>
-
-        <div class="work-section">
-            <div class="work-box"></div>
-            <div class="work-box"></div>
+        <hr>            
         </div>
     </div>
 
     <div class="content-section">
         <div class="content-box active add-box" onclick="togglePopup()">+</div>
+        <div id="workSection" class="work-section"></div>
     </div>
 
     <div class="publish-popup-overlay" id="PublishPopupOverlay" onclick="closePopup()"></div>
-
-    <div class="publishing-popup" id="pubpopup">
-        <button class="close-btn" onclick="closePopup()">X</button>
+    <form method="POST" class="publishing-popup" id="pubpopup" action="../api/work_api.php" enctype="multipart/form-data">
+        <button type="button" class="close-btn" onclick="closePopup()">X</button>
         <h3>CREATE POST</h3>
+        <input type="text" name="title" placeholder="Title" id="Title" required>
+        <input type="hidden" name="freelancer_id" value="<?php echo $userId; ?>">
         <div id="FilePreviewContainer" class="file-preview-container"></div>
-        <form id="postForm">
-
+        <div id="postForm">
             <label class="FileInputLabel">
-                ADD FILE +
-                <input type="file" id="fileInput" name="files[]" multiple hidden>
+                ADD PICTURE +
+                <input type="file" id="fileInput" name="files[]" multiple accept="image/*" hidden>
             </label>
-
+            <textarea name="description" id="Description" placeholder="Description" required></textarea>
+            <select name="category" id="Category" required>
+                <option value="">Select One</option>
+                <option value="GRAPHIC DESIGN">GRAPHIC DESIGN</option>
+                <option value="WEBSITE DESIGN">WEBSITE DESIGN</option>
+                <option value="ANIMATION">ANIMATION</option>
+            </select>
             <div class="btn-container">
                 <button type="button" class="cancel-btn" onclick="closePopup()">CANCEL</button>
                 <button type="submit" class="publish-btn">PUBLISH</button>
             </div>
-            
-        </form>
-    </div>
+        </div>
+    </form>
 
     
     <script>
@@ -283,5 +284,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editfname'])) {
     </script>
 
     <script src="../js/freelancer.js"></script>
+    <script src="../js/work.js"></script>
 </body>
 </html>

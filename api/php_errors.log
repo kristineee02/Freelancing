@@ -1,0 +1,24 @@
+[16-Apr-2025 08:22:20 Europe/Berlin] PHP Warning:  include(class/Work.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\Freelancing\api\work_api.php on line 14
+[16-Apr-2025 08:22:20 Europe/Berlin] PHP Warning:  include(): Failed opening 'class/Work.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\Freelancing\api\work_api.php on line 14
+[16-Apr-2025 08:22:20 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Work" not found in C:\xampp\htdocs\Freelancing\api\work_api.php:26
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\Freelancing\api\work_api.php on line 26
+[16-Apr-2025 09:28:04 Europe/Berlin] PHP Warning:  include(class/Work.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\Freelancing\api\work_api.php on line 14
+[16-Apr-2025 09:28:05 Europe/Berlin] PHP Warning:  include(): Failed opening 'class/Work.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\Freelancing\api\work_api.php on line 14
+[16-Apr-2025 09:28:05 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Work" not found in C:\xampp\htdocs\Freelancing\api\work_api.php:26
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\Freelancing\api\work_api.php on line 26
+[16-Apr-2025 09:28:05 Europe/Berlin] PHP Warning:  include(class/Work.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\Freelancing\api\work_api.php on line 14
+[16-Apr-2025 09:28:05 Europe/Berlin] PHP Warning:  include(): Failed opening 'class/Work.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\Freelancing\api\work_api.php on line 14
+[16-Apr-2025 09:28:05 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Work" not found in C:\xampp\htdocs\Freelancing\api\work_api.php:26
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\Freelancing\api\work_api.php on line 26
+[16-Apr-2025 09:28:15 Europe/Berlin] PHP Warning:  include(class/Work.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\Freelancing\api\work_api.php on line 14
+[16-Apr-2025 09:28:15 Europe/Berlin] PHP Warning:  include(): Failed opening 'class/Work.php' for inclusion (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\Freelancing\api\work_api.php on line 14
+[16-Apr-2025 09:28:15 Europe/Berlin] PHP Fatal error:  Uncaught Error: Class "Work" not found in C:\xampp\htdocs\Freelancing\api\work_api.php:26
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\Freelancing\api\work_api.php on line 26
