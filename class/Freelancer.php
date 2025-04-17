@@ -14,6 +14,13 @@ class Freelancer {
             return true;
     }
 
+    public function getFreelancerById($account_id) {
+        $query = "SELECT * FROM " . $this->table . " WHERE account_id = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([$account_id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function login($email, $password) {
             $query = "SELECT * FROM " . $this->table . " WHERE email = :email LIMIT 1";
             $stmt = $this->conn->prepare($query);

@@ -1,3 +1,42 @@
+<?php
+session_start();
+require_once '../class/Work.php';
+require_once '../class/Freelancer.php';
+
+$db = new PDO("mysql:host=localhost;dbname=freelancer_signup", "root", "");
+$work = new Work($db);
+$freelancer = new Freelancer($db);
+
+// Ensure user is logged in
+$userId = $_SESSION['user_id'] ?? null;
+if (!$userId) {
+    header("Location: ../login/UserLogin.php");
+    exit;
+}
+
+// Get work details
+$workId = $_GET['id'] ?? null;
+if (!$workId) {
+    echo "Invalid work ID.";
+    exit;
+}
+
+$workDetails = $work->getWorkById($workId);
+if (!$workDetails) {
+    echo "Work not found.";
+    exit;
+}
+
+// Get freelancer details
+$freelancerDetails = $freelancer->getFreelancerById($userId);
+$fullName = trim($freelancerDetails['firstname'] . " " . $freelancerDetails['lastname']);
+$profilePic = $freelancerDetails['profile_pic'] ?? '../image/prof.jpg';
+
+// Format date
+$datePosted = date('F j, Y', strtotime($workDetails['date_posted'] ?? 'now'));
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +53,7 @@
 
         <div class="dashboard">
             <ul>
-              <li><a href="Explore.php" class="active-dash">Explore</a>  </li>
+              <li><a href="Explore.php">Explore</a>  </li>
              <li> <a href="Find-Job.php" class="tight-text">Find Jobs</a> </li>
              <li> <a href="About.php" >About</a></li>
             </ul>
@@ -53,30 +92,29 @@
     </div>
     <hr>
     <main>
-        <section class="design-showcase">
+        <form class="design-showcase" >
             <div class="design-profile">
-                <div class="avatar"></div>
-                <span>KRISTINE JANA</span>
-                <button class="follow-btn">FOLLOW +</button>
+            <div class="avatar" style="background-image: url('<?php echo htmlspecialchars($profilePic); ?>');"></div>
+            <span><?php echo htmlspecialchars($fullName); ?></span>
+            <button class="follow-btn">FOLLOW +</button>
             </div>
-            <h2>WEBSITE UI DESIGN</h2>
-            <div class="time" id="date">January 20, 2025</div>
-            <div class="design-preview"></div>
+            <h2><?php echo htmlspecialchars($workDetails['title'] ?? 'Untitled'); ?></h2>
+            <span class="work-category"><?php echo htmlspecialchars($workDetails['category'] ?? ''); ?></span>
+            <div class="time" id="date"><?php echo $datePosted; ?></div>
+            <div class="design-preview" style="background-image: url('<?php echo htmlspecialchars("../api/" . $workDetails['picture']); ?>');"></div>
             <div class="heart-icon">
                 <svg viewBox="0 0 24 24">
                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                 </svg>
             </div>
-            
-        </section>
+            <div class="work-description">
+                <p><?php echo htmlspecialchars($workDetails['description'] ?? 'No description available.'); ?></p>
+            </div>
+        </form>
         
         <section class="more-projects">
-            <h3>MORE BY KRISTINE JANA</h3>
-            <div class="project-gallery">
-                <div class="project-item"></div>
-                <div class="project-item"></div>
-                <div class="project-item"></div>
-            </div>
+            <h3>More by <?php echo htmlspecialchars($fullName); ?></h3>
+            <div class="project-gallery" id="moreWorks"></div>
         </section>
     </main>
 
@@ -114,5 +152,31 @@
     });
 });
 </script>
+
+<script>
+    // Load more works by the same freelancer
+    fetch(`../api/work_api.php?freelancer_id=<?php echo $userId; ?>`)
+                .then(response => response.json())
+                .then(data => {
+                    const moreWorks = document.getElementById('moreWorks');
+                    if (data.status === 'success' && data.works && data.works.length > 0) {
+                        data.works.forEach(work => {
+                            if (work.work_id != <?php echo $workId; ?>) { // Exclude current work
+                                const projectItem = document.createElement('div');
+                                projectItem.className = 'project-item';
+                                projectItem.style.backgroundImage = `url('${work.picture.split(',')[0]}')`;
+                                projectItem.onclick = () => window.location.href = `work-details.php?id=${work.work_id}`;
+                                moreWorks.appendChild(projectItem);
+                            }
+                        });
+                    } else {
+                        moreWorks.innerHTML = '<p>No other works available.</p>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching more works:', error);
+                    document.getElementById('moreWorks').innerHTML = '<p>Failed to load more works.</p>';
+                });
+    </script>
 </body>
 </html>

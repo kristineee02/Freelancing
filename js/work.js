@@ -13,7 +13,8 @@ document.addEventListener("DOMContentLoaded", loadWorks);
                         <div class="work-box" 
                             style="background-image: url('../api/${work.picture}');
                                     background-size: cover;
-                                    background-position: center;">
+                                    background-position: center;"
+                                    onclick="viewWorkDetails(${work.work_id})">
                             <div class="work-overlay">
                                 <h3>${work.title || 'Untitled'}</h3>
                                 <p>${work.description || ''}</p>
@@ -26,3 +27,8 @@ document.addEventListener("DOMContentLoaded", loadWorks);
             })
             .catch(error=>console.error("Error fetching work."));
         };
+
+         // Function to redirect to work details page
+    function viewWorkDetails(workId) {
+        window.location.href = `freelancer-webdesign.php?id=${workId}`;
+    }

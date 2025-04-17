@@ -84,14 +84,14 @@ function loadWorks() {
             
         if (data.status === "success" && data.works && data.works.length > 0) {
             data.works.forEach(work => {
-                // Fix the image path - remove the '../' prefix
-                const imagePath = work.picture.split(',')[0]; // Get first image if multiple
+                const imagePath = "../api/uploads" + work.picture.split(',')[0];
                 
                 workSection.innerHTML += `
                     <div class="work-box" 
                         style="background-image: url('${imagePath}');
                               background-size: cover;
-                              background-position: center;">
+                              background-position: center;"
+                              onclick="viewWorkDetails(${work.work_id})">>
                         <div class="work-overlay">
                             <h3>${work.title || 'Untitled'}</h3>
                             <p>${work.description || ''}</p>
@@ -111,4 +111,9 @@ function loadWorks() {
             workSection.innerHTML = `<div class="error-message">Failed to load works: ${error.message}</div>`;
         }
     });
+
+    // Function to redirect to work details page
+    function viewWorkDetails(workId) {
+    window.location.href = `freelancer-webdesign.php?id=${workId}`;
+}
 }

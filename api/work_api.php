@@ -24,7 +24,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 switch ($method) {
     case 'GET':
         $userId = $_SESSION['user_id'] ?? null;
-        // Check if we're looking for a specific work or all works
+        // Check if we're looking for a specific work, freelancer, or all works
         if (isset($_GET['id'])) {
             $work_data = $work->getWorkById($_GET['id']);
             if ($work_data) {
@@ -32,10 +32,14 @@ switch ($method) {
             } else {
                 echo json_encode(["status" => "error", "message" => "Work not found"]);
             }
-        } else {
-                $works = $work->getAllWork($userId);
-            }
+        } elseif (isset($_GET['freelancer_id'])) {
+            $freelancerId = $_GET['freelancer_id'];
+            $works = $work->getAllWork($freelancerId);
             echo json_encode(["status" => "success", "works" => $works]);
+        } else {
+            $works = $work->getAllWork($userId);
+            echo json_encode(["status" => "success", "works" => $works]);
+        }
         break;
 
     case "POST":

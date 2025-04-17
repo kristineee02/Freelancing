@@ -879,13 +879,12 @@ hr {
     background-color: rgb(255, 254, 197);
     font-size: 12px;
     cursor: pointer;
-    margin-top: -90px ;
+    margin-top: -50px ;
 }
 .liked-posts-grid {
     display: flex;
     gap: 30px;
     padding: 0 30px 30px;
-    margin-top: -50px;
     margin-left: 40px;
 
 }

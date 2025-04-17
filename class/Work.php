@@ -29,8 +29,8 @@ class Work {
 
     public function addWork($freelancer_id, $picture, $title, $description, $category) {
         $query = "INSERT INTO " . $this->table . " 
-                (freelancer_id, picture, title, description, category) 
-                VALUES (?, ?, ?, ?, ?)";
+                  (freelancer_id, picture, title, description, category, date) 
+                  VALUES (?, ?, ?, ?, ?, NOW())";
         
         $stmt = $this->conn->prepare($query);
         $result = $stmt->execute([
@@ -39,23 +39,6 @@ class Work {
             $title, 
             $description, 
             $category
-        ]);
-        
-        return $result;
-    }
-
-    public function updateWork($work_id, $picture, $title, $description, $category) {
-        $query = "UPDATE " . $this->table . " 
-                SET picture = ?, title = ?, description = ?, category = ? 
-                WHERE work_id = ?";
-                
-        $stmt = $this->conn->prepare($query);
-        $result = $stmt->execute([
-            $picture, 
-            $title, 
-            $description, 
-            $category, 
-            $work_id
         ]);
         
         return $result;
