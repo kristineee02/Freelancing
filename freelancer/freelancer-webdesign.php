@@ -27,10 +27,17 @@ if (!$workDetails) {
     exit;
 }
 
-// Get freelancer details
-$freelancerDetails = $freelancer->getFreelancerById($userId);
-$fullName = trim($freelancerDetails['firstname'] . " " . $freelancerDetails['lastname']);
-$profilePic = $freelancerDetails['profile_pic'] ?? '../image/prof.jpg';
+// Get freelancer/uploader ID from the work details
+$uploaderId = $workDetails['freelancer_id'] ?? null;
+
+if ($uploaderId) {
+    $freelancerDetails = $freelancer->getFreelancerById($uploaderId);
+    $fullName = trim($freelancerDetails['firstname'] . " " . $freelancerDetails['lastname']);
+    $profilePic = $freelancerDetails['profile_pic'] ?? '../image/prof.jpg';
+} else {
+    $fullName = 'Unknown';
+    $profilePic = '../image/prof.jpg';
+}
 
 // Format date
 $datePosted = date('F j, Y', strtotime($workDetails['date_posted'] ?? 'now'));
@@ -95,7 +102,12 @@ $datePosted = date('F j, Y', strtotime($workDetails['date_posted'] ?? 'now'));
         <form class="design-showcase" >
             <div class="design-profile">
             <div class="avatar" style="background-image: url('<?php echo htmlspecialchars($profilePic); ?>');"></div>
-            <span><?php echo htmlspecialchars($fullName); ?></span>
+            <span>
+                <?php 
+                $uploaderName = trim($freelancerDetails['firstname'] . ' ' . $freelancerDetails['lastname']);
+                echo htmlspecialchars($uploaderName); 
+                ?>
+            </span>
             <button class="follow-btn">FOLLOW +</button>
             </div>
             <h2><?php echo htmlspecialchars($workDetails['title'] ?? 'Untitled'); ?></h2>

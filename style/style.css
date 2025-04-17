@@ -181,15 +181,12 @@ html, body {
 }
 .card:hover{
     transform: scale(1.03);
-
-
 }
 .card-image{
-    background-color: rgb(245, 245, 159);
     height: 180px;
     border-radius: 15px 15px 15px 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
-
+    background-size: cover;
 }
 .card-image img{
     object-fit: cover;

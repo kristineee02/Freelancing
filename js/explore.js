@@ -90,3 +90,39 @@ function setupUIHandlers() {
         // Here you would typically redirect to the login page or home page
     };
 }
+
+    function filterWorks() {
+        const filterValue = document.getElementById('FilterCategory').value;
+        let url = '../api/filter.php?filter=' + filterValue;
+        
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                updateWorksDisplay(data);
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    function filterByCategory(category) {
+        let url = '../api/filter.php?category=' + encodeURIComponent(category);
+        
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                updateWorksDisplay(data);
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    
+    function searchWorks() {
+        const searchTerm = document.getElementById('searchInput').value;
+        let url = '../api/filter.php?search=' + encodeURIComponent(searchTerm);
+        
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                updateWorksDisplay(data);
+            })
+            .catch(error => console.error('Error:', error));
+    }
