@@ -15,10 +15,6 @@ document.addEventListener("DOMContentLoaded", loadWorks);
                                     background-size: cover;
                                     background-position: center;"
                                     onclick="viewWorkDetails(${work.work_id})">
-                            <div class="work-overlay">
-                                <h3>${work.title || 'Untitled'}</h3>
-                                <p>${work.description || ''}</p>
-                            </div>
                         </div>
                         `;
                      })

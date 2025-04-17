@@ -97,7 +97,6 @@ $datePosted = date('F j, Y', strtotime($workDetails['date_posted'] ?? 'now'));
             </div>
         </div>
     </div>
-    <hr>
     <main>
         <form class="design-showcase" >
             <div class="design-profile">

@@ -4,6 +4,7 @@ session_start();
 $firstName = $_SESSION['firstName'] ?? '';
 $lastName = $_SESSION['lastName'] ?? '';
 $fullName = trim($firstName . " " . $lastName);
+
     
 ?>
 
@@ -281,5 +282,6 @@ $fullName = trim($firstName . " " . $lastName);
     });
 });
 </script>
+<script src="../js/client.js"></script>
 </body>
 </html>

@@ -89,7 +89,7 @@ function loadWorks() {
                 workSection.innerHTML += `
                     <div class="work-box" 
                         style="background-image: url('${imagePath}');
-                              background-size: cover;
+                              background-size: cover;"
                               background-position: center;"
                               onclick="viewWorkDetails(${work.work_id})">>
                         <div class="work-overlay">

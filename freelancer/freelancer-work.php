@@ -152,7 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editfname'])) {
             <a href = "freelancer-about.php">ABOUT</a>
             <a href="freelancer-likedpost.php">LIKED POST</a>
         </div>
-        <hr>            
+        <div class="hr">            
         </div>
     </div>
 
@@ -173,9 +173,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editfname'])) {
                 ADD PICTURE +
                 <input type="file" id="fileInput" name="files[]" multiple accept="image/*" hidden>
             </label>
-            <textarea name="description" id="Description" placeholder="Description" required></textarea>
+            <textarea name="description" id="Description" class="description" placeholder="Description" required></textarea>
             <select name="category" id="Category" required>
-                <option value="">Select One</option>
+                <option value="" disabled selected>Select Category</option>
                 <option value="GRAPHIC DESIGN">GRAPHIC DESIGN</option>
                 <option value="WEBSITE DESIGN">WEBSITE DESIGN</option>
                 <option value="ANIMATION">ANIMATION</option>

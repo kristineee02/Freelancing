@@ -13,7 +13,7 @@
             $stmt = $this->conn->prepare($query);
             $stmt->execute([":firstName" => $firstName, ":lastName" => $lastName, ":email" => $email, ":password" => $password, ":address" => $address]);
         }
-     
+ 
         public function login($email, $password){
             $query = "SELECT * FROM " . $this->table . " WHERE email = :email LIMIT 1";
             $stmt = $this->conn->prepare($query);
