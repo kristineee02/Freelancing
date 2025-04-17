@@ -182,28 +182,25 @@ html, body {
 .container{
     display: flex;
     justify-content: center;
-    margin-bottom: -50px;
+    margin-bottom: -20px;
     top:100px; 
     position: relative;
     gap: 20px;
-
 }
 .card{
     width: 250px;
     height: 280px;
     cursor: pointer;
     transition: transform 0.2s ease;
-
 }
 .card:hover{
     transform: scale(1.03);
 }
 .card-image{
-    background-color: rgb(245, 245, 159);
     height: 180px;
     border-radius: 15px 15px 15px 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
-
+    background-size: cover;
 }
 .card-image img{
     object-fit: cover;

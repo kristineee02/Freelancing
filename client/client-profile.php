@@ -165,39 +165,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editfname'])) {
            <a href = "client-likedpost.php">LIKED POST</a>
             
         </div>
-        <hr>
-
-        <div class="work-section">
-            <div class="work-box"></div>
-            <div class="work-box"></div>
+        <div class="hr">            
         </div>
     </div>
-
-    <div class="content-section">
-        <div class="content-box active add-box" onclick="togglePopup()">+</div>
-    </div>
-
-    <div class="publish-popup-overlay" id="PublishPopupOverlay" onclick="closePopup()"></div>
-
-    <div class="publishing-popup" id="pubpopup">
-        <button class="close-btn" onclick="closePopup()">X</button>
-        <h3>CREATE POST</h3>
-        <div id="FilePreviewContainer" class="file-preview-container"></div>
-        <form id="postForm">
-
-            <label class="FileInputLabel">
-                ADD FILE +
-                <input type="file" id="fileInput" name="files[]" multiple hidden>
-            </label>
-
-            <div class="btn-container">
-                <button type="button" class="cancel-btn" onclick="closePopup()">CANCEL</button>
-                <button type="submit" class="publish-btn">PUBLISH</button>
-            </div>
-            
-        </form>
-    </div>
-
+    
     
     <script>
         let subMenu = document.getElementById("subMenu");

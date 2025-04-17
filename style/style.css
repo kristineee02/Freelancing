@@ -178,6 +178,7 @@ html, body {
     width: 250px;
     height: 280px;
     cursor: pointer;
+    transition: transform 0.2s ease;
 }
 .card:hover{
     transform: scale(1.03);

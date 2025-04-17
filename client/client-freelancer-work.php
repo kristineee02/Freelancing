@@ -44,7 +44,7 @@
                 </div>
                 <hr>
 
-                <a href="client-profile.html" class="sub-menu-link">
+                <a href="client-profile.php" class="sub-menu-link">
                     <img src="../image/prof.jpg">
                     <p>Profile</p>
                     <span>></span>

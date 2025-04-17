@@ -1,9 +1,21 @@
 <?php
 session_start();
 
+$db = new PDO("mysql:host=localhost;dbname=freelancer_signup", "root", "");
+
 $firstName = $_SESSION['firstName'] ?? '';
 $lastName = $_SESSION['lastName'] ?? '';
 $fullName = trim($firstName . " " . $lastName);
+
+// Query to fetch all posts for the explore page
+$stmt = $db->prepare("
+    SELECT w.*, f.firstname, f.lastname 
+    FROM work w
+    JOIN freelancer f ON w.freelancer_id = f.account_id
+    ORDER BY work_id DESC
+");
+$stmt->execute();
+$works = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     
 ?>
@@ -99,122 +111,41 @@ $fullName = trim($firstName . " " . $lastName);
         <option value="popular">Popular</option>
     </select>
 
-        <section class="container">
-            <div class="card" data-id="client-webdesign.php">
-                <div class="card-image">
-                    <img src="../image/ui.png" alt="UI Design">
-                </div>
-                <div class="footer">
-                    <h5 id="text">Name</h5>
-                    <span>&hearts; 100</span>
-                </div>
-            </div>            
-            <div class="card" data-id="client-webdesign.php">
-                <div class="card-image">
-                <img src="../image/ui.png">
-                </div>
-                <div class="footer">
-                    <h5 id="text">Name</h6>
-                    <span>&hearts; 100</span>
-                </div>
-            </div>
-            <div class="card" data-id="client-webdesign.php">
-                <div class="card-image">
-                <img src="../image/ui.png">
-                </div>
-                <div class="footer">
-                    <h5 id="text">Name</h6>
-                    <span>&hearts; 100</span>
-                </div>            
-            </div>
-            <div class="card" data-id="client-webdesign.php">
-                <div class="card-image">
-                <img src="../image/ui.png">
-                </div>
-                <div class="footer">
-                    <h5 id="text">Name</h6>
-                    <span>&hearts; 100</span>
-                </div>
-            </div>
-        </section>
-        
-        <section class="container">
-            <div class="card" data-id="client-webdesign.php">
-                <div class="card-image">
-                    <img src="../image/ui.png">
-                </div>
-                <div class="footer">
-                    <h5 id="text">Name</h6>
-                    <span>&hearts; 100</span>
-                </div>
-            </div>
-            <div class="card" data-id="client-webdesign.php">
-                <div class="card-image">
-                <img src="../image/ui.png">
-                </div>
-                <div class="footer">
-                    <h5 id="text">Name</h6>
-                    <span>&hearts; 100</span>
-                </div>
-            </div>
-            <div class="card" data-id="client-webdesign.php">
-                <div class="card-image">
-                <img src="../image/ui.png">
-                </div>
-                <div class="footer">
-                    <h5 id="text">Name</h6>
-                    <span>&hearts; 100</span>
-                </div>
-            </div>
-            <div class="card" data-id="client-webdesign.php">
-                <div class="card-image">
-                <img src="../image/ui.png">
-                </div>
-                <div class="footer">
-                    <h5 id="text">Name</h6>
-                    <span>&hearts; 100</span>
-                </div>
-            </div>
-        </section>
+    <div id="worksContainer">
+        <?php
+        // Check if there are any works
+        if (count($works) > 0) {
+            $worksPerRow = 4;
+            $totalWorks = count($works);
+            
+            // Loop through works in groups of 4 to create rows
+            for ($i = 0; $i < $totalWorks; $i += $worksPerRow) {
+                echo '<section class="container">';
+                
+                // Create up to 4 cards per row
+                for ($j = $i; $j < min($i + $worksPerRow, $totalWorks); $j++) {
+                    $work = $works[$j];
+                    $picture = htmlspecialchars("../api/" . $work['picture']);
+                    $fullName = trim($work['firstname'] . ' ' . $work['lastname']);
+                    
+                    echo '<div class="card" data-id="freelancer-webdesign.php?id=' . $work['work_id'] . '" data-category="' . htmlspecialchars($work['category']) . '">';
+                    echo '    <div class="card-image" style="background-image: url(\'' . $picture . '\');">';
+                    echo '    </div>';
+                    echo '    <div class="footer">';
+                    echo '        <h5 id="text">' . htmlspecialchars($fullName) . '</h5>';
+                    echo '        <span>&hearts; 0</span>'; // You can add likes functionality later
+                    echo '    </div>';
+                    echo '</div>';
+                }
+                
+                echo '</section>';
+            }
+        } else {
+            echo '<div class="no-works-message">No works available. Be the first to create a post!</div>';
+        }
+        ?>
+    </div>
 
-        <section class="container">
-            <div class="card" data-id="client-webdesign.php">
-                <div class="card-image">
-                    <img src="../image/ui.png">
-                </div>
-                <div class="footer">
-                    <h5 id="text">Name</h6>
-                    <span>&hearts; 100</span>
-                </div>
-            </div>
-            <div class="card" data-id="client-webdesign.php">
-                <div class="card-image">
-                <img src="../image/ui.png">
-                </div>
-                <div class="footer">
-                    <h5 id="text">Name</h6>
-                    <span>&hearts; 100</span>
-                </div>
-            </div>
-            <div class="card" data-id="client-webdesign.php">
-                <div class="card-image">
-                <img src="../image/ui.png">
-                </div>
-                <div class="footer">
-                    <h5 id="text">Name</h6>
-                    <span>&hearts; 100</span>
-                </div>
-            </div>
-            <div class="card" data-id="client-webdesign.php">
-                <div class="card-image">
-                <img src="../image/ui.png">
-                </div>
-                <div class="footer">
-                    <h5 id="text">Name</h6>
-                    <span>&hearts; 100</span>
-                </div>
-            </div>
-        </section>
 
     <script>
         let subMenu = document.getElementById("subMenu");
