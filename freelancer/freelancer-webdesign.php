@@ -50,6 +50,7 @@ $datePosted = date('F j, Y', strtotime($workDetails['date_posted'] ?? 'now'));
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Freelancing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel ="stylesheet" href="../style/style.css">
 </head>
 <body>
@@ -114,9 +115,7 @@ $datePosted = date('F j, Y', strtotime($workDetails['date_posted'] ?? 'now'));
             <div class="time" id="date"><?php echo $datePosted; ?></div>
             <div class="design-preview" style="background-image: url('<?php echo htmlspecialchars("../api/" . $workDetails['picture']); ?>');"></div>
             <div class="heart-icon">
-                <svg viewBox="0 0 24 24">
-                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                </svg>
+                <span><i class="fa-solid fa-heart"></i></span>
             </div>
             <div class="work-description">
                 <p><?php echo htmlspecialchars($workDetails['description'] ?? 'No description available.'); ?></p>
@@ -164,30 +163,5 @@ $datePosted = date('F j, Y', strtotime($workDetails['date_posted'] ?? 'now'));
 });
 </script>
 
-<script>
-    // Load more works by the same freelancer
-    fetch(`../api/work_api.php?freelancer_id=<?php echo $userId; ?>`)
-                .then(response => response.json())
-                .then(data => {
-                    const moreWorks = document.getElementById('moreWorks');
-                    if (data.status === 'success' && data.works && data.works.length > 0) {
-                        data.works.forEach(work => {
-                            if (work.work_id != <?php echo $workId; ?>) { // Exclude current work
-                                const projectItem = document.createElement('div');
-                                projectItem.className = 'project-item';
-                                projectItem.style.backgroundImage = `url('${work.picture.split(',')[0]}')`;
-                                projectItem.onclick = () => window.location.href = `work-details.php?id=${work.work_id}`;
-                                moreWorks.appendChild(projectItem);
-                            }
-                        });
-                    } else {
-                        moreWorks.innerHTML = '<p>No other works available.</p>';
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching more works:', error);
-                    document.getElementById('moreWorks').innerHTML = '<p>Failed to load more works.</p>';
-                });
-    </script>
 </body>
 </html>

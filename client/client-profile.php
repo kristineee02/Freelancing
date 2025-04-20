@@ -14,7 +14,6 @@ if (!$userId) {
 
 $client = new Client($db);
 
-
 // Load session data
 $firstName = $_SESSION['firstName'] ?? '';
 $lastName = $_SESSION['lastName'] ?? '';
@@ -69,6 +68,127 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editfname'])) {
     <title>Freelancing</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel ="stylesheet" href="../style/freelancer-profile.css">
+
+    <style>
+        /* Job Section Styles */
+.job-section {
+    margin-top: -70px;
+    padding: 0 20px;
+    margin-left: 30px;
+}
+
+.job-section h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 24px;
+}
+
+.job-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+    padding: 20px;
+    transition: transform 0.2s;
+}
+
+.job-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.job-header h3 {
+    font-size: 18px;
+    color: #444;
+    margin: 0;
+}
+
+.job-budget {
+    background-color: #f0f8ff;
+    color: #0066cc;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.job-category {
+    margin-bottom: 15px;
+}
+
+.category-badge {
+    background-color: #e6f7ff;
+    color: #0099cc;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.job-details p {
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.job-location {
+    display: flex;
+    gap: 15px;
+    color: #888;
+    font-size: 14px;
+}
+
+.job-location span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.job-actions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.view-job-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.view-job-btn:hover {
+    background-color: #45a049;
+}
+
+.no-jobs {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.post-job-btn {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+}
+
+.post-job-btn:hover {
+    background-color: #45a049;
+}
+    </style>
 </head>
 <body>
 
@@ -168,8 +288,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editfname'])) {
         <div class="hr">            
         </div>
     </div>
+
+    <div class="content-section">
+        <div id="jobSection" class="job-section"></div>
+    </div>
     
-    
+
     <script>
         let subMenu = document.getElementById("subMenu");
 

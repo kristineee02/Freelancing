@@ -1,10 +1,21 @@
 <?php
 session_start();
+$db = new PDO("mysql:host=localhost;dbname=freelancer_signup", "root", "");
 
 $firstName = $_SESSION['firstName'] ?? '';
 $lastName = $_SESSION['lastName'] ?? '';
 $fullName = trim($firstName . " " . $lastName);
-    
+  
+// Query to fetch all posts for the explore page
+$stmt = $db->prepare("
+    SELECT j.*, c.firstname, c.lastname 
+    FROM job j
+    JOIN client c ON j.ClientId = c.client_id
+    ORDER BY job_id DESC
+");
+$stmt->execute();
+$works = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +24,7 @@ $fullName = trim($firstName . " " . $lastName);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Freelancing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel ="stylesheet" href="../style/style.css">
 </head>
 <body>
@@ -103,67 +115,58 @@ $fullName = trim($firstName . " " . $lastName);
     <p class="post">
         <b>POSTED JOBS</b>
     </p>
-    <div class="company-container">
-        <div class="company">
-            <div class="header">
-                <div style="display: flex; align-items: center;">
-                    <img src="../image/prof.jpg" alt="company logo">
-                    <div class="company-name">Hello Corp.</div>
-                </div>
-                <div class="date">Posted 5 hours ago</div>
-            </div>
-            <div class="position">UX DESIGNER</div>
-            <div class="price">Fixed Price | <span class="location">Location</span></div>
-            <div class="description">
-                We are looking for a UI Designer for our Bakery Website.<br>
-                Designer must be creative and proficient in creating visually<br>appealing interfaces.
-            </div>
-            <div class="buttons">
-                <div class="btn" onclick="goToViewJob()">View Job</div>
-                <div class="btn" onclick="goToApplyJob()">Apply for Job</div>
-            </div>
-        </div>
 
-        <div class="company">
-            <div class="header">
-                <div style="display: flex; align-items: center;">
-                    <img src="../image/prof.jpg" alt="company logo">
-                    <div class="company-name">Hello Corp.</div>
-                </div>
-                <div class="date">Posted 5 hours ago</div>
-            </div>
-            <div class="position">WEBSITE DESIGNER</div>
-            <div class="price">Fixed Price | <span class="location">Location</span></div>
-            <div class="description">
-                We are looking for a UI Designer for our Bakery Website.<br>
-                Designer must be creative and proficient in creating visually<br>appealing interfaces.
-            </div>
-            <div class="buttons">
-                <div class="btn" onclick="goToViewJob()">View Job</div>
-                <div class="btn" onclick="goToApplyJob()">Apply for Job</div>
-            </div>
-        </div>
+    <div class="company-container" id="company-section">
+    <?php
+    // Check if jobs array exists and has items
+    if (isset($works) && is_array($works) && count($works) > 0) {
+        foreach ($works as $job) {
+            // Ensure these variables are set - either from the $job array or with default values
+            $FullName = $job['FullName'] ?? 'Company Name';
+            $Project_Category = $job['Project_Category'] ?? 'Job Category';
+            $Description = $job['Description'] ?? 'No description available';
+            $price = $job['Budget'] ?? 'N/A';
+            $Location = $job['Location'] ?? 'Remote';
+            $Date_created = $job['Date_created'] ?? 'Recently';
+            $picture = $job['picture'] ?? '../image/prof.jpg';
+            $job_id = $job['job_id'] ?? 0;
+            
+            echo '<div class="company">';
+            echo '    <div class="header">';
+            echo '        <div style="display: flex; align-items: center;">';
+            echo '            <img src="' . htmlspecialchars($picture) . '" alt="company logo">';
+            echo '            <div class="company-name">' . htmlspecialchars($FullName) . '</div>';
+            echo '        </div>';
+            echo '        <div class="date">' . htmlspecialchars($Date_created) . '</div>';
+            echo '    </div>';
+            echo '    <div class="position">' . htmlspecialchars($Project_Category) . '</div>';
+            echo '    <div class="price"> <i class="fa-solid fa-tag"></i> ' . htmlspecialchars($price) . ' | ';
+            echo '        <span class="location"> <i class="fa-solid fa-location-dot"></i> ' . htmlspecialchars($Location) . '</span></div>';
+            echo '    <div class="description">' . htmlspecialchars($Description) . '</div>';
+            echo '    <div class="buttons">';
+            echo '        <div class="btn" onclick="goToViewJob(' . $job_id . ')">View Job</div>';
+            echo '        <div class="btn" onclick="goToApplyJob(' . $job_id . ')">Apply for Job</div>';
+            echo '    </div>';
+            echo '</div>';
+        }
+    } else {
+        echo '<div class="no-jobs">No jobs available at this time.</div>';
+    }
+    ?>
+</div>
 
-        <div class="company">
-            <div class="header">
-                <div style="display: flex; align-items: center;">
-                    <img src="../image/prof.jpg" alt="company logo">
-                    <div class="company-name">Hello Corp.</div>
-                </div>
-                <div class="date">Posted 5 hours ago</div>
-            </div>
-            <div class="position">HELLO DESIGNER</div>
-            <div class="price">Fixed Price | <span class="location">Location</span></div>
-            <div class="description">
-                We are looking for a UI Designer for our Bakery Website.<br>
-                Designer must be creative and proficient in creating visually<br>appealing interfaces.
-            </div>
-            <div class="buttons">
-                <div class="btn" onclick="goToViewJob()">View Job</div>
-                <div class="btn" onclick="goToApplyJob()">Apply for Job</div>
-            </div>
-        </div>
-    </div>   
+
+
+<script>
+    function goToViewJob(jobId) {
+        window.location.href = "Find-job-details.php?id=" + jobId;
+    }
+    
+    function goToApplyJob(jobId) {
+        window.location.href = "Find-Job-Overview.php?id=" + jobId;
+    }
+</script>
+
     <script>
         let subMenu = document.getElementById("subMenu");
 
@@ -176,16 +179,6 @@ $fullName = trim($firstName . " " . $lastName);
     function logout() {
         alert("You have been logged out successfully."); 
         
-    }
-</script>
-<script>
-    function goToViewJob() {
-    window.location.href = "Find-job-details.php";
-    }
-</script>
-<script>
-    function goToApplyJob() {
-    window.location.href = "Find-Job-Overview.php";
     }
 </script>
 
@@ -208,5 +201,6 @@ $fullName = trim($firstName . " " . $lastName);
     });
 });
 </script>
+
 </body>
 </html>

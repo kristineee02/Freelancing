@@ -1,3 +1,12 @@
+<?php
+session_start();
+include '../api/database.php';
+include '../class/Client.php';
+
+$client_id = $_SESSION['user_id'];
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,35 +80,42 @@
     <fieldset class="form-container">
         <h2 class="text-proj">TELL US ABOUT YOUR PROJECT</h2>
          <br><br>
-         <form class="form-project">
-             <label for="name" class="label-project">Name</label>
-             <input type="text" id="name" placeholder="Enter your name here"  class="input-proj">
+         <form class="form-project" method="POST" id="projectForm" action="../api/job_api.php">
+         <label for="name" class="label-project">Name</label>
+             <input type="text" id="name" name="name" placeholder="Enter your full name"  class="input-proj" required>
  
              <label for="email" class="label-project">Email</label>
-             <input type="email" id="email" placeholder="Enter your email here" class="input-proj">
+             <input type="email" id="email" name="email" placeholder="Enter your email" class="input-proj" required>
+
+             <label for="business" class="label-project">Project Title</label>
+             <input type="text" id="business" name="business_name" placeholder="Project Title" class="input-proj" required>
  
              <label class="project-category">Project Category</label>
-             <div class="radio-group">
-                 <label class="radio"><input type="radio" name="category"> Animation</label>
-                 <label class="radio"><input type="radio" name="category"> Animation</label>
-                 <label class="radio"><input type="radio" name="category"> Animation</label>
-                 <label class="radio"><input type="radio" name="category"> Animation</label>
-                 <label class="radio"><input type="radio" name="category"> Animation</label>
-                 <label class="radio"><input type="radio" name="category"> Animation</label>
+             <div class="radio-group" required>
+                 <label class="radio"><input type="radio" name="category" value="Animation"> Animation</label>
+                 <label class="radio"><input type="radio" name="category" value="Graphic Design"> Graphic Design</label>
+                 <label class="radio"><input type="radio" name="category" value="Product Design"> Product Design</label>
+                 <label class="radio"><input type="radio" name="category" value="Web Design"> Web Design</label>
+                 <label class="radio"><input type="radio" name="category" value="Illustration"> Illustration</label>
+                 <label class="radio"><input type="radio" name="category" value="Mobile Design"> Mobile Design</label>
+                 <label class="radio"><input type="radio" name="category" value="Writing"> Writing</label>
              </div>
  
              <label class="project-description">Project Description</label>
-             <textarea placeholder="Describe your project" class="textholder"></textarea>
+             <textarea placeholder="Describe your project" class="textholder" name="description" required></textarea>
+
+             <label for="location" class="label-project">Location</label>
+             <input type="text" id="location" name="location" placeholder="Location" class="input-proj" required>
  
-             <label for="timeframe" class="label-project">Timeframe</label>
-             <input type="text" id="timeframe" placeholder="" class="input-proj">
+             <label for="start-date" class="label-project">Start Date</label>
+             <input type="date" id="start-date" name="start_date" class="input-proj" required>
+
+             <label for="end-date" class="label-project">End Date</label>
+             <input type="date" id="end-date" name="end_date" class="input-proj" required>
  
              <label for="budget" class="label-project">Budget</label>
-             <input type="text" id="budget" placeholder="" class="input-proj">
- 
-             <label for="business" class="label-project">Business Name (optional)</label>
-             <input type="text" id="business" placeholder="" class="input-proj">
- 
+             <input type="number" name="budget" placeholder="budget" class="input-proj" required>
+
              <button type="submit" class="submit-project">Submit</button>
          </form>
      </fieldset>
@@ -125,6 +141,45 @@
     </script>
 
 <script>
+      // Form validation and submission
+      form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Additional validation if needed
+                const startDate = new Date(document.getElementById('start-date').value);
+                const endDate = new Date(document.getElementById('end-date').value);
+                
+                if (endDate <= startDate) {
+                    formMessage.innerHTML = '<p style="color: red;">End date must be after start date</p>';
+                    return;
+                }
+                
+                // Submit form
+                const formData = new FormData(form);
+                
+                fetch('../api/job_api.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        formMessage.innerHTML = '<p style="color: green;">Job posted successfully!</p>';
+                        setTimeout(() => {
+                            window.location.href = 'client-explore.php?success=1';
+                        }, 1500);
+                    } else {
+                        formMessage.innerHTML = `<p style="color: red;">${data.message}</p>`;
+                    }
+                })
+                .catch(error => {
+                    formMessage.innerHTML = '<p style="color: red;">Error submitting form. Please try again.</p>';
+                    console.error('Error:', error);
+                });
+            });        
+</script>
+
+<script>
     let subMenu = document.getElementById("subMenu");
 
     function toggleMenu(){
@@ -138,5 +193,7 @@ function logout() {
     
 }
 </script>
+
+
 </body>
 </html>

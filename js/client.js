@@ -10,6 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
     closeBtn.onclick = function () {
         modal.style.display = "none";
     };
+
+    loadPostedJobs();
+
 });
     
 document.addEventListener("DOMContentLoaded", function () {
@@ -26,56 +29,60 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 });
 
-
-function loadExploreWorks() {
-    // Fetch works with the explore parameter
-    fetch("api/work_api.php?explore=true")
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        const exploreSection = document.getElementById("exploreSection");
-        if (!exploreSection) return;
-        
-        exploreSection.innerHTML = ''; // Clear existing content
+function loadPostedJobs() {
+    const jobSection = document.getElementById('jobSection');
+    if (!jobSection) return;
+    
+    fetch('../api/job_api.php')
+        .then(response => response.json())
+        .then(jobs => {
+            if (jobs.length === 0) {
+                jobSection.innerHTML = '<div class="no-jobs"><p>You haven\'t posted any jobs yet.</p>' +
+                                      '<a href="client-freelancer-work.php" class="post-job-btn">Post a Job</a></div>';
+                return;
+            }
             
-        if (data.status === "success" && data.works && data.works.length > 0) {
-            data.works.forEach(work => {
-                // Get first image if multiple
-                const imagePath = work.picture.split(',')[0];
+            jobSection.innerHTML = '<h2>My Posted Jobs</h2>';
+            
+            jobs.forEach(job => {
+                const jobCard = document.createElement('div');
+                jobCard.classList.add('job-card');
                 
-                // Create card for each work
-                const workCard = document.createElement("div");
-                workCard.className = "explore-card";
+                // Format dates
+                const startDate = new Date(job.start_date).toLocaleDateString();
+                const endDate = new Date(job.end_date).toLocaleDateString();
                 
-                workCard.innerHTML = `
-                    <div class="explore-image" 
-                        style="background-image: url('${imagePath}');
-                              background-size: cover;
-                              background-position: center;">
+                jobCard.innerHTML = `
+                    <div class="job-header">
+                        <h3>${job.Project_Name}</h3>
+                        <span class="job-budget">$${job.Budget}</span>
                     </div>
-                    <div class="explore-content">
-                        <h3>${work.title || 'Untitled'}</h3>
-                        <p class="explore-author">By: ${work.firstname} ${work.lastname}</p>
-                        <p class="explore-desc">${work.description || ''}</p>
-                        <span class="explore-category">${work.category || ''}</span>
+                    <div class="job-category">
+                        <span class="category-badge">${job.Project_Category}</span>
+                    </div>
+                    <div class="job-details">
+                        <p>${job.Description.substring(0, 150)}${job.Description.length > 150 ? '...' : ''}</p>
+                        <div class="job-location">
+                            <span><i class="fas fa-map-marker-alt"></i> ${job.Location}</span>
+                            <span><i class="fas fa-calendar"></i> ${startDate} - ${endDate}</span>
+                        </div>
+                    </div>
+                    <div class="job-actions">
+                        <button class="view-job-btn" onclick="viewJobDetails(${job.job_id})">View Details</button>
                     </div>
                 `;
                 
-                exploreSection.appendChild(workCard);
+                jobSection.appendChild(jobCard);
             });
-        } else {
-            exploreSection.innerHTML = '<p>No works available yet.</p>';
-        }
-    })
-    .catch(error => {
-        console.error("Error fetching explore works:", error);
-        const exploreSection = document.getElementById("exploreSection");
-        if (exploreSection) {
-            exploreSection.innerHTML = `<div class="error-message">Failed to load works: ${error.message}</div>`;
-        }
-    });
+        })
+        .catch(err => {
+            console.error("Failed to load jobs", err);
+            jobSection.innerHTML = '<p>Failed to load your jobs. Please try again later.</p>';
+        });
+}
+
+function viewJobDetails(jobId) {
+    // You can implement a job details view or a modal
+    console.log("Viewing job details for job ID:", jobId);
+    alert("Job details functionality coming soon!");
 }

@@ -16,6 +16,21 @@ CREATE TABLE work (
     ->     FOREIGN KEY (freelancer_id) REFERENCES freelancer(account_id)
     -> );
 
+create table job(
+    job_id INT AUTO_INCREMENT PRIMARY KEY,
+    ClientId INT NOT NULL,
+    FullName VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) NOT NULL,
+    Project_Category VARCHAR(100) NOT NULL,
+    Description TEXT NOT NULL,
+    start_date DATE,
+    end_date DATE,
+    Budget DECIMAL(10, 2),
+    Project_Name VARCHAR(100),
+    Date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Location VARCHAR(100) NOT NULL,
+    FOREIGN KEY (ClientId) REFERENCES client(client_id)
+)
 
 create table client (
     client_id INT AUTO_INCREMENT PRIMARY KEY,
