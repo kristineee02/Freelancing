@@ -88,6 +88,9 @@ $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="category">
         <p class="categories">Categories:</p>
     <div class="category-type">
+        <input type="radio" id="skill" name="category" value="30">
+        <label for="skill">All</label><br/><br/>
+
         <input type="radio" id="skill1" name="category" value="30">
         <label for="skill1">Animation</label><br/><br/>
 

@@ -64,5 +64,37 @@ class Freelancer {
             return false;
         }
     }
+
+    // Update about table
+    public function updateAbout($account_id, $contact, $birthday, $skills, $history, $socials) {
+        try {
+            $stmt = $this->conn->prepare("SELECT about_id FROM freelancer WHERE account_id = :account_id");
+            $stmt->execute([':account_id' => $account_id]);
+            $about_id = $stmt->fetchColumn();
+
+            if (!$about_id) {
+                throw new Exception("No about_id found for account_id: $account_id");
+            }
+
+            $query = "UPDATE about 
+                      SET contact = :contact, birthday = :birthday, skills = :skills, history = :history, socials = :socials 
+                      WHERE about_id = :about_id";
+            $stmt = $this->conn->prepare($query);
+            return $stmt->execute([
+                ':contact' => $contact,
+                ':birthday' => $birthday,
+                ':skills' => $skills,
+                ':history' => $history,
+                ':socials' => $socials,
+                ':about_id' => $about_id
+            ]);
+        } catch (PDOException $e) {
+            error_log("UpdateAbout error: " . $e->getMessage());
+            return false;
+        } catch (Exception $e) {
+            error_log("Custom error: " . $e->getMessage());
+            return false;
+        }
+    }
 }
 ?>

@@ -1,11 +1,55 @@
 <?php
 session_start();
+require_once '../class/Freelancer.php';
+$db = new PDO("mysql:host=localhost;dbname=freelancer_signup", "root", "");
 
+// Ensure user is logged in
+$account_id = $_SESSION['user_id'] ?? null;
+if (!$account_id) {
+    header("Location: ../login/UserLogin.php");
+    exit;
+}
+
+$freelancer = new Freelancer($db);
+
+// Load session data
 $firstName = $_SESSION['firstName'] ?? '';
 $lastName = $_SESSION['lastName'] ?? '';
 $fullName = trim($firstName . " " . $lastName);
 $address = $_SESSION['address'] ?? '';
-    
+$contact = $_SESSION['contact'] ?? '';
+$birthday = $_SESSION['birthday'] ?? '';
+$skills = $_SESSION['skills'] ?? '';
+$history = $_SESSION['history'] ?? '';
+$socials = $_SESSION['socials'] ?? '';
+
+
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editname'])) {
+    $newName = $_POST['editname'];
+    $newContact = $_POST['editnumber'];
+    $newBirthdate = $_POST['editbirthday'];
+    $newSkills = $_POST['editskills'];
+    $newHistory = $_POST['edithistory'];
+    $newSocials = $_POST['editsocials'];
+
+    // Update profile
+    if ($freelancer->updateAbout($account_id, $newName, $newContact, $newBirthdate, $newSkills, $newHistory, $newSocials)) {
+        // Parse the name to update session
+        $nameParts = explode(' ', $newName, 2);
+        $_SESSION['firstName'] = $nameParts[0];
+        $_SESSION['lastName'] = isset($nameParts[1]) ? $nameParts[1] : '';
+        $_SESSION['contact'] = $newContact;
+        $_SESSION['birthday'] = $newBirthdate;
+        $_SESSION['skills'] = $newSkills;
+        $_SESSION['history'] = $newHistory;
+        $_SESSION['socials'] = $newSocials;
+
+        // Redirect
+        header("Location: freelancer-about.php");
+        exit;
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -63,7 +107,7 @@ $address = $_SESSION['address'] ?? '';
 </div>
 <div class="profile-container">
     <div class="profile-header">
-        <img src="../image/yellow circle.png" alt="Profile Image" class="profile-image">
+    <img src="<?php echo $_SESSION['profile_pic'] ?? '../image/yellow circle.png'; ?>" alt="Profile Image" class="profile-image">            
         <div class="profile-info">
             <h1> <?php echo htmlspecialchars($fullName); ?></h1>
             <p class="location"><?php echo htmlspecialchars($address); ?></p>
@@ -80,63 +124,61 @@ $address = $_SESSION['address'] ?? '';
     <hr>
 </div>
 
+
 <div class="about-section">
     <div class="about-left">
         <h2>ABOUT YOU</h2>
-        <p>NAME:</p>
-        <p>CONTACT:</p>
-        <p>EMAIL:</p>
+        <p> Name: <?php echo htmlspecialchars($fullName); ?></p>
+        <p> Contact: <?php echo htmlspecialchars($contact); ?></p>
+        <p> Birthdate: <?php echo htmlspecialchars($birthday); ?></p>
         <br/>
         <h2>SKILLS</h2>
-        <p>DESIGNING</p>
-        <p>WRITING</p>
+        <p>skills<?php echo htmlspecialchars($skills); ?></p>
     </div>
     <div class="about-right">
         <h2>WORK HISTORY AND EXPERIENCE</h2>
-        <p>DESIGNER FOR AZ COMPANY</p>
-        <p>PROJECT MANAGER</p>
+        <p>work history<?php echo htmlspecialchars($history); ?></p>
         <br/>
         <h2>SOCIALS</h2>
-        <p>Instagram:</p>
-        <p>Facebook:</p>
+        <p>any socials<?php echo htmlspecialchars($socials); ?></p>
     </div>
     <button class="edit-about" id="editAbout">EDIT ABOUT</button>
 </div>
 
-    <!--edit modal-->
-    <div id="editAboutModal" class="modal-about">
-    <div class="modal-content-about">
-        <span class="close_about">&times;</span>
-        <h3>Edit About</h3>
-        <form id="aboutUpdateForm">
-            <div class="form-grid-about">
-                <div class="form-group-about">
-                    <h1>ABOUT YOU</h1>
-                    <label for="editname">Name</label>
-                    <input type="text" id="editname" name="editname" placeholder="Name">
+ <!--edit modal-->
+ <div id="editAboutModal" class="modal-about">
+        <div class="modal-content-about">
+            <span class="close_about">×</span>
+            <h3>Edit About</h3>
+            <form id="aboutUpdateForm" method="POST" action="freelancer-about.php">
+                <div class="form-grid-about">
+                    <div class="form-group-about">
+                        <h1>ABOUT YOU</h1>
+                        <label for="editname">Name</label>
+                        <input type="text" id="editUserName" name="editname" placeholder="Name" value="<?php echo htmlspecialchars($fullName); ?>">
 
-                    <label for="editnumber">Contact</label>
-                    <input type="number" id="editnumber" name="editnumber" placeholder="Contact">
+                        <label for="editnumber">Contact</label>
+                        <input type="number" id="editUserNumber" name="editnumber" placeholder="Contact" value="<?php echo htmlspecialchars($contact); ?>">
 
-                    <label for="editemail">Email</label>
-                    <input type="email" id="editemail" name="editemail" placeholder="Email">  
-                    
-                    <label for="editskill">Skills</label>
-                    <textarea name="editskills" placeholder="Skills" ></textarea>
+                        <label for="editbirthday">Birth Date</label>
+                        <input type="date" id="editUserBirthday" name="editbirthday" placeholder="Birthday" value="<?php echo htmlspecialchars($birthday); ?>">  
 
-                    <label for="edit_History">Work History</label>
-                    <textarea name="edithistory" placeholder="Work History & Experience"></textarea>
+                        <label for="editskills">Skills</label>
+                        <textarea name="editskills"><?php echo htmlspecialchars($skills); ?></textarea>
 
-                    <label for="edit_Social">Socials</label>
-                    <textarea name="editsocials" placeholder="Social Media" ></textarea>
+                        <label for="edithistory">Work History</label>
+                        <textarea name="edithistory"><?php echo htmlspecialchars($history); ?></textarea>
+
+                        <label for="editsocials">Socials</label>
+                        <textarea name="editsocials"><?php echo htmlspecialchars($socials); ?></textarea>
+                    </div>
                 </div>
-            </div>
-            <button type="submit" class="button-edit-about">Save Changes</button>
-        </form>
-    </div>
+                <button type="submit" class="button-edit-about">Save Changes</button>
+            </form>
+        </div>
     </div>
 
-
+ 
 <script>
     function goToEditProfile() {
     window.location.href = "freelancer-work.php";

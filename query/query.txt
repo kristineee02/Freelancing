@@ -5,7 +5,9 @@ create table freelancer (
     email VARCHAR (100) NOT NULL UNIQUE,
     password VARCHAR(100) NOT NULL,
     address VARCHAR(100) NOT NULL,
-    profile_pic VARCHAR(255)
+    profile_pic VARCHAR(255),
+    about_id INT,
+    FOREIGN KEY(about_id) REFERENCES about(about_id)
 );
 
 CREATE TABLE work (
@@ -43,6 +45,24 @@ create table client (
     email VARCHAR (100) NOT NULL UNIQUE,
     password VARCHAR(100) NOT NULL,
     address VARCHAR(100) NOT NULL,
-    profile_pic VARCHAR(255)
-    
+    profile_pic VARCHAR(255),
+    about_id INT,
+    FOREIGN KEY(about_id) REFERENCES about(about_id)
 );
+
+create table about(
+    about_id INT AUTO_INCREMENT PRIMARY KEY,
+    contact INT(11) NOT NULL,
+    birthday DATE NOT NULL,
+    skills TEXT NOT NULL,
+    history TEXT NOT NULL,
+    socials TEXT NOT NULL
+);
+
+ALTER TABLE client
+ADD CONSTRAINT AboutId
+FOREIGN KEY (about_id) REFERENCES about(about_id);
+
+ALTER TABLE freelancer
+ADD CONSTRAINT About_Id
+FOREIGN KEY (about_id) REFERENCES about(about_id);
