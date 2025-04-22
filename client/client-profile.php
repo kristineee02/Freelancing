@@ -100,6 +100,7 @@ $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
     margin-bottom: 40px;
     padding: 20px;
     transition: transform 0.2s;
+    width: 105%;
 }
 
 .job-card:hover {
@@ -311,7 +312,7 @@ $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 $Description = $job['Description'] ?? 'No description available';
                 $Budget = $job['Budget'] ?? 'N/A';
                 $Location = $job['Location'] ?? 'Remote';
-                $Date_created = $job['Date_created'] ?? 'Recently';
+                $Date_created = isset($job['Date_created']) ? date('Y-m-d', strtotime($job['Date_created'])) : 'Recently'; // Format date
                 $picture = $job['picture'] ?? '../image/prof.jpg';
                 $job_id = $job['job_id'] ?? 0;
                 ?>

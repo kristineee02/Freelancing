@@ -121,12 +121,12 @@ $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
     if (isset($jobs) && is_array($jobs) && count($jobs) > 0) {
         foreach ($jobs as $job) {
             // Ensure these variables are set - either from the $job array or with default values
-            $FullName = $job['FullName'] ?? 'Company Name';
+            $FullName = $job['firstname'] . ' ' . $job['lastname'];
             $Project_Category = $job['Project_Category'] ?? 'Job Category';
             $Description = $job['Description'] ?? 'No description available';
             $Budget = $job['Budget'] ?? 'N/A';
             $Location = $job['Location'] ?? 'Remote';
-            $Date_created = $job['Date_created'] ?? 'Recently';
+            $Date_created = isset($job['Date_created']) ? date('Y-m-d', strtotime($job['Date_created'])) : 'Recently'; // Format date
             $picture = $job['picture'] ?? '../image/prof.jpg';
             $job_id = $job['job_id'] ?? 0;
             
