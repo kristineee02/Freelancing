@@ -6,7 +6,6 @@ $firstName = $_SESSION['firstName'] ?? '';
 $lastName = $_SESSION['lastName'] ?? '';
 $fullName = trim($firstName . " " . $lastName);
   
-// Query to fetch all posts for the explore page
 $stmt = $db->prepare("
     SELECT j.*, c.firstname, c.lastname 
     FROM job j
@@ -125,7 +124,7 @@ $works = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $FullName = $job['FullName'] ?? 'Company Name';
             $Project_Category = $job['Project_Category'] ?? 'Job Category';
             $Description = $job['Description'] ?? 'No description available';
-            $price = $job['Budget'] ?? 'N/A';
+            $Budget = $job['Budget'] ?? 'N/A';
             $Location = $job['Location'] ?? 'Remote';
             $Date_created = $job['Date_created'] ?? 'Recently';
             $picture = $job['picture'] ?? '../image/prof.jpg';
@@ -140,7 +139,7 @@ $works = $stmt->fetchAll(PDO::FETCH_ASSOC);
             echo '        <div class="date">' . htmlspecialchars($Date_created) . '</div>';
             echo '    </div>';
             echo '    <div class="position">' . htmlspecialchars($Project_Category) . '</div>';
-            echo '    <div class="price"> <i class="fa-solid fa-tag"></i> ' . htmlspecialchars($price) . ' | ';
+            echo '    <div class="price"> <i class="fa-solid fa-tag"></i> ' . htmlspecialchars($Budget) . ' | ';
             echo '        <span class="location"> <i class="fa-solid fa-location-dot"></i> ' . htmlspecialchars($Location) . '</span></div>';
             echo '    <div class="description">' . htmlspecialchars($Description) . '</div>';
             echo '    <div class="buttons">';

@@ -1,5 +1,5 @@
 <?php
-class Work {
+class Job {
     private $conn;
     private $table = "job";
 

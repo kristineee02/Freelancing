@@ -6,7 +6,7 @@ include('../class/Job.php');
 // Create database connection and Work object
 $database = new Database();
 $db = $database->getConnection();
-$work = new Work($db);
+$job = new Job($db);
 
 // Handle POST request (job submission)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     
     // Add job to database
-    $result = $work->addJob(
+    $result = $job->addJob(
         $client_id,
         $name,
         $email,
@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Handle GET request (fetching jobs)
 else if ($_SERVER["REQUEST_METHOD"] == "GET") {
     // Get all jobs, no need to restrict by user_id for public job listings
-    $jobs = $work->getAllJobs(); // Changed to get all jobs
+    $jobs = $job->getAllJobs(); // Changed to get all jobs
     
     if ($jobs) {
         // Return jobs as JSON
