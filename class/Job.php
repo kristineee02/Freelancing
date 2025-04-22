@@ -49,7 +49,7 @@ class Job {
     $Budget, $Project_Name, $Location) {
         $query = "INSERT INTO " . $this->table . " 
                   (ClientId, FullName, Email, Project_Category, Description, start_date, end_date, Budget, 
-                  Project_Name, Location, Date_created ) 
+                  Project_Name, Location, Date_created) 
                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
         
         $stmt = $this->conn->prepare($query);

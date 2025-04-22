@@ -57,6 +57,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editfname'])) {
         echo "Error updating profile.";
     }
 }    
+
+$stmt = $db->prepare("
+    SELECT j.*, c.firstname, c.lastname 
+    FROM job j
+    JOIN client c ON j.ClientId = c.client_id
+    ORDER BY job_id DESC
+");
+$stmt->execute();
+$jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
     
     
 ?>
@@ -290,8 +300,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editfname'])) {
     </div>
 
     <div class="content-section">
-        <div id="jobSection" class="job-section"></div>
+    <div id="jobSection" class="job-section">
+        <?php
+        // Check if jobs array exists and has items
+        if (isset($jobs) && is_array($jobs) && count($jobs) > 0) {
+            echo '<h2>My Posted Jobs</h2>';
+            foreach ($jobs as $job) {
+                $FullName = $job['firstname'] . ' ' . $job['lastname'];
+                $Project_Category = $job['Project_Category'] ?? 'Job Category';
+                $Description = $job['Description'] ?? 'No description available';
+                $Budget = $job['Budget'] ?? 'N/A';
+                $Location = $job['Location'] ?? 'Remote';
+                $Date_created = $job['Date_created'] ?? 'Recently';
+                $picture = $job['picture'] ?? '../image/prof.jpg';
+                $job_id = $job['job_id'] ?? 0;
+                ?>
+                <div class="job-card">
+                    <div class="job-header">
+                        <h3><?php echo htmlspecialchars($FullName); ?></h3>
+                        <span class="job-budget">$<?php echo htmlspecialchars($Budget); ?></span>
+                    </div>
+                    <div class="job-category">
+                        <span class="category-badge"><?php echo htmlspecialchars($Project_Category); ?></span>
+                    </div>
+                    <div class="job-details">
+                        <p><?php echo htmlspecialchars(substr($Description, 0, 150)) . (strlen($Description) > 150 ? '...' : ''); ?></p>
+                        <div class="job-location">
+                            <span><i class="fas fa-map-marker-alt"></i> <?php echo htmlspecialchars($Location); ?></span>
+                            <span><i class="fas fa-calendar"></i> <?php echo htmlspecialchars($Date_created); ?></span>
+                        </div>
+                    </div>
+                    <div class="job-actions">
+                        <button class="view-job-btn" onclick="viewJobDetails(<?php echo $job_id; ?>)">View Details</button>
+                    </div>
+                </div>
+                <?php
+            }
+        } else {
+            echo '<div class="no-jobs">No jobs available at this time.</div>';
+        }
+        ?>
     </div>
+</div>
+
+    
     
 
     <script>
@@ -330,6 +382,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editfname'])) {
 </script>
 
 <script src="../js/client.js"></script>
-
 </body>
 </html>

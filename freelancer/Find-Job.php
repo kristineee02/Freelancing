@@ -13,7 +13,7 @@ $stmt = $db->prepare("
     ORDER BY job_id DESC
 ");
 $stmt->execute();
-$works = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -118,8 +118,8 @@ $works = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="company-container" id="company-section">
     <?php
     // Check if jobs array exists and has items
-    if (isset($works) && is_array($works) && count($works) > 0) {
-        foreach ($works as $job) {
+    if (isset($jobs) && is_array($jobs) && count($jobs) > 0) {
+        foreach ($jobs as $job) {
             // Ensure these variables are set - either from the $job array or with default values
             $FullName = $job['FullName'] ?? 'Company Name';
             $Project_Category = $job['Project_Category'] ?? 'Job Category';

@@ -3,18 +3,21 @@ create table freelancer (
     firstname VARCHAR (100) NOT NULL,
     lastname VARCHAR (100) NOT NULL,
     email VARCHAR (100) NOT NULL UNIQUE,
-    password VARCHAR(100) NOT NULL
+    password VARCHAR(100) NOT NULL,
+    address VARCHAR(100) NOT NULL,
+    profile_pic VARCHAR(255)
 );
 
 CREATE TABLE work (
-    ->     work_id INT AUTO_INCREMENT PRIMARY KEY,
-    ->     freelancer_id INT NOT NULL,
-    ->     picture VARCHAR(255) NOT NULL,
-    ->     title VARCHAR(100) NOT NULL,
-    ->     description VARCHAR(100),
-    ->     category VARCHAR(100) NOT NULL,
-    ->     FOREIGN KEY (freelancer_id) REFERENCES freelancer(account_id)
-    -> );
+    work_id INT AUTO_INCREMENT PRIMARY KEY,
+    freelancer_id INT NOT NULL,
+    picture VARCHAR(255) NOT NULL,
+    title VARCHAR(100) NOT NULL,
+    description VARCHAR(100),
+    category VARCHAR(100) NOT NULL,
+    date TIMESTAMP CURRENT_TIMESTAMP,
+    FOREIGN KEY (freelancer_id) REFERENCES freelancer(account_id)
+ );
 
 create table job(
     job_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -29,6 +32,7 @@ create table job(
     Project_Name VARCHAR(100),
     Date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     Location VARCHAR(100) NOT NULL,
+    picture VARCHAR(255),
     FOREIGN KEY (ClientId) REFERENCES client(client_id)
 )
 
@@ -37,5 +41,8 @@ create table client (
     firstname VARCHAR (100) NOT NULL,
     lastname VARCHAR (100) NOT NULL,
     email VARCHAR (100) NOT NULL UNIQUE,
-    password VARCHAR(100) NOT NULL
+    password VARCHAR(100) NOT NULL,
+    address VARCHAR(100) NOT NULL,
+    profile_pic VARCHAR(255)
+    
 );
