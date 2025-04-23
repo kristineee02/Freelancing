@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once '../class/Client.php';
-
 $db = new PDO("mysql:host=localhost;dbname=freelancer_signup", "root", "");
 
 

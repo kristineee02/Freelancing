@@ -10,6 +10,15 @@ create table freelancer (
     FOREIGN KEY(about_id) REFERENCES about(about_id)
 );
 
+create table about(
+    about_id INT AUTO_INCREMENT PRIMARY KEY,
+    contact INT(11) NOT NULL,
+    birthday DATE NOT NULL,
+    skills TEXT NOT NULL,
+    history TEXT NOT NULL,
+    socials TEXT NOT NULL
+);
+
 CREATE TABLE work (
     work_id INT AUTO_INCREMENT PRIMARY KEY,
     freelancer_id INT NOT NULL,

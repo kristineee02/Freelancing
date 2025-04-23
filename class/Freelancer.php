@@ -8,10 +8,33 @@ class Freelancer {
     }
 
     public function addFreelancer($firstName, $lastName, $email, $password, $address) {
-            $query = "INSERT INTO " . $this->table . " (firstname, lastname, email, password, address) VALUES (:firstName, :lastName, :email, :password, :address)";
+        try {
+            $this->conn->beginTransaction();
+            
+            // First create an empty about record
+            $aboutStmt = $this->conn->prepare("INSERT INTO about (contact, birthday, skills, history, socials) VALUES ('', '0000-00-00', '', '', '')");
+            $aboutStmt->execute();
+            $aboutId = $this->conn->lastInsertId();
+            
+            // Then create the freelancer with a reference to the about record
+            $query = "INSERT INTO " . $this->table . " (firstname, lastname, email, password, address, about_id) VALUES (:firstName, :lastName, :email, :password, :address, :about_id)";
             $stmt = $this->conn->prepare($query);
-            $stmt->execute([":firstName" => $firstName, ":lastName" => $lastName, ":email" => $email, ":password" => $password, ":address" => $address]);
+            $stmt->execute([
+                ":firstName" => $firstName, 
+                ":lastName" => $lastName, 
+                ":email" => $email, 
+                ":password" => $password, 
+                ":address" => $address,
+                ":about_id" => $aboutId
+            ]);
+            
+            $this->conn->commit();
             return true;
+        } catch (Exception $e) {
+            $this->conn->rollBack();
+            error_log("AddFreelancer error: " . $e->getMessage());
+            return false;
+        }
     }
 
     public function getFreelancerById($account_id) {
@@ -66,16 +89,30 @@ class Freelancer {
     }
 
     // Update about table
-    public function updateAbout($account_id, $contact, $birthday, $skills, $history, $socials) {
+    public function updateAbout($account_id, $name, $contact, $birthday, $skills, $history, $socials) {
         try {
             $stmt = $this->conn->prepare("SELECT about_id FROM freelancer WHERE account_id = :account_id");
             $stmt->execute([':account_id' => $account_id]);
             $about_id = $stmt->fetchColumn();
-
+    
             if (!$about_id) {
                 throw new Exception("No about_id found for account_id: $account_id");
             }
-
+            
+            // Parse name and update the freelancer table
+            $nameParts = explode(' ', $name, 2);
+            $firstName = $nameParts[0];
+            $lastName = isset($nameParts[1]) ? $nameParts[1] : '';
+            
+            // Update the freelancer table with new name
+            $nameStmt = $this->conn->prepare("UPDATE freelancer SET firstname = :firstName, lastname = :lastName WHERE account_id = :account_id");
+            $nameStmt->execute([
+                ':firstName' => $firstName,
+                ':lastName' => $lastName,
+                ':account_id' => $account_id
+            ]);
+    
+            // Update the about table
             $query = "UPDATE about 
                       SET contact = :contact, birthday = :birthday, skills = :skills, history = :history, socials = :socials 
                       WHERE about_id = :about_id";

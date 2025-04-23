@@ -1,3 +1,28 @@
+<?php
+session_start();
+$db = new PDO("mysql:host=localhost;dbname=freelancer_signup", "root", "");
+
+$firstName = $_SESSION['firstName'] ?? '';
+$lastName = $_SESSION['lastName'] ?? '';
+$fullName = trim($firstName . " " . $lastName);
+  
+// Fetch all freelancers from the database
+try {
+    // Create a query to fetch freelancers with their about information using JOIN
+    $query = "SELECT f.account_id, f.firstname, f.lastname, f.profile_pic, a.skills 
+              FROM freelancer f 
+              LEFT JOIN about a ON f.about_id = a.about_id";
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    $freelancers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    error_log("Error fetching freelancers: " . $e->getMessage());
+    $freelancers = []; // Set an empty array if query fails
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +65,7 @@
             <div class="sub-menu">
                 <div class="user-info">
                     <img class="freelancer-work" src="../image/prof.jpg">
-                    <h4>Kristine Sabuero</h4>
+                    <h4><?php echo htmlspecialchars($fullName); ?></h4>
                 </div>
                 <hr>
 
@@ -96,59 +121,33 @@
     <p class="post">
         <b>FREELANCERS</b>
     </p>
-    <div class="contents">
-        <section class="freelancers">
-            <div class="freelancer-list">
-                <div class="cards">
-                    <p>$60/hr</p>
-                    <img class = "prof" src = "../image/yellow circle.png" alt="profile" >
-                    <strong>Kellin Quinn</strong>
-                    <p>⭐ 4.5/5 (40 jobs)</p>
-                    <p>Web Designer</p>
-                    <a href="clientview-freelancerprofile.php">See more</a>
-                </div>
-                <div class="cards">
-                    <p>$60/hr</p>
-                    <img class = "prof" src = "../image/yellow circle.png" alt="profile" >
-                    <strong>Marshall Mathers</strong>
-                    <p>⭐ 4.5/5 (39 jobs)</p>
-                    <p>Graphic Designer</p>
-                    <a href="clientview-freelancerprofile.php">See more</a>
-                </div>
-                <div class="cards">
-                    <p>$40/hr</p>
-                    <img class = "prof" src = "../image/yellow circle.png" alt="profile" >
-                    <strong>Alex Gaskarth</strong>
-                    <p>⭐ 4/5 (30 jobs)</p>
-                    <p>Animation</p>
-                    <a href="clientview-freelancerprofile.php">See more</a>
-                </div>
-                <div class="cards">
-                    <p>$80/hr</p>
-                    <img class = "prof" src = "../image/yellow circle.png" alt="profile" >
-                    <strong>Abel Tesfaye</strong>
-                    <p>⭐ 5/5 (60 jobs)</p>
-                    <p>Product Design</p>
-                    <a href="clientview-freelancerprofile.php">See more</a>
-                </div>
-                <div class="cards">
-                    <p>$65/hr</p>
-                    <img class = "prof" src = "../image/yellow circle.png" alt="profile" >
-                    <strong>Gerard Way</strong>
-                    <p>⭐ 4.8/5 (50 jobs)</p>
-                    <p>Mobile Design</p>
-                    <a href="clientview-freelancerprofile.php">See more</a>
-                </div> 
-                <div class="cards">
-                    <p>$65/hr</p>
-                    <img class = "prof" src = "../image/yellow circle.png" alt="profile" >
-                    <strong>Gerard Way</strong>
-                    <p>⭐ 4.8/5 (50 jobs)</p>
-                    <p>Mobile Design</p>
-                    <a href="clientview-freelancerprofile.php">See more</a>
-                </div> 
-            </section>
-    </div>
+    
+    <div class="contents" id="freelancer-contents">
+    <?php
+    if (!empty($freelancers)) {
+        echo '<div class="freelancer-list">';
+        foreach ($freelancers as $freelancer) {
+            // Create variables for display
+            $FullName = ($freelancer['firstname'] ?? 'Unknown') . ' ' . ($freelancer['lastname'] ?? 'User');
+            $picture = $freelancer['profile_pic'] ?? '../image/prof.jpg';
+            // Extract first skill as category
+            $skills = $freelancer['skills'] ?? '';
+            $skillsArray = explode(',', $skills);
+            $Project_Category = !empty($skillsArray[0]) ? trim($skillsArray[0]) : 'Freelancer';
+            
+            echo '<div class="cards">';
+            echo '    <img src="' . htmlspecialchars($picture) . '" alt="freelancer profile picture">';
+            echo '    <strong>' . htmlspecialchars($FullName) . '</strong>';
+            echo '    <p>' . htmlspecialchars($Project_Category) . '</p>';
+            echo '    <a href="clientview-freelancerprofile.php?id=' . $freelancer['account_id'] . '">See more</a>';
+            echo '</div>';
+        }
+        echo '</div>';
+    } else {
+        echo '<div class="no-freelancers">No freelancers available at this time.</div>';
+    }
+    ?>
+</div>
 
     <script>
         document.addEventListener("click", function (event) {
