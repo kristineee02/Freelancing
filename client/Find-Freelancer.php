@@ -1,15 +1,18 @@
 <?php
 session_start();
+include '../api/database.php';
+require_once '../class/Freelancer.php';
 $db = new PDO("mysql:host=localhost;dbname=freelancer_signup", "root", "");
 
 $firstName = $_SESSION['firstName'] ?? '';
 $lastName = $_SESSION['lastName'] ?? '';
 $fullName = trim($firstName . " " . $lastName);
+
+
   
-// Fetch all freelancers from the database
 try {
-    // Create a query to fetch freelancers with their about information using JOIN
-    $query = "SELECT f.account_id, f.firstname, f.lastname, f.profile_pic, a.skills 
+    // query to fetch freelancers 
+    $query = "SELECT f.account_id, f.firstname, f.lastname, f.profile_pic, a.profession 
               FROM freelancer f 
               LEFT JOIN about a ON f.about_id = a.about_id";
     $stmt = $db->prepare($query);
@@ -130,19 +133,16 @@ try {
             // Create variables for display
             $FullName = ($freelancer['firstname'] ?? 'Unknown') . ' ' . ($freelancer['lastname'] ?? 'User');
             $picture = $freelancer['profile_pic'] ?? '../image/prof.jpg';
-            // Extract first skill as category
-            $skills = $freelancer['skills'] ?? '';
-            $skillsArray = explode(',', $skills);
-            $Project_Category = !empty($skillsArray[0]) ? trim($skillsArray[0]) : 'Freelancer';
+            $profession = $freelancer['profession'] ?? '';
+            $account_id = (int)($freelancer['account_id'] ?? 0);
             
             echo '<div class="cards">';
             echo '    <img src="' . htmlspecialchars($picture) . '" alt="freelancer profile picture">';
             echo '    <strong>' . htmlspecialchars($FullName) . '</strong>';
-            echo '    <p>' . htmlspecialchars($Project_Category) . '</p>';
-            echo '    <a href="clientview-freelancerprofile.php?id=' . $freelancer['account_id'] . '">See more</a>';
+            echo '    <p>' . htmlspecialchars($profession) . '</p>';
+            echo '    <a href="../freelancer/freelancer-work.php?id=' . urlencode($account_id) . '" class="find">See More</a>';       
             echo '</div>';
         }
-        echo '</div>';
     } else {
         echo '<div class="no-freelancers">No freelancers available at this time.</div>';
     }

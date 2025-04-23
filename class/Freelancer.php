@@ -88,8 +88,26 @@ class Freelancer {
         }
     }
 
-    // Update about table
-    public function updateAbout($account_id, $name, $contact, $birthday, $skills, $history, $socials) {
+    public function addAbout($contact, $profession, $skills, $history, $socials) {
+        try {
+            $query = "INSERT INTO about (contact, profession, skills, history, socials) 
+                      VALUES (:contact, :profession, :skills, :history, :socials)";
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute([
+                ':contact' => $contact,
+                ':profession' => $profession,
+                ':skills' => $skills,
+                ':history' => $history,
+                ':socials' => $socials,
+            ]);
+            return $this->conn->lastInsertId();
+        } catch (PDOException $e) {
+            error_log("AddAbout error: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function updateAbout($account_id, $contact, $skills, $history, $socials, $profession) {
         try {
             $stmt = $this->conn->prepare("SELECT about_id FROM freelancer WHERE account_id = :account_id");
             $stmt->execute([':account_id' => $account_id]);
@@ -98,28 +116,14 @@ class Freelancer {
             if (!$about_id) {
                 throw new Exception("No about_id found for account_id: $account_id");
             }
-            
-            // Parse name and update the freelancer table
-            $nameParts = explode(' ', $name, 2);
-            $firstName = $nameParts[0];
-            $lastName = isset($nameParts[1]) ? $nameParts[1] : '';
-            
-            // Update the freelancer table with new name
-            $nameStmt = $this->conn->prepare("UPDATE freelancer SET firstname = :firstName, lastname = :lastName WHERE account_id = :account_id");
-            $nameStmt->execute([
-                ':firstName' => $firstName,
-                ':lastName' => $lastName,
-                ':account_id' => $account_id
-            ]);
     
-            // Update the about table
             $query = "UPDATE about 
-                      SET contact = :contact, birthday = :birthday, skills = :skills, history = :history, socials = :socials 
+                      SET contact = :contact, profession = :profession, skills = :skills, history = :history, socials = :socials 
                       WHERE about_id = :about_id";
             $stmt = $this->conn->prepare($query);
             return $stmt->execute([
                 ':contact' => $contact,
-                ':birthday' => $birthday,
+                ':profession' => $profession,
                 ':skills' => $skills,
                 ':history' => $history,
                 ':socials' => $socials,

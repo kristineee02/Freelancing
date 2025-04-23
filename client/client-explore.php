@@ -128,7 +128,7 @@ $works = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     $picture = htmlspecialchars("../api/" . $work['picture']);
                     $fullName = trim($work['firstname'] . ' ' . $work['lastname']);
                     
-                    echo '<div class="card" data-id="../freelancer/freelancer-webdesign.php?id=' . $work['work_id'] . '" data-category="' . htmlspecialchars($work['category']) . '">';
+                    echo '<div class="card" data-id="../client/freelancer-webdesign.php?id=' . $work['work_id'] . '" data-category="' . htmlspecialchars($work['category']) . '">';
                     echo '    <div class="card-image" style="background-image: url(\'' . $picture . '\');">';
                     echo '    </div>';
                     echo '    <div class="footer">';

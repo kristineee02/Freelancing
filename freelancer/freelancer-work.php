@@ -13,6 +13,7 @@ if (!$userId) {
 
 $freelancer = new Freelancer($db);
 
+
 // Load session data
 $firstName = $_SESSION['firstName'] ?? '';
 $lastName = $_SESSION['lastName'] ?? '';
@@ -56,6 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editfname'])) {
         echo "Error updating profile.";
     }
 }    
+
 ?>
 
 <!DOCTYPE html>
