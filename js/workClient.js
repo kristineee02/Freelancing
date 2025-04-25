@@ -44,7 +44,6 @@ function loadWorks() {
         });
 }
 
-// Function to redirect to work details page
 function viewWorkDetails(workId) {
     window.location.href = `freelancer-webdesign.php?id=${workId}`;
 }
