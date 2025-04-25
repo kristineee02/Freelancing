@@ -122,7 +122,6 @@ $works = $stmt->fetchAll(PDO::FETCH_ASSOC);
             for ($i = 0; $i < $totalWorks; $i += $worksPerRow) {
                 echo '<section class="container">';
                 
-                // Create up to 4 cards per row
                 for ($j = $i; $j < min($i + $worksPerRow, $totalWorks); $j++) {
                     $work = $works[$j];
                     $picture = htmlspecialchars("../api/" . $work['picture']);
@@ -133,7 +132,7 @@ $works = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     echo '    </div>';
                     echo '    <div class="footer">';
                     echo '        <h5 id="text">' . htmlspecialchars($fullName) . '</h5>';
-                    echo '        <span>&hearts; 0</span>'; // You can add likes functionality later
+                    echo '        <span>&hearts; 0</span>'; 
                     echo '    </div>';
                     echo '</div>';
                 }

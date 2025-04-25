@@ -140,7 +140,7 @@ try {
             echo '    <img src="' . htmlspecialchars($picture) . '" alt="freelancer profile picture">';
             echo '    <strong>' . htmlspecialchars($FullName) . '</strong>';
             echo '    <p>' . htmlspecialchars($profession) . '</p>';
-            echo '    <a href="../freelancer/freelancer-work.php?id=' . urlencode($account_id) . '" class="find">See More</a>';       
+            echo '    <a href="freelancerprofile.php?id=' . urlencode($account_id) . '" class="find">See More</a>';       
             echo '</div>';
         }
     } else {
