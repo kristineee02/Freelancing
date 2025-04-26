@@ -45,5 +45,5 @@ function loadWorks() {
 }
 
 function viewWorkDetails(workId) {
-    window.location.href = `freelancer-webdesign.php?id=${workId}`;
+    window.location.href = `buy-client.php?id=${workId}`;
 }

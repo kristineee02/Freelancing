@@ -147,6 +147,12 @@
                         <p>fantastic work! I'm super satisfied</p>
                     </fieldset>
                 </div>
+                <div class="review-box">
+                    <p>Your comment</p>
+                    <fieldset>
+                        <p></p>
+                    </fieldset>
+                </div>
             </div>
         </div>
     </main>
