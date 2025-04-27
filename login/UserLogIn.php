@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Try logging in as client
+    // logging in as client
     $clientUser = $client->login($email, $password);
     if ($clientUser) {
         $_SESSION['user_id'] = $clientUser['client_id'];
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['submit'])) {
         exit;
     }
 
-    // Try logging in as freelancer
+    // logging in as freelancer
     $freelancerUser = $freelancer->login($email, $password);
     if ($freelancerUser) {
         $_SESSION['user_id'] = $freelancerUser['account_id'];
