@@ -20,12 +20,14 @@
             <form class="form" method="POST" id="formId">
                 <input type="text" id="email" placeholder="Username or Email" required>
                 <input type="password" id="password" placeholder="Password" required>
-                <div class="forgot-password">Forgot password?</div>
+                <div class="forgot-password"> Forgot password?</div>
                 <button type="submit" name="submit">Log in</button>
             </form>
             <div class="login">New here? <a href="../signup/SignupAS.php">Sign Up</a></div>
         </div>
     </div>
     <script src="../js/login.js"></script>
+
+        
 </body>
 </html>

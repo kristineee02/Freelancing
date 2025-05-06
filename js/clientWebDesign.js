@@ -30,7 +30,7 @@ function getAllWork(){
             document.getElementById("workCategory").textContent = `${data.workData.category}`;
             document.getElementById("date").textContent = `${data.workData.date}`;
             document.getElementById("workPicture").innerHTML = `
-                <img src="../uploads/${data.workData.picture}" style="height: 100%;width:100%; background-size:cover;">
+                <img src="../uploads/${data.workData.picture}" style="height: 100%;width:100%; background-size:cover; border-radius:10px;">
             `;
 
             document.getElementById("workDescription").textContent = `${data.workData.description}`;

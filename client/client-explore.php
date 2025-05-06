@@ -35,7 +35,7 @@
                         </ul>
                     </div>
                 </li>
-                <li><a href="client-about.v">About</a></li>
+                <li><a href="client-about.php">About</a></li>
             </ul>
         </div>
 

@@ -14,11 +14,7 @@ body{
     float: left;
     margin-left: 3%;
 }
-hr {
-    margin-top: 5px;
-    border: none;
-    border-top: 2px solid rgb(128, 125, 125);
-}
+
 .logo{
     display: flex;
     gap: 20px;
@@ -1043,100 +1039,151 @@ form {
     cursor: pointer;
 }
 /*freelancer-webdesign*/
-
 main {
-    padding: 30px;
-    max-width: 900px;
-    margin: 30px auto;
-}
-.work-box {
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-.work-box:hover {
-    transform: scale(1.05);
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    font-family: 'Montserrat', sans-serif;
 }
 
-.design-preview {
-    width: 100%;
-    height: 400px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    border-radius: 10px;
-}
-
-.project-item {
-    width: 200px;
-    height: 200px;
-    background-size: cover;
-    background-position: center;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-.project-item:hover {
-    transform: scale(1.05);
-}
-
-.work-description {
-    margin-top: 10px;
-}
-.work-description p {
-    font-size: 16px;
-    color: #333;
-    text-align: justify;
-    padding: 5px;
-    line-height: 1.7;
-}
- .work-category {
-    display: inline-block;
-    font-size: 14px;
-}
 
 .design-profile {
     display: flex;
     align-items: center;
-    gap: 10px;
-
-}
-.time{
-    margin-top: 15px;
-    font-size: 15px;
-    color: #5f5e5e;
+    gap: 15px;
+    margin-bottom: 20px;
+    position: relative;
 }
 
 .avatar {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     background: url('../image/prof.jpg') no-repeat center/cover;
     border-radius: 50%;
     cursor: pointer;
+    border: 3px solid #FFE295;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.avatar:hover {
+    transform: scale(1.05);
+}
+
+#nameDisplay2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+h2#workTitle {
+    font-size: 28px;
+    margin: 5px 0;
+    color: #222;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.work-category {
+    display: inline-block;
+    background-color: #f5f5f5;
+    color: #555;
+    font-size: 14px;
+    padding: 5px 12px;
+    border-radius: 15px;
+    margin-top: 8px;
+    font-weight: 500;
+    width: 130px;
+}
+
+.time {
+    margin-top: 15px;
+    font-size: 15px;
+    color: #5f5e5e;
+    font-style: italic;
 }
 
 .design-preview {
     width: 100%;
-    height: 400px;
-    border-radius: 8px;
-    margin: 20px 0;
-    box-shadow: 0 4px 10px rgba(24, 24, 24, 0.2); 
+    height: 450px;
+    border-radius: 15px;
+    margin: 25px 0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    object-fit: cover;
+    overflow: hidden;
+    background-position: center;
+    background-size: cover;
+    position: relative;
 }
 
-.like-button {
-    text-align: right;
-    font-size: 20px;
-}
 .heart-icon {
     margin-left: 850px;
-    width: 30px;
-    height: 30px;
+    width: 45px;
+    height: 45px;
     background-color: #fcf7b1;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    position: relative;
+    top: -10px;
 }
 
+.heart-icon:hover {
+    background-color: #FFE295;
+    transform: scale(1.1);
+}
+
+.heart-icon span i {
+    color: #ff4757;
+    font-size: 20px;
+    transition: transform 0.2s ease;
+}
+
+.heart-icon:hover span i {
+    transform: scale(1.2);
+}
+
+.work-description {
+    margin-top: 10px;
+    padding: 10px 0;
+    line-height: 1.6;
+    color: #444;
+    font-size: 16px;
+}
+
+.work-description p {
+    margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .heart-icon {
+        margin-left: auto;
+        margin-right: 20px;
+    }
+    
+    .design-preview {
+        height: 350px;
+    }
+}
+
+@media (max-width: 600px) {
+    .design-showcase {
+        padding: 20px;
+    }
+    
+    .design-preview {
+        height: 280px;
+    }
+    
+    h2#workTitle {
+        font-size: 22px;
+    }
+}
 
 /*Find-Job-details*/
 .job-details {

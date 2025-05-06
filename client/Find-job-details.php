@@ -17,7 +17,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Freelancing</title>
-    <link rel ="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel ="stylesheet" href="../style/clients.css">
 </head>
 <body>
     <div class="logo">
@@ -50,8 +51,8 @@
         <div class="sub-menu-wrap" id="subMenu">
             <div class="sub-menu">
                 <div class="user-info">
-                    <img class="profile" src="../image/prof.jpg">
-                    <h4>Kristine Sabuero</h4>
+                    <img class="profile" src="../image/prof.jpg"  id="imageDisplay">
+                    <h4 id="nameDisplay"></h4>
                 </div>
                 <hr>
 
@@ -133,6 +134,29 @@
         }
     });
 });
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    
+    fetch("../api/store_session.php")
+    .then(response => response.json())
+    .then(data => {
+        if(data.status === "success"){
+            const freelancerId = data.userId;
+            return fetch("../api/client_api.php?userId=" + freelancerId)
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.status === "success"){
+            document.getElementById("imageDisplay").src = `../uploads/${data.clientData.profile_pic}`;
+            document.getElementById("nameDisplay").textContent = `${data.clientData.first_name} ${data.clientData.last_name}`;
+        }
+    })
+    .catch(error => console.error(error));
+    });
 </script>
 
 <script src="../js/clientFindJobDetails.js"></script>

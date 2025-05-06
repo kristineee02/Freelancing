@@ -28,15 +28,15 @@
 
         <div class="dashboard">
             <ul>
-              <li><a href="client-explore.php" >Explore</a>  </li>
-             <li> <a href="Find-Freelancer.php" class="tight-text">Find Designer  <i class="fa fa-caret-down"></i></a> 
-             <div class="dropdown_menu">
-                <ul>
-                    <li><a href="client-freelancer-work.php" class="tight-text">Post Job</a></li>
-                </ul>
-             </div>
-            </li>
-             <li> <a href="client-about.php">About</a></li>
+                <li><a href="client-explore.php" class="active-dash">Explore</a></li>
+                <li><a href="Find-Freelancer.php" class="tight-text">Find Designer <i class="fa fa-caret-down"></i></a>
+                    <div class="dropdown_menu">
+                        <ul>
+                            <li><a href="client-freelancer-work.php" class="tight-text">Post Job</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="client-about.v">About</a></li>
             </ul>
         </div>
 
@@ -71,24 +71,22 @@
             </div>
         </div>
     </div>
+    <hr>
     <main>
         <form class="design-showcase" >
             <div class="design-profile">
-            <div class="avatar" style="background-image: url('../image/prof.jpg');" id="imageDisplay2"></div>
-            <span id="nameDisplay2">
-                John Doe
-            </span>
-            <button class="follow-btn">FOLLOW +</button>
+            <div class="avatar"  id="imageDisplay2"></div>
+            <span id="nameDisplay2"></span>
             </div>
-            <h2 id="workTitle">Modern Website Design</h2>
-            <span class="work-category" id="workCategory">Web Design</span>
-            <div class="time" id="date">April 28, 2025</div>
-            <div class="design-preview" style="background-image: url('../image/design-preview.jpg');" id="workPicture"></div>
+            <h2 id="workTitle"></h2>
+            <span class="work-category" id="workCategory"></span>
+            <div class="time" id="date"></div>
+            <div class="design-preview"  id="workPicture"></div>
             <div class="heart-icon">
                 <span><i class="fa-solid fa-heart"></i></span>
             </div>
             <div class="work-description" id="workDescription">
-                <p>A clean and modern website design focused on user experience and visual aesthetics. This project was created for a tech startup looking to showcase their innovative products with a minimalist approach.</p>
+                <p></p>
             </div>
         </form>
         

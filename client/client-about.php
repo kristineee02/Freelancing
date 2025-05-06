@@ -52,7 +52,7 @@
             <div class="sub-menu">
                 <div class="user-info">
                     <img class="profile" src="../image/prof.jpg" id="imageDisplay">
-                    <h4 id="nameDisplay">Kristine Sabuero</h4>
+                    <h4 id="nameDisplay"></h4>
                 </div>
                 <hr>
 
@@ -155,7 +155,7 @@
         <section class="developer-container">
             <div class="developer-card">
                 <div class="developer-image">
-                    <img src="../image/ui.png">
+                    <img src="../image/ven.jpg">
                     Vennasshier Malali
                     <h6>UX Designer</h6>
                 </div>
@@ -169,7 +169,7 @@
           </div>
             <div class="developer-card">
                 <div class="developer-image">
-                <img src="../image/ui.png">
+                <img src="../image/luis.jpg">
                 Mark Luis Salvador
                 <h6>UX Designer</h6>
                 </div>
@@ -206,7 +206,7 @@
             notifPopup.style.display = 'none';
         }
     
-        fetch("../api/store_session.php")
+    fetch("../api/store_session.php")
     .then(response => response.json())
     .then(data => {
         if(data.status === "success"){

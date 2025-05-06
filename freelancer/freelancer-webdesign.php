@@ -68,7 +68,7 @@
     <main>
         <form class="design-showcase">
             <div class="design-profile">
-                <div class="avatar" style="background-image: url('../image/prof.jpg');"></div>
+                <div class="avatar" ></div>
                 <span id="nameDisplay"></span>
             </div>
 
