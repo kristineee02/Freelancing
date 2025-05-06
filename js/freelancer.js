@@ -1,134 +1,129 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const modal = document.getElementById("editProfileModal");
-    const editProfileBtn = document.getElementById("EditProfile");
-    if (modal && editProfileBtn) {
-        const closeBtn = modal.querySelector(".close");
-        editProfileBtn.onclick = () => modal.style.display = "block";
-        closeBtn.onclick = () => modal.style.display = "none";
-    }
-
-    //freelancer-work
-    loadWorks();
-
-    // Form submission
-    const pubForm = document.getElementById("pubpopup");
-    if (pubForm) {
-        pubForm.addEventListener("submit", function(event) {
-            event.preventDefault();
-
-            const title = document.getElementById("Title").value.trim();
-            const description = document.getElementById("Description").value.trim();
-            const category = document.getElementById("Category").value.trim();
-            const freelancerId = document.querySelector("input[name='freelancer_id']").value;
-
-            if (!title || !description || !category) {
-                alert("Please fill all required fields.");
-                return;
-            }
-
-            if (selectedFiles.length === 0) {
-                alert("Please upload at least one image.");
-                return;
-            }
-
-            const formData = new FormData();
-            selectedFiles.forEach(file => {
-                formData.append("picture[]", file);
-            });
-            
-            formData.append("title", title);
-            formData.append("description", description);
-            formData.append("category", category);
-            formData.append("freelancer_id", freelancerId);
-
-            fetch("../api/work_api.php", {
-                method: "POST",
-                body: formData
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.status === "success") {
-                    alert("Work posted successfully!");
-                    closePopup();
-                    loadWorks(); // Reload works after successful submission
-                } else {
-                    alert("Error: " + (data.message || "Unknown error"));
-                }
-            })
-            .catch(error => {
-                console.error("Error publishing work:", error);
-                alert("Failed to publish work: " + error.message);
-            });
-        });
-    }
+document.addEventListener("DOMContentLoaded", function(){
+    initModal();
+    getFreelancerById();
+    
+    document.getElementById("editAbout").addEventListener("click", function(event){
+        event.preventDefault();
+        document.getElementById("editAboutModal").classList.display = "block";
+    });
 });
 
-function loadWorks() {
-    fetch("../api/work_api.php")
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+let aboutId = null;
+function initModal() {
+    document.addEventListener('click', function(e) {
+        if (e.target && e.target.id === 'editAbout') {
+            e.preventDefault();
+            document.getElementById("editAboutModal").classList.add("show");
         }
-        return response.json();
-    })
-    .then(data => {
-        const workSection = document.getElementById("workSection");
-        if (!workSection) return;
-        
-        workSection.innerHTML = ''; // Clear existing content
-            
-        if (data.status === "success" && data.works && data.works.length > 0) {
-            data.works.forEach(work => {
-                const imagePath = "../api/uploads" + work.picture.split(',')[0];
-                
-                workSection.innerHTML += `
-                    <div class="work-box" 
-                        style="background-image: url('${imagePath}');
-                              background-size: cover;"
-                              background-position: center;"
-                              onclick="viewWorkDetails(${work.work_id})">>
-                        <div class="work-overlay">
-                            <h3>${work.title || 'Untitled'}</h3>
-                            <p>${work.description || ''}</p>
-                            <span class="category-tag">${work.category || ''}</span>
-                        </div>
-                    </div>
-                `;
-            });
-        } else {
-            workSection.innerHTML = '<p>No works available yet. Click the + to add your first work!</p>';
-        }
-    })
-    .catch(error => {
-        console.error("Error fetching works:", error);
-        const workSection = document.getElementById("workSection");
-        if (workSection) {
-            workSection.innerHTML = `<div class="error-message">Failed to load works: ${error.message}</div>`;
+
+        if (e.target && e.target.classList.contains('close')) {
+            document.getElementById("editAboutModal").classList.remove("show");
         }
     });
 
-    // Function to redirect to work details page
-    function viewWorkDetails(workId) {
-    window.location.href = `freelancer-webdesign.php?id=${workId}`;
+    window.addEventListener('click', function(e) {
+        const modal = document.getElementById("editAboutModal");
+        if (e.target === modal) {
+            modal.classList.remove("show");
+        }
+    });
 }
+function getFreelancerById() {
+    fetch("../api/store_session.php", {
+        method: "GET",
+        headers: {"Content-Type": "application/json"},
+        credentials: "include"
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.status === "success" && data.userId){
+            return fetch(`../api/freelancer_api.php?userId=${data.userId}`, {
+                method: "GET",
+                headers: {"Content-Type": "application/json"},
+                credentials: "include"
+            });
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.status === "success" && data.freelancerData){
+            document.getElementById("userInfoDocument").innerHTML = "";
+            document.getElementById("userInfoDocument").innerHTML += `
+                <img src="../uploads/${data.freelancerData.profile_pic}" class="profile" alt="Profile">
+                <h4>${data.freelancerData.first_name} ${data.freelancerData.last_name}</h4>
+            `;
+
+            document.getElementById("profileHeaderDocument").innerHTML = "";
+            document.getElementById("profileHeaderDocument").innerHTML += `
+                <img src="../uploads/${data.freelancerData.profile_pic}" alt="Profile Image" class="profile-image">            
+                <div class="profile-info">
+                    <h1>${data.freelancerData.first_name} ${data.freelancerData.last_name}</h1>
+                    <p class="location">${data.freelancerData.address}</p>
+                </div>
+            `;
+
+            getAboutById(data.freelancerData.about_id);
+
+            document.getElementById("aboutUpdateForm").addEventListener("submit", function(event){
+                event.preventDefault();
+                updateAbout(data.freelancerData.about_id);
+            });
+        }
+    })
+    .catch(error => {
+        console.error("Error loading user data:", error);
+    });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    const editAboutModal = document.getElementById("editAboutModal");
-    const editAboutBtn = document.getElementById("editAbout");
-    const closeAbout = document.getElementsByClassName("close_about")[0];
 
-    editAboutBtn.onclick = function () {
-        editAboutModal.style.display = "block";
-    };
+function updateAbout(id){
+    const formData = {
+        id: Number(id),
+        contact: document.getElementById("editnumber").value,
+        profession: document.getElementById("editprofession").value,
+        skills: document.getElementById("editSkills").value,
+        history: document.getElementById("editHistory").value,
+        socials: document.getElementById("editSocials").value
+    }
 
-    closeAbout.onclick = function () {
-        editAboutModal.style.display = "none";
-    };
-});
+    fetch("../api/about_api.php", {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {"Content-Type": "application/json"}
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.status === "success"){
+            alert("Updated Successfully!");
+            window.location.reload();
+        }
+    })
+    .catch(error => console.error(error));
+}
 
+function getAboutById(id){
+    fetch("../api/about_api.php?userId=" + Number(id))
+    .then(response => response.json())
+    .then(data => {
+        if(data.status === "success"){
+            
+            document.getElementById("contactData").textContent = `Contact: ${data.aboutData.contact}`;
+            document.getElementById("professionData").textContent = `Profession: ${data.aboutData.profession}`;
+            document.getElementById("skillsData").textContent = `${data.aboutData.skills}`;
+            document.getElementById("historyData").textContent = `${data.aboutData.history}`;
+            document.getElementById("socialsData").textContent = `${data.aboutData.socials}`;
+
+            document.getElementById("editnumber").value = data.aboutData.contact;
+            document.getElementById("editprofession").value = data.aboutData.profession;
+            document.getElementById("editSkills").value = data.aboutData.skills;
+            document.getElementById("editHistory").value = data.aboutData.history;
+            document.getElementById("editSocials").value = data.aboutData.socials;
+        }
+    })
+    .catch(error => console.error(error));
+}
+
+function toggleMenu() {
+    let subMenu = document.getElementById("subMenu");
+    subMenu.classList.toggle("open");
+}

@@ -1,64 +1,79 @@
-create table freelancer (
-    account_id INT AUTO_INCREMENT PRIMARY KEY,
-    firstname VARCHAR (100) NOT NULL,
-    lastname VARCHAR (100) NOT NULL,
-    email VARCHAR (100) NOT NULL UNIQUE,
-    password VARCHAR(100) NOT NULL,
-    address VARCHAR(100) NOT NULL,
-    profile_pic VARCHAR(255),
-    about_id INT,
-    FOREIGN KEY(about_id) REFERENCES about(about_id),
-    profession VARCHAR(100) NOT NULL
-);
+CREATE DATABASE freelancing;
+USE freelancing;
 
 create table about(
     about_id INT AUTO_INCREMENT PRIMARY KEY,
-    contact INT(11) NOT NULL,
-    profession VARCHAR(100) NOT NULL,
+    contact VARCHAR(15) NOT NULL,
+    profession VARCHAR(255) NOT NULL,
     skills TEXT NOT NULL,
     history TEXT NOT NULL,
     socials TEXT NOT NULL
 );
 
-CREATE TABLE work (
-    work_id INT AUTO_INCREMENT PRIMARY KEY,
-    freelancer_id INT NOT NULL,
-    picture VARCHAR(255) NOT NULL,
-    title VARCHAR(100) NOT NULL,
-    description VARCHAR(100),
-    category VARCHAR(100) NOT NULL,
-    date TIMESTAMP CURRENT_TIMESTAMP,
-    likes INT(11) NOT NULL,
-    FOREIGN KEY (freelancer_id) REFERENCES freelancer(account_id)
- );
-
-create table job(
-    job_id INT AUTO_INCREMENT PRIMARY KEY,
-    ClientId INT NOT NULL,
-    FullName VARCHAR(100) NOT NULL,
-    Email VARCHAR(100) NOT NULL,
-    Project_Category VARCHAR(100) NOT NULL,
-    Description TEXT NOT NULL,
-    start_date DATE,
-    end_date DATE,
-    Budget DECIMAL(10, 2),
-    Project_Name VARCHAR(100),
-    Date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    Location VARCHAR(100) NOT NULL,
-    FOREIGN KEY (ClientId) REFERENCES client(client_id)
-)
-
-create table client (
-    client_id INT AUTO_INCREMENT PRIMARY KEY,
-    firstname VARCHAR (100) NOT NULL,
-    lastname VARCHAR (100) NOT NULL,
-    email VARCHAR (100) NOT NULL UNIQUE,
-    password VARCHAR(100) NOT NULL,
-    address VARCHAR(100) NOT NULL,
+create table freelancer (
+    freelancer_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR (255100) NOT NULL,
+    last_name VARCHAR (255) NOT NULL,
+    email VARCHAR (255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
     profile_pic VARCHAR(255),
     about_id INT,
     FOREIGN KEY(about_id) REFERENCES about(about_id)
 );
+
+create table client (
+    client_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR (255) NOT NULL,
+    last_name VARCHAR (255) NOT NULL,
+    email VARCHAR (255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    profile_pic VARCHAR(255),
+    about_id INT,
+    FOREIGN KEY(about_id) REFERENCES about(about_id)
+);
+
+
+CREATE TABLE work (
+    work_id INT AUTO_INCREMENT PRIMARY KEY,
+    freelancer_id INT NOT NULL,
+    picture VARCHAR(255) NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    description VARCHAR(255),
+    category VARCHAR(255) NOT NULL,
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (freelancer_id) REFERENCES freelancer(freelancer_id)
+ );
+
+CREATE TABLE about_job (
+    about_job_id INT AUTO_INCREMENT PRIMARY KEY,
+    about_us TEXT NOT NULL,
+    role TEXT NOT NULL,
+    tasks TEXT NOT NULL,
+    benefits TEXT NOT NULL,
+    requirements TEXT NOT NULL
+);
+
+create table job(
+    job_id INT AUTO_INCREMENT PRIMARY KEY,
+    client_id INT NOT NULL,
+    project_title VARCHAR(255),
+    project_category VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    start_date DATE,
+    end_date DATE,
+    budget DECIMAL(10, 2),
+    date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    location VARCHAR(255) NOT NULL,
+    education TEXT NOT NULL,
+    experience TEXT NOT NULL,
+    about_job_id INT,
+    FOREIGN KEY (client_id) REFERENCES client(client_id),
+    FOREIGN KEY (about_job_id) REFERENCES about_job(about_job_id)
+);
+
+
 
 
 

@@ -1,11 +1,3 @@
-<?php
-session_start();
-
-$firstName = $_SESSION['firstName'] ?? '';
-$lastName = $_SESSION['lastName'] ?? '';
-$fullName = trim($firstName . " " . $lastName);
-    
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +8,19 @@ $fullName = trim($firstName . " " . $lastName);
     <link rel ="stylesheet" href="../style/style.css">
 </head>
 <body>
+    <?php
+        session_start();
+        if(!isset($_SESSION["userId"])){
+            echo '<script>window.location.href = "../login/UserLogIn.php";</script>';
+            exit();
+        }
 
+        if(isset($_GET['action']) && $_GET['action'] == 'logout') {
+            session_destroy();
+            echo '<script>window.location.href = "../home/Home.php";</script>';
+            exit();
+        }
+    ?>
     <div class="logo">
         <img class="picture" src="../image/logo.png">
         <p>TaskFlow</p>
@@ -42,8 +46,8 @@ $fullName = trim($firstName . " " . $lastName);
         <div class="sub-menu-wrap" id="subMenu">
             <div class="sub-menu">
                 <div class="user-info">
-                    <img class="profile" src="../image/prof.jpg">
-                    <h4><?php echo htmlspecialchars($fullName); ?></h4>
+                    <img class="profile" src="../image/prof.jpg" id="imageDisplay">
+                    <h4 id="nameDisplay">name</h4>
                 </div>
                 <hr>
 
@@ -52,7 +56,7 @@ $fullName = trim($firstName . " " . $lastName);
                     <p>Profile</p>
                     <span>></span>
                 </a>
-                <a href="../home/Home.php" class="sub-menu-link" onclick="logout()">
+                <a href="?action=logout" name="logout" class="sub-menu-link" >
                     <img src="../image/logo.png">
                     <p>Logout</p>
                     <span>></span>
@@ -123,7 +127,7 @@ $fullName = trim($firstName . " " . $lastName);
         <section class="developer-container">
             <div class="developer-card">
                 <div class="developer-image">
-                    <img src="../image/ui.png">
+                    <img src="../image/kris.jpg">
                     Kristine Sabuero
                     <h6>UX Designer</h6>
                 </div>
@@ -131,14 +135,14 @@ $fullName = trim($firstName . " " . $lastName);
             <div class="developer-card">
                 <div class="developer-image">
                 <img src="../image/ui.png">
-                Kristine Sabuero
+                Jayna Sahibul
                 <h6>UX Designer</h6>
                 </div>
           </div>
             <div class="developer-card">
                 <div class="developer-image">
                 <img src="../image/ui.png">
-                Kristine Sabuero
+                Amani Uri
                 <h6>UX Designer</h6>
                 </div>
             </div>
@@ -147,21 +151,21 @@ $fullName = trim($firstName . " " . $lastName);
             <div class="developer-card">
                 <div class="developer-image">
                     <img src="../image/ui.png">
-                    Kristine Sabuero
+                    Vennasshier Malali
                     <h6>UX Designer</h6>
                 </div>
             </div>
             <div class="developer-card">
                 <div class="developer-image">
                 <img src="../image/ui.png">
-                Kristine Sabuero
+                Justin James Alviar
                 <h6>UX Designer</h6>
                 </div>
           </div>
             <div class="developer-card">
                 <div class="developer-image">
                 <img src="../image/ui.png">
-                Kristine Sabuero
+                Mark Luis Salvador
                 <h6>UX Designer</h6>
                 </div>
             </div>
@@ -173,12 +177,6 @@ $fullName = trim($firstName . " " . $lastName);
                 subMenu.classList.toggle("open");
             }
         </script>
-    
-        <script>
-        function logout() {
-            alert("You have been logged out successfully."); 
-                    }
-    </script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -197,6 +195,23 @@ $fullName = trim($firstName . " " . $lastName);
             notifPopup.style.display = 'none';
         }
     });
+
+    fetch("../api/store_session.php")
+    .then(response => response.json())
+    .then(data => {
+        if(data.status === "success"){
+            const freelancerId = data.userId;
+            return fetch("../api/freelancer_api.php?userId=" + freelancerId)
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.status === "success"){
+            document.getElementById("imageDisplay").src = `../uploads/${data.freelancerData.profile_pic}`;
+            document.getElementById("nameDisplay").textContent = `${data.freelancerData.first_name} ${data.freelancerData.last_name}`;
+        }
+    })
+    .catch(error => console.error(error))
 });
 </script>
 </body>

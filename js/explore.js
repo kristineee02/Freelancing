@@ -1,67 +1,11 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Load explore works
-    loadExploreWorks();
-    
-    // Setup other UI functionality (similar to the work page)
-    // Add notification handling, profile menu, etc.
     setupUIHandlers();
+    getFreelancerById();
+    getAllWorks();
+    setupCarouselListeners();
 });
 
-function loadExploreWorks() {
-    // Fetch works with the explore parameter
-    fetch("api/work_api.php?explore=true")
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        const exploreSection = document.getElementById("exploreSection");
-        if (!exploreSection) return;
-        
-        exploreSection.innerHTML = ''; // Clear existing content
-            
-        if (data.status === "success" && data.works && data.works.length > 0) {
-            data.works.forEach(work => {
-                // Get first image if multiple
-                const imagePath = work.picture.split(',')[0];
-                
-                // Create card for each work
-                const workCard = document.createElement("div");
-                workCard.className = "explore-card";
-                
-                workCard.innerHTML = `
-                    <div class="explore-image" 
-                        style="background-image: url('${imagePath}');
-                              background-size: cover;
-                              background-position: center;">
-                    </div>
-                    <div class="explore-content">
-                        <h3>${work.title || 'Untitled'}</h3>
-                        <p class="explore-author">By: ${work.firstname} ${work.lastname}</p>
-                        <p class="explore-desc">${work.description || ''}</p>
-                        <span class="explore-category">${work.category || ''}</span>
-                    </div>
-                `;
-                
-                exploreSection.appendChild(workCard);
-            });
-        } else {
-            exploreSection.innerHTML = '<p>No works available yet.</p>';
-        }
-    })
-    .catch(error => {
-        console.error("Error fetching explore works:", error);
-        const exploreSection = document.getElementById("exploreSection");
-        if (exploreSection) {
-            exploreSection.innerHTML = `<div class="error-message">Failed to load works: ${error.message}</div>`;
-        }
-    });
-}
-
 function setupUIHandlers() {
-    // Notification popup
     const notifBtn = document.getElementById("notifBtn");
     const notifPopup = document.getElementById("notifPopup");
     if (notifBtn && notifPopup) {
@@ -76,7 +20,6 @@ function setupUIHandlers() {
         });
     }
 
-    // Profile submenu toggle
     window.toggleMenu = () => {
         const subMenu = document.getElementById("subMenu");
         if (subMenu) {
@@ -84,45 +27,146 @@ function setupUIHandlers() {
         }
     };
 
-    // Logout handler
     window.logout = () => {
         alert("You have been logged out successfully.");
-        // Here you would typically redirect to the login page or home page
     };
 }
 
-    function filterWorks() {
-        const filterValue = document.getElementById('FilterCategory').value;
-        let url = '../api/filter.php?filter=' + filterValue;
-        
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                updateWorksDisplay(data);
-            })
-            .catch(error => console.error('Error:', error));
+function getFreelancerById() {
+    const userInfoElement = document.getElementById("userInfoDocument");
+    if (!userInfoElement) {
+        console.error("User info element not found");
+        return;
     }
 
-    function filterByCategory(category) {
-        let url = '../api/filter.php?category=' + encodeURIComponent(category);
-        
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                updateWorksDisplay(data);
-            })
-            .catch(error => console.error('Error:', error));
-    }
+    fetch("../api/store_session.php", {
+        method: "GET",
+        headers: {"Content-Type": "application/json"},
+        credentials: "include"
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.status === "success" && data.userId){
+            return fetch(`../api/freelancer_api.php?userId=${data.userId}`, {
+                method: "GET",
+                headers: {"Content-Type": "application/json"},
+                credentials: "include"
+            });
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.status === "success" && data.freelancerData){
+            userInfoElement.innerHTML = `
+                <img class="profile" src="../uploads/${data.freelancerData.profile_pic}">
+                <h4>${data.freelancerData.first_name} ${data.freelancerData.last_name}</h4>
+            `;
 
+            userInfoElement.addEventListener("click", function(){
+                window.location.href = "freelancer-work.php";
+            });
+        }
+    })
+    .catch(error => {
+        console.error("Error loading user data:", error);
+    });
+}
+
+let allWorks = []; // Store all works 
+let currentSlide = 0;
+const categories = ["ANIMATION", "GRAPHIC DESIGN", "PRODUCT DESIGN", "WEBSITE DESIGN", "ILLUSTRATION", "MOBILE DESIGN", "WRITING"];
+
+function getAllWorks() {
+    fetch("../api/work_api.php")
+    .then(response => response.json())
+    .then(data => {
+        if(data.status === "success"){
+            allWorks = data.works; // Store works
+            displayWorks(allWorks); // Initial display
+        }
+    })
+    .catch(error => console.error(error));
+}
+
+function displayWorks(works) {
+    let mainSection = document.getElementById("worksContainer");
+    mainSection.innerHTML = '';
+    let currentContainer = document.createElement('div');
+    currentContainer.className = 'container';
+    mainSection.appendChild(currentContainer);
     
-    function searchWorks() {
-        const searchTerm = document.getElementById('searchInput').value;
-        let url = '../api/filter.php?search=' + encodeURIComponent(searchTerm);
+    works.forEach((work, index) => {
+        if (index % 4 === 0 && index !== 0) {
+            currentContainer = document.createElement('section');
+            currentContainer.className = 'container';
+            mainSection.appendChild(currentContainer);
+        }
         
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                updateWorksDisplay(data);
-            })
-            .catch(error => console.error('Error:', error));
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.dataset.id = work.work_id;
+        card.dataset.category = work.category;
+        card.innerHTML = `
+            <div class="card-image" data-id="${work.work_id}" data-freelancer-id="${work.freelancer_id}" style="background-image: url('../Uploads/${work.picture}');">
+            </div>
+            <div class="footer">
+                <h5 id="text">${work.first_name} ${work.last_name}</h5>
+                <span>♥ 0</span>
+            </div>
+        `;
+        
+        currentContainer.appendChild(card);
+    });
+
+    document.querySelectorAll(".card-image").forEach(button =>{
+        button.addEventListener("click", function(){
+            const workId = this.getAttribute("data-id");
+            const freelancerId = this.getAttribute("data-freelancer-id");
+            window.location.href = `freelancer-webdesign.php?workId=${workId}&freelancerId=${freelancerId}`;
+        });
+    });
+}
+
+function searchWorks() {
+    const searchTerm = document.querySelector('input[name="search"]').value.toLowerCase();
+    const filteredWorks = allWorks.filter(work => 
+        (work.title && work.title.toLowerCase().includes(searchTerm)) ||
+        (work.description && work.description.toLowerCase().includes(searchTerm)) ||
+        (work.category && work.category.toLowerCase().includes(searchTerm))
+    );
+    displayWorks(filteredWorks);
+}
+
+function moveSlide(direction) {
+    currentSlide = (currentSlide + direction + categories.length) % categories.length;
+    const category = categories[currentSlide];
+    const filteredWorks = allWorks.filter(work => work.category.toUpperCase() === category);
+    displayWorks(filteredWorks);
+}
+
+function filterFreelancer() {
+    const filterValue = document.getElementById("FilterCategory").value;
+    let filteredWorks = [...allWorks];
+    
+    if (filterValue === "new") {
+        filteredWorks.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    } else if (filterValue === "all") {
+        filteredWorks = [...allWorks];
     }
+    
+    displayWorks(filteredWorks);
+}
+
+function filterByCategory(category) {
+    const filteredWorks = allWorks.filter(work => work.category.toUpperCase() === category.toUpperCase());
+    currentSlide = categories.indexOf(category.toUpperCase());
+    displayWorks(filteredWorks);
+}
+
+function setupCarouselListeners() {
+    document.querySelectorAll('.carousel-slide .slide').forEach((slide, index) => {
+        slide.addEventListener('click', () => {
+            filterByCategory(categories[index]);
+        });
+    });
+}

@@ -1,64 +1,3 @@
-<?php
-session_start();
-require_once '../class/Freelancer.php';
-
-$db = new PDO("mysql:host=localhost;dbname=freelancer_signup", "root", "");
-
-// Ensure user is logged in
-$userId = $_SESSION['user_id'] ?? null;
-if (!$userId) {
-    header("Location: ../login/UserLogin.php");
-    exit;
-}
-
-$freelancer = new Freelancer($db);
-
-
-// Load session data
-$firstName = $_SESSION['firstName'] ?? '';
-$lastName = $_SESSION['lastName'] ?? '';
-$fullName = trim($firstName . " " . $lastName);
-$address = $_SESSION['address'] ?? '';
-
-// Handle form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editfname'])) {
-    $newFirstName = $_POST['editfname'];
-    $newLastName = $_POST['editlname'];
-    $newAddress = $_POST['editaddress'];
-    $profilePicPath = null;
-
-    // Handle file upload
-    if (isset($_FILES['editProfile']) && $_FILES['editProfile']['error'] === UPLOAD_ERR_OK) {
-        $uploadDir = '../Uploads/';
-        if (!is_dir($uploadDir)) {
-            mkdir($uploadDir, 0755, true);
-        }
-        $fileName = uniqid() . '-' . basename($_FILES['editProfile']['name']);
-        $uploadPath = $uploadDir . $fileName;
-        if (move_uploaded_file($_FILES['editProfile']['tmp_name'], $uploadPath)) {
-            $profilePicPath = $uploadPath;
-        } else {
-            echo "File upload failed.";
-        }
-    }
-    
-    // Update profile
-    if ($freelancer->updateProfile($userId, $newFirstName, $newLastName, $newAddress, $profilePicPath)) {
-        // Update session data
-        $_SESSION['firstName'] = $newFirstName;
-        $_SESSION['lastName'] = $newLastName;
-        $_SESSION['address'] = $newAddress;
-        if ($profilePicPath) {
-            $_SESSION['profile_pic'] = $profilePicPath;
-        }
-        header("Location: freelancer-work.php");
-        exit;
-    } else {
-        echo "Error updating profile.";
-    }
-}    
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -66,19 +5,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editfname'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Freelancing</title>
-    <link rel ="stylesheet" href="../style/freelancer-profile.css">
+    <link rel="stylesheet" href="../style/freelancer-profile.css">
 </head>
 <body>
+    <?php
+        session_start();
+        if(!isset($_SESSION["userId"])){
+            echo '<script>window.location.href = "../login/UserLogIn.php";</script>';
+            exit();
+        }
 
+        if(isset($_GET['action']) && $_GET['action'] == 'logout') {
+            session_destroy();
+            echo '<script>window.location.href = "../home/Home.php";</script>';
+            exit();
+        }
+    ?>
     <div class="logo">
         <img class="picture" src="../image/logo.png">
         <p>TaskFlow</p>
 
         <div class="dashboard">
             <ul>
-              <li><a href="Explore.php">Explore</a>  </li>
-             <li> <a href="Find-Job.php" class="tight-text">Find Jobs</a> </li>
-             <li> <a href="About.php" >About</a></li>
+                <li><a href="Explore.php">Explore</a></li>
+                <li><a href="Find-Job.php" class="tight-text">Find Jobs</a></li>
+                <li><a href="About.php">About</a></li>
             </ul>
         </div>
 
@@ -87,15 +38,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editfname'])) {
             <div class="notification-popup" id="notifPopup">
                 <p><strong>New Message:</strong> Your job application has been viewed!</p>
                 <p><strong>Reminder:</strong> Update your profile today.</p>
-              </div>
-            <img class="profile" src="../image/prof.jpg" alt="profile" onclick="toggleMenu()">
+            </div>
+            <img class="profile" src="../image/prof.jpg" alt="profile" id="profileImageSubMenuId" onclick="toggleMenu()">
         </div>
 
         <div class="sub-menu-wrap" id="subMenu">
             <div class="sub-menu">
-                <div class="user-info">
-                <img class="profile" src="<?php echo $_SESSION['profile_pic'] ?? 'image/prof.jpg'; ?>" alt="Profile">
-                    <h4><?php echo htmlspecialchars($fullName); ?></h4>
+                <div class="user-info" id="userInfoDocument">
+                    <img class="profile" alt="Profile" id="imageDisplay">
+                    <h4 id="nameDisplay">name</h4>
                 </div>
                 <hr>
 
@@ -104,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editfname'])) {
                     <p>Profile</p>
                     <span>></span>
                 </a>
-                <a href="../home/Home.php" class="sub-menu-link" onclick="logout()">
+                <a href="?action=logout" name="logout" class="sub-menu-link">
                     <img src="../image/logo.png">
                     <p>Logout</p>
                     <span>></span>
@@ -112,13 +63,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editfname'])) {
             </div>
         </div>
     </div>
+
     <div class="profile-container">
-        <div class="profile-header">
-        <img src="<?php echo $_SESSION['profile_pic'] ?? '../image/yellow circle.png'; ?>" alt="Profile Image" class="profile-image">            
-        <div class="profile-info">
-                <h1> <?php echo htmlspecialchars($fullName); ?></h1>
-                <p class="location"><?php echo htmlspecialchars($address); ?></p>
-                <p class="follow-info">0 Followers  |  20 Following</p>
+        <div class="profile-header" id="profileHeaderDocument">
+            <img src="../image/yellow circle.png" alt="Profile Image" class="profile-image" id="imageDisplay2">            
+            <div class="profile-info">
+                <h1 id="nameDisplay2">name</h1>
+                <p class="location" id="addressDisplay">address</p>
                 <button class="edit-profile" id="EditProfile">EDIT PROFILE</button>
             </div>
         </div>
@@ -126,61 +77,61 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editfname'])) {
         <!--EDIT PROFILE-->
 
         <div id="editProfileModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h3>Update Profile</h3>
-            <form id="profileUpdateForm" action="freelancer-work.php" method="POST" enctype="multipart/form-data">
-            <div class="form-grid">
-                <div class="form-group">
-                <label for="fname">First Name</label>
-                <input type="text" id="editfirstName" name="editfname" value="<?php echo htmlspecialchars($firstName); ?>" required>
-                <label for="lname">Last Name</label>
-                <input type="text" id="editlastName" name="editlname" value="<?php echo htmlspecialchars($lastName); ?>" required>                
-                <label for="address">Address</label>
-                <input type="text" id="editUserAddress" name="editaddress" value="<?php echo htmlspecialchars($address); ?>">
-                    <div class="file-input">
-                    <label for="editProfile" class="profile-pic">Profile Picture</label>
-                    <input type="file" id="edit-prof" name="editProfile" accept="image/*">
-                    </div>                
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3>Update Profile</h3>
+                <form id="profileUpdateForm" action="freelancer-work.php" method="POST" enctype="multipart/form-data">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="fname">First Name</label>
+                            <input type="text" id="editfirstName" name="editfname" value="First Name" required>
+                            <label for="lname">Last Name</label>
+                            <input type="text" id="editlastName" name="editlname" value="Last Name" required>                
+                            <label for="address">Address</label>
+                            <input type="text" id="editUserAddress" name="editaddress" value="Address">
+                            <div class="file-input">
+                                <label for="editProfile" class="profile-pic">Profile Picture</label>
+                                <input type="file" id="edit-prof" name="editProfile" accept="image/*">
+                            </div>                
+                        </div>
                     </div>
-                </div>
-            <button type="submit" class ="button-edit">Save Changes</button>
-            </form>
-        </div>
+                    <button type="submit" class="button-edit">Save Changes</button>
+                </form>
+            </div>
         </div>
 
         <div class="tabs">
             <a href="freelancer-work.php" class="active">WORK</a>
-            <a href = "freelancer-about.php">ABOUT</a>
-            <a href="freelancer-likedpost.php">LIKED POST</a>
+            <a href="freelancer-about.php">ABOUT</a>
         </div>
-        <div class="hr">            
-        </div>
+        <hr>
     </div>
 
-    <div class="content-section">
+    <div class="content-section" id="workDisplay">
         <div class="content-box active add-box" onclick="togglePopup()">+</div>
-        <div id="workSection" class="work-section"></div>
     </div>
 
     <div class="publish-popup-overlay" id="PublishPopupOverlay" onclick="closePopup()"></div>
-    <form method="POST" class="publishing-popup" id="pubpopup" action="../api/work_api.php" enctype="multipart/form-data">
+
+    <form class="publishing-popup" id="pubpopup" enctype="multipart/form-data">
         <button type="button" class="close-btn" onclick="closePopup()">X</button>
         <h3>CREATE POST</h3>
         <input type="text" name="title" placeholder="Title" id="Title" required>
-        <input type="hidden" name="freelancer_id" value="<?php echo $userId; ?>">
         <div id="FilePreviewContainer" class="file-preview-container"></div>
         <div id="postForm">
             <label class="FileInputLabel">
                 ADD PICTURE +
-                <input type="file" id="fileInput" name="files[]" multiple accept="image/*" hidden>
+                <input type="file" id="fileInput" hidden>
             </label>
             <textarea name="description" id="Description" class="description" placeholder="Description" required></textarea>
             <select name="category" id="Category" required>
                 <option value="" disabled selected>Select Category</option>
                 <option value="GRAPHIC DESIGN">GRAPHIC DESIGN</option>
-                <option value="WEBSITE DESIGN">WEBSITE DESIGN</option>
-                <option value="ANIMATION">ANIMATION</option>
+                <option value="WEBSITE DESIGN">WEB DESIGN</option>
+                <option value="PRODUCT DESIGN">PRODUCT DESIGN</option>
+                <option value="ILLUSTRATION">ILLUSTRATION</option>
+                <option value="MOBILE DESIGN">MOBILE DESIGN</option>
+                <option value="WRITING">WRITING</option>
             </select>
             <div class="btn-container">
                 <button type="button" class="cancel-btn" onclick="closePopup()">CANCEL</button>
@@ -189,7 +140,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editfname'])) {
         </div>
     </form>
 
-    
     <script>
         let subMenu = document.getElementById("subMenu");
 
@@ -199,93 +149,86 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editfname'])) {
     </script>
 
     <script>
-    function logout() {
-        alert("You have been logged out successfully."); 
-        
-    }
-</script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-    const notifBtn = document.getElementById('notifBtn');  
-    const notifPopup = document.getElementById('notifPopup');  
-
- 
-    notifBtn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        notifPopup.style.display = notifPopup.style.display === 'block' ? 'none' : 'block';
-    });
-
-    
-    document.addEventListener('click', function (e) {
-        if (!notifPopup.contains(e.target) && e.target !== notifBtn) {
-            notifPopup.style.display = 'none';
+        function logout() {
+            alert("You have been logged out successfully."); 
         }
-    });
-});
-</script>
-
-<script>
-    const fileInput = document.getElementById("fileInput");
-    const FilePreviewContainer = document.getElementById("FilePreviewContainer");
-    
-    let selectedFiles = [];
-  
-    fileInput.addEventListener("change", function () {
-        const newFiles = Array.from(fileInput.files);
-        newFiles.forEach((file) => {
-        selectedFiles.push(file);
-    });
-    updatePreviews();
-    });
-    
-    function updatePreviews() {
-        FilePreviewContainer.innerHTML = "";
-        selectedFiles.forEach((file, index) => {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                const previewBox = document.createElement("div");
-                previewBox.classList.add("file-preview-box");
-                const img = document.createElement("img");
-                img.src = e.target.result;
-                const RemoveBtn = document.createElement("button");
-                RemoveBtn.innerText = "X";
-                RemoveBtn.classList.add("remove-btn");
-                RemoveBtn.onclick = () => {
-                    selectedFiles.splice(index, 1);
-                    updatePreviews();
-                };
-                
-                previewBox.appendChild(img);
-                previewBox.appendChild(RemoveBtn);
-                FilePreviewContainer.appendChild(previewBox);
-            };
-            
-            reader.readAsDataURL(file);
-        });
-    }
-    
-    function togglePopup() {
-        document.getElementById("pubpopup").style.display = "block";
-        document.getElementById("PublishPopupOverlay").style.display = "block";
-    }
-
-    function closePopup() {
-        document.getElementById("pubpopup").style.display = "none";
-        document.getElementById("PublishPopupOverlay").style.display = "none";
-        selectedFiles = [];
-        updatePreviews();
-    }
-    
-    document.getElementById("postForm").addEventListener("submit", function (e) {
-        e.preventDefault(); 
-        alert("Post Published with " + selectedFiles.length + " file(s)!"); 
-        closePopup();
-    });
-
     </script>
 
-    <script src="../js/freelancer.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const notifBtn = document.getElementById('notifBtn');  
+            const notifPopup = document.getElementById('notifPopup');  
+
+            notifBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                notifPopup.style.display = notifPopup.style.display === 'block' ? 'none' : 'block';
+            });
+
+            document.addEventListener('click', function (e) {
+                if (!notifPopup.contains(e.target) && e.target !== notifBtn) {
+                    notifPopup.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+    <script>
+        const fileInput = document.getElementById("fileInput");
+        const FilePreviewContainer = document.getElementById("FilePreviewContainer");
+        let selectedFiles = [];
+
+        fileInput.addEventListener("change", function () {
+            const newFiles = Array.from(fileInput.files);
+            newFiles.forEach((file) => {
+                selectedFiles.push(file);
+            });
+            updatePreviews();
+        });
+
+        function updatePreviews() {
+            FilePreviewContainer.innerHTML = "";
+            selectedFiles.forEach((file, index) => {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const previewBox = document.createElement("div");
+                    previewBox.classList.add("file-preview-box");
+                    const img = document.createElement("img");
+                    img.src = e.target.result;
+                    const RemoveBtn = document.createElement("button");
+                    RemoveBtn.innerText = "X";
+                    RemoveBtn.classList.add("remove-btn");
+                    RemoveBtn.onclick = () => {
+                        selectedFiles.splice(index, 1);
+                        updatePreviews();
+                    };
+                    previewBox.appendChild(img);
+                    previewBox.appendChild(RemoveBtn);
+                    FilePreviewContainer.appendChild(previewBox);
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function togglePopup() {
+            document.getElementById("pubpopup").style.display = "block";
+            document.getElementById("PublishPopupOverlay").style.display = "block";
+        }
+
+        function closePopup() {
+            document.getElementById("pubpopup").style.display = "none";
+            document.getElementById("PublishPopupOverlay").style.display = "none";
+            selectedFiles = [];
+            updatePreviews();
+        }
+
+        document.getElementById("postForm").addEventListener("submit", function (e) {
+            e.preventDefault(); 
+            alert("Post Published with " + selectedFiles.length + " file(s)!"); 
+            closePopup();
+        });
+    </script>
+
     <script src="../js/work.js"></script>
+
 </body>
 </html>

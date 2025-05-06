@@ -1,199 +1,280 @@
-<?php
-session_start();
-include '../api/database.php';
-include '../class/Client.php';
-
-$client_id = $_SESSION['user_id'];
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Freelancing</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel ="stylesheet" href="../style/clients.css">
+    <title>Job Submission Form</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Arial', sans-serif;
+    }
 
+    body {
+        background-color: #f5f5f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+    }
+
+    .form-container {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 800px;
+        position: relative;
+    }
+
+    .form-header {
+        padding: 20px;
+        border-bottom: 1px solid #eaeaea;
+        position: relative;
+    }
+
+    .form-header h1 {
+        text-align: center;
+        color: #333;
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: #888;
+        cursor: pointer;
+        transition: color 0.2s;
+    }
+
+    .close-btn:hover {
+        color: #333;
+    }
+
+    .form-section {
+        padding: 20px;
+        border-bottom: 1px solid #eaeaea;
+    }
+
+    .form-section h2 {
+        margin-bottom: 20px;
+        color: #444;
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-row {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .form-group.half {
+        flex: 1;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 6px;
+        color: #555;
+        font-size: 14px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    textarea, select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+        transition: border-color 0.2s;
+    }
+
+    input:focus,
+    textarea:focus {
+        outline: none;
+        border-color: #4a90e2;
+    }
+
+    textarea {
+        resize: vertical;
+    }
+
+    label::after {
+        content: " *";
+        color: #e74c3c;
+    }
+
+    label[for="project_title"]::after,
+    label[for="start_date"]::after,
+    label[for="end_date"]::after,
+    label[for="budget"]::after {
+        content: "";
+    }
+
+    .form-actions {
+        padding: 20px;
+        text-align: right;
+    }
+
+    .submit-btn {
+        padding: 12px 24px;
+        background-color: #4a90e2;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    .submit-btn:hover {
+        background-color: #3a7bc8;
+    }
+
+    @media (max-width: 768px) {
+        .form-row {
+            flex-direction: column;
+            gap: 0;
+        }
+        
+        .form-header h1 {
+            font-size: 20px;
+            margin-left: 20px;
+        }
+    }
+    </style>
 </head>
 <body>
-    <div class="logo">
-        <img class="picture" src="../image/logo.png">
-        <p>TaskFlow</p>
+    <?php
+        session_start();
+        if(!isset($_SESSION["userId"])){
+            echo '<script>window.location.href = "../login/UserLogIn.php";</script>';
+            exit();
+        }
 
-        <div class="dashboard">
-            <ul>
-              <li><a href="client-explore.php">Explore</a>  </li>
-             <li> <a href="Find-Freelancer.php" class="tight-text">Find Designer  <i class="fa fa-caret-down"></i></a> 
-             <div class="dropdown_menu">
-                <ul>
-                    <li><a href="client-freelancer-work.php" class="tight-text">Post Job</a></li>
-                </ul>
-             </div>
-            </li>
-             <li> <a href="client-about.php">About</a></li>
-            </ul>
+        if(isset($_GET['action']) && $_GET['action'] == 'logout') {
+            session_destroy();
+            echo '<script>window.location.href = "../home/Home.php";</script>';
+            exit();
+        }
+    ?>
+    <div class="form-container">
+        <div class="form-header">
+            <button class="close-btn" id="closeBtn">&times;</button>
+            <h1>Job Submission Form</h1>
         </div>
 
-        <div class="notif-profile">
-            <img src="../image/3119338.png" alt="Notification icon" class="notif" id="notifBtn" />
-            <div class="notification-popup" id="notifPopup">
-                <p><strong>New Message:</strong> Your job application has been viewed!</p>
-                <p><strong>Reminder:</strong> Update your profile today.</p>
-              </div>
-        <img class="profile" src="../image/prof.jpg" alt="profile" onclick="toggleMenu()">
-        </div>
+        <form id="jobSubmissionForm">
+            <!-- Job Details Section -->
+            <section class="form-section">
+                <h2>Job Details</h2>
 
-        <div class="sub-menu-wrap" id="subMenu">
-            <div class="sub-menu">
-                <div class="user-info">
-                    <img class="profile" src="../image/prof.jpg">
-                    <h4>Kristine Sabuero</h4>
+                <div class="form-group">
+                    <label for="project_title">Project Title</label>
+                    <input type="text" id="project_title" name="project_title" maxlength="255">
                 </div>
-                <hr>
 
-                <a href="client-profile.php" class="sub-menu-link">
-                    <img src="../image/prof.jpg">
-                    <p>Profile</p>
-                    <span>></span>
-                </a>
-                <a href="../home/Home.php" class="sub-menu-link" onclick="logout()">
-                    <img src="../image/logo.png">
-                    <p>Logout</p>
-                    <span>></span>
-                </a>
+                <div class="form-group">
+                    <label for="project_category">Project Category*</label>
+                    <select name="project_category" id="project_category">
+                        <option value="" disabled selected>Select One</option>
+                        <option value="ANIMATION">ANIMATION</option>
+                        <option value="GRAPHIC DESIGN">GRAPHIC DESIGN</option>
+                        <option value="PRODUCT DESIGN">PRODUCT DESIGN</option>
+                        <option value="WEB DESIGN">WEB DESIGN</option>
+                        <option value="ILLUSTRATION">ILLUSTRATION</option>
+                        <option value="MOBILE DESIGN">MOBILE DESIGN</option>
+                        <option value="WRITING">WRITING</option>
+                    </select>
+                </div>
 
+                <div class="form-group">
+                    <label for="description">Description*</label>
+                    <textarea id="description" name="description" rows="4" required></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="start_date">Start Date</label>
+                        <input type="date" id="start_date" name="start_date">
+                    </div>
+                    <div class="form-group half">
+                        <label for="end_date">End Date</label>
+                        <input type="date" id="end_date" name="end_date">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="budget">Budget ($)</label>
+                    <input type="number" id="budget" name="budget" step="0.01">
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location*</label>
+                    <input type="text" id="location" name="location" maxlength="255" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="education">Education Requirements*</label>
+                    <textarea id="education" name="education" rows="3" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="experience">Experience Requirements*</label>
+                    <textarea id="experience" name="experience" rows="3" required></textarea>
+                </div>
+            </section>
+
+            <!-- About Job Section -->
+            <section class="form-section">
+                <h2>About the Job</h2>
+                
+                <div class="form-group">
+                    <label for="about_us">About Us*</label>
+                    <textarea id="about_us" name="about_us" rows="4" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="role">Role Description*</label>
+                    <textarea id="role" name="role" rows="4" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="tasks">Key Tasks*</label>
+                    <textarea id="tasks" name="tasks" rows="4" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="benefits">Benefits*</label>
+                    <textarea id="benefits" name="benefits" rows="4" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="requirements">Requirements*</label>
+                    <textarea id="requirements" name="requirements" rows="4" required></textarea>
+                </div>
+            </section>
+
+            <div class="form-actions">
+                <button type="submit" class="submit-btn">Submit Job</button>
             </div>
-
-        </div>
-    
-    </div> 
-    <div class="discover-find-job-freelancer">
-        <div class="overlay-job"></div>
-        <p class="info-find-job-freelancer"><b>
-            START YOUR PROJECT WITH AN EXPERT SUPPORT
-        </b></p>
-        <p class="side">Let us help you find the perfect designer for your project</p>
+        </form>
     </div>
-
-    <fieldset class="form-container">
-        <h2 class="text-proj">TELL US ABOUT YOUR PROJECT</h2>
-         <br><br>
-         <form class="form-project" method="POST" id="projectForm" action="../api/job_api.php">
-         <label for="name" class="label-project">Name</label>
-             <input type="text" id="name" name="name" placeholder="Enter your full name"  class="input-proj" required>
- 
-             <label for="email" class="label-project">Email</label>
-             <input type="email" id="email" name="email" placeholder="Enter your email" class="input-proj" required>
-
-             <label for="business" class="label-project">Project Title</label>
-             <input type="text" id="business" name="business_name" placeholder="Project Title" class="input-proj" required>
- 
-             <label class="project-category">Project Category</label>
-             <div class="radio-group" required>
-                 <label class="radio"><input type="radio" name="category" value="Animation"> Animation</label>
-                 <label class="radio"><input type="radio" name="category" value="Graphic Design"> Graphic Design</label>
-                 <label class="radio"><input type="radio" name="category" value="Product Design"> Product Design</label>
-                 <label class="radio"><input type="radio" name="category" value="Web Design"> Web Design</label>
-                 <label class="radio"><input type="radio" name="category" value="Illustration"> Illustration</label>
-                 <label class="radio"><input type="radio" name="category" value="Mobile Design"> Mobile Design</label>
-                 <label class="radio"><input type="radio" name="category" value="Writing"> Writing</label>
-             </div>
- 
-             <label class="project-description">Project Description</label>
-             <textarea placeholder="Describe your project" class="textholder" name="description" required></textarea>
-
-             <label for="location" class="label-project">Location</label>
-             <input type="text" id="location" name="location" placeholder="Location" class="input-proj" required>
- 
-             <label for="start-date" class="label-project">Start Date</label>
-             <input type="date" id="start-date" name="start_date" class="input-proj" required>
-
-             <label for="end-date" class="label-project">End Date</label>
-             <input type="date" id="end-date" name="end_date" class="input-proj" required>
- 
-             <label for="budget" class="label-project">Budget</label>
-             <input type="number" name="budget" placeholder="budget" class="input-proj" required>
-
-             <button type="submit" class="submit-project">Submit</button>
-         </form>
-     </fieldset>
-
-     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-        const notifBtn = document.getElementById('notifBtn');  
-        const notifPopup = document.getElementById('notifPopup');  
-    
-     
-        notifBtn.addEventListener('click', function (e) {
-            e.stopPropagation();
-            notifPopup.style.display = notifPopup.style.display === 'block' ? 'none' : 'block';
-        });
-    
-        
-        document.addEventListener('click', function (e) {
-            if (!notifPopup.contains(e.target) && e.target !== notifBtn) {
-                notifPopup.style.display = 'none';
-            }
-        });
-    });
-    </script>
-
-<script>
-      // Form validation and submission
-      form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Additional validation if needed
-                const startDate = new Date(document.getElementById('start-date').value);
-                const endDate = new Date(document.getElementById('end-date').value);
-                
-                if (endDate <= startDate) {
-                    formMessage.innerHTML = '<p style="color: red;">End date must be after start date</p>';
-                    return;
-                }
-                
-                // Submit form
-                const formData = new FormData(form);
-                
-                fetch('../api/job_api.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === 'success') {
-                        formMessage.innerHTML = '<p style="color: green;">Job posted successfully!</p>';
-                        setTimeout(() => {
-                            window.location.href = 'client-explore.php?success=1';
-                        }, 1500);
-                    } else {
-                        formMessage.innerHTML = `<p style="color: red;">${data.message}</p>`;
-                    }
-                })
-                .catch(error => {
-                    formMessage.innerHTML = '<p style="color: red;">Error submitting form. Please try again.</p>';
-                    console.error('Error:', error);
-                });
-            });        
-</script>
-
-<script>
-    let subMenu = document.getElementById("subMenu");
-
-    function toggleMenu(){
-        subMenu.classList.toggle("open");
-    }
-</script>
-
-<script>
-function logout() {
-    alert("You have been logged out successfully."); 
-    
-}
-</script>
-
-
+    <script src="../js/job.js"></script>
 </body>
 </html>

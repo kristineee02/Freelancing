@@ -1,74 +1,3 @@
-<?php
-session_start();
-require_once '../class/Client.php';
-$db = new PDO("mysql:host=localhost;dbname=freelancer_signup", "root", "");
-
-
-// Ensure user is logged in
-$userId = $_SESSION['user_id'] ?? null;
-if (!$userId) {
-    header("Location: ../login/UserLogin.php");
-    exit;
-}
-
-$client = new Client($db);
-
-// Load session data
-$firstName = $_SESSION['firstName'] ?? '';
-$lastName = $_SESSION['lastName'] ?? '';
-$fullName = trim($firstName . " " . $lastName);
-$address = $_SESSION['address'] ?? '';
-
-// Handle form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['editfname'])) {
-    $newFirstName = $_POST['editfname'];
-    $newLastName = $_POST['editlname'];
-    $newAddress = $_POST['editaddress'];
-    $profilePicPath = null;
-
-    // Handle file upload
-    if (isset($_FILES['editProfile']) && $_FILES['editProfile']['error'] === UPLOAD_ERR_OK) {
-        $uploadDir = '../Uploads/';
-        if (!is_dir($uploadDir)) {
-            mkdir($uploadDir, 0755, true);
-        }
-        $fileName = uniqid() . '-' . basename($_FILES['editProfile']['name']);
-        $uploadPath = $uploadDir . $fileName;
-        if (move_uploaded_file($_FILES['editProfile']['tmp_name'], $uploadPath)) {
-            $profilePicPath = $uploadPath;
-        } else {
-            echo "File upload failed.";
-        }
-    }
-    
-    // Update profile
-    if ($client->updateProfile($userId, $newFirstName, $newLastName, $newAddress, $profilePicPath)) {
-        // Update session data
-        $_SESSION['firstName'] = $newFirstName;
-        $_SESSION['lastName'] = $newLastName;
-        $_SESSION['address'] = $newAddress;
-        if ($profilePicPath) {
-            $_SESSION['profile_pic'] = $profilePicPath;
-        }
-        header("Location: client-profile.php");
-        exit;
-    } else {
-        echo "Error updating profile.";
-    }
-    }    
-
-$stmt = $db->prepare("
-    SELECT j.*, c.firstname, c.lastname 
-    FROM job j
-    JOIN client c ON j.ClientId = c.client_id
-    ORDER BY job_id DESC
-");
-$stmt->execute();
-$jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    
-    
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,7 +28,7 @@ $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
     margin-bottom: 40px;
     padding: 20px;
     transition: transform 0.2s;
-    width: 105%;
+    width: 90%;
 }
 
 .job-card:hover {
@@ -201,7 +130,19 @@ $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </style>
 </head>
 <body>
+    <?php
+        session_start();
+        if(!isset($_SESSION["userId"])){
+            echo '<script>window.location.href = "../login/UserLogIn.php";</script>';
+            exit();
+        }
 
+        if(isset($_GET['action']) && $_GET['action'] == 'logout') {
+            session_destroy();
+            echo '<script>window.location.href = "../home/Home.php";</script>';
+            exit();
+        }
+    ?>
     <div class="logo">
         <img class="picture" src="../image/logo.png">
         <p>TaskFlow</p>
@@ -232,8 +173,8 @@ $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="sub-menu-wrap" id="subMenu">
             <div class="sub-menu">
                 <div class="user-info">
-                    <img class="profile" src="../image/prof.jpg">
-                    <h4><?php echo htmlspecialchars($fullName); ?></h4>
+                    <img class="profile" src="../image/prof.jpg" id="imageSubMenu">
+                    <h4 id="nameSubMenu">Name</h4>
                 </div>
                 <hr>
 
@@ -253,11 +194,10 @@ $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <div class="profile-container">
         <div class="profile-header">
-        <img src="<?php echo $_SESSION['profile_pic'] ?? '../image/yellow circle.png'; ?>" alt="Profile Image" class="profile-image">            
+        <img src="../image/yellow circle.png" alt="Profile Image" class="profile-image" id="profileImageDisplay">            
         <div class="profile-info">
-                <h1> <?php echo htmlspecialchars($fullName); ?></h1>
-                <p class="location"><?php echo htmlspecialchars($address); ?></p>
-                <p class="follow-info">0 Followers  |  20 Following</p>
+                <h1 id="nameDisplay">name</h1>
+                <p class="location" id="addressDisplay">address</p>
                 <button class="edit-profile" id="EditProfile">EDIT PROFILE</button>
             </div>
         </div>
@@ -272,11 +212,11 @@ $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="form-grid">
                 <div class="form-group">
                 <label for="fname">First Name</label>
-                <input type="text" id="editfirstName" name="editfname" value="<?php echo htmlspecialchars($firstName); ?>" required>
+                <input type="text" id="editfirstName" name="editfname" required>
                 <label for="lname">Last Name</label>
-                <input type="text" id="editlastName" name="editlname" value="<?php echo htmlspecialchars($lastName); ?>" required>                
+                <input type="text" id="editlastName" name="editlname" required>                
                 <label for="address">Address</label>
-                <input type="text" id="editUserAddress" name="editaddress" value="<?php echo htmlspecialchars($address); ?>">
+                <input type="text" id="editUserAddress" name="editaddress">
                     <div class="file-input">
                     <label for="editProfile" class="profile-pic">Profile Picture</label>
                     <input type="file" id="edit-prof" name="editProfile" accept="image/*">
@@ -292,7 +232,6 @@ $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="tabs">
             <a href="client-profile.php" class="active">MY PROFILE</a>
             <a href = "client-profile-about.php">ABOUT</a>
-           <a href = "client-likedpost.php">LIKED POST</a>
             
         </div>
         <div class="hr">            
@@ -301,45 +240,8 @@ $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <div class="content-section">
     <div id="jobSection" class="job-section">
-        <?php
-        // Check if jobs array exists and has items
-        if (isset($jobs) && is_array($jobs) && count($jobs) > 0) {
-            echo '<h2>My Posted Jobs</h2>';
-            foreach ($jobs as $job) {
-                $FullName = $job['firstname'] . ' ' . $job['lastname'];
-                $Project_Category = $job['Project_Category'] ?? 'Job Category';
-                $Description = $job['Description'] ?? 'No description available';
-                $Budget = $job['Budget'] ?? 'N/A';
-                $Location = $job['Location'] ?? 'Remote';
-                $Date_created = isset($job['Date_created']) ? date('Y-m-d', strtotime($job['Date_created'])) : 'Recently'; // Format date
-                $picture = $job['picture'] ?? '../image/prof.jpg';
-                $job_id = $job['job_id'] ?? 0;
-                ?>
-                <div class="job-card">
-                    <div class="job-header">
-                        <h3><?php echo htmlspecialchars($FullName); ?></h3>
-                        <span class="job-budget">$<?php echo htmlspecialchars($Budget); ?></span>
-                    </div>
-                    <div class="job-category">
-                        <span class="category-badge"><?php echo htmlspecialchars($Project_Category); ?></span>
-                    </div>
-                    <div class="job-details">
-                        <p><?php echo htmlspecialchars(substr($Description, 0, 150)) . (strlen($Description) > 150 ? '...' : ''); ?></p>
-                        <div class="job-location">
-                            <span><i class="fas fa-map-marker-alt"></i> <?php echo htmlspecialchars($Location); ?></span>
-                            <span><i class="fas fa-calendar"></i> <?php echo htmlspecialchars($Date_created); ?></span>
-                        </div>
-                    </div>
-                    <div class="job-actions">
-                        <button class="view-job-btn" onclick="viewJobDetails(<?php echo $job_id; ?>)">View Details</button>
-                    </div>
-                </div>
-                <?php
-            }
-        } else {
-            echo '<div class="no-jobs">No jobs available at this time.</div>';
-        }
-        ?>
+        <h2>My Posted Jobs</h2>
+        <!--js-->
     </div>
 </div>
 
@@ -379,6 +281,12 @@ $jobs = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
     });
 });
+</script>
+
+<script>
+function viewJobDetails(jobId) {
+    alert("Viewing job details for job ID: " + jobId);
+}
 </script>
 
 <script src="../js/client.js"></script>

@@ -10,6 +10,6 @@
     $test = new DbTest($db);
 
     $response = new DbTest($db);
-    echo json_encode($response);
+    echo json_encode($response->checkConnection());
 
 ?>

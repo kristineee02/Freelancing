@@ -1,79 +1,46 @@
 <?php
-session_start();
-include('../api/database.php');
-include('../class/Job.php');
+header("Content-Type: application/json");
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
+header("Access-Control-Allow-Headers: Content-Type");
 
+include "database.php";
+include "../class/Job.php";
+
+session_start();
 $database = new Database();
 $db = $database->getConnection();
+
 $job = new Job($db);
 
-switch ($_SERVER["REQUEST_METHOD"]) {
-    case "POST":
-        // Ensure user is logged in
-        if (!isset($_SESSION['user_id'])) {
-            echo json_encode(['status' => 'error', 'message' => 'User not logged in']);
-            exit;
+$method = $_SERVER["REQUEST_METHOD"];
+
+switch ($method) {
+    case 'GET':
+        if (isset($_GET["clientId"]) && isset($_GET["jobId"])){
+            $jobData = $job->getJobByClientandJob($_GET['clientId'], $_GET["jobId"]);
+            echo json_encode(["status" => "success", "jobData" => $jobData]);
+            break;
+        }else if(isset($_GET["clientId"])){
+            $jobData = $job->getJobByClient($_GET['clientId']);
+            echo json_encode(["status" => "success", "jobData" => $jobData]);
+            break;
+        }else if(isset($_GET["jobId"])){
+            $jobData = $job->getJobById($_GET['jobId']);
+            echo json_encode(["status" => "success", "jobData" => $jobData]);
+            break;
+        }else {
+            $jobs = $job->getAllJob();
+            echo json_encode(["status" => "success", "jobs" => $jobs]);
+            break;
         }
+        break;
+    case 'POST':
+        $postData = file_get_contents("php://input");
+        $data = json_decode($postData, true);
 
-        $client_id = $_SESSION['user_id'];
-        $name = $_POST['name'] ?? '';
-        $email = $_POST['email'] ?? '';
-        $project_name = $_POST['business_name'] ?? '';
-        $category = $_POST['category'] ?? '';
-        $description = $_POST['description'] ?? '';
-        $location = $_POST['location'] ?? '';
-        $budget = $_POST['budget'] ?? '';
-        $start_date = $_POST['start_date'] ?? '';
-        $end_date = $_POST['end_date'] ?? '';
-
-        // Validate required fields
-        if (empty($name) || empty($email) || empty($project_name) || empty($category) || empty($description)) {
-            echo json_encode(['status' => 'error', 'message' => 'Missing required fields']);
-            exit;
-        }
-
-        // Add job to database
-        $result = $job->addJob(
-            $client_id,
-            $name,
-            $email,
-            $category,
-            $description,
-            $start_date,
-            $end_date,
-            $budget,
-            $project_name,
-            $location
-        );
-
-        if ($result) {
-            echo '<script>
-                alert("Job posted successfully!");
-                window.location.href = "../client/client-profile.php";
-            </script>';
-        } else {
-            echo '<script>
-                alert("Failed to post job.");
-                window.history.back();
-            </script>';
-        }
-        exit;
-
-    case "GET":
-        // Get all jobs
-        $jobs = $job->getAllJobs();
-
-        if ($jobs) {
-            // Return jobs as JSON
-            header('Content-Type: application/json');
-            echo json_encode(['status' => 'success', 'jobs' => $jobs]);
-        } else {
-            echo json_encode([]);
-        }
-        exit;
-
-    default:
-        echo json_encode(['status' => 'error', 'message' => 'Invalid request method']);
-        exit;
+        $job->addJob($data["clientId"], $data["projectTitle"], $data["projectCategory"], $data["description"], $data["startDate"], $data["endDate"], $data["budget"], $data["location"], $data["education"], $data["experience"], $data["aboutUs"], $data["role"], $data["tasks"], $data["benefits"], $data["requirements"]);
+        echo json_encode(["status" => "success"]);
+        break;
 }
 ?>

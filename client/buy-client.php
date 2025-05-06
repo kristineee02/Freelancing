@@ -8,14 +8,26 @@
     <link rel ="stylesheet" href="../style/clients.css">
 </head>
 <body>
+    <?php
+        session_start();
+        if(!isset($_SESSION["userId"])){
+            echo '<script>window.location.href = "../login/UserLogIn.php";</script>';
+            exit();
+        }
 
+        if(isset($_GET['action']) && $_GET['action'] == 'logout') {
+            session_destroy();
+            echo '<script>window.location.href = "../home/Home.php";</script>';
+            exit();
+        }
+    ?>
     <div class="logo">
         <img class="picture" src="../image/logo.png">
         <p>TaskFlow</p>
 
         <div class="dashboard">
             <ul>
-              <li><a href="client-explore.php" class="active-dash">Explore</a>  </li>
+              <li><a href="client-explore.php" >Explore</a>  </li>
              <li> <a href="Find-Freelancer.php" class="tight-text">Find Designer  <i class="fa fa-caret-down"></i></a> 
              <div class="dropdown_menu">
                 <ul>

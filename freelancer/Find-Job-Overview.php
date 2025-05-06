@@ -1,3 +1,16 @@
+<?php
+    session_start();
+    if(!$_SESSION["userId"]){
+        header("Location: ../login/UserLogIn.php");
+    }
+
+    if(isset($_GET['action']) && $_GET['action'] == 'logout') {
+        session_destroy();
+        header("Location: ../home/Home.php");
+        exit();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,8 +45,8 @@
         <div class="sub-menu-wrap" id="subMenu">
             <div class="sub-menu">
                 <div class="user-info">
-                    <img class="profile" src="../image/prof.jpg">
-                    <h4>Kristine Sabuero</h4>
+                    <img class="profile" src="../image/prof.jpg" id="imageDisplay">
+                    <h4 id="nameDisplay">Kristine Sabuero</h4>
                 </div>
                 <hr>
 
@@ -42,7 +55,7 @@
                     <p>Profile</p>
                     <span>></span>
                 </a>
-                <a href="../home/Home.php" class="sub-menu-link" onclick="logout()">
+                <a href="?action=logout" name="logout" class="sub-menu-link">
                     <img src="../image/logo.png">
                     <p>Logout</p>
                     <span>></span>
@@ -51,62 +64,48 @@
             </div>
 
         </div>
-    
     </div>
+    
     <div class="discover-find-job">
         <div class="overlay-find"></div>
-        <p class="info-find-job"><b>
-            COMPANY NAME
+        <p class="info-find-job" id="projectTitleDisplay"><b>
         </b></p>
     </div>
 
     <div class="tabs-application">
-        <a href="Find-Job-Overview.php" class="active">OVERVIEW</a>
-        <a href="Find-Job-Application.php">APPLICATION</a>
+        <p class="active" id="overview" style="cursor:pointer;">OVERVIEW</p>
+        <p id="application" style="cursor:pointer;">APPLICATION</p>
     </div>
 
     <main class="container-overview">
         <section>
             <h2 class="section-title">ABOUT US</h2>
-            <p class="overview-details">Roots is an early-stage startup building an innovative platform to revolutionize how films are financed, distributed, and monetized.
-                We're building a comprehensive digital ecosystem that serves as a permanent home for films, combining sophisticated rights management with cutting-edge fintech solutions. 
-                Our mission is to extend the commercial lifespan of films indefinitely while democratizing film investment through micro-investment opportunities.
+            <p class="overview-details" id="aboutUsDisplay">
             </p>
         </section>
 
         <section class="role">
             <h2 class="section-title">THE ROLE</h2>
-            <p class="overview-details">We're seeking a highly skilled React Frontend Developer to join our team and help build the next generation of film industry tools. 
-                We are looking for a strong software engineer who deeply understands frontend architecture, performance optimization and scalability. 
+            <p class="overview-details" id="roleDisplay">
             </p>
         </section>
 
         <section class="task">
             <h2 class="section-title">YOUR TASKS</h2>
-            <ul class="overview-info">
-                <li>Designing and implementing scalable and maintainable React applications</li>
-                <li>Building sophisticated data visualization components</li>
-                <li>Engineering intuitive interfaces for complex financial workflows</li>
-            </ul>
+            <p class="overview-details" id="taskDisplay">
+            </p>
         </section>
 
         <section class="benefits">
             <h2 class="section-title">BENEFITS</h2>
-            <ul class="overview-info">
-                <li>Competitive salary and benefits package</li>
-                <li>Private health insurance</li>
-                <li>5 weeks of paid vacation</li>
-                <li>Professional development budget</li>
-            </ul>
+            <p class="overview-details" id="benefitsDisplay">
+            </p>
         </section>
 
         <section class="requirements">
             <h2 class="section-title">REQUIREMENTS</h2>
-            <ul class="overview-info">
-                <li>3+ years of professional experience with React.js</li>
-                <li>Strong expertise in TypeScript and modern JavaScript (ES6+)</li>
-                <li>Experience with data visualization libraries (e.g., Recharts, D3.js)</li>
-            </ul>
+            <p class="overview-details" id="requirementsDisplay">
+            </p>
         </section>
     </main>
 
@@ -117,31 +116,6 @@
             subMenu.classList.toggle("open");
         }
     </script>
-
-    <script>
-    function logout() {
-        alert("You have been logged out successfully."); 
-        
-    }
-</script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-        const notifBtn = document.getElementById('notifBtn');  
-        const notifPopup = document.getElementById('notifPopup');  
-    
-     
-        notifBtn.addEventListener('click', function (e) {
-            e.stopPropagation();
-            notifPopup.style.display = notifPopup.style.display === 'block' ? 'none' : 'block';
-        });
-    
-        
-        document.addEventListener('click', function (e) {
-            if (!notifPopup.contains(e.target) && e.target !== notifBtn) {
-                notifPopup.style.display = 'none';
-            }
-        });
-    });
-    </script>
+    <script src="../js/findJobOverview.js"></script>
 </body>
 </html>

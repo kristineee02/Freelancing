@@ -1,31 +1,22 @@
 <?php
-session_start();
+    session_start();
+    if(!$_SESSION["userId"]){
+        header("Location: ../login/UserLogIn.php");
+    }
 
-$db = new PDO("mysql:host=localhost;dbname=freelancer_signup", "root", "");
-
-$firstName = $_SESSION['firstName'] ?? '';
-$lastName = $_SESSION['lastName'] ?? '';
-$fullName = trim($firstName . " " . $lastName);
-    
-// Query to fetch all posts for the explore page
-$stmt = $db->prepare("
-    SELECT w.*, f.firstname, f.lastname 
-    FROM work w
-    JOIN freelancer f ON w.freelancer_id = f.account_id
-    ORDER BY work_id DESC
-");
-$stmt->execute();
-$works = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+    if(isset($_GET['action']) && $_GET['action'] == 'logout') {
+        session_destroy();
+        header("Location: ../home/Home.php");
+        exit();
+    }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Freelancing</title>
-    <link rel ="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
 
@@ -35,9 +26,9 @@ $works = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <div class="dashboard">
             <ul>
-              <li><a href="Explore.php" class="active-dash">Explore</a> </li>
-             <li> <a href="Find-Job.php" class="tight-text">Find Jobs</a> </li>
-             <li> <a href="About.php">About</a></li>
+                <li><a href="Explore.php" class="active-dash">Explore</a></li>
+                <li><a href="Find-Job.php" class="tight-text">Find Jobs</a></li>
+                <li><a href="About.php">About</a></li>
             </ul>
         </div>
 
@@ -46,15 +37,15 @@ $works = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="notification-popup" id="notifPopup">
                 <p><strong>New Message:</strong> Your job application has been viewed!</p>
                 <p><strong>Reminder:</strong> Update your profile today.</p>
-              </div>
-        <img class="profile" src="../image/prof.jpg" alt="profile" onclick="toggleMenu()">
+            </div>
+            <img class="profile" src="../image/prof.jpg" alt="profile" onclick="toggleMenu()">
         </div>
-        
+
         <div class="sub-menu-wrap" id="subMenu">
             <div class="sub-menu">
                 <div class="user-info">
                     <img class="profile" src="../image/prof.jpg">
-                    <h4><?php echo htmlspecialchars($fullName); ?></h4>
+                    <h4>name</h4>
                 </div>
                 <hr>
 
@@ -63,22 +54,19 @@ $works = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <p>Profile</p>
                     <span>></span>
                 </a>
-                <a href="../home/Home.php" class="sub-menu-link" onclick="logout()">
+                <a href="?action=logout" name="logout" class="sub-menu-link">
                     <img src="../image/logo.png">
                     <p>Logout</p>
                     <span>></span>
                 </a>
-
             </div>
-
         </div>
-    
     </div>
+
     <div class="discover">
         <div class="overlay"></div>
         <p class="info">
-           <b> DISCOVER JOBS THAT BEST ALIGN<br/>WITH YOUR SKILLS
-            </b><br/><br/>
+            <b>DISCOVER JOBS THAT BEST ALIGN<br/>WITH YOUR SKILLS</b><br/><br/>
             <p class="text">Be Creative and Show your Imaginative Mind</p>
         </p>
         <div class="search-bar">
@@ -86,6 +74,7 @@ $works = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <button>Search</button>
         </div>
     </div>
+
     <div class="carousel-container">
         <div class="carousel-slide" id="carouselSlide">
             <div class="slide">ANIMATION</div>
@@ -100,45 +89,46 @@ $works = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <button class="carousel-btn next" onclick="moveSlide(1)">&gt;</button>
     </div>
 
-        <select id="FilterCategory" onchange="filterEmployee()" class="filter">
-            <option value="">Filter</option>
-            <option value="new">New</option>
-            <option value="popular">Popular</option>
-        </select>
-        
-        <div id="worksContainer">
-        <?php
-        // Check if there are any works
-        if (count($works) > 0) {
-            $worksPerRow = 4;
-            $totalWorks = count($works);
-            
-            // Loop through works in groups of 4 to create rows
-            for ($i = 0; $i < $totalWorks; $i += $worksPerRow) {
-                echo '<section class="container">';
-                
-                // Create up to 4 cards per row
-                for ($j = $i; $j < min($i + $worksPerRow, $totalWorks); $j++) {
-                    $work = $works[$j];
-                    $picture = htmlspecialchars("../api/" . $work['picture']);
-                    $fullName = trim($work['firstname'] . ' ' . $work['lastname']);
-                    
-                    echo '<div class="card" data-id="freelancer-webdesign.php?id=' . $work['work_id'] . '" data-category="' . htmlspecialchars($work['category']) . '">';
-                    echo '    <div class="card-image" style="background-image: url(\'' . $picture . '\');">';
-                    echo '    </div>';
-                    echo '    <div class="footer">';
-                    echo '        <h5 id="text">' . htmlspecialchars($fullName) . '</h5>';
-                    echo '        <span>&hearts; 0</span>'; // You can add likes functionality later
-                    echo '    </div>';
-                    echo '</div>';
-                }
-                
-                echo '</section>';
-            }
-        } else {
-            echo '<div class="no-works-message">No works available. Be the first to create a post!</div>';
-        }
-        ?>
+    <select id="FilterCategory" onchange="filterEmployee()" class="filter">
+        <option value="">Filter</option>
+        <option value="new">New</option>
+        <option value="popular">Popular</option>
+    </select>
+
+    <div id="worksContainer">
+        <section class="container">
+            <div class="card" data-id="freelancer-webdesign.php?id=1" data-category="GRAPHIC DESIGN">
+                <div class="card-image" style="background-image: url('../image/sample1.jpg');"></div>
+                <div class="footer">
+                    <h5 id="text">John Doe</h5>
+                    <span>&hearts; 0</span>
+                </div>
+            </div>
+
+            <div class="card" data-id="freelancer-webdesign.php?id=2" data-category="WEB DESIGN">
+                <div class="card-image" style="background-image: url('../image/sample2.jpg');"></div>
+                <div class="footer">
+                    <h5 id="text">Jane Smith</h5>
+                    <span>&hearts; 0</span>
+                </div>
+            </div>
+
+            <div class="card" data-id="freelancer-webdesign.php?id=3" data-category="ANIMATION">
+                <div class="card-image" style="background-image: url('../image/sample3.jpg');"></div>
+                <div class="footer">
+                    <h5 id="text">Michael Brown</h5>
+                    <span>&hearts; 0</span>
+                </div>
+            </div>
+
+            <div class="card" data-id="freelancer-webdesign.php?id=4" data-category="ILLUSTRATION">
+                <div class="card-image" style="background-image: url('../image/sample4.jpg');"></div>
+                <div class="footer">
+                    <h5 id="text">Emily White</h5>
+                    <span>&hearts; 0</span>
+                </div>
+            </div>
+        </section>
     </div>
 
     <script>
@@ -150,64 +140,59 @@ $works = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </script>
 
     <script>
-    function logout() {
-        alert("You have been logged out successfully."); 
-        
-    }
-</script>
+        function logout() {
+            alert("You have been logged out successfully."); 
+        }
+    </script>
 
+    <script>
+        const designCards = document.querySelectorAll('.card');
 
-<script>
-    const designCards = document.querySelectorAll('.card');
-
-    designCards.forEach(Card => {
-        Card.addEventListener('click', function() {
-            const redirectPage = this.getAttribute('data-id');
-
-            window.location.href = redirectPage;
-
+        designCards.forEach(Card => {
+            Card.addEventListener('click', function() {
+                const redirectPage = this.getAttribute('data-id');
+                window.location.href = redirectPage;
+            });
         });
-    });
-</script>
+    </script>
 
-<script>
-    let slideIndex = 0;
-    const slides = document.querySelectorAll('.slide');
-    const totalSlides = slides.length;
-    const visibleSlides = 4.2;
+    <script>
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const visibleSlides = 4.2;
 
-    function moveSlide(direction) {
-        const maxIndex = totalSlides - visibleSlides;
-        if (direction === 1 && slideIndex < maxIndex) {
-            slideIndex++;
-        } else if (direction === -1 && slideIndex > 0) {
-            slideIndex--;
+        function moveSlide(direction) {
+            const maxIndex = totalSlides - visibleSlides;
+            if (direction === 1 && slideIndex < maxIndex) {
+                slideIndex++;
+            } else if (direction === -1 && slideIndex > 0) {
+                slideIndex--;
+            }
+            const offset = -slideIndex * (100 / visibleSlides);
+            document.getElementById('carouselSlide').style.transform = `translateX(${offset}%)`;
         }
-        const offset = -slideIndex * (100 / visibleSlides);
-        document.getElementById('carouselSlide').style.transform = `translateX(${offset}%)`;
-    }
-</script>
+    </script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-    const notifBtn = document.getElementById('notifBtn');  
-    const notifPopup = document.getElementById('notifPopup');  
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const notifBtn = document.getElementById('notifBtn');  
+            const notifPopup = document.getElementById('notifPopup');  
 
- 
-    notifBtn.addEventListener('click', function (e) {
-        e.stopPropagation();
-        notifPopup.style.display = notifPopup.style.display === 'block' ? 'none' : 'block';
-    });
+            notifBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                notifPopup.style.display = notifPopup.style.display === 'block' ? 'none' : 'block';
+            });
 
-    
-    document.addEventListener('click', function (e) {
-        if (!notifPopup.contains(e.target) && e.target !== notifBtn) {
-            notifPopup.style.display = 'none';
-        }
-    });
-});
-</script>
+            document.addEventListener('click', function (e) {
+                if (!notifPopup.contains(e.target) && e.target !== notifBtn) {
+                    notifPopup.style.display = 'none';
+                }
+            });
+        });
+    </script>
 
-<script src="../js/explore.js"></script>
+    <script src="../js/explore.js"></script>
+
 </body>
 </html>

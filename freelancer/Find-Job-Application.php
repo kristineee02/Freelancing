@@ -1,3 +1,16 @@
+<?php
+    session_start();
+    if(!$_SESSION["userId"]){
+        header("Location: ../login/UserLogIn.php");
+    }
+
+    if(isset($_GET['action']) && $_GET['action'] == 'logout') {
+        session_destroy();
+        header("Location: ../home/Home.php");
+        exit();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,8 +45,8 @@
         <div class="sub-menu-wrap" id="subMenu">
             <div class="sub-menu">
                 <div class="user-info">
-                    <img class="profile" src="../image/prof.jpg">
-                    <h4>Kristine Sabuero</h4>
+                    <img class="profile" src="../image/prof.jpg" id="imageDisplay">
+                    <h4 id="nameDisplay"></h4>
                 </div>
                 <hr>
 
@@ -42,7 +55,7 @@
                     <p>Profile</p>
                     <span>></span>
                 </a>
-                <a href="../home/Home.php" class="sub-menu-link" onclick="logout()">
+                <a href="?action=logout" name="logout" class="sub-menu-link">
                     <img src="../image/logo.png">
                     <p>Logout</p>
                     <span>></span>
@@ -56,13 +69,12 @@
     <div class="discover-find-job">
         <div class="overlay-find"></div>
         <p class="info-find-job"><b>
-            COMPANY NAME
         </b></p>
     </div>
 
     <div class="tabs-application">
-        <a href="Find-Job-Overview.php">OVERVIEW</a>
-        <a href="Find-Job-Application.php" class="active">APPLICATION</a>
+        <p id="overview" style="cursor:pointer;">OVERVIEW</p>
+        <p  class="active" id="application" style="cursor:pointer;">APPLICATION</p>
     </div>
 
     <main class="application-container">
@@ -105,6 +117,11 @@
         </form>
     </main>
     <script>
+        let subMenu = document.getElementById("subMenu");
+
+        function toggleMenu(){
+            subMenu.classList.toggle("open");
+        }
         document.addEventListener('DOMContentLoaded', function () {
         const notifBtn = document.getElementById('notifBtn');  
         const notifPopup = document.getElementById('notifPopup');  
@@ -123,21 +140,6 @@
         });
     });
     </script>
-
-<script>
-    let subMenu = document.getElementById("subMenu");
-
-    function toggleMenu(){
-        subMenu.classList.toggle("open");
-    }
-</script>
-
-<script>
-function logout() {
-    alert("You have been logged out successfully."); 
-    
-}
-</script>
-    
+    <script src="../js/findJobApplication.js"></script>
 </body>
 </html>

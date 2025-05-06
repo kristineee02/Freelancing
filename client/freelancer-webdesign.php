@@ -1,49 +1,3 @@
-<?php
-session_start();
-require_once '../class/Work.php';
-require_once '../class/Freelancer.php';
-
-$db = new PDO("mysql:host=localhost;dbname=freelancer_signup", "root", "");
-$work = new Work($db);
-$freelancer = new Freelancer($db);
-
-// Ensure user is logged in
-$userId = $_SESSION['user_id'] ?? null;
-if (!$userId) {
-    header("Location: ../login/UserLogin.php");
-    exit;
-}
-
-// Get work details
-$workId = $_GET['id'] ?? null;
-if (!$workId) {
-    echo "Invalid work ID.";
-    exit;
-}
-
-$workDetails = $work->getWorkById($workId);
-if (!$workDetails) {
-    echo "Work not found.";
-    exit;
-}
-
-// Get freelancer/uploader ID from the work details
-$uploaderId = $workDetails['freelancer_id'] ?? null;
-
-if ($uploaderId) {
-    $freelancerDetails = $freelancer->getFreelancerById($uploaderId);
-    $fullName = trim($freelancerDetails['firstname'] . " " . $freelancerDetails['lastname']);
-    $profilePic = $freelancerDetails['profile_pic'] ?? '../image/prof.jpg';
-} else {
-    $fullName = 'Unknown';
-    $profilePic = '../image/prof.jpg';
-}
-
-// Format date
-$datePosted = date('F j, Y', strtotime($workDetails['date_posted'] ?? 'now'));
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,7 +9,19 @@ $datePosted = date('F j, Y', strtotime($workDetails['date_posted'] ?? 'now'));
 
 </head>
 <body>
+    <?php
+        session_start();
+        if(!isset($_SESSION["userId"])){
+            echo '<script>window.location.href = "../login/UserLogIn.php";</script>';
+            exit();
+        }
 
+        if(isset($_GET['action']) && $_GET['action'] == 'logout') {
+            session_destroy();
+            echo '<script>window.location.href = "../home/Home.php";</script>';
+            exit();
+        }
+    ?>
     <div class="logo">
         <img class="picture" src="../image/logo.png">
         <p>TaskFlow</p>
@@ -87,8 +53,8 @@ $datePosted = date('F j, Y', strtotime($workDetails['date_posted'] ?? 'now'));
         <div class="sub-menu-wrap" id="subMenu">
             <div class="sub-menu">
                 <div class="user-info">
-                    <img class="profile" src="../image/prof.jpg">
-                    <h4>Kristine Sabuero</h4>
+                    <img class="profile" src="../image/prof.jpg" id="imageDisplay">
+                    <h4 id="nameDisplay">Kristine Sabuero</h4>
                 </div>
                 <hr>
 
@@ -108,31 +74,24 @@ $datePosted = date('F j, Y', strtotime($workDetails['date_posted'] ?? 'now'));
     <main>
         <form class="design-showcase" >
             <div class="design-profile">
-            <div class="avatar" style="background-image: url('<?php echo htmlspecialchars($profilePic); ?>');"></div>
-            <span>
-                <?php 
-                $uploaderName = trim($freelancerDetails['firstname'] . ' ' . $freelancerDetails['lastname']);
-                echo htmlspecialchars($uploaderName); 
-                ?>
+            <div class="avatar" style="background-image: url('../image/prof.jpg');" id="imageDisplay2"></div>
+            <span id="nameDisplay2">
+                John Doe
             </span>
             <button class="follow-btn">FOLLOW +</button>
             </div>
-            <h2><?php echo htmlspecialchars($workDetails['title'] ?? 'Untitled'); ?></h2>
-            <span class="work-category"><?php echo htmlspecialchars($workDetails['category'] ?? ''); ?></span>
-            <div class="time" id="date"><?php echo $datePosted; ?></div>
-            <div class="design-preview" style="background-image: url('<?php echo htmlspecialchars("../api/" . $workDetails['picture']); ?>');"></div>
+            <h2 id="workTitle">Modern Website Design</h2>
+            <span class="work-category" id="workCategory">Web Design</span>
+            <div class="time" id="date">April 28, 2025</div>
+            <div class="design-preview" style="background-image: url('../image/design-preview.jpg');" id="workPicture"></div>
             <div class="heart-icon">
                 <span><i class="fa-solid fa-heart"></i></span>
             </div>
-            <div class="work-description">
-                <p><?php echo htmlspecialchars($workDetails['description'] ?? 'No description available.'); ?></p>
+            <div class="work-description" id="workDescription">
+                <p>A clean and modern website design focused on user experience and visual aesthetics. This project was created for a tech startup looking to showcase their innovative products with a minimalist approach.</p>
             </div>
         </form>
         
-        <section class="more-projects">
-            <h3>More by <?php echo htmlspecialchars($fullName); ?></h3>
-            <div class="project-gallery" id="moreWorks"></div>
-        </section>
     </main>
 
     <script>
@@ -169,6 +128,6 @@ $datePosted = date('F j, Y', strtotime($workDetails['date_posted'] ?? 'now'));
     });
 });
 </script>
-
+<script src="../js/clientWebDesign.js"></script>  
 </body>
 </html>

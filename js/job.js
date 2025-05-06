@@ -1,39 +1,54 @@
+document.addEventListener("DOMContentLoaded", function(){
+    document.getElementById("closeBtn").addEventListener("click", function(){
+        window.location.href = "Find-Freelancer.php";
+    });
 
-document.addEventListener('DOMContentLoaded', () => {
-    fetch('../api/job_api.php')
-        .then(response => response.json())
-        .then(jobs => {
-            const container = document.getElementById('company-job');
-            container.innerHTML = ''; // clear placeholder
-
-            if (jobs.length === 0) {
-                container.innerHTML = '<p>No jobs available at the moment.</p>';
-                return;
-            }
-
-            jobs.forEach(job => {
-                const jobCard = document.createElement('div');
-                jobCard.classList.add('job-card');
-                jobCard.innerHTML = `
-                    <h3>${job.project_name}</h3>
-                    <p><strong>Category:</strong> ${job.category}</p>
-                    <p><strong>Description:</strong> ${job.description}</p>
-                    <button onclick="goToViewJob(${job.id})">View Details</button>
-                `;
-                container.appendChild(jobCard);
-            });
-        })
-        .catch(err => {
-            console.error("Failed to load jobs", err);
-        });
+    document.getElementById("jobSubmissionForm").addEventListener("submit", function(event){
+        event.preventDefault();
+        addJob();
+    });
 });
 
-// Function to redirect to job details page
-function viewJobDetails(jobId) {
-    window.location.href = `../freelancer/Find-job-details.php?id=${jobId}`;
-}
+function addJob(){
 
-// Function to redirect to job application page
-function goToApplyJob(jobId) {
-    window.location.href = `../freelancer/Find-Job-Application.php?id=${jobId}`;
+    fetch("../api/store_session.php", {
+        method: "GET",
+        headers: {"Content-Type": "application/json"}
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.status === "success"){
+            const formData = {
+                clientId: Number(data.userId),
+                projectTitle: document.getElementById("project_title").value,
+                projectCategory: document.getElementById("project_category").value,
+                description: document.getElementById("description").value,
+                startDate: document.getElementById("start_date").value,
+                endDate: document.getElementById("end_date").value,
+                budget: document.getElementById("budget").value,
+                location: document.getElementById("location").value,
+                education: document.getElementById("education").value,
+                experience: document.getElementById("experience").value,
+                aboutUs: document.getElementById("about_us").value,
+                role: document.getElementById("role").value,
+                tasks: document.getElementById("tasks").value,
+                benefits: document.getElementById("benefits").value,
+                requirements: document.getElementById("requirements").value
+            }
+            return fetch("../api/job_api.php", {
+                method: "POST",
+                body: JSON.stringify(formData),
+                headers: {"Content-Type": "application/json"}
+            })
+
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.status === "success"){
+            alert("Added Successfully!");
+            window.location.href = "Find-Freelancer.php";
+        }
+    })
+    .catch(error => console.error(error));
 }

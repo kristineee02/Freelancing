@@ -1,75 +1,14 @@
 <?php
-session_start();
-include '../api/database.php';
-require_once '../class/Freelancer.php';
-
-$database = new Database();
-$conn = $database->getConnection();
-
-// Ensure user is logged in
-$account_id = $_SESSION['user_id'] ?? null;
-if (!$account_id) {
-    header("Location: ../login/UserLogin.php");
-    exit;
-}
-
-$freelancer = new Freelancer($conn);
-
-// Fetch freelancer and about data from the database
-$freelancerData = $freelancer->getFreelancerById($account_id);
-if ($freelancerData && $freelancerData['about_id']) {
-    $query = "SELECT * FROM about WHERE about_id = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->execute([$freelancerData['about_id']]);
-    $aboutData = $stmt->fetch(PDO::FETCH_ASSOC);
-}
-
-// Update session with database data
-$_SESSION['firstName'] = $freelancerData['firstname'] ?? '';
-$_SESSION['lastName'] = $freelancerData['lastname'] ?? '';
-$_SESSION['address'] = $freelancerData['address'] ?? '';
-$_SESSION['profile_pic'] = $freelancerData['profile_pic'] ?? '../image/yellow circle.png';
-$_SESSION['contact'] = $aboutData['contact'] ?? '';
-$_SESSION['profession'] = $aboutData['profession'] ?? '';
-$_SESSION['skills'] = $aboutData['skills'] ?? '';
-$_SESSION['history'] = $aboutData['history'] ?? '';
-$_SESSION['socials'] = $aboutData['socials'] ?? '';
-
-// Load session data for display
-$firstName = $_SESSION['firstName'];
-$lastName = $_SESSION['lastName'];
-$fullName = trim($firstName . " " . $lastName);
-$address = $_SESSION['address'];
-$contact = $_SESSION['contact'];
-$profession = $_SESSION['profession'];
-$skills = $_SESSION['skills'];
-$history = $_SESSION['history'];
-$socials = $_SESSION['socials'];
-
-// Handle Edit About form submission
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $newContact = $_POST['editnumber'] ?? '';
-    $newProfession = $_POST['editprofession'] ?? '';
-    $newSkills = $_POST['editskills'] ?? '';
-    $newHistory = $_POST['edithistory'] ?? '';
-    $newSocials = $_POST['editsocials'] ?? '';
-
-    // Update profile
-    if ($freelancer->updateAbout($account_id, $newContact, $newSkills, $newHistory, $newSocials, $newProfession)) {
-        // Update session variables
-        $_SESSION['contact'] = $newContact;
-        $_SESSION['profession'] = $newProfession;
-        $_SESSION['skills'] = $newSkills;
-        $_SESSION['history'] = $newHistory;
-        $_SESSION['socials'] = $newSocials;
-
-        // Redirect to refresh the page with updated data
-        header("Location: freelancer-about.php");
-        exit;
-    } else {
-        echo "Failed to update profile.";
+    session_start();
+    if(!$_SESSION["userId"]){
+        header("Location: ../login/UserLogIn.php");
     }
-}
+
+    if(isset($_GET['action']) && $_GET['action'] == 'logout') {
+        session_destroy();
+        header("Location: ../home/Home.php");
+        exit();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -104,9 +43,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="sub-menu-wrap" id="subMenu">
             <div class="sub-menu">
-                <div class="user-info">
+                <div class="user-info" id="userInfoDocument">
                     <img class="profile" src="../image/prof.jpg">
-                    <h4><?php echo htmlspecialchars($fullName); ?></h4>
+                    <h4>name</h4>
                 </div>
                 <hr>
                 <a href="freelancer-work.php" class="sub-menu-link">
@@ -114,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <p>Profile</p>
                     <span>></span>
                 </a>
-                <a href="../home/Home.php" class="sub-menu-link" onclick="logout()">
+                <a href="?action=logout" name="logout" class="sub-menu-link">
                     <img src="../image/logo.png">
                     <p>Logout</p>
                     <span>></span>
@@ -124,42 +63,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <div class="profile-container">
-        <div class="profile-header">
-            <img src="<?php echo $_SESSION['profile_pic']; ?>" alt="Profile Image" class="profile-image">
+        <div class="profile-header" id="profileHeaderDocument">
+            <img src="../image/" alt="Profile Image" class="profile-image">
             <div class="profile-info">
-                <h1><?php echo htmlspecialchars($fullName); ?></h1>
-                <p class="location"><?php echo htmlspecialchars($address); ?></p>
-                <p class="follow-info">0 Followers | 20 Following</p>
-                <button class="edit-profile" onclick="goToEditProfile()">EDIT PROFILE</button>
+                <h1>name</h1>
+                <p class="location">address</p>
             </div>
         </div>
 
         <div class="tabs">
             <a href="freelancer-work.php">WORK</a>
             <a href="freelancer-about.php" class="active">ABOUT</a>
-            <a href="freelancer-likedpost.php">LIKED POST</a>
         </div>
         <hr>
     </div>
 
-    <div class="about-section">
+    <div class="about-section" id="aboutSection">
         <div class="about-left">
             <h2>ABOUT YOU</h2>
-            <p>Contact: <?php echo htmlspecialchars($contact); ?></p>
-            <p>Profession: <?php echo htmlspecialchars($profession); ?></p>
+            <p id="contactData"></p>
+            <p id="professionData"></p>
             <br/>
             <h2>SKILLS</h2>
-            <p><?php echo htmlspecialchars($skills); ?></p>
+            <p id="skillsData"></p>
         </div>
         <div class="about-right">
             <h2>WORK HISTORY AND EXPERIENCE</h2>
-            <p><?php echo htmlspecialchars($history); ?></p>
+            <p id="historyData"></p>
             <br/>
             <h2>SOCIALS</h2>
-            <p><?php echo htmlspecialchars($socials); ?></p>
+            <p id="socialsData"></p>
         </div>
         <button class="edit-about" id="editAbout">EDIT ABOUT</button>
     </div>
+    
 
     <!-- Edit About Modal -->
     <div id="editAboutModal" class="modal-about">
@@ -171,15 +108,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="form-group-about">
                         <h1>ABOUT YOU</h1>
                         <label for="editnumber">Contact</label>
-                        <input type="text" id="editnumber" name="editnumber" placeholder="Contact" value="<?php echo htmlspecialchars($contact); ?>">
+                        <input type="text" id="editnumber" name="editnumber" placeholder="Contact">
                         <label for="editprofession">Profession</label>
-                        <input type="text" id="editprofession" name="editprofession" placeholder="Profession" value="<?php echo htmlspecialchars($profession); ?>">
+                        <input type="text" id="editprofession" name="editprofession" placeholder="Profession">
                         <label for="editskills">Skills</label>
-                        <textarea name="editskills"><?php echo htmlspecialchars($skills); ?></textarea>
+                        <textarea name="editskills" id="editSkills"></textarea>
                         <label for="edithistory">Work History</label>
-                        <textarea name="edithistory"><?php echo htmlspecialchars($history); ?></textarea>
+                        <textarea name="edithistory" id="editHistory"></textarea>
                         <label for="editsocials">Socials</label>
-                        <textarea name="editsocials"><?php echo htmlspecialchars($socials); ?></textarea>
+                        <textarea name="editsocials" id="editSocials"></textarea>
                     </div>
                 </div>
                 <button type="submit" class="button-edit-about">Save Changes</button>
@@ -188,9 +125,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <script>
-        function goToEditProfile() {
-            window.location.href = "freelancer-work.php";
-        }
 
         function toggleMenu() {
             let subMenu = document.getElementById("subMenu");

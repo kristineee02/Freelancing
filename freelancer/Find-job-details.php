@@ -1,3 +1,16 @@
+<?php
+    session_start();
+    if(!$_SESSION["userId"]){
+        header("Location: ../login/UserLogIn.php");
+    }
+
+    if(isset($_GET['action']) && $_GET['action'] == 'logout') {
+        session_destroy();
+        header("Location: ../home/Home.php");
+        exit();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,7 +54,7 @@
                     <p>Profile</p>
                     <span>></span>
                 </a>
-                <a href="../home/Home.php" class="sub-menu-link" onclick="logout()">
+                <a href="?action=logout" name="logout" class="sub-menu-link">
                     <img src="../image/logo.png">
                     <p>Logout</p>
                     <span>></span>
@@ -56,38 +69,22 @@
 
     <section class="job-details">
         <p class="details-job">JOB DETAILS</h2>
-        <p class="skill-name">WEBSITE DESIGNER</h1>
+        <p class="skill-name" id="skillNameId">WEBSITE DESIGNER</h1>
         <div class="job-content">
-            <div class="job-description">
-                <p>We are seeking a highly creative and design-driven Content Analyst to join our dynamic team. As a Content Analyst, you will be building websites using our website builder platform for our diverse range of small business customers. If you have an eye for great design, understand how to create engaging online experiences, and enjoy helping businesses stand out, this is the perfect role for you.</p>
-                <p>Only candidates based in Central/South America will be considered for this position.</p>
-                <p>Full-time position, five days a week. One of those days will be either Saturday or Sunday. 6:30am to 3pm EST</p>
-                <p>Top performers at UENI will be rewarded with promotions, remuneration progression, and performance bonuses.</p>
+            <div class="job-description" >
+                <p id="jobDescription"></p>
                 <h3>Job requirements</h3>
                 <h4>Education:</h4>
-                <ul>
-                    <li>A high school diploma or equivalent is required.</li>
-                    <li>A bachelor's degree in a related field is a plus (Marketing, Advertising, Web Design, UI/UX).</li>
-                </ul>
+                <p id="educationId"></p>
                 <h4>Experience:</h4>
-                <ul>
-                    <li>Proven experience in Website design, branding, UX/UI, content creation, or a related role.</li>
-                    <li>Experience working with small businesses, entrepreneurs, or startups is a plus.</li>
-                </ul>
-                <button class="apply" onclick="goToApplyJob()">APPLY FOR THIS JOB</button>
+                <p id="experienceId"></p>
+                <button class="apply" id="applyBtn">APPLY FOR THIS JOB</button>
             </div>
             <div class="company-info">
-                <div class="company-logo"></div>
-                <h3>COMPANY NAME</h3>
-                <p><strong>Job Type:</strong> Full-time</p>
-                <p><strong>Location:</strong> Location Name</p>
-                <p><strong>Date Posted:</strong> Date</p>
-                <p><strong>Timeframe:</strong> Timeframe</p>
-                <p><strong>Budget:</strong> Budget</p>
-                <div class="social-links">
-                    <span>Facebook</span>
-                    <span>Instagram</span>
-                </div>
+                <p id="locationId"></p>
+                <p id="datePostedId"></p>
+                <p id="timeframeId"></p>
+                <p id="budgetId"></p>
             </div>
         </div>
     </section>
@@ -101,19 +98,6 @@
     </script>
 
     <script>
-    function logout() {
-        alert("You have been logged out successfully."); 
-        
-    }
-</script>
-
-    <script>
-        function goToApplyJob() {
-        window.location.href = "Find-Job-Overview.php";
-        }
-    </script>
-
-<script>
     document.addEventListener('DOMContentLoaded', function () {
     const notifBtn = document.getElementById('notifBtn');  
     const notifPopup = document.getElementById('notifPopup');  
@@ -132,5 +116,7 @@
     });
 });
 </script>
+
+<script src="../js/findJobDetails.js"></script>
 </body>
 </html>

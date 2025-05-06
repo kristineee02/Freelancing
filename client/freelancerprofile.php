@@ -1,49 +1,3 @@
-<?php
-session_start();
-require_once '../class/Freelancer.php';
-
-$db = new PDO("mysql:host=localhost;dbname=freelancer_signup", "root", "");
-
-// Check if viewing a specific freelancer profile or logged-in user's profile
-$viewingId = isset($_GET['id']) ? (int)$_GET['id'] : null;
-$userId = $_SESSION['user_id'] ?? null;
-
-// Create freelancer object
-$freelancer = new Freelancer($db);
-
-// Load session data for logged-in user
-$firstName = $_SESSION['firstName'] ?? '';
-$lastName = $_SESSION['lastName'] ?? '';
-$fullName = trim($firstName . " " . $lastName);
-
-// Get freelancer data - either for the viewed profile or logged-in user
-try {
-    if ($viewingId) {
-        // Fetch data for the specific freelancer being viewed
-        $query = "SELECT f.account_id, f.firstname, f.lastname, f.profile_pic, f.address, a.profession 
-                  FROM freelancer f 
-                  LEFT JOIN about a ON f.about_id = a.about_id 
-                  WHERE f.account_id = :id";
-        $stmt = $db->prepare($query);
-        $stmt->bindParam(':id', $viewingId, PDO::PARAM_INT);
-        $stmt->execute();
-        $freelancer = $stmt->fetch(PDO::FETCH_ASSOC);
-        
-        if (!$freelancer) {
-            // Freelancer not found, redirect back
-            header("Location: Find-Freelancer.php");
-            exit;
-        }
-    } else {
-        // Use current logged-in user's data
-        $freelancer = $freelancer->getFreelancerById($userId);
-    }
-} catch (PDOException $e) {
-    error_log("Error fetching freelancer data: " . $e->getMessage());
-    $freelancer = []; // Set empty array if fetching fails
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,14 +8,32 @@ try {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         .work-section{
-            margin-top: 20px;
+            margin-top: 50px;
+            gap: 30px;
+        }
+        .work-box:hover{
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(24, 24, 24, 0.3);
+  
         }
         
     </style>
 
 </head>
 <body>
+    <?php
+        session_start();
+        if(!isset($_SESSION["userId"])){
+            echo '<script>window.location.href = "../login/UserLogIn.php";</script>';
+            exit();
+        }
 
+        if(isset($_GET['action']) && $_GET['action'] == 'logout') {
+            session_destroy();
+            echo '<script>window.location.href = "../home/Home.php";</script>';
+            exit();
+        }
+    ?>
     <div class="logo">
         <img class="picture" src="../image/logo.png">
         <p>TaskFlow</p>
@@ -92,8 +64,8 @@ try {
         <div class="sub-menu-wrap" id="subMenu">
             <div class="sub-menu">
                 <div class="user-info">
-                    <img class="profile" src="<?php echo $_SESSION['profile_pic'] ?? '../image/prof.jpg'; ?>" alt="Profile">
-                    <h4><?php echo htmlspecialchars($fullName); ?></h4>
+                    <img class="profile" alt="Profile" id="imageDisplay">
+                    <h4 id="nameDisplay">name</h4>
                 </div>
                 <hr>
 
@@ -111,38 +83,27 @@ try {
         </div>
     </div>
     
-    <div class="profile-container" id="profileId" data-freelancer-id="<?php echo $viewingId ?? $userId; ?>">
-<?php
-        // Ensure path is correct for profile pic
-        $profilePic = $freelancer['profile_pic'] ?? '';
-        $picture = !empty($profilePic) ? 
-            (strpos($profilePic, '../') === 0 ? $profilePic : "../api/" . $profilePic) : 
-            '../image/yellow circle.png';
-        
-        $freelancerName = trim(($freelancer['firstname'] ?? 'Unknown') . ' ' . ($freelancer['lastname'] ?? 'User'));
-        $address = $freelancer['address'] ?? 'No address provided';
-        $profession = $freelancer['profession'] ?? 'Freelancer';
-
-        echo '<div class="profile-header">';
-        echo '    <img src="' . htmlspecialchars($picture) . '" alt="Profile Image" class="profile-image">';
-        echo '    <div class="profile-info">';
-        echo '        <h1>' . htmlspecialchars($freelancerName) . '</h1>';
-        echo '        <p class="profession">' . htmlspecialchars($profession) . '</p>';
-        echo '        <p class="location">' . htmlspecialchars($address) . '</p>';
-        echo '    </div>'; 
-        echo '</div>'; 
-        ?>
+    <div class="profile-container" id="profileId" data-freelancer-id="1">
+        <div class="profile-header">
+            <img src="../image/yellow circle.png" alt="Profile Image" class="profile-image" id="imageDisplayId">
+            <div class="profile-info">
+                <h1 id="nameDisplayId"></h1>
+                <p class="profession" id="professionId"></p>
+                <p class="location" id="addressId"></p>
+            </div>
+        </div>
 
         <div class="tabs">
             <a href="#work" class="tab active" data-tab="work">WORK</a>
-            <a href="#about" class="tab" data-tab="about">ABOUT</a>
+            <a href="#about" class="tab" data-tab="about" id="aboutSection">ABOUT</a>
         </div>
-        <div class="hr"></div>
+        <hr>
 
-        <div class="content-section">
-            <div id="workSection" class="work-section active-content"></div>
-              
+        <div class="work-content-section">
+            <div id="workSection" class="work-section active-content">
+                <!-- Work content will be loaded here -->
             </div>
+              
         </div>
     </div>
 
@@ -173,6 +134,6 @@ try {
             });
         });
     </script>
-        <script src="../js/workClient.js"></script>
+    <script src="../js/freelancerProfile.js"></script>
 </body>
 </html>

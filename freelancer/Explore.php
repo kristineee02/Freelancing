@@ -1,24 +1,3 @@
-<?php
-session_start();
-
-$db = new PDO("mysql:host=localhost;dbname=freelancer_signup", "root", "");
-
-$firstName = $_SESSION['firstName'] ?? '';
-$lastName = $_SESSION['lastName'] ?? '';
-$fullName = trim($firstName . " " . $lastName);
-    
-// Query to fetch all posts for the explore page
-$stmt = $db->prepare("
-    SELECT w.*, f.firstname, f.lastname 
-    FROM work w
-    JOIN freelancer f ON w.freelancer_id = f.account_id
-    ORDER BY work_id DESC
-");
-$stmt->execute();
-$works = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,6 +8,19 @@ $works = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
 
+    <?php
+        session_start();
+        if(!isset($_SESSION["userId"])){
+            echo '<script>window.location.href = "../login/UserLogIn.php";</script>';
+            exit();
+        }
+
+        if(isset($_GET['action']) && $_GET['action'] == 'logout') {
+            session_destroy();
+            echo '<script>window.location.href = "../home/Home.php";</script>';
+            exit();
+        }
+    ?>
     <div class="logo">
         <img class="picture" src="../image/logo.png">
         <p>TaskFlow</p>
@@ -52,9 +44,9 @@ $works = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         <div class="sub-menu-wrap" id="subMenu">
             <div class="sub-menu">
-                <div class="user-info">
+                <div class="user-info" id="userInfoDocument">
                     <img class="profile" src="../image/prof.jpg">
-                    <h4><?php echo htmlspecialchars($fullName); ?></h4>
+                    <h4>John Doe</h4>
                 </div>
                 <hr>
 
@@ -63,7 +55,7 @@ $works = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <p>Profile</p>
                     <span>></span>
                 </a>
-                <a href="../home/Home.php" class="sub-menu-link" onclick="logout()">
+                <a href="?action=logout" class="sub-menu-link" name="logout">
                     <img src="../image/logo.png">
                     <p>Logout</p>
                     <span>></span>
@@ -82,64 +74,34 @@ $works = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <p class="text">Be Creative and Show your Imaginative Mind</p>
         </p>
         <div class="search-bar">
-            <input type="text" placeholder="What are you looking for?" name="search">
-            <button>Search</button>
+            <input type="text" placeholder="What are you looking for?" name="search" oninput="searchWorks()">
+            <button onclick="searchWorks()">Search</button>
         </div>
     </div>
     <div class="carousel-container">
-        <div class="carousel-slide" id="carouselSlide">
-            <div class="slide">ANIMATION</div>
-            <div class="slide">GRAPHIC DESIGN</div>
-            <div class="slide">PRODUCT DESIGN</div>
-            <div class="slide">WEB DESIGN</div>
-            <div class="slide">ILLUSTRATION</div>
-            <div class="slide">MOBILE DESIGN</div>
-            <div class="slide">WRITING</div>
-        </div>
-        <button class="carousel-btn prev" onclick="moveSlide(-1)">&lt;</button>
-        <button class="carousel-btn next" onclick="moveSlide(1)">&gt;</button>
+    <div class="carousel-slide" id="carouselSlide">
+        <div class="slide" onclick="filterByCategory('ANIMATION')" style="cursor: pointer;">ANIMATION</div>
+        <div class="slide" onclick="filterByCategory('GRAPHIC DESIGN')" style="cursor: pointer;">GRAPHIC DESIGN</div>
+        <div class="slide" onclick="filterByCategory('PRODUCT DESIGN')" style="cursor: pointer;">PRODUCT DESIGN</div>
+        <div class="slide" onclick="filterByCategory('WEBSITE DESIGN')" style="cursor: pointer;">WEB DESIGN</div>
+        <div class="slide" onclick="filterByCategory('ILLUSTRATION')" style="cursor: pointer;">ILLUSTRATION</div>
+        <div class="slide" onclick="filterByCategory('MOBILE DESIGN')" style="cursor: pointer;">MOBILE DESIGN</div>
+        <div class="slide" onclick="filterByCategory('WRITING')" style="cursor: pointer;">WRITING</div>
+    </div>
+    <button class="carousel-btn prev" onclick="moveSlide(-1)"><</button>
+    <button class="carousel-btn next" onclick="moveSlide(1)">></button>
     </div>
 
-        <select id="FilterCategory" onchange="filterEmployee()" class="filter">
-            <option value="">Filter</option>
-            <option value="new">New</option>
-            <option value="popular">Popular</option>
-        </select>
+    <select id="FilterCategory" onchange="filterFreelancer()" class="filter">
+        <option value="">Filter</option>
+        <option value="new">New</option>
+        <option value="all">All</option>
+    </select>
         
-        <div id="worksContainer">
-        <?php
-        // Check if there are any works
-        if (count($works) > 0) {
-            $worksPerRow = 4;
-            $totalWorks = count($works);
-            
-            // Loop through works in groups of 4 to create rows
-            for ($i = 0; $i < $totalWorks; $i += $worksPerRow) {
-                echo '<section class="container">';
-                
-                // Create up to 4 cards per row
-                for ($j = $i; $j < min($i + $worksPerRow, $totalWorks); $j++) {
-                    $work = $works[$j];
-                    $picture = htmlspecialchars("../api/" . $work['picture']);
-                    $fullName = trim($work['firstname'] . ' ' . $work['lastname']);
-                    
-                    echo '<div class="card" data-id="freelancer-webdesign.php?id=' . $work['work_id'] . '" data-category="' . htmlspecialchars($work['category']) . '">';
-                    echo '    <div class="card-image" style="background-image: url(\'' . $picture . '\');">';
-                    echo '    </div>';
-                    echo '    <div class="footer">';
-                    echo '        <h5 id="text">' . htmlspecialchars($fullName) . '</h5>';
-                    echo '        <span>&hearts; 0</span>'; // You can add likes functionality later
-                    echo '    </div>';
-                    echo '</div>';
-                }
-                
-                echo '</section>';
-            }
-        } else {
-            echo '<div class="no-works-message">No works available. Be the first to create a post!</div>';
-        }
-        ?>
-    </div>
+        <div id="worksContainer">           
+        </div>
+
+        <script src="../js/explore.js"></script>
 
     <script>
         let subMenu = document.getElementById("subMenu");
@@ -208,6 +170,5 @@ $works = $stmt->fetchAll(PDO::FETCH_ASSOC);
 });
 </script>
 
-<script src="../js/explore.js"></script>
 </body>
 </html>

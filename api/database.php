@@ -3,7 +3,7 @@
 
     class Database {
         private $host = "localhost";
-        private $db_name = "freelancer_signup";
+        private $db_name = "freelancing";
         private $username = "root";
         private $password ="";
         public $conn;

@@ -1,66 +1,77 @@
 <?php
+
     class Client{
         private $conn;
         private $table = "client";
 
-        public function __construct($db)
-        {
+        public function __construct($db){
             $this->conn = $db;
         }
 
-        public function addClient($firstName, $lastName, $email, $password, $address){
-            $query = "INSERT INTO " . $this->table . " (firstname, lastname, email, password, address) VALUES (:firstName, :lastName, :email, :password, :address)";
+        public function getClient(){
+            $query = "SELECT * FROM " . $this->table;
             $stmt = $this->conn->prepare($query);
-            $stmt->execute([":firstName" => $firstName, ":lastName" => $lastName, ":email" => $email, ":password" => $password, ":address" => $address]);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
- 
-        public function getClientById($client_id) {
-            $query = "SELECT * FROM " . $this->table . " WHERE client_id = ?";
+
+        public function getClientById($id){
+            $query = "SELECT * FROM " . $this->table . " WHERE client_id = :id";
             $stmt = $this->conn->prepare($query);
-            $stmt->execute([$client_id]);
+            $stmt->execute([":id" => $id]);
             return $stmt->fetch(PDO::FETCH_ASSOC);
         }
 
-        public function login($email, $password){
-            $query = "SELECT * FROM " . $this->table . " WHERE email = :email LIMIT 1";
+        public function addClient($firstName, $lastName, $email, $password, $address){
+            $aboutQuery = "INSERT INTO about (contact, profession, skills, history, socials) VALUES ('', '', '', '', '')";
+            $stmt = $this->conn->prepare($aboutQuery);
+            $stmt->execute();
+            
+            $aboutId = $this->conn->lastInsertId();
+            
+            $freelancerQuery = "INSERT INTO " . $this->table . " (first_name, last_name, email, password, address, profile_pic, about_id) VALUES (:firstName, :lastName, :email, :password, :address, :profilePic, :aboutId)";
+            $stmt = $this->conn->prepare($freelancerQuery);
+
+            $passwordHashed = password_hash($password, PASSWORD_BCRYPT);
+            $profilePic = null;
+            $stmt->execute([":firstName" => $firstName, ":lastName" => $lastName, ":email" => $email, ":password" => $passwordHashed, ":address" => $address, ":profilePic" => $profilePic, ":aboutId" => $aboutId]);
+            
+        }
+
+        public function updateClient($clientId, $firstName, $lastName, $address, $profilePic){
+            $query = "UPDATE " . $this->table . " SET first_name = :firstName, last_name = :lastName, address = :address" . 
+                     ($profilePic !== null ? ", profile_pic = :profilePic" : "") . 
+                     " WHERE client_id = :clientId";
+            
+            $stmt = $this->conn->prepare($query);
+
+            $stmt->bindParam(':firstName', $firstName);
+            $stmt->bindParam(':lastName', $lastName);
+            $stmt->bindParam(':address', $address);
+            if ($profilePic !== null) {
+                $stmt->bindParam(':profilePic', $profilePic);
+            }
+            $stmt->bindParam(':clientId', $clientId, PDO::PARAM_INT);
+            
+            if ($stmt->execute()) {
+                return true;
+            } else {
+                throw new Exception("SQL Error: " . implode(", ", $stmt->errorInfo()));
+            }
+        }
+
+        public function clientLogin($email, $password){
+            $query = "SELECT * FROM " . $this->table . " WHERE email = :email";
             $stmt = $this->conn->prepare($query);
             $stmt->execute([":email" => $email]);
-            if ($stmt->rowCount() == 1){
-                $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                if($password == $user["password"]){
-                    return $user;
-                }
-            }
-            return false;
-        }
-
-        public function updateProfile($client_id, $firstName, $lastName, $address, $profilePic = null) {
-            try {
-                $query = "UPDATE " . $this->table . " SET firstname = :firstName, lastname = :lastName, address = :address";
-                if ($profilePic) {
-                    $query .= ", profile_pic = :profilePic";
-                }
-                $query .= " WHERE client_id = :client_id";
-                
-                $stmt = $this->conn->prepare($query);
-                $params = [
-                    ":firstName" => $firstName,
-                    ":lastName" => $lastName,
-                    ":address" => $address,
-                    ":client_id" => $client_id
-                ];
-                if ($profilePic) {
-                    $params[":profilePic"] = $profilePic;
-                }
-                return $stmt->execute($params);
-            } catch (PDOException $e) {
-                error_log("UpdateProfile error: " . $e->getMessage());
+            if($user && password_verify($password, $user["password"])){
+                return $user;
+            }else{
                 return false;
+
             }
         }
-
     }
-
-
 ?>

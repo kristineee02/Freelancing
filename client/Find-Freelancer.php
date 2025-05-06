@@ -1,31 +1,3 @@
-<?php
-session_start();
-include '../api/database.php';
-require_once '../class/Freelancer.php';
-$db = new PDO("mysql:host=localhost;dbname=freelancer_signup", "root", "");
-
-$firstName = $_SESSION['firstName'] ?? '';
-$lastName = $_SESSION['lastName'] ?? '';
-$fullName = trim($firstName . " " . $lastName);
-
-
-  
-try {
-    // query to fetch freelancers 
-    $query = "SELECT f.account_id, f.firstname, f.lastname, f.profile_pic, a.profession 
-              FROM freelancer f 
-              LEFT JOIN about a ON f.about_id = a.about_id";
-    $stmt = $db->prepare($query);
-    $stmt->execute();
-    $freelancers = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    error_log("Error fetching freelancers: " . $e->getMessage());
-    $freelancers = []; // Set an empty array if query fails
-}
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +8,19 @@ try {
     <link rel ="stylesheet" href="../style/clients.css">
 </head>
 <body>
+    <?php
+        session_start();
+        if(!isset($_SESSION["userId"])){
+            echo '<script>window.location.href = "../login/UserLogIn.php";</script>';
+            exit();
+        }
 
+        if(isset($_GET['action']) && $_GET['action'] == 'logout') {
+            session_destroy();
+            echo '<script>window.location.href = "../home/Home.php";</script>';
+            exit();
+        }
+    ?>
     <div class="logo">
         <img class="picture" src="../image/logo.png">
         <p>TaskFlow</p>
@@ -67,8 +51,8 @@ try {
         <div class="sub-menu-wrap" id="subMenu">
             <div class="sub-menu">
                 <div class="user-info">
-                    <img class="freelancer-work" src="../image/prof.jpg">
-                    <h4><?php echo htmlspecialchars($fullName); ?></h4>
+                    <img class="freelancer-work" src="../image/prof.jpg" id="imageDisplay">
+                    <h4 id="nameDisplay">Name</h4>
                 </div>
                 <hr>
 
@@ -90,64 +74,25 @@ try {
         <p class="info-find-job"><b>
             FIND PROFESSIONALS THAT ALIGN<br> WITH YOUR STYLE.
         </b></p>
-        <form action="search-job">
-            <input type="text" placeholder="SEARCH BY SKILL" name="search" class="search-bar-job">
+        <form action="search-job" onsubmit="event.preventDefault();">
+            <input 
+                type="text" 
+                placeholder="SEARCH BY SKILL" 
+                name="search" 
+                class="search-bar-job"
+                oninput="searchFreelancers(this.value)"
+            >
         </form>
     </div>
-
-    <div class="category">
-        <p class="categories">Categories:</p>
-    <div class="category-type">
-        <input type="radio" id="skill1" name="category" value="30">
-        <label for="skill1">Animation</label><br/><br/>
-
-        <input type="radio" id="skill2" name="category" value="30">
-        <label for="skill2">Graphic Design</label><br/><br/>
-
-        <input type="radio" id="skill3" name="category" value="30">
-        <label for="skill3">Product Design</label><br/><br/>
-
-        <input type="radio" id="skill4" name="category" value="30">
-        <label for="skill4">Web Design</label><br/><br/>
-
-        <input type="radio" id="skill5" name="category" value="30">
-        <label for="skill5">llustration</label><br/><br/>
-
-        <input type="radio" id="skill6" name="category" value="30">
-        <label for="skill6">Mobile Design</label><br/><br/>
-
-        <input type="radio" id="skill7" name="category" value="30">
-        <label for="skill7">Writing</label><br/><br/>
-    </div>
-    </div>
-
     <p class="post">
         <b>FREELANCERS</b>
     </p>
     
     <div class="contents" id="freelancer-contents">
-    <?php
-    if (!empty($freelancers)) {
-        echo '<div class="freelancer-list">';
-        foreach ($freelancers as $freelancer) {
-            // Create variables for display
-            $FullName = ($freelancer['firstname'] ?? 'Unknown') . ' ' . ($freelancer['lastname'] ?? 'User');
-            $picture = $freelancer['profile_pic'] ?? '../image/prof.jpg';
-            $profession = $freelancer['profession'] ?? '';
-            $account_id = (int)($freelancer['account_id'] ?? 0);
-            
-            echo '<div class="cards">';
-            echo '    <img src="' . htmlspecialchars($picture) . '" alt="freelancer profile picture">';
-            echo '    <strong>' . htmlspecialchars($FullName) . '</strong>';
-            echo '    <p>' . htmlspecialchars($profession) . '</p>';
-            echo '    <a href="freelancerprofile.php?id=' . urlencode($account_id) . '" class="find">See More</a>';       
-            echo '</div>';
-        }
-    } else {
-        echo '<div class="no-freelancers">No freelancers available at this time.</div>';
-    }
-    ?>
-</div>
+        <div class="freelancer-list" id="freelancerList">
+ 
+        </div>
+    </div>
 
     <script>
         document.addEventListener("click", function (event) {
@@ -203,5 +148,7 @@ try {
     });
 });
 </script>
+
+<script src="../js/findFreelancer.js"></script>
 </body>
 </html>
