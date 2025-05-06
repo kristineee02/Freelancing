@@ -46,7 +46,7 @@
             <div class="sub-menu">
                 <div class="user-info" id="userInfoDocument">
                     <img class="profile" src="../image/prof.jpg">
-                    <h4>John Doe</h4>
+                    <h4></h4>
                 </div>
                 <hr>
 

@@ -9,14 +9,15 @@
         }
 
         public function getClient(){
-            $query = "SELECT * FROM " . $this->table;
+            $query = "SELECT * FROM " . $this->table . " JOIN about ON client.about_id = about.about_id";
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
+        
         public function getClientById($id){
-            $query = "SELECT * FROM " . $this->table . " WHERE client_id = :id";
+            $query = "SELECT * FROM " . $this->table . " JOIN about ON client.about_id = about.about_id WHERE client_id = :id";
             $stmt = $this->conn->prepare($query);
             $stmt->execute([":id" => $id]);
             return $stmt->fetch(PDO::FETCH_ASSOC);

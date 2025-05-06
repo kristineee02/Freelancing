@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Freelancing</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../style/freelancer-profile.css">
 </head>
 <body>
@@ -27,15 +26,9 @@
 
         <div class="dashboard">
             <ul>
-              <li><a href="client-explore.php">Explore</a></li>
-              <li><a href="Find-Freelancer.php" class="tight-text">Find Designer  <i class="fa fa-caret-down"></i></a> 
-                <div class="dropdown_menu">
-                   <ul>
-                       <li><a href="client-freelancer-work.php" class="tight-text">Post Job</a></li>
-                   </ul>
-                </div>
-               </li>
-             <li><a href="client-about.php">About</a></li>
+              <li><a href="Explore.php" class="active-dash">Explore</a> </li>
+             <li> <a href="Find-Job.php" class="tight-text">Find Jobs</a> </li>
+             <li> <a href="About.php">About</a></li>
             </ul>
         </div>
 
@@ -81,7 +74,6 @@
     </div>
 
     <div class="tabs">
-        <a href="client-profile.php">PROFILE</a>
         <a href="client-profile-about.php" class="active">ABOUT</a>
     </div>
     <hr>

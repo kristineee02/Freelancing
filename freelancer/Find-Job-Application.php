@@ -106,12 +106,6 @@
                 <input type="text" id="address" name="address" required>
             </div>
 
-            <h2 class="personal-profile">PERSONAL PROFILE</h2>
-            <div class="form-group">
-                <label for="resume">Resume</label>
-                <input type="file" id="resume" name="resume" required>
-            </div>
-
             <button type="submit" class="submit-btn">Submit Application</button>
             
         </form>

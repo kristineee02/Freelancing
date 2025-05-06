@@ -10,7 +10,7 @@
     <style>
         /* Job Section Styles */
 .job-section {
-    margin-top: -70px;
+    margin-top: -20px;
     padding: 0 20px;
     margin-left: 30px;
 }
