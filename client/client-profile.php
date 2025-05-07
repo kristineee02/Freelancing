@@ -10,9 +10,10 @@
     <style>
         /* Job Section Styles */
 .job-section {
-    margin-top: -70px;
+    margin-top: -30px;
     padding: 0 20px;
     margin-left: 30px;
+    
 }
 
 .job-section h2 {
@@ -28,7 +29,7 @@
     margin-bottom: 40px;
     padding: 20px;
     transition: transform 0.2s;
-    width: 105%;
+    width: 90%;
 }
 
 .job-card:hover {
@@ -199,7 +200,6 @@
         <div class="profile-info">
                 <h1 id="nameDisplay">name</h1>
                 <p class="location" id="addressDisplay">address</p>
-                <p class="follow-info">0 Followers  |  20 Following</p>
                 <button class="edit-profile" id="EditProfile">EDIT PROFILE</button>
             </div>
         </div>
@@ -234,62 +234,15 @@
         <div class="tabs">
             <a href="client-profile.php" class="active">MY PROFILE</a>
             <a href = "client-profile-about.php">ABOUT</a>
-           <a href = "client-likedpost.php">LIKED POST</a>
             
         </div>
-        <div class="hr">            
-        </div>
+        <hr>
     </div>
 
     <div class="content-section">
     <div id="jobSection" class="job-section">
         <h2>My Posted Jobs</h2>
-        
-        <!-- Example Job Card 1 
-        <div class="job-card">
-            <div class="job-header">
-                <h3>John Doe</h3>
-                <span class="job-budget">$500</span>
-            </div>
-            <div class="job-category">
-                <span class="category-badge">Web Development</span>
-            </div>
-            <div class="job-details">
-                <p>Looking for an experienced web developer to create a responsive website for my small business. Need modern design with e-commerce capabilities.</p>
-                <div class="job-location">
-                    <span><i class="fas fa-map-marker-alt"></i> New York</span>
-                    <span><i class="fas fa-calendar"></i> 2025-04-20</span>
-                </div>
-            </div>
-            <div class="job-actions">
-                <button class="view-job-btn" onclick="viewJobDetails(1)">View Details</button>
-            </div>
-        </div>
-        
-         Example Job Card 2 
-        <div class="job-card">
-            <div class="job-header">
-                <h3>Jane Smith</h3>
-                <span class="job-budget">$300</span>
-            </div>
-            <div class="job-category">
-                <span class="category-badge">Graphic Design</span>
-            </div>
-            <div class="job-details">
-                <p>Need a professional logo design for my startup. Looking for something modern and clean that represents innovation in the tech industry.</p>
-                <div class="job-location">
-                    <span><i class="fas fa-map-marker-alt"></i> Remote</span>
-                    <span><i class="fas fa-calendar"></i> 2025-04-15</span>
-                </div>
-            </div>
-            <div class="job-actions">
-                <button class="view-job-btn" onclick="viewJobDetails(2)">View Details</button>
-            </div>
-        </div>
-        
-        For when no jobs are available
-        <div class="no-jobs">No jobs available at this time.</div> 
-        -->
+      <!--js-->
     </div>
 </div>
 

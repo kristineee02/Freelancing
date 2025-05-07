@@ -76,19 +76,17 @@
             <div class="design-profile">
             <div class="avatar" style="background-image: url('../image/prof.jpg');" id="imageDisplay2"></div>
             <span id="nameDisplay2">
-                John Doe
             </span>
-            <button class="follow-btn">FOLLOW +</button>
             </div>
-            <h2 id="workTitle">Modern Website Design</h2>
-            <span class="work-category" id="workCategory">Web Design</span>
-            <div class="time" id="date">April 28, 2025</div>
-            <div class="design-preview" style="background-image: url('../image/design-preview.jpg');" id="workPicture"></div>
+            <h2 id="workTitle"></h2>
+            <span class="work-category" id="workCategory"></span>
+            <div class="time" id="date"></div>
+            <div class="design-preview" id="workPicture"></div>
             <div class="heart-icon">
                 <span><i class="fa-solid fa-heart"></i></span>
             </div>
             <div class="work-description" id="workDescription">
-                <p>A clean and modern website design focused on user experience and visual aesthetics. This project was created for a tech startup looking to showcase their innovative products with a minimalist approach.</p>
+                <p></p>
             </div>
         </form>
         

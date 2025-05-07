@@ -10,6 +10,8 @@ body{
     display: block;
     position: absolute;
     background-color: #ffffff;
+    margin-right: 20px;
+    gap: 20px;
 }
 
 li {
@@ -29,8 +31,8 @@ li {
     text-align: left;
 }
 .picture{
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
     object-fit: cover;
     border-radius: 50%;
     float: left;
@@ -44,7 +46,7 @@ li {
 
 .dashboard{
     word-spacing: 25px;
-    margin-left: 18%;
+    margin-left: 10%;
 }
 
 .dashboard ul{
@@ -1121,20 +1123,13 @@ h2#workTitle {
 }
 
 /*buy-client*/
-.content {
+
+.buy-content {
     padding: 20px;
     margin-top: -50px;
+    width: 70%;
 }
 
-.badge {
-    background-color: rgb(250, 242, 124);
-    color: #fff;
-    padding: 2px 8px;
-    border-radius: 12px;
-    font-size: 14px;
-    margin:0;
-    margin-left: 10px;
-}
 .logs {
     width: 70px;
     height: 70px;
@@ -1142,7 +1137,7 @@ h2#workTitle {
     border-radius: 5px;
     margin-left: 0;
 }
-.title {
+.buy-title {
     display: flex;
     align-items: center; 
     gap: 10px; 
@@ -1166,17 +1161,22 @@ h2#workTitle {
     flex: 2;
     height: 250px;
     box-shadow: 0 4px 10px rgba(24, 24, 24, 0.2); 
-    border: .5px solid #5a5a5a;
-    background: url('../image/cc.jpg') no-repeat center/cover;
+    border: 1px solid #5a5a5a;
     border-radius: 15px;
+    background-size: cover;
+    background-position: center;
 }
 
 .pricing-box {
     flex: 1;
     padding: 20px;
-    border: .5px solid #5a5a5a;
+    border: 1px solid #5a5a5a;
     background-color: #ffffff;
     border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .pricing-box h2 {
@@ -1188,14 +1188,23 @@ h2#workTitle {
 
 .pricing-box button {
     width: 100%;
-    padding: 10px;
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
-    border: .5px solid #5a5a5a;
+    padding: 12px 10px; 
+    background-color: rgb(247, 245, 140);
+    color: rgb(58, 57, 57);
+    border: none; 
     cursor: pointer;
     font-size: 16px;
+    font-weight: bold;
     margin-bottom: 10px;
     border-radius: 15px;
+    transition: all 0.3s ease; 
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.pricing-box button:hover {
+    background-color: rgb(243, 239, 92);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
 }
 
 .contact {
@@ -1244,19 +1253,67 @@ h2#workTitle {
 
 
 .reviews {
-    margin-top: 20px;
+    margin-top: 30px;
     border-radius: 20px;
+    max-width: 100%;
 }
+
 .box {
     border: #000000;
     border-radius: 15px;
 }
 
 .review-box {
-    border: .5px solid #5a5a5a;
-    padding: 10px;
-    margin-bottom: 10px;
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    margin-bottom: 20px;
     border-radius: 15px;
+    background-color: #ffffff;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.review-box:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.review-box p:first-child {
+    font-weight: 600;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+
+.review-box fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.review-box fieldset p {
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+    font-size: 15px;
+}
+
+.review-box input[type="text"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    box-sizing: border-box;
+}
+
+.review-box input[type="text"]:focus {
+    border-color: #f1be32;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(241, 190, 50, 0.2);
 }
 .booking-popup {
     display: none; /* Initially hidden */
@@ -1526,3 +1583,4 @@ h2#workTitle {
         height: auto;
     }
 }
+

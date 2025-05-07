@@ -133,22 +133,22 @@
         <section class="developer-container">
             <div class="developer-card">
                 <div class="developer-image">
-                    <img src="../image/ui.png">
+                    <img src="../image/kris.jpg">
                     Kristine Sabuero
                     <h6>UX Designer</h6>
                 </div>
             </div>
             <div class="developer-card">
                 <div class="developer-image">
-                <img src="../image/ui.png">
-                Kristine Sabuero
+                <img src="../image/jayna.jpg">
+                Jayna Sahibul
                 <h6>UX Designer</h6>
                 </div>
           </div>
             <div class="developer-card">
                 <div class="developer-image">
-                <img src="../image/ui.png">
-                Kristine Sabuero
+                <img src="../image/Ami.jpg">
+                Amani Uri
                 <h6>UX Designer</h6>
                 </div>
             </div>
@@ -156,22 +156,22 @@
         <section class="developer-container">
             <div class="developer-card">
                 <div class="developer-image">
-                    <img src="../image/ui.png">
-                    Kristine Sabuero
+                    <img src="../image/ven.jpg">
+                    Vennasshier Malali
                     <h6>UX Designer</h6>
                 </div>
             </div>
             <div class="developer-card">
                 <div class="developer-image">
                 <img src="../image/ui.png">
-                Kristine Sabuero
+                Justin James Alviar
                 <h6>UX Designer</h6>
                 </div>
           </div>
             <div class="developer-card">
                 <div class="developer-image">
-                <img src="../image/ui.png">
-                Kristine Sabuero
+                <img src="../image/luis.jpg">
+                Mark Luis Salvador
                 <h6>UX Designer</h6>
                 </div>
             </div>

@@ -30,8 +30,8 @@
             <ul>
               <li><a href="Explore.php">Explore</a> </li>
              <li> <a href="Find-Job.php" class="tight-text">Find Jobs</a> </li>
-             <li><a href="buy-table.php">Buy</a></li>
-             <li> <a href="About.php" class="active-dash">About</a></li>
+             <li><a href="buy-table.php" class="tight-text">Buy Work</a></li>
+             <li> <a href="About.php">About</a></li>
             </ul>
         </div>
 
@@ -48,7 +48,7 @@
             <div class="sub-menu">
                 <div class="user-info">
                     <img class="profile" src="../image/prof.jpg">
-                    <h4>Kristine Sabuero</h4>
+                    <h4></h4>
                 </div>
                 <hr>
 
@@ -69,20 +69,19 @@
     <main>
         <form class="design-showcase">
             <div class="design-profile">
-                <div class="avatar" style="background-image: url('../image/prof.jpg');"></div>
-                <span id="nameDisplay">Kristine Sabuero</span>
-                <button class="follow-btn">FOLLOW +</button>
+                <div class="avatar"></div>
+                <span id="nameDisplay"></span>
             </div>
 
-            <h2 id="workTitle">Sample Work Title</h2>
-            <span class="work-category" id="workCategory">Graphic Design</span>
-            <div class="time" id="date">2025-04-28</div>
+            <h2 id="workTitle"></h2>
+            <span class="work-category" id="workCategory"></span>
+            <div class="time" id="date"></div>
             <div class="design-preview" id="imageDisplay"></div>
             <div class="heart-icon">
                 <span><i class="fa-solid fa-heart"></i></span>
             </div>
             <div class="work-description" id="workDescription">
-                <p>This is a sample description of the design work displayed here. It explains what the project was about and any important details.</p>
+                <p></p>
             </div>
         </form>
     </main>

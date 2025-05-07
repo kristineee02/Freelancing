@@ -59,7 +59,6 @@ function getFreelancerById() {
                 <div class="profile-info">
                     <h1>${data.freelancerData.first_name} ${data.freelancerData.last_name}</h1>
                     <p class="location">${data.freelancerData.address}</p>
-                    <p class="follow-info">0 Followers | 20 Following</p>
                 </div>
             `;
 

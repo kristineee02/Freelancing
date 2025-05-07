@@ -28,9 +28,9 @@
         <div class="dashboard">
             <ul>
               <li><a href="Explore.php">Explore</a> </li>
-             <li> <a href="Find-Job.php" class="tight-text">Find Jobs</a> </li>
-             <li><a href="buy-table.php">Buy</a></li>
-             <li> <a href="About.php" class="active-dash">About</a></li>
+             <li> <a href="Find-Job.php" class="tight-text" class="active-dash">Find Jobs</a> </li>
+             <li><a href="buy-table.php" class="tight-text">Buy Work</a></li>
+             <li> <a href="About.php" >About</a></li>
             </ul>
         </div>
 
@@ -116,46 +116,23 @@
             <div class="header">
                 <div style="display: flex; align-items: center;">
                     <img src="../image/prof.jpg" alt="company logo">
-                    <div class="company-name">John Doe</div>
+                    <div class="company-name"></div>
                 </div>
-                <div class="date">2025-04-28</div>
+                <div class="date"></div>
             </div>
-            <div class="position">Web Design</div>
+            <div class="position"></div>
             <div class="price">
-                <i class="fa-solid fa-tag"></i> $500 | 
+                <i class="fa-solid fa-tag"></i>
                 <span class="location">
-                    <i class="fa-solid fa-location-dot"></i> Remote
+                    <i class="fa-solid fa-location-dot"></i> 
                 </span>
             </div>
-            <div class="description">Create a responsive website for a startup company.</div>
+            <div class="description"></div>
             <div class="buttons">
                 <div class="btn">View Job</div>
                 <div class="btn">Apply for Job</div>
             </div>
-        </div>
-
-        <div class="company">
-            <div class="header">
-                <div style="display: flex; align-items: center;">
-                    <img src="../image/prof.jpg" alt="company logo">
-                    <div class="company-name">Jane Smith</div>
-                </div>
-                <div class="date">2025-04-27</div>
-            </div>
-            <div class="position">Graphic Design</div>
-            <div class="price">
-                <i class="fa-solid fa-tag"></i> $300 | 
-                <span class="location">
-                    <i class="fa-solid fa-location-dot"></i> New York
-                </span>
-            </div>
-            <div class="description">Design marketing materials for a new campaign.</div>
-            <div class="buttons">
-                <div class="btn">View Job</div>
-                <div class="btn">Apply for Job</div>
-            </div>
-        </div>
-
+        </div>       
     </div>
 
     <script>

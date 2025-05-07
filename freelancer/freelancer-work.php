@@ -29,8 +29,8 @@
             <ul>
               <li><a href="Explore.php">Explore</a> </li>
              <li> <a href="Find-Job.php" class="tight-text">Find Jobs</a> </li>
-             <li><a href="buy-table.php">Buy</a></li>
-             <li> <a href="About.php" class="active-dash">About</a></li>
+             <li><a href="buy-table.php" class="tight-text">Buy Work</a></li>
+             <li> <a href="About.php">About</a></li>
             </ul>
         </div>
 
@@ -71,7 +71,6 @@
             <div class="profile-info">
                 <h1 id="nameDisplay2">name</h1>
                 <p class="location" id="addressDisplay">address</p>
-                <p class="follow-info">0 Followers | 20 Following</p>
                 <button class="edit-profile" id="EditProfile">EDIT PROFILE</button>
             </div>
         </div>
@@ -105,7 +104,6 @@
         <div class="tabs">
             <a href="freelancer-work.php" class="active">WORK</a>
             <a href="freelancer-about.php">ABOUT</a>
-            <a href="freelancer-likedpost.php">LIKED POST</a>
         </div>
         <div class="hr"></div>
     </div>
@@ -129,6 +127,7 @@
             <textarea name="description" id="Description" class="description" placeholder="Description" required></textarea>
             <select name="category" id="Category" required>
                 <option value="" disabled selected>Select Category</option>
+                <option value="ANIMATION">ANIMATION</option>
                 <option value="GRAPHIC DESIGN">GRAPHIC DESIGN</option>
                 <option value="WEBSITE DESIGN">WEB DESIGN</option>
                 <option value="PRODUCT DESIGN">PRODUCT DESIGN</option>

@@ -28,8 +28,8 @@
             <ul>
               <li><a href="Explore.php">Explore</a> </li>
              <li> <a href="Find-Job.php" class="tight-text">Find Jobs</a> </li>
-             <li><a href="buy-table.php">Buy</a></li>
-             <li> <a href="About.php" class="active-dash">About</a></li>
+             <li><a href="buy-table.php" class="tight-text">Buy Work</a></li>
+             <li> <a href="About.php" >About</a></li>
             </ul>
         </div>
 
@@ -98,37 +98,6 @@
 
     <div id="worksContainer">
         <section class="container">
-            <div class="card" data-id="freelancer-webdesign.php?id=1" data-category="GRAPHIC DESIGN">
-                <div class="card-image" style="background-image: url('../image/sample1.jpg');"></div>
-                <div class="footer">
-                    <h5 id="text">John Doe</h5>
-                    <span>&hearts; 0</span>
-                </div>
-            </div>
-
-            <div class="card" data-id="freelancer-webdesign.php?id=2" data-category="WEB DESIGN">
-                <div class="card-image" style="background-image: url('../image/sample2.jpg');"></div>
-                <div class="footer">
-                    <h5 id="text">Jane Smith</h5>
-                    <span>&hearts; 0</span>
-                </div>
-            </div>
-
-            <div class="card" data-id="freelancer-webdesign.php?id=3" data-category="ANIMATION">
-                <div class="card-image" style="background-image: url('../image/sample3.jpg');"></div>
-                <div class="footer">
-                    <h5 id="text">Michael Brown</h5>
-                    <span>&hearts; 0</span>
-                </div>
-            </div>
-
-            <div class="card" data-id="freelancer-webdesign.php?id=4" data-category="ILLUSTRATION">
-                <div class="card-image" style="background-image: url('../image/sample4.jpg');"></div>
-                <div class="footer">
-                    <h5 id="text">Emily White</h5>
-                    <span>&hearts; 0</span>
-                </div>
-            </div>
         </section>
     </div>
 

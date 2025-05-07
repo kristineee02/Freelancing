@@ -107,7 +107,7 @@
     input:focus,
     textarea:focus {
         outline: none;
-        border-color: #4a90e2;
+        border-color:rgb(226, 223, 74);
     }
 
     textarea {
@@ -133,7 +133,7 @@
 
     .submit-btn {
         padding: 12px 24px;
-        background-color: #4a90e2;
+        background-color:rgb(223, 226, 74);
         color: white;
         border: none;
         border-radius: 4px;

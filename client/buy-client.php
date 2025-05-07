@@ -36,7 +36,7 @@
              </div>
              <li><a href="application-home.php">Application</a></li>
             </li>
-             <li> <a href="client-about.php" class="active-dash">About</a></li>
+             <li> <a href="client-about.php">About</a></li>
             </ul>
         </div>
         <div class="notif-profile">
@@ -70,15 +70,14 @@
         </div>
     </div>
     <hr>
-    <main>
-        <div class="content">
-            <div class="title">
+    <main class="main">
+        <div class="buy-content">
+            <div class="buy-title">
                 <div class="logs"></div> 
-                <p class="name-freelancer" id="freelancerName">Name</p>
+                <p class="name-freelancer" id="freelancerName"></p>
                 
-                <span class="badge">FOLLOW</span>
             </div>
-            <h1 class="create" id="titleId">CREATE WEBSITE UI DESIGN</h1>
+            <h1 class="create" id="titleId"></h1>
             <div class="main-section">
                 <div class="preview-box" id="previewBox"></div>
                 <div class="pricing-box">
@@ -116,24 +115,7 @@
             </div>
 
             <form class="reviews" id="reviews">
-                <!-- <div class="review-box">
-                    <p>Client</p>
-                    <fieldset>
-                        <p>fantastic work! I'm super satisfied</p>
-                    </fieldset>
-                </div>
-                <div class="review-box">
-                    <p>Client</p>
-                    <fieldset>
-                        <p>fantastic work! I'm super satisfied</p>
-                    </fieldset>
-                </div>
-                <div class="review-box">
-                    <p>Your comment</p>
-                    <fieldset>
-                        <p></p>
-                    </fieldset>
-                </div> -->
+                <!-- js-->
 
             </form>
         </div>

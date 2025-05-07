@@ -29,8 +29,8 @@
             <ul>
               <li><a href="Explore.php">Explore</a> </li>
              <li> <a href="Find-Job.php" class="tight-text">Find Jobs</a> </li>
-             <li><a href="buy-table.php">Buy</a></li>
-             <li> <a href="About.php" class="active-dash">About</a></li>
+             <li><a href="buy-table.php" class="tight-text">Buy Work</a></li>
+             <li> <a href="About.php">About</a></li>
             </ul>
         </div>
 
@@ -47,7 +47,7 @@
             <div class="sub-menu">
                 <div class="user-info">
                     <img class="profile" src="../image/prof.jpg" id="imageDisplay">
-                    <h4 id="nameDisplay">Kristine Sabuero</h4>
+                    <h4 id="nameDisplay"></h4>
                 </div>
                 <hr>
 
@@ -82,16 +82,13 @@
     <main class="container-overview">
         <section>
             <h2 class="section-title">ABOUT US</h2>
-            <p class="overview-details" id="aboutUsDisplay">Roots is an early-stage startup building an innovative platform to revolutionize how films are financed, distributed, and monetized.
-                We're building a comprehensive digital ecosystem that serves as a permanent home for films, combining sophisticated rights management with cutting-edge fintech solutions. 
-                Our mission is to extend the commercial lifespan of films indefinitely while democratizing film investment through micro-investment opportunities.
+            <p class="overview-details" id="aboutUsDisplay">
             </p>
         </section>
 
         <section class="role">
             <h2 class="section-title">THE ROLE</h2>
-            <p class="overview-details" id="roleDisplay">We're seeking a highly skilled React Frontend Developer to join our team and help build the next generation of film industry tools. 
-                We are looking for a strong software engineer who deeply understands frontend architecture, performance optimization and scalability. 
+            <p class="overview-details" id="roleDisplay">
             </p>
         </section>
 

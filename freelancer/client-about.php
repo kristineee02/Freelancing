@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Freelancing</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../style/freelancer-profile.css">
 </head>
 <body>
@@ -27,16 +26,10 @@
 
         <div class="dashboard">
             <ul>
-              <li><a href="client-explore.php">Explore</a>  </li>
-             <li> <a href="Find-Freelancer.php" class="tight-text">Find Designer  <i class="fa fa-caret-down"></i></a> 
-             <div class="dropdown_menu">
-                <ul>
-                    <li><a href="client-freelancer-work.php" class="tight-text">Post Job</a></li>
-                </ul>
-             </div>
-             <li><a href="application-home.php">Application</a></li>
-            </li>
-             <li> <a href="client-about.php" class="active-dash">About</a></li>
+              <li><a href="Explore.php">Explore</a> </li>
+             <li> <a href="Find-Job.php" class="tight-text">Find Jobs</a> </li>
+             <li><a href="buy-table.php" class="tight-text">Buy Work</a></li>
+             <li> <a href="About.php">About</a></li>
             </ul>
         </div>
 
@@ -76,13 +69,12 @@
     <div class="profile-header">
         <img src="../image/yellow circle.png" alt="Profile Image" class="profile-image" id="profileImageDisplay">
         <div class="profile-info">
-            <h1 id="nameDisplay">name</h1>
-            <p class="location" id="addressDisplay">address</p>
+            <h1 id="nameDisplay"></h1>
+            <p class="location" id="addressDisplay"></p>
         </div>
     </div>
 
     <div class="tabs">
-        <a href="client-profile.php">MY PROFILE</a>
         <a href="client-profile-about.php" class="active">ABOUT</a>
     </div>
     <hr>
@@ -104,38 +96,6 @@
         <h2>SOCIALS</h2>
         <p id="socialsAbout"></p>
     </div>
-    <button class="edit-about" id="editAbout">EDIT ABOUT</button>
-</div>
-
-<!--edit modal-->
-<div id="editAboutModal" class="modal-about">
-    <div class="modal-content-about">
-        <span class="close_about" id="close_about">&times;</span>
-        <h3>Edit About</h3>
-        <form id="aboutUpdateForm">
-            <div class="form-grid-about">
-                <div class="form-group-about">
-                    <h1>ABOUT YOU</h1>
-
-                    <label for="editNumber">Contact</label>
-                    <input type="text" id="editNumber" name="editNumber" placeholder="Contact">
-
-                    <label for="editProfession">Profession</label>
-                    <input type="text" id="editProfession" name="editProfession" placeholder="Profession">  
-                    
-                    <label for="editskill">Skills</label>
-                    <textarea id="editSkills" placeholder="Skills"></textarea>
-
-                    <label for="edit_History">Work History</label>
-                    <textarea id="editHistory" placeholder="Work History & Experience"></textarea>
-
-                    <label for="edit_Social">Socials</label>
-                    <textarea id="editSocials" placeholder="Social Media"></textarea>
-                </div>
-            </div>
-            <button type="submit" class="button-edit-about">Save Changes</button>
-        </form>
-    </div>
 </div>
 
 <script>
@@ -147,7 +107,7 @@
 </script>
 
 
-<script src="../js/client-about.js"></script>
+<script src="../js/freelancer-clientabout.js"></script>
 
 </body>
 </html>

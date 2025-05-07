@@ -29,8 +29,8 @@
             <ul>
               <li><a href="Explore.php">Explore</a> </li>
              <li> <a href="Find-Job.php" class="tight-text">Find Jobs</a> </li>
-             <li><a href="buy-table.php">Buy</a></li>
-             <li> <a href="About.php" class="active-dash">About</a></li>
+             <li><a href="buy-table.php" class="tight-text">Buy Work</a></li>
+             <li> <a href="About.php">About</a></li>
             </ul>
         </div>
 
@@ -47,7 +47,7 @@
             <div class="sub-menu">
                 <div class="user-info">
                     <img class="profile" src="../image/prof.jpg" id="imageDisplay">
-                    <h4 id="nameDisplay">Kristine Sabuero</h4>
+                    <h4 id="nameDisplay"></h4>
                 </div>
                 <hr>
 
@@ -75,8 +75,8 @@
     </div>
 
     <div class="tabs-application">
-        <p class="active" id="overview" style="cursor:pointer;">OVERVIEW</p>
-        <p id="application" style="cursor:pointer;">APPLICATION</p>
+        <p id="overview" style="cursor:pointer;">OVERVIEW</p>
+        <p class="active" id="application" style="cursor:pointer;">APPLICATION</p>
     </div>
 
     <main class="application-container">

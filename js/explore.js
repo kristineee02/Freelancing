@@ -150,8 +150,8 @@ function filterEmployee() {
     
     if (filterValue === "new") {
         filteredWorks.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-    } else if (filterValue === "popular") {
-        filteredWorks.sort((a, b) => (b.likes || 0) - (a.likes || 0));
+    } else if (filterValue === "all") {
+        filteredWorks = [...allWorks];
     }
     
     displayWorks(filteredWorks);

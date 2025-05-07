@@ -7,8 +7,14 @@
     <link rel="stylesheet" href="../style/freelancer-profile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        .work-section{
-            margin-top: 20px;
+           .work-section{
+            margin-top: 50px;
+            gap: 30px;
+        }
+        .work-box:hover{
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(24, 24, 24, 0.3);
+  
         }
         
     </style>
@@ -82,9 +88,9 @@
         <div class="profile-header">
             <img src="../image/yellow circle.png" alt="Profile Image" class="profile-image" id="imageDisplayId">
             <div class="profile-info">
-                <h1 id="nameDisplayId">John Doe</h1>
-                <p class="profession" id="professionId">Web Developer</p>
-                <p class="location" id="addressId">New York, USA</p>
+                <h1 id="nameDisplayId"></h1>
+                <p class="profession" id="professionId"></p>
+                <p class="location" id="addressId"></p>
             </div>
         </div>
 

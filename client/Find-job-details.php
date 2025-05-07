@@ -17,7 +17,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Freelancing</title>
-    <link rel ="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel ="stylesheet" href="../style/clients.css">
 </head>
 <body>
     <div class="logo">
@@ -35,7 +36,7 @@
              </div>
              <li><a href="application-home.php">Application</a></li>
             </li>
-             <li> <a href="client-about.php" class="active-dash">About</a></li>
+             <li> <a href="client-about.php">About</a></li>
             </ul>
         </div>
 
@@ -52,7 +53,7 @@
             <div class="sub-menu">
                 <div class="user-info">
                     <img class="profile" src="../image/prof.jpg">
-                    <h4>Kristine Sabuero</h4>
+                    <h4></h4>
                 </div>
                 <hr>
 
@@ -76,10 +77,10 @@
 
     <section class="job-details">
         <p class="details-job">JOB DETAILS</h2>
-        <p class="skill-name" id="skillNameId">WEBSITE DESIGNER</h1>
+        <p class="skill-name" id="skillNameId"></h1>
         <div class="job-content">
             <div class="job-description" >
-                <p id="jobDescription">We are seeking a highly creative and design-driven Content Analyst to join our dynamic team. As a Content Analyst, you will be building websites using our website builder platform for our diverse range of small business customers. If you have an eye for great design, understand how to create engaging online experiences, and enjoy helping businesses stand out, this is the perfect role for you.</p>
+                <p id="jobDescription"></p>
                 <h3>Job requirements</h3>
                 <h4>Education:</h4>
                 <p id="educationId"></p>

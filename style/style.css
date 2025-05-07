@@ -23,7 +23,7 @@ body{
 
 .dashboard{
     word-spacing: 25px;
-    margin-left: 18%;
+    margin-left: 10%;
 }
 .dashboard a {
     text-decoration: none;
@@ -652,6 +652,7 @@ html, body {
     padding: 30px 40px;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    flex-direction: column;
 }
 
 section {
@@ -722,14 +723,17 @@ section:last-child {
 
 /*application*/
 .application-container {
-    max-width: 800px;
-    margin: 40px auto;
+    max-width: none;
+    width: 40%;
+    margin: 40px 0 40px 40px;
     background: white;
     padding: 35px 40px;
     border-radius: 12px;
     border: 1px solid #e6e6e6;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
     font-family: 'Arial', 'Helvetica', sans-serif;
+    margin: 0 auto;
+    margin-bottom: 20px;
 }
 
 .app-info, .personal-profile {
@@ -756,22 +760,27 @@ section:last-child {
 .personal-profile {
     margin-top: 30px;
 }
+
 form {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
-.group{
+
+.group {
     color: #222222;
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
 }
+
 .form-group {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     margin-bottom: 20px;
+    width: 100%;
 }
 
-.form-group label{
+.form-group label {
     display: block;
     width: 100%;
     margin-bottom: 6px;
@@ -780,11 +789,13 @@ form {
     font-weight: 500;
     transition: all 0.3s ease;
 }
+
 .form-group input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    box-sizing: border-box;
 }
 
 .form-group input[type="file"] {
@@ -797,6 +808,7 @@ form {
     transition: all 0.3s ease;
     color: #666;
 }
+
 .submit-btn {
     width: 100%;
     background: #f1be32;
@@ -1039,6 +1051,7 @@ form {
     cursor: pointer;
 }
 /*freelancer-webdesign*/
+
 main {
     display: flex;
     justify-content: center;
@@ -1046,6 +1059,9 @@ main {
     font-family: 'Montserrat', sans-serif;
 }
 
+.design-showcase{
+    width: 80%;
+}
 
 .design-profile {
     display: flex;
@@ -1094,6 +1110,7 @@ h2#workTitle {
     margin-top: 8px;
     font-weight: 500;
     width: 130px;
+
 }
 
 .time {
@@ -1117,7 +1134,7 @@ h2#workTitle {
 }
 
 .heart-icon {
-    margin-left: 850px;
+    margin-left: 1000px;
     width: 45px;
     height: 45px;
     background-color: #fcf7b1;
@@ -1184,6 +1201,7 @@ h2#workTitle {
         font-size: 22px;
     }
 }
+
 
 /*Find-Job-details*/
 .job-details {
