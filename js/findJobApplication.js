@@ -7,8 +7,38 @@ document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("overview").addEventListener("click", function(){
         window.location.href = `Find-Job-Overview.php?jobId=${jobId}`;
     });
+
+    document.getElementById("applicationForm").addEventListener("submit", function(event){
+        event.preventDefault();
+        addApplication(jobId);
+    });
+
     name();
 });
+
+ function addApplication(id){
+    const formData = {
+        jobId: Number(id),
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        contact: document.getElementById("contact").value,
+        address: document.getElementById("address").value
+    }
+
+    fetch("../api/application_api.php", {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {"Content-Type": "application/json"}
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.status === "success"){
+            alert("Sent Successfully!");
+            window.location.href = "Explore.php";
+        }
+    })
+    .catch(error => console.error(error));
+}
 
 function name(){
     fetch("../api/store_session.php")

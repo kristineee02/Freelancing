@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Freelancing</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel ="stylesheet" href="../style/clients.css">
-
+    <link rel ="stylesheet" href="../style/freelancer-profile.css">
 </head>
 <body>
     <?php
@@ -40,6 +39,7 @@
              <li> <a href="client-about.php" class="active-dash">About</a></li>
             </ul>
         </div>
+
         <div class="notif-profile">
             <img src="../image/3119338.png" alt="Notification icon" class="notif" id="notifBtn" />
             <div class="notification-popup" id="notifPopup">
@@ -48,17 +48,16 @@
               </div>
         <img class="profile" src="../image/prof.jpg" alt="profile" onclick="toggleMenu()">
         </div>
-        
 
         <div class="sub-menu-wrap" id="subMenu">
             <div class="sub-menu">
                 <div class="user-info">
-                    <img class="profile" src="../image/prof.jpg" id="imageDisplay">
-                    <h4 id="nameDisplay">Kristine Sabuero</h4>
+                    <img class="profile" src="../image/prof.jpg">
+                    <h4>Name</h4>
                 </div>
                 <hr>
 
-                <a href="freelancer-work.php" class="sub-menu-link">
+                <a href="client-profile.php" class="sub-menu-link">
                     <img src="../image/prof.jpg">
                     <p>Profile</p>
                     <span>></span>
@@ -71,29 +70,68 @@
             </div>
         </div>
     </div>
-    <main>
-        <form class="design-showcase" >
-            <div class="design-profile">
-            <div class="avatar" style="background-image: url('../image/prof.jpg');" id="imageDisplay2"></div>
-            <span id="nameDisplay2">
-                John Doe
-            </span>
-            <button class="follow-btn">FOLLOW +</button>
-            </div>
-            <h2 id="workTitle">Modern Website Design</h2>
-            <span class="work-category" id="workCategory">Web Design</span>
-            <div class="time" id="date">April 28, 2025</div>
-            <div class="design-preview" style="background-image: url('../image/design-preview.jpg');" id="workPicture"></div>
-            <div class="heart-icon">
-                <span><i class="fa-solid fa-heart"></i></span>
-            </div>
-            <div class="work-description" id="workDescription">
-                <p>A clean and modern website design focused on user experience and visual aesthetics. This project was created for a tech startup looking to showcase their innovative products with a minimalist approach.</p>
-            </div>
-        </form>
-        
-    </main>
+</div>
+<div class="profile-container">
+    <div class="profile-header">
+        <img src="../image/yellow circle.png" alt="Profile Image" class="profile-image">
+        <div class="profile-info">
+            <h1>Name</h1>
+            <p class="location">Address</p>
+            <p class="follow-info">0 Followers  |  20 Following</p>
+            <button class="edit-profile" onclick="goToEditProfile()">EDIT PROFILE</a></button>
+        </div>
+    </div>
 
+    <div class="tabs">
+        <a href="client-profile.php">MY PROFILE</a>
+        <a href = "client-profile-about.php">ABOUT</a>
+        <a href = "client-likedpost.php" class="active">LIKED POST</a>
+    </div>
+    <hr>
+</div>
+<div class="liked-posts-grid">
+    <div class="post-card">
+        <div class="post-footer">
+            <div class="post-author">
+                <div class="author-icon">J</div>
+                <span>Jayna Sahibul</span>
+            </div>
+            <div class="heart-button">
+                <img class="heart" src="../image/hearty.png">
+            </div>
+        </div>
+    </div>
+    
+    <div class="post-card">
+        <div class="post-footer">
+            <div class="post-author">
+                <div class="author-icon">A</div>
+                <span>Amani Uri</span>
+            </div>
+            <div class="heart-button">
+                <img class="heart" src="../image/hearty.png">
+            </div>
+        </div>
+    </div>
+    
+    <div class="post-card">
+        <div class="post-footer">
+            <div class="post-author">
+                <div class="author-icon">V</div>
+                <span>Ven Malali</span>
+            </div>
+            <div class="heart-button">
+                <img class="heart" src="../image/hearty.png">
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+    <script>
+            function goToEditProfile() {
+            window.location.href = "client-profile-edit.php";
+        }
+    </script>
     <script>
         let subMenu = document.getElementById("subMenu");
 
@@ -128,6 +166,6 @@
     });
 });
 </script>
-<script src="../js/clientWebDesign.js"></script>  
+    
 </body>
 </html>

@@ -27,15 +27,16 @@
 
         <div class="dashboard">
             <ul>
-              <li><a href="client-explore.php">Explore</a></li>
-              <li><a href="Find-Freelancer.php" class="tight-text">Find Designer  <i class="fa fa-caret-down"></i></a> 
-                <div class="dropdown_menu">
-                   <ul>
-                       <li><a href="client-freelancer-work.php" class="tight-text">Post Job</a></li>
-                   </ul>
-                </div>
-               </li>
-             <li><a href="client-about.php">About</a></li>
+              <li><a href="client-explore.php">Explore</a>  </li>
+             <li> <a href="Find-Freelancer.php" class="tight-text">Find Designer  <i class="fa fa-caret-down"></i></a> 
+             <div class="dropdown_menu">
+                <ul>
+                    <li><a href="client-freelancer-work.php" class="tight-text">Post Job</a></li>
+                </ul>
+             </div>
+             <li><a href="application-home.php">Application</a></li>
+            </li>
+             <li> <a href="client-about.php" class="active-dash">About</a></li>
             </ul>
         </div>
 
@@ -53,7 +54,7 @@
             <div class="sub-menu">
                 <div class="user-info">
                     <img class="profile" src="../image/prof.jpg" id="imageSubMenu">
-                    <h4 id="nameSubMenu"></h4>
+                    <h4 id="nameSubMenu">John Doe</h4>
                 </div>
                 <hr>
 
@@ -75,14 +76,16 @@
     <div class="profile-header">
         <img src="../image/yellow circle.png" alt="Profile Image" class="profile-image" id="profileImageDisplay">
         <div class="profile-info">
-            <h1 id="nameDisplay"></h1>
-            <p class="location" id="addressDisplay"></p>
+            <h1 id="nameDisplay">John Doe</h1>
+            <p class="location" id="addressDisplay">New York, USA</p>
+            <p class="follow-info">0 Followers  |  20 Following</p>
         </div>
     </div>
 
     <div class="tabs">
         <a href="client-profile.php">MY PROFILE</a>
         <a href="client-profile-about.php" class="active">ABOUT</a>
+        <a href="client-likedpost.php">LIKED POST</a>
     </div>
     <hr>
 </div>

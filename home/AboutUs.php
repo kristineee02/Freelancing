@@ -92,32 +92,23 @@
         }
         
         .hero-container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 40px auto 20px auto;
+            width: 80%;
+            margin: 0 auto; 
         }
-
+        
         .content {
-            max-width: 900px;
-            margin: 0 auto 100px auto;
-            padding: 0 20px;
-            font-family: 'Montserrat', sans-serif;
-            color: #333;
-            line-height: 1.8;
-            
+            text-align: justify;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-
         .content h2 {
             text-align: center;
-            font-size: 2rem;
-            margin: 40px 0 25px;
-            color: #222;
+            margin-top: 40px;
+            margin-bottom: 25px;
         }
-
         .content p {
-            font-size: 1.05rem;
+            line-height: 1.6;
             margin-bottom: 20px;
-            text-align: justify;
         }
         
         footer {
@@ -127,31 +118,6 @@
             background-color: #FFE295;
             padding: 10px;
         }
-
-    @media (max-width: 768px) {
-      nav {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px 20px;
-      }
-
-      .TF2 {
-        padding-left: 0;
-        margin-bottom: 10px;
-      }
-
-      .navs {
-        padding-right: 0;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
-
-      nav ul {
-        flex-direction: column;
-        gap: 10px;
-      }
-    }
         </style>
 </head>
 
@@ -174,8 +140,9 @@
 
     <div class="content">
     <h2>ABOUT US</h2>
-    <p>Welcome to TaskFlow, your gateway to flexible, reliable, and meaningful freelance work.</p>
-    <p>At TaskFlow, we believe that talent knows no boundaries. We’re a dynamic freelancing platform built to connect skilled freelancers with clients who need results—fast, efficiently, and with quality at the core. Whether you're a creative, developer, writer, marketer, or business professional, TaskFlow provides the space and tools to turn your skills into thriving, independent careers.</p>
+    <p>TaskFlow is an expression of our beliefs that we hold close to our hearts. It's one thing to simply provide a platform  where Employers and Freelancers can work together. It's another to do it in our own unique way.</p>
+    <p>We strive to be the premier platform where professionals go to connect, collaborate, and get work done. We  believe that the best work is done in a flexible and secure environment. With transparency comes trust, and with a community that's built on meritocracy, people are eager to set aside differences in geography, politics and religion to share and profit from economic opportunities.</p>
+    <p>Since 1998, we have been working tirelessly out of our offices in Pittsburgh, PA and Noida, India to turn these  aspirations into reality. We have developed a close bond with our users. As their needs have changed, we have evolved our platform to provide the tools and support they want. Our users teach us, we learn and we grow.  We invite you to become a part of our expanding community!</p>
     </div>
 
     <footer>

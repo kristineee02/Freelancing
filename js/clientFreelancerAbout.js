@@ -17,7 +17,6 @@ function getFreelancerById() {
         if(data.status === "success"){
             document.getElementById("nameDisplay2").textContent = `${data.freelancerData.first_name} ${data.freelancerData.last_name}`;
             document.getElementById("imageDisplay2").src = `../uploads/${data.freelancerData.profile_pic}`;
-            document.getElementById("professionId").textContent = `${data.freelancerData.profession}`;
             document.getElementById("addressId").textContent = `${data.freelancerData.address}`;
 
             document.getElementById("workIdNav").addEventListener("click", function(){

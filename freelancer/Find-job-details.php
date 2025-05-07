@@ -26,9 +26,10 @@
 
         <div class="dashboard">
             <ul>
-              <li><a href="Explore.php">Explore</a>  </li>
+              <li><a href="Explore.php">Explore</a> </li>
              <li> <a href="Find-Job.php" class="tight-text">Find Jobs</a> </li>
-             <li> <a href="About.php" >About</a></li>
+             <li><a href="buy-table.php">Buy</a></li>
+             <li> <a href="About.php" class="active-dash">About</a></li>
             </ul>
         </div>
 
@@ -72,7 +73,7 @@
         <p class="skill-name" id="skillNameId">WEBSITE DESIGNER</h1>
         <div class="job-content">
             <div class="job-description" >
-                <p id="jobDescription"></p>
+                <p id="jobDescription">We are seeking a highly creative and design-driven Content Analyst to join our dynamic team. As a Content Analyst, you will be building websites using our website builder platform for our diverse range of small business customers. If you have an eye for great design, understand how to create engaging online experiences, and enjoy helping businesses stand out, this is the perfect role for you.</p>
                 <h3>Job requirements</h3>
                 <h4>Education:</h4>
                 <p id="educationId"></p>
@@ -98,6 +99,19 @@
     </script>
 
     <script>
+    function logout() {
+        alert("You have been logged out successfully."); 
+        
+    }
+</script>
+
+    <script>
+        function goToApplyJob() {
+        window.location.href = "Find-Job-Overview.php";
+        }
+    </script>
+
+<script>
     document.addEventListener('DOMContentLoaded', function () {
     const notifBtn = document.getElementById('notifBtn');  
     const notifPopup = document.getElementById('notifPopup');  

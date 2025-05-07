@@ -13,7 +13,7 @@ function getAllFreelancer(){
                     <div class="cards">
                         <img src="../uploads/${freelancer.profile_pic}" alt="freelancer profile picture">
                         <strong>${freelancer.first_name} ${freelancer.last_name}</strong>
-                        <p>${freelancer.profession}</p><br>
+                        <p>${freelancer.profession}</p>
                         <p class="find" data-id="${freelancer.freelancer_id}" style="cursor:pointer;color:blue;">See More</p>       
                     </div>
                 `;

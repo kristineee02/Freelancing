@@ -27,15 +27,16 @@
 
         <div class="dashboard">
             <ul>
-                <li><a href="client-explore.php" class="active-dash">Explore</a></li>
-                <li><a href="Find-Freelancer.php" class="tight-text">Find Designer <i class="fa fa-caret-down"></i></a>
-                    <div class="dropdown_menu">
-                        <ul>
-                            <li><a href="client-freelancer-work.php" class="tight-text">Post Job</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li><a href="client-about.php">About</a></li>
+              <li><a href="client-explore.php">Explore</a>  </li>
+             <li> <a href="Find-Freelancer.php" class="tight-text">Find Designer  <i class="fa fa-caret-down"></i></a> 
+             <div class="dropdown_menu">
+                <ul>
+                    <li><a href="client-freelancer-work.php" class="tight-text">Post Job</a></li>
+                </ul>
+             </div>
+             <li><a href="application-home.php">Application</a></li>
+            </li>
+             <li> <a href="client-about.php" class="active-dash">About</a></li>
             </ul>
         </div>
 
@@ -96,21 +97,45 @@
     </div>
 
     <select id="FilterCategory" onchange="filterEmployee()" class="filter">
-        <option value="" disabled selected>Filter</option>
+        <option value="">Filter</option>
         <option value="new">New</option>
-        <option value="all">All</option>
+        <option value="popular">Popular</option>
     </select>
 
     <div id="worksContainer">
+        <!-- Static HTML replacement for the PHP generated content -->
         <section class="container">
             <div class="card" data-id="../client/freelancer-webdesign.php?id=1" data-category="web-design">
                 <div class="card-image" style="background-image: url('../api/images/work1.jpg');">
                 </div>
                 <div class="footer">
-                    <h5 id="text"></h5>
-                    <span>&hearts; </span>
+                    <h5 id="text">John Doe</h5>
+                    <span>&hearts; 0</span>
                 </div>
             </div>
+            <div class="card" data-id="../client/freelancer-webdesign.php?id=2" data-category="graphic-design">
+                <div class="card-image" style="background-image: url('../api/images/work2.jpg');">
+                </div>
+                <div class="footer">
+                    <h5 id="text">Jane Smith</h5>
+                    <span>&hearts; 0</span>
+                </div>
+            </div>
+            <div class="card" data-id="../client/freelancer-webdesign.php?id=3" data-category="illustration">
+                <div class="card-image" style="background-image: url('../api/images/work3.jpg');">
+                </div>
+                <div class="footer">
+                    <h5 id="text">Alex Johnson</h5>
+                    <span>&hearts; 0</span>
+                </div>
+            </div>
+            <div class="card" data-id="../client/freelancer-webdesign.php?id=4" data-category="animation">
+                <div class="card-image" style="background-image: url('../api/images/work4.jpg');">
+                </div>
+                <div class="footer">
+                    <h5 id="text">Sarah Williams</h5>
+                    <span>&hearts; 0</span>
+                </div>
             </div>
         </section>
     </div>
@@ -160,7 +185,7 @@
     </script>
     
     <script>
-        function filterFreelancer() {
+        function filterEmployee() {
             console.log("Filter selected: " + document.getElementById("FilterCategory").value);
         }
     </script>

@@ -27,9 +27,10 @@
 
         <div class="dashboard">
             <ul>
-              <li><a href="Explore.php">Explore</a>  </li>
+              <li><a href="Explore.php">Explore</a> </li>
              <li> <a href="Find-Job.php" class="tight-text">Find Jobs</a> </li>
-             <li> <a href="About.php" >About</a></li>
+             <li><a href="buy-table.php">Buy</a></li>
+             <li> <a href="About.php" class="active-dash">About</a></li>
             </ul>
         </div>
 
@@ -46,7 +47,7 @@
             <div class="sub-menu">
                 <div class="user-info">
                     <img class="profile" src="../image/prof.jpg" id="imageDisplay">
-                    <h4 id="nameDisplay"></h4>
+                    <h4 id="nameDisplay">Kristine Sabuero</h4>
                 </div>
                 <hr>
 
@@ -69,26 +70,22 @@
     <div class="discover-find-job">
         <div class="overlay-find"></div>
         <p class="info-find-job"><b>
+            COMPANY NAME
         </b></p>
     </div>
 
     <div class="tabs-application">
-        <p id="overview" style="cursor:pointer;">OVERVIEW</p>
-        <p  class="active" id="application" style="cursor:pointer;">APPLICATION</p>
+        <p class="active" id="overview" style="cursor:pointer;">OVERVIEW</p>
+        <p id="application" style="cursor:pointer;">APPLICATION</p>
     </div>
 
     <main class="application-container">
-        <form action="#" method="POST" enctype="multipart/form-data">
+        <form id="applicationForm">
             
             <h2 class="app-info">PERSONAL INFORMATION</h2>
-            
             <div class="form-group">
-                <label for="group">First Name</label>
-                <input type="text" id="first-name" name="first-name" required>
-            </div>
-            <div class="form-group">
-                <label for="last-name">Last Name</label>
-                <input type="text" id="last-name" name="last-name" required>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
             </div>
 
             <div class="form-group">

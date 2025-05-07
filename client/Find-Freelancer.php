@@ -28,14 +28,15 @@
         <div class="dashboard">
             <ul>
               <li><a href="client-explore.php">Explore</a>  </li>
-             <li> <a href="Find-Freelancer.php" class="tight-text active-dash">Find Designer  <i class="fa fa-caret-down"></i></a> 
+             <li> <a href="Find-Freelancer.php" class="tight-text">Find Designer  <i class="fa fa-caret-down"></i></a> 
              <div class="dropdown_menu">
                 <ul>
                     <li><a href="client-freelancer-work.php" class="tight-text">Post Job</a></li>
                 </ul>
              </div>
+             <li><a href="application-home.php">Application</a></li>
             </li>
-             <li> <a href="client-about.php" >About</a></li>
+             <li> <a href="client-about.php" class="active-dash">About</a></li>
             </ul>
         </div>
 
@@ -84,13 +85,51 @@
             >
         </form>
     </div>
+
+    <!--
+    <div class="category">
+        <p class="categories">Categories:</p>
+    <div class="category-type">
+        <input type="radio" id="skill1" name="category" value="30">
+        <label for="skill1">Animation</label><br/><br/>
+
+        <input type="radio" id="skill2" name="category" value="30">
+        <label for="skill2">Graphic Design</label><br/><br/>
+
+        <input type="radio" id="skill3" name="category" value="30">
+        <label for="skill3">Product Design</label><br/><br/>
+
+        <input type="radio" id="skill4" name="category" value="30">
+        <label for="skill4">Web Design</label><br/><br/>
+
+        <input type="radio" id="skill5" name="category" value="30">
+        <label for="skill5">llustration</label><br/><br/>
+
+        <input type="radio" id="skill6" name="category" value="30">
+        <label for="skill6">Mobile Design</label><br/><br/>
+
+        <input type="radio" id="skill7" name="category" value="30">
+        <label for="skill7">Writing</label><br/><br/>
+    </div>
+    </div>
+    -->
+
     <p class="post">
         <b>FREELANCERS</b>
     </p>
     
     <div class="contents" id="freelancer-contents">
         <div class="freelancer-list" id="freelancerList">
- 
+            <!--
+            <div class="cards">
+                <p>$60</p>
+                <img src="../image/prof.jpg" alt="freelancer profile picture">
+                <strong>John Doe</strong>
+                <i class="fa-solid fa-star">4.5/5</i>
+                <p>Web Developer</p>
+                <a href="freelancerprofile.php?id=1" class="find">See More</a>       
+            </div>
+    -->
         </div>
     </div>
 

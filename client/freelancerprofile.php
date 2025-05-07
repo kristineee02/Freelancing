@@ -8,13 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         .work-section{
-            margin-top: 50px;
-            gap: 30px;
-        }
-        .work-box:hover{
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px rgba(24, 24, 24, 0.3);
-  
+            margin-top: 20px;
         }
         
     </style>
@@ -40,15 +34,16 @@
 
         <div class="dashboard">
             <ul>
-              <li><a href="client-explore.php">Explore</a></li>
-              <li><a href="Find-Freelancer.php" class="tight-text">Find Designer <i class="fa fa-caret-down"></i></a> 
-                <div class="dropdown_menu">
-                   <ul>
-                       <li><a href="client-freelancer-work.php" class="tight-text">Post Job</a></li>
-                   </ul>
-                </div>
-              </li>
-              <li><a href="client-about.php">About</a></li>
+              <li><a href="client-explore.php">Explore</a>  </li>
+             <li> <a href="Find-Freelancer.php" class="tight-text">Find Designer  <i class="fa fa-caret-down"></i></a> 
+             <div class="dropdown_menu">
+                <ul>
+                    <li><a href="client-freelancer-work.php" class="tight-text">Post Job</a></li>
+                </ul>
+             </div>
+             <li><a href="application-home.php">Application</a></li>
+            </li>
+             <li> <a href="client-about.php" class="active-dash">About</a></li>
             </ul>
         </div>
 
@@ -87,9 +82,9 @@
         <div class="profile-header">
             <img src="../image/yellow circle.png" alt="Profile Image" class="profile-image" id="imageDisplayId">
             <div class="profile-info">
-                <h1 id="nameDisplayId"></h1>
-                <p class="profession" id="professionId"></p>
-                <p class="location" id="addressId"></p>
+                <h1 id="nameDisplayId">John Doe</h1>
+                <p class="profession" id="professionId">Web Developer</p>
+                <p class="location" id="addressId">New York, USA</p>
             </div>
         </div>
 
@@ -97,9 +92,9 @@
             <a href="#work" class="tab active" data-tab="work">WORK</a>
             <a href="#about" class="tab" data-tab="about" id="aboutSection">ABOUT</a>
         </div>
-        <hr>
+        <div class="hr"></div>
 
-        <div class="work-content-section">
+        <div class="content-section">
             <div id="workSection" class="work-section active-content">
                 <!-- Work content will be loaded here -->
             </div>

@@ -27,9 +27,10 @@
 
         <div class="dashboard">
             <ul>
-                <li><a href="Explore.php">Explore</a></li>
-                <li><a href="Find-Job.php" class="tight-text active-dash">Find Jobs</a></li>
-                <li><a href="About.php">About</a></li>
+              <li><a href="Explore.php">Explore</a> </li>
+             <li> <a href="Find-Job.php" class="tight-text">Find Jobs</a> </li>
+             <li><a href="buy-table.php">Buy</a></li>
+             <li> <a href="About.php" class="active-dash">About</a></li>
             </ul>
         </div>
 
@@ -110,7 +111,51 @@
     </p>
 
     <div class="company-container" id="company-section">
-     <!--js-->
+
+        <div class="company">
+            <div class="header">
+                <div style="display: flex; align-items: center;">
+                    <img src="../image/prof.jpg" alt="company logo">
+                    <div class="company-name">John Doe</div>
+                </div>
+                <div class="date">2025-04-28</div>
+            </div>
+            <div class="position">Web Design</div>
+            <div class="price">
+                <i class="fa-solid fa-tag"></i> $500 | 
+                <span class="location">
+                    <i class="fa-solid fa-location-dot"></i> Remote
+                </span>
+            </div>
+            <div class="description">Create a responsive website for a startup company.</div>
+            <div class="buttons">
+                <div class="btn">View Job</div>
+                <div class="btn">Apply for Job</div>
+            </div>
+        </div>
+
+        <div class="company">
+            <div class="header">
+                <div style="display: flex; align-items: center;">
+                    <img src="../image/prof.jpg" alt="company logo">
+                    <div class="company-name">Jane Smith</div>
+                </div>
+                <div class="date">2025-04-27</div>
+            </div>
+            <div class="position">Graphic Design</div>
+            <div class="price">
+                <i class="fa-solid fa-tag"></i> $300 | 
+                <span class="location">
+                    <i class="fa-solid fa-location-dot"></i> New York
+                </span>
+            </div>
+            <div class="description">Design marketing materials for a new campaign.</div>
+            <div class="buttons">
+                <div class="btn">View Job</div>
+                <div class="btn">Apply for Job</div>
+            </div>
+        </div>
+
     </div>
 
     <script>

@@ -26,9 +26,10 @@
 
         <div class="dashboard">
             <ul>
-                <li><a href="Explore.php" class="active-dash">Explore</a></li>
-                <li><a href="Find-Job.php" class="tight-text">Find Jobs</a></li>
-                <li><a href="About.php">About</a></li>
+              <li><a href="Explore.php">Explore</a> </li>
+             <li> <a href="Find-Job.php" class="tight-text">Find Jobs</a> </li>
+             <li><a href="buy-table.php">Buy</a></li>
+             <li> <a href="About.php" class="active-dash">About</a></li>
             </ul>
         </div>
 

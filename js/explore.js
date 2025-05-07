@@ -72,9 +72,9 @@ function getFreelancerById() {
     });
 }
 
-let allWorks = []; // Store all works 
+let allWorks = []; // Store all works globally
 let currentSlide = 0;
-const categories = ["ANIMATION", "GRAPHIC DESIGN", "PRODUCT DESIGN", "WEBSITE DESIGN", "ILLUSTRATION", "MOBILE DESIGN", "WRITING"];
+const categories = ["ANIMATION", "GRAPHIC DESIGN", "PRODUCT DESIGN", "WEB DESIGN", "ILLUSTRATION", "MOBILE DESIGN", "WRITING"];
 
 function getAllWorks() {
     fetch("../api/work_api.php")
@@ -144,14 +144,14 @@ function moveSlide(direction) {
     displayWorks(filteredWorks);
 }
 
-function filterFreelancer() {
+function filterEmployee() {
     const filterValue = document.getElementById("FilterCategory").value;
     let filteredWorks = [...allWorks];
     
     if (filterValue === "new") {
         filteredWorks.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-    } else if (filterValue === "all") {
-        filteredWorks = [...allWorks];
+    } else if (filterValue === "popular") {
+        filteredWorks.sort((a, b) => (b.likes || 0) - (a.likes || 0));
     }
     
     displayWorks(filteredWorks);

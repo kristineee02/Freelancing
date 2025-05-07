@@ -29,6 +29,7 @@
             <ul>
               <li><a href="Explore.php">Explore</a> </li>
              <li> <a href="Find-Job.php" class="tight-text">Find Jobs</a> </li>
+             <li><a href="buy-table.php">Buy</a></li>
              <li> <a href="About.php" class="active-dash">About</a></li>
             </ul>
         </div>
@@ -127,7 +128,7 @@
         <section class="developer-container">
             <div class="developer-card">
                 <div class="developer-image">
-                    <img src="../image/kris.jpg">
+                    <img src="../image/ui.png">
                     Kristine Sabuero
                     <h6>UX Designer</h6>
                 </div>
@@ -135,14 +136,14 @@
             <div class="developer-card">
                 <div class="developer-image">
                 <img src="../image/ui.png">
-                Jayna Sahibul
+                Kristine Sabuero
                 <h6>UX Designer</h6>
                 </div>
           </div>
             <div class="developer-card">
                 <div class="developer-image">
                 <img src="../image/ui.png">
-                Amani Uri
+                Kristine Sabuero
                 <h6>UX Designer</h6>
                 </div>
             </div>
@@ -151,21 +152,21 @@
             <div class="developer-card">
                 <div class="developer-image">
                     <img src="../image/ui.png">
-                    Vennasshier Malali
+                    Kristine Sabuero
                     <h6>UX Designer</h6>
                 </div>
             </div>
             <div class="developer-card">
                 <div class="developer-image">
                 <img src="../image/ui.png">
-                Justin James Alviar
+                Kristine Sabuero
                 <h6>UX Designer</h6>
                 </div>
           </div>
             <div class="developer-card">
                 <div class="developer-image">
                 <img src="../image/ui.png">
-                Mark Luis Salvador
+                Kristine Sabuero
                 <h6>UX Designer</h6>
                 </div>
             </div>

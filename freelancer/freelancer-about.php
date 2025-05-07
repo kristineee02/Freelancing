@@ -26,9 +26,10 @@
 
         <div class="dashboard">
             <ul>
-                <li><a href="Explore.php">Explore</a></li>
-                <li><a href="Find-Job.php" class="tight-text">Find Jobs</a></li>
-                <li><a href="About.php">About</a></li>
+              <li><a href="Explore.php">Explore</a> </li>
+             <li> <a href="Find-Job.php" class="tight-text">Find Jobs</a> </li>
+             <li><a href="buy-table.php">Buy</a></li>
+             <li> <a href="About.php" class="active-dash">About</a></li>
             </ul>
         </div>
 
@@ -68,12 +69,14 @@
             <div class="profile-info">
                 <h1>name</h1>
                 <p class="location">address</p>
+                <p class="follow-info">0 Followers | 20 Following</p>
             </div>
         </div>
 
         <div class="tabs">
             <a href="freelancer-work.php">WORK</a>
             <a href="freelancer-about.php" class="active">ABOUT</a>
+            <a href="freelancer-likedpost.php">LIKED POST</a>
         </div>
         <hr>
     </div>

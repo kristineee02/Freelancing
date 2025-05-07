@@ -107,7 +107,7 @@ function getWorkById(freelancerId){
             data.workData.forEach(work => {
                 document.getElementById("workDisplay").innerHTML += `
                     <div class="content-boxa" data-id="${work.work_id}" data-freelancer-id="${work.freelancer_id}">
-                        <img src="../uploads/${work.picture}" style="height:100%;width:100%;background-size:cover; border-radius:10px;">
+                        <img src="../uploads/${work.picture}" style="height:100%;width:100%;background-size:cover;">
                     </div>
                 `;
             });

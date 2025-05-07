@@ -33,9 +33,7 @@ function getAllJob(){
                     <div class="company">
                     <div class="header">
                         <div style="display: flex; align-items: center;">
-                            <a href="client-about.php?id=${job.client_id}">
-                                <img src="../uploads/${job.profile_pic}" alt="company logo" style="cursor:pointer;">
-                            </a>
+                            <img src="../uploads/${job.profile_pic}" alt="company logo">
                             <div class="company-name">${job.first_name} ${job.last_name}</div>
                         </div>
                         <div class="date">${job.date_created}</div>

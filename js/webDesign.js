@@ -49,7 +49,7 @@ function getAllWork(){
             document.getElementById("workCategory").textContent = `${data.workData.category}`;
             document.getElementById("date").textContent = `${data.workData.date}`;
             document.getElementById("imageDisplay").innerHTML = `
-                <img src="../uploads/${data.workData.picture}" style="height: 100%;width:100%; background-size:cover; border-radius:10px;">
+                <img src="../uploads/${data.workData.picture}" style="height: 100%;width:100%; background-size:cover;">
             `;
 
             document.getElementById("workDescription").textContent = `${data.workData.description}`;

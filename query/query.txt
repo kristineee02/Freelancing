@@ -47,6 +47,7 @@ CREATE TABLE work (
  );
 
 CREATE TABLE about_job (
+
     about_job_id INT AUTO_INCREMENT PRIMARY KEY,
     about_us TEXT NOT NULL,
     role TEXT NOT NULL,
@@ -54,7 +55,6 @@ CREATE TABLE about_job (
     benefits TEXT NOT NULL,
     requirements TEXT NOT NULL
 );
-
 create table job(
     job_id INT AUTO_INCREMENT PRIMARY KEY,
     client_id INT NOT NULL,
@@ -73,8 +73,41 @@ create table job(
     FOREIGN KEY (about_job_id) REFERENCES about_job(about_job_id)
 );
 
+CREATE TABLE application (
 
+    application_id INT AUTO_INCREMENT PRIMARY KEY,
+    job_id INT,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    contact VARCHAR(15) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    
+    FOREIGN KEY (job_id) REFERENCES job(job_id)
+);
 
+CREATE TABLE review(
+    review_id INT AUTO_INCREMENT PRIMARY KEY,
+    client_id INT,
+    work_id INT,
+    comment VARCHAR(255) NOT NULL,
+
+    FOREIGN KEY (client_id) REFERENCES client(client_id),
+    FOREIGN KEY (work_id) REFERENCES work(work_id)
+);
+
+CREATE TABLE buy (
+    buy_id INT AUTO_INCREMENT PRIMARY KEY,
+    client_id INT,
+    work_id INT,
+    freelancer_id INT,
+    project_details VARCHAR(255) NOT NULL,
+    target_date DATE NOT NULL,
+    project_budget DOUBLE NOT NULL,
+
+    FOREIGN KEY (client_id) REFERENCES client(client_id),
+    FOREIGN KEY (work_id) REFERENCES work(work_id),
+    FOREIGN KEY (freelancer_id) REFERENCES freelancer(freelancer_id)
+);
 
 
 ALTER TABLE client

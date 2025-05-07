@@ -34,6 +34,7 @@
                     <li><a href="client-freelancer-work.php" class="tight-text">Post Job</a></li>
                 </ul>
              </div>
+             <li><a href="application-home.php">Application</a></li>
             </li>
              <li> <a href="client-about.php" class="active-dash">About</a></li>
             </ul>
@@ -52,7 +53,7 @@
             <div class="sub-menu">
                 <div class="user-info">
                     <img class="profile" src="../image/prof.jpg" id="imageDisplay">
-                    <h4 id="nameDisplay"></h4>
+                    <h4 id="nameDisplay">Kristine Sabuero</h4>
                 </div>
                 <hr>
 
@@ -132,22 +133,22 @@
         <section class="developer-container">
             <div class="developer-card">
                 <div class="developer-image">
-                    <img src="../image/kris.jpg">
+                    <img src="../image/ui.png">
                     Kristine Sabuero
                     <h6>UX Designer</h6>
                 </div>
             </div>
             <div class="developer-card">
                 <div class="developer-image">
-                <img src="../image/jayna.jpg">
-                Jayna Sahibul
+                <img src="../image/ui.png">
+                Kristine Sabuero
                 <h6>UX Designer</h6>
                 </div>
           </div>
             <div class="developer-card">
                 <div class="developer-image">
-                <img src="../image/Ami.jpg">
-                Amani Uri
+                <img src="../image/ui.png">
+                Kristine Sabuero
                 <h6>UX Designer</h6>
                 </div>
             </div>
@@ -155,22 +156,22 @@
         <section class="developer-container">
             <div class="developer-card">
                 <div class="developer-image">
-                    <img src="../image/ven.jpg">
-                    Vennasshier Malali
+                    <img src="../image/ui.png">
+                    Kristine Sabuero
                     <h6>UX Designer</h6>
                 </div>
             </div>
             <div class="developer-card">
                 <div class="developer-image">
                 <img src="../image/ui.png">
-                Justine James Alviar
+                Kristine Sabuero
                 <h6>UX Designer</h6>
                 </div>
           </div>
             <div class="developer-card">
                 <div class="developer-image">
-                <img src="../image/luis.jpg">
-                Mark Luis Salvador
+                <img src="../image/ui.png">
+                Kristine Sabuero
                 <h6>UX Designer</h6>
                 </div>
             </div>
@@ -206,7 +207,7 @@
             notifPopup.style.display = 'none';
         }
     
-    fetch("../api/store_session.php")
+        fetch("../api/store_session.php")
     .then(response => response.json())
     .then(data => {
         if(data.status === "success"){

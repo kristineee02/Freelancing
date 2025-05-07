@@ -28,9 +28,10 @@
 
         <div class="dashboard">
             <ul>
-                <li><a href="Explore.php">Explore</a></li>
-                <li><a href="Find-Job.php" class="tight-text">Find Jobs</a></li>
-                <li><a href="About.php">About</a></li>
+              <li><a href="Explore.php">Explore</a> </li>
+             <li> <a href="Find-Job.php" class="tight-text">Find Jobs</a> </li>
+             <li><a href="buy-table.php">Buy</a></li>
+             <li> <a href="About.php" class="active-dash">About</a></li>
             </ul>
         </div>
 
@@ -68,19 +69,20 @@
     <main>
         <form class="design-showcase">
             <div class="design-profile">
-                <div class="avatar" ></div>
-                <span id="nameDisplay"></span>
+                <div class="avatar" style="background-image: url('../image/prof.jpg');"></div>
+                <span id="nameDisplay">Kristine Sabuero</span>
+                <button class="follow-btn">FOLLOW +</button>
             </div>
 
-            <h2 id="workTitle"></h2>
-            <span class="work-category" id="workCategory"></span>
-            <div class="time" id="date"></div>
+            <h2 id="workTitle">Sample Work Title</h2>
+            <span class="work-category" id="workCategory">Graphic Design</span>
+            <div class="time" id="date">2025-04-28</div>
             <div class="design-preview" id="imageDisplay"></div>
             <div class="heart-icon">
                 <span><i class="fa-solid fa-heart"></i></span>
             </div>
             <div class="work-description" id="workDescription">
-                <p></p>
+                <p>This is a sample description of the design work displayed here. It explains what the project was about and any important details.</p>
             </div>
         </form>
     </main>

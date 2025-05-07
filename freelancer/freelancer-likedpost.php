@@ -17,25 +17,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Freelancing</title>
-    <link rel ="stylesheet" href="../style/style.css">
+    <link rel ="stylesheet" href="../style/freelancer-profile.css">
 </head>
 <body>
+
     <div class="logo">
         <img class="picture" src="../image/logo.png">
         <p>TaskFlow</p>
 
         <div class="dashboard">
             <ul>
-              <li><a href="client-explore.php">Explore</a>  </li>
-             <li> <a href="Find-Freelancer.php" class="tight-text">Find Designer  <i class="fa fa-caret-down"></i></a> 
-             <div class="dropdown_menu">
-                <ul>
-                    <li><a href="client-freelancer-work.php" class="tight-text">Post Job</a></li>
-                </ul>
-             </div>
-             <li><a href="application-home.php">Application</a></li>
-            </li>
-             <li> <a href="client-about.php" class="active-dash">About</a></li>
+              <li><a href="Explore.php">Explore</a> </li>
+             <li> <a href="Find-Job.php" class="tight-text">Find Jobs</a> </li>
+             <li><a href="buy-table.php">Buy</a></li>
+             <li> <a href="About.php" class="active-dash">About</a></li>
             </ul>
         </div>
 
@@ -45,14 +40,14 @@
                 <p><strong>New Message:</strong> Your job application has been viewed!</p>
                 <p><strong>Reminder:</strong> Update your profile today.</p>
               </div>
-        <img class="profile" src="../image/prof.jpg" alt="profile" onclick="toggleMenu()">
+            <img class="profile" src="../image/prof.jpg" alt="profile" onclick="toggleMenu()">
         </div>
 
         <div class="sub-menu-wrap" id="subMenu">
             <div class="sub-menu">
                 <div class="user-info">
                     <img class="profile" src="../image/prof.jpg">
-                    <h4>Kristine Sabuero</h4>
+                    <h4>name</h4>
                 </div>
                 <hr>
 
@@ -66,35 +61,71 @@
                     <p>Logout</p>
                     <span>></span>
                 </a>
-
             </div>
-
         </div>
-    
+    </div>
+</div>
+<div class="profile-container">
+    <div class="profile-header">
+        <img src="../image/yellow circle.png" alt="Profile Image" class="profile-image">
+        <div class="profile-info">
+            <h1>name</h1>
+            <p class="location">address</p>
+            <p class="follow-info">0 Followers  |  20 Following</p>
+            <button class="edit-profile" onclick="goToEditProfile()">EDIT PROFILE</a></button>
+        </div>
+    </div>
+
+    <div class="tabs">
+        <a href="freelancer-work.php">WORK</a>
+        <a href = "freelancer-about.php">ABOUT</a>
+        <a href="freelancer-likedpost.php"class="active">LIKED POST</a>
     </div>
     <hr>
-
-    <section class="job-details">
-        <p class="details-job">JOB DETAILS</h2>
-        <p class="skill-name" id="skillNameId">WEBSITE DESIGNER</h1>
-        <div class="job-content">
-            <div class="job-description" >
-                <p id="jobDescription">We are seeking a highly creative and design-driven Content Analyst to join our dynamic team. As a Content Analyst, you will be building websites using our website builder platform for our diverse range of small business customers. If you have an eye for great design, understand how to create engaging online experiences, and enjoy helping businesses stand out, this is the perfect role for you.</p>
-                <h3>Job requirements</h3>
-                <h4>Education:</h4>
-                <p id="educationId"></p>
-                <h4>Experience:</h4>
-                <p id="experienceId"></p>
+</div>
+<div class="liked-posts-grid">
+    <div class="post-card">
+        <div class="post-footer">
+            <div class="post-author">
+                <div class="author-icon">J</div>
+                <span>Jayna Sahibul</span>
             </div>
-            <div class="company-info">
-                <p id="locationId"></p>
-                <p id="datePostedId"></p>
-                <p id="timeframeId"></p>
-                <p id="budgetId"></p>
+            <div class="heart-button">
+                <img class="heart" src="../image/hearty.png">
             </div>
         </div>
-    </section>
-
+    </div>
+    
+    <div class="post-card">
+        <div class="post-footer">
+            <div class="post-author">
+                <div class="author-icon">A</div>
+                <span>Amani Uri</span>
+            </div>
+            <div class="heart-button">
+                <img class="heart" src="../image/hearty.png">
+            </div>
+        </div>
+    </div>
+    
+    <div class="post-card">
+        <div class="post-footer">
+            <div class="post-author">
+                <div class="author-icon">V</div>
+                <span>Ven Malali</span>
+            </div>
+            <div class="heart-button">
+                <img class="heart" src="../image/hearty.png">
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+    <script>
+            function goToEditProfile() {
+            window.location.href = "freelancer-work.php";
+        }
+    </script>
     <script>
         let subMenu = document.getElementById("subMenu");
 
@@ -109,12 +140,6 @@
         
     }
 </script>
-
-    <script>
-        function goToApplyJob() {
-        window.location.href = "Find-Job-Overview.php";
-        }
-    </script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -135,7 +160,5 @@
     });
 });
 </script>
-
-<script src="../js/clientFindJobDetails.js"></script>
 </body>
 </html>

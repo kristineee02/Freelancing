@@ -27,9 +27,10 @@
 
         <div class="dashboard">
             <ul>
-              <li><a href="Explore.php" class="active-dash">Explore</a> </li>
+              <li><a href="Explore.php">Explore</a> </li>
              <li> <a href="Find-Job.php" class="tight-text">Find Jobs</a> </li>
-             <li> <a href="About.php">About</a></li>
+             <li><a href="buy-table.php">Buy</a></li>
+             <li> <a href="About.php" class="active-dash">About</a></li>
             </ul>
         </div>
 
@@ -46,7 +47,7 @@
             <div class="sub-menu">
                 <div class="user-info" id="userInfoDocument">
                     <img class="profile" src="../image/prof.jpg">
-                    <h4></h4>
+                    <h4>John Doe</h4>
                 </div>
                 <hr>
 
@@ -83,24 +84,93 @@
         <div class="slide" onclick="filterByCategory('ANIMATION')" style="cursor: pointer;">ANIMATION</div>
         <div class="slide" onclick="filterByCategory('GRAPHIC DESIGN')" style="cursor: pointer;">GRAPHIC DESIGN</div>
         <div class="slide" onclick="filterByCategory('PRODUCT DESIGN')" style="cursor: pointer;">PRODUCT DESIGN</div>
-        <div class="slide" onclick="filterByCategory('WEBSITE DESIGN')" style="cursor: pointer;">WEB DESIGN</div>
+        <div class="slide" onclick="filterByCategory('WEB DESIGN')" style="cursor: pointer;">WEB DESIGN</div>
         <div class="slide" onclick="filterByCategory('ILLUSTRATION')" style="cursor: pointer;">ILLUSTRATION</div>
         <div class="slide" onclick="filterByCategory('MOBILE DESIGN')" style="cursor: pointer;">MOBILE DESIGN</div>
         <div class="slide" onclick="filterByCategory('WRITING')" style="cursor: pointer;">WRITING</div>
     </div>
     <button class="carousel-btn prev" onclick="moveSlide(-1)"><</button>
     <button class="carousel-btn next" onclick="moveSlide(1)">></button>
-    </div>
+</div>
 
-    <select id="FilterCategory" onchange="filterFreelancer()" class="filter">
-        <option value="">Filter</option>
-        <option value="new">New</option>
-        <option value="all">All</option>
-    </select>
+<select id="FilterCategory" onchange="filterEmployee()" class="filter">
+    <option value="">Filter</option>
+    <option value="new">New</option>
+    <option value="popular">Popular</option>
+</select>
         
-        <div id="worksContainer">           
+        <div id="worksContainer">
+    <!--
+            <section class="container" id="sectionContainer">
+                <div class="card" data-id="freelancer-webdesign.php?id=1" data-category="web design">
+                    <div class="card-image" style="background-image: url('../api/images/work1.jpg');">
+                    </div>
+                    <div class="footer">
+                        <h5 id="text">John Smith</h5>
+                        <span>&hearts; 0</span>
+                    </div>
+                </div>
+                <div class="card" data-id="freelancer-webdesign.php?id=2" data-category="graphic design">
+                    <div class="card-image" style="background-image: url('../api/images/work2.jpg');">
+                    </div>
+                    <div class="footer">
+                        <h5 id="text">Sarah Johnson</h5>
+                        <span>&hearts; 0</span>
+                    </div>
+                </div>
+                <div class="card" data-id="freelancer-webdesign.php?id=3" data-category="illustration">
+                    <div class="card-image" style="background-image: url('../api/images/work3.jpg');">
+                    </div>
+                    <div class="footer">
+                        <h5 id="text">Michael Brown</h5>
+                        <span>&hearts; 0</span>
+                    </div>
+                </div>
+                <div class="card" data-id="freelancer-webdesign.php?id=4" data-category="animation">
+                    <div class="card-image" style="background-image: url('../api/images/work4.jpg');">
+                    </div>
+                    <div class="footer">
+                        <h5 id="text">Emily Davis</h5>
+                        <span>&hearts; 0</span>
+                    </div>
+                </div>
+            </section>
+            <section class="container">
+                <div class="card" data-id="freelancer-webdesign.php?id=5" data-category="mobile design">
+                    <div class="card-image" style="background-image: url('../api/images/work5.jpg');">
+                    </div>
+                    <div class="footer">
+                        <h5 id="text">David Wilson</h5>
+                        <span>&hearts; 0</span>
+                    </div>
+                </div>
+                <div class="card" data-id="freelancer-webdesign.php?id=6" data-category="writing">
+                    <div class="card-image" style="background-image: url('../api/images/work6.jpg');">
+                    </div>
+                    <div class="footer">
+                        <h5 id="text">Jessica Taylor</h5>
+                        <span>&hearts; 0</span>
+                    </div>
+                </div>
+                <div class="card" data-id="freelancer-webdesign.php?id=7" data-category="product design">
+                    <div class="card-image" style="background-image: url('../api/images/work7.jpg');">
+                    </div>
+                    <div class="footer">
+                        <h5 id="text">Robert Martinez</h5>
+                        <span>&hearts; 0</span>
+                    </div>
+                </div>
+                <div class="card" data-id="freelancer-webdesign.php?id=8" data-category="web design">
+                    <div class="card-image" style="background-image: url('../api/images/work8.jpg');">
+                    </div>
+                    <div class="footer">
+                        <h5 id="text">Amanda Lewis</h5>
+                        <span>&hearts; 0</span>
+                    </div>
+                </div>
+            </section>
+    -->
         </div>
-
         <script src="../js/explore.js"></script>
 
     <script>
@@ -170,5 +240,6 @@
 });
 </script>
 
+<script src="../js/explore.js"></script>
 </body>
 </html>
