@@ -122,20 +122,6 @@
             text-overflow: ellipsis;
             white-space: nowrap;
             position: relative;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .project-details:hover {
-            white-space: normal;
-            overflow: visible;
-            background-color: white;
-            box-shadow: var(--card-shadow);
-            padding: 12px;
-            border-radius: 6px;
-            z-index: 100;
-            position: absolute;
-            max-width: 300px;
         }
         
         .project-budget {
@@ -148,7 +134,6 @@
             font-style: italic;
         }
         
-        /* Responsive design */
         @media (max-width: 768px) {
             body {
                 padding: 15px;

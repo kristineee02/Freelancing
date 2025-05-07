@@ -65,6 +65,7 @@
             </div>
         </div>
     </div>
+    <hr>
 
     <div class="profile-container">
         <div class="profile-header" id="profileHeaderDocument">
@@ -106,7 +107,7 @@
             <a href="freelancer-work.php" class="active">WORK</a>
             <a href="freelancer-about.php">ABOUT</a>
         </div>
-        <div class="hr"></div>
+        <hr>
     </div>
 
     <div class="content-section" id="workDisplay">

@@ -49,7 +49,7 @@
         <div class="dashboard">
             <ul>
               <li><a href="client-explore.php">Explore</a>  </li>
-             <li> <a href="Find-Freelancer.php" class="tight-text">Find Designer  <i class="fa fa-caret-down"></i></a> 
+             <li> <a href="Find-Freelancer.php" class="tight-text active-dash">Find Designer  <i class="fa fa-caret-down"></i></a> 
              <div class="dropdown_menu">
                 <ul>
                     <li><a href="client-freelancer-work.php" class="tight-text">Post Job</a></li>

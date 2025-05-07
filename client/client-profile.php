@@ -9,12 +9,15 @@
     <link rel="stylesheet" href="../style/responsive.css">
 
     <style>
+
+        
         /* Job Section Styles */
 .job-section {
     margin-top: -30px;
     padding: 0 20px;
     margin-left: 30px;
-    
+    width: 90%;
+
 }
 
 .job-section h2 {
@@ -30,7 +33,6 @@
     margin-bottom: 40px;
     padding: 20px;
     transition: transform 0.2s;
-    width: 90%;
 }
 
 .job-card:hover {

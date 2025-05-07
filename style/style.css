@@ -420,7 +420,7 @@ html, body {
 }
 .company {
     box-sizing: border-box; 
-    max-width: 750px;
+    width: 750px;
     background-color: #fff;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -1397,7 +1397,7 @@ hr {
     border: 0;
     height: 1px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
-    margin: 20px 0;
+    margin: 10px 0;
 }
 /*buy-client*/
 .booking-popup {

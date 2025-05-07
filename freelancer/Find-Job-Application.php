@@ -71,7 +71,6 @@
     <div class="discover-find-job">
         <div class="overlay-find"></div>
         <p class="info-find-job"><b>
-            COMPANY NAME
         </b></p>
     </div>
 

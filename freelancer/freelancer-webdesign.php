@@ -66,6 +66,7 @@
             </div>
         </div>
     </div>
+    <hr>
 
     <main>
         <form class="design-showcase">

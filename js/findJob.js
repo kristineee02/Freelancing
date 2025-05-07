@@ -34,7 +34,7 @@ function getAllJob(){
                     <div class="header">
                         <div style="display: flex; align-items: center;">
                               <a href="client-about.php?id=${job.client_id}">
-                                <img src="../image/luis.jpg" alt="company logo" style="cursor:pointer;">
+                                <img src="../uploads/${job.profile_pic}" alt="company logo" style="cursor:pointer;">
                                 </a>
                             <div class="company-name">${job.first_name} ${job.last_name}</div>
                         </div>

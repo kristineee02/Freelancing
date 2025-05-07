@@ -64,6 +64,8 @@
         </div>
     </div>
 
+    <hr>
+
     <div class="profile-container">
         <div class="profile-header" id="profileHeaderDocument">
             <img src="../image/" alt="Profile Image" class="profile-image">
