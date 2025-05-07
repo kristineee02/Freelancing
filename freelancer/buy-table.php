@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Client Table</title>
+    <link rel="stylesheet" href="../style/responsive.css">
     <style>
         :root {
             --primary-color:rgb(208, 219, 52);
@@ -175,6 +176,7 @@
 </head>
 <body>
     <div class="container">
+        <a href="Find-Job.php"  style="font-size: 40px; color:grey;" >&laquo;</a>
         <h1>Client Application</h1>
         
         <table>

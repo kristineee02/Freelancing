@@ -19,6 +19,7 @@
     <title>Freelancing</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/responsive.css">
 </head>
 <body>
     <div class="logo">
@@ -114,8 +115,8 @@
 
         <div class="company">
             <div class="header">
-                <div style="display: flex; align-items: center;">
-                    <img src="../image/prof.jpg" alt="company logo">
+                <div>
+                    <img src="../image/jayna.jpg" alt="company logo" >
                     <div class="company-name"></div>
                 </div>
                 <div class="date"></div>

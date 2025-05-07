@@ -526,10 +526,13 @@ hr {
 
 .freelancer-list {
     margin-top: 1em;
-    display: grid;
+    display: flex;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
     gap: 30px; 
     justify-content: left;
+    width: 60%;
+
+    
 }
 
 .cards {

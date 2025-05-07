@@ -6,6 +6,27 @@
     <title>Freelancing</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel ="stylesheet" href="../style/clients.css">
+    <link rel="stylesheet" href="../style/responsive.css">
+    <style>
+        .picture{
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 50%;
+            float: left;
+            margin-left: 3%;
+        }
+        .logo{
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .dashboard{
+            word-spacing: 25px;
+            margin-left: 8%;
+}
+        </style>
 
 </head>
 <body>
@@ -37,7 +58,7 @@
              </div>
              <li><a href="application-home.php">Application</a></li>
             </li>
-             <li> <a href="client-about.php" class="active-dash">About</a></li>
+             <li> <a href="client-about.php">About</a></li>
             </ul>
         </div>
         <div class="notif-profile">
@@ -82,9 +103,6 @@
             <span class="work-category" id="workCategory"></span>
             <div class="time" id="date"></div>
             <div class="design-preview" id="workPicture"></div>
-            <div class="heart-icon">
-                <span><i class="fa-solid fa-heart"></i></span>
-            </div>
             <div class="work-description" id="workDescription">
                 <p></p>
             </div>

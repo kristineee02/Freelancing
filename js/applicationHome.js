@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function(){
     initializeJobFilters();
     getJob();
+
+
 });
 
 function initializeJobFilters() {
@@ -170,3 +172,4 @@ function getJob() {
             document.getElementById("jobCards").innerHTML = '<p>Error loading jobs. Please try again later.</p>';
         });
 }
+

@@ -19,6 +19,7 @@
     <title>Freelancing</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/responsive.css">
 </head>
 <body>
 
@@ -77,9 +78,7 @@
             <span class="work-category" id="workCategory"></span>
             <div class="time" id="date"></div>
             <div class="design-preview" id="imageDisplay"></div>
-            <div class="heart-icon">
-                <span><i class="fa-solid fa-heart"></i></span>
-            </div>
+
             <div class="work-description" id="workDescription">
                 <p></p>
             </div>

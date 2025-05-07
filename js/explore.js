@@ -111,7 +111,7 @@ function displayWorks(works) {
             </div>
             <div class="footer">
                 <h5 id="text">${work.first_name} ${work.last_name}</h5>
-                <span>♥ 0</span>
+
             </div>
         `;
         
