@@ -118,6 +118,46 @@
             background-color: #FFE295;
             padding: 10px;
         }
+
+    @media only screen and (min-width: 577px) and (max-width: 768px) {
+    body {
+        overflow-y: auto;
+        height: auto;
+    }
+    
+    .TF2 {
+        font-size: 22px;
+        padding-left: 20px;
+    }
+    
+    .navs {
+        padding-right: 20px;
+        gap: 15px;
+    }
+    
+    nav ul {
+        gap: 15px;
+    }
+    
+    .hero {
+        height: 180px;
+        border-radius: 40px;
+        margin-top: 80px;
+    }
+    
+    .hero-container {
+        width: 90%;
+    }
+    
+    .content {
+        padding: 0 20px;
+    }
+    
+    footer {
+        position: relative;
+        margin-top: 40px;
+    }
+    }       
         </style>
 </head>
 

@@ -270,3 +270,42 @@ footer {
     padding: 0 20px 15px;
     max-height: 200px;
 }
+
+@media only screen and (min-width: 577px) and (max-width: 768px) {
+    body {
+        padding-top: 180px;
+    }
+
+    .TF2 {
+        font-size: 22px;
+        padding-left: 20px;
+    }
+
+    .navs {
+        padding-right: 20px;
+    }
+
+    .welcome span {
+        font-size: 32px;
+    }
+
+    .TF {
+        font-size: 42px;
+    }
+
+    .home-text {
+        max-width: 350px;
+    }
+
+    .signupbox {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .faq-container {
+        width: 80%;
+    }
+    .signupoption span{
+        font-size: 20px;
+    }
+}

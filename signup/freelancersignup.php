@@ -203,6 +203,22 @@
     width: 107%;
 }
 
+@media (max-width: 768px) {
+    .splitscreen {
+        flex-direction: column;
+    }
+    
+    .welcome, .signup {
+        width: 100%;
+        min-height: 60px;
+    }
+    
+    .form {
+        width: 90%;
+    }
+    
+}
+
 
         </style>
 

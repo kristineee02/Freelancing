@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Freelancing</title>
     <link rel ="stylesheet" href="../style/style.css">
-    <link rel="stylesheet" href="../style/responsive.css">
+    <link rel ="stylesheet" href="../style/responsive-freelancer.css">
+
 </head>
 <body>
 
@@ -174,6 +175,5 @@
 });
 </script>
 
-<script src="../js/explore.js"></script>
 </body>
 </html>

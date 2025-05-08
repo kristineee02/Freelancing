@@ -709,7 +709,6 @@ section:last-child {
     position: relative;
 }
 
-/* Media Queries for Responsiveness */
 @media (max-width: 850px) {
     .container-overview {
         margin: 30px 20px;
@@ -825,120 +824,6 @@ form {
     background: #d89b00;
 }
 
-/*client-freelancer-work
-
-.side{
-    font-size: 20px;
-    color: rgb(245, 247, 158);
-    margin-top: 50px;
-    z-index: 1;
-}
-.discover-find-job-freelancer{
-    background: url('image/cc.jpg') no-repeat  center/cover;
-    padding: 50px;
-    text-align: center;
-}
-.info-find-job-freelancer{
-    font-size: 25px;
-    color: rgb(231, 235, 30);
-    position:absolute;
-    left: 50%;
-    top: 20%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-}
-.overlay-job{
-    background: rgba(0, 0, 0, 0.5);
-    width: 100%;
-    height: 29.7%;
-    position: absolute;
-    top: 80px;
-    left: 0;
-}
-
-.form-container {
-    width: 50%;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background: white;
-    font-family: 'Montserrat', sans-serif;
-    box-shadow: 0 4px 10px rgba(24, 24, 24, 0.2); 
-}
-.text-proj{
-    margin-bottom: -10px;
-    font-size: 20px;
-}
-
-.form-project {
-    display: flex;
-    flex-direction: column;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.label-project {
-    margin-top: 10px;
-    font-size: 14px;
-    font-weight: bold;
-    font-family: 'Montserrat', sans-serif;
-    margin-bottom: 10px;
-}
-.radio{
-    font-weight: normal;
-    font-size: 14px;
-}
-.project-category{
-    margin-top: 20px;
-    font-size: 14px;
-    font-weight: bold;
-}
-.project-description{
-    margin-top: 20px;
-    font-size: 14px;
-    font-weight: bold;
-}
-.input-proj, .textholder {
-    width: 95%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 14px;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.textholder {
-    height: 100px;
-    resize: none;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.radio-group {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 10px;
-    font-family: 'Montserrat', sans-serif;
-}
-.submit-project {
-    margin-top: 20px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background: #ffea70;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.submit-project:hover {
-    background: #FFC107;
-    font-family: 'Montserrat', sans-serif;
-}
-    */
 /*carousel slider*/
 .carousel-container {
     position: relative;
@@ -1382,7 +1267,6 @@ h2#workTitle {
     font-size: 14px;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .job-content {
         flex-direction: column;
