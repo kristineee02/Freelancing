@@ -19,27 +19,7 @@
     <title>Freelancing</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel ="stylesheet" href="../style/clients.css">
-    <link rel="stylesheet" href="../style/responsive.css">
-    <style>
-        .picture{
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-            border-radius: 50%;
-            float: left;
-            margin-left: 3%;
-        }
-        .logo{
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
 
-        .dashboard{
-            word-spacing: 25px;
-            margin-left: 8%;
-}
-        </style>
 </head>
 <body>
     <div class="logo">

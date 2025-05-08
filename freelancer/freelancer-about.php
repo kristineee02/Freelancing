@@ -18,7 +18,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Freelancing</title>
     <link rel="stylesheet" href="../style/freelancer-profile.css">
-    <link rel="stylesheet" href="../style/responsive.css">
 </head>
 <body>
     <div class="logo">
@@ -35,11 +34,6 @@
         </div>
 
         <div class="notif-profile">
-            <img src="../image/3119338.png" alt="Notification icon" class="notif" id="notifBtn" />
-            <div class="notification-popup" id="notifPopup">
-                <p><strong>New Message:</strong> Your job application has been viewed!</p>
-                <p><strong>Reminder:</strong> Update your profile today.</p>
-            </div>
             <img class="profile" src="../image/prof.jpg" alt="profile" onclick="toggleMenu()">
         </div>
 

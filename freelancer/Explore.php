@@ -37,11 +37,7 @@
         </div>
 
         <div class="notif-profile">
-            <img src="../image/3119338.png" alt="Notification icon" class="notif" id="notifBtn" />
-            <div class="notification-popup" id="notifPopup">
-                <p><strong>New Message:</strong> Your job application has been viewed!</p>
-                <p><strong>Reminder:</strong> Update your profile today.</p>
-              </div>
+
         <img class="profile" src="../image/prof.jpg" alt="profile" onclick="toggleMenu()">
         </div>
         

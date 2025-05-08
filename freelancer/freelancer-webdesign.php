@@ -19,7 +19,6 @@
     <title>Freelancing</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../style/style.css">
-    <link rel="stylesheet" href="../style/responsive.css">
 </head>
 <body>
 
@@ -37,11 +36,6 @@
         </div>
 
         <div class="notif-profile">
-            <img src="../image/3119338.png" alt="Notification icon" class="notif" id="notifBtn" />
-            <div class="notification-popup" id="notifPopup">
-                <p><strong>New Message:</strong> Your job application has been viewed!</p>
-                <p><strong>Reminder:</strong> Update your profile today.</p>
-            </div>
             <img class="profile" src="../image/prof.jpg" alt="profile" onclick="toggleMenu()">
         </div>
 
